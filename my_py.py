@@ -3,7 +3,7 @@ import pandas as pd
 import pymongo
 from pymongo import MongoClient
 import os, json
-client = MongoClient("mongodb+srv://tradingvision:123@cluster0.xmnn8.mongodb.net/TradingStock?retryWrites=true&w=majority")
+#client = MongoClient("mongodb+srv://tradingvision:123@cluster0.xmnn8.mongodb.net/TradingStock?retryWrites=true&w=majority")
 
 hose_URL = "https://banggia.cafef.vn/stockhandler.ashx?center=1"
 hnx_URL = "https://banggia.cafef.vn/stockhandler.ashx?center=2"
@@ -48,19 +48,15 @@ def fetch_real_data():
 fetch_real_data()
 
 
-# db = client['TradingVision']
-# df = pd.read_csv("E:\ITEC\AUT\R&D\R&D - Trading Vision Project\Source Code\Backup\Data\hose_data.csv")
-# data = df.to_dict(orient = "records")
-# db.HOSE.insert_many(data)
 
 
-def import_to_mongodb(name):
-    db = client['TradingVision']
-    df = pd.read_csv("E:\ITEC\AUT\R&D\R&D - Trading Vision Project\Source Code\Backup\Data\{sename}_data.csv".format(
-            sename=name
-        ))
-    data = df.to_dict(orient = "records")
-    db['{}'.format(name)].insert_many(data) 
-import_to_mongodb('hose')
-import_to_mongodb('hnx')
-import_to_mongodb('upcom')
+# def import_to_mongodb(name):
+#     db = client['TradingVision']
+#     df = pd.read_csv("E:\ITEC\AUT\R&D\R&D - Trading Vision Project\Source Code\Backup\Data\{sename}_data.csv".format(
+#             sename=name
+#         ))
+#     data = df.to_dict(orient = "records")
+#     db['{}'.format(name)].insert_many(data) 
+# import_to_mongodb('hose')
+# import_to_mongodb('hnx')
+# import_to_mongodb('upcom')
