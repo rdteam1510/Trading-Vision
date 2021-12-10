@@ -3,12 +3,11 @@ import pandas as pd
 import pymongo
 from pymongo import MongoClient
 import os, json, datetime
-client = MongoClient("mongodb+srv://tradingvision:123@cluster0.xmnn8.mongodb.net/TradingVision?retryWrites=true&w=majority")
-
+client = MongoClient("mongodb://18.118.24.181:27017/?readPreference=primary&appname=MongoDB'017&directConnection=true&ssl=false")
 headers = ["TimeStamp",
            "Time",
            "Name",
-           "PreviousClosed",
+           "Previous_Closed",
            "Ceiling",
            "Floor",
            "Highest",
@@ -82,11 +81,11 @@ hose_stocks = [
     "PDR",
     "PHR",
     "PLX",
-    "PME",
     "PNJ",
     "POM",
     "POW",
     "PPC",
+    "PTL",
     "PVD",
     "PVT",
     "REE",
