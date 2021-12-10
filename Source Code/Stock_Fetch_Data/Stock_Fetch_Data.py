@@ -347,7 +347,7 @@ def fetch_function(url, se_stocks):
 
 
 def import_to_mongodb(se,name):
-    db = client['StockPrice']
+    db = client['StockPrice_demo']
     data = se.to_dict(orient = "records")
     for row in data:
         existing_document = db[f'{name}'].find_one(row)
