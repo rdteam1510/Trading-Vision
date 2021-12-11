@@ -11,7 +11,7 @@
 1. `pip install -r requirements.txt`
 2. `python3 main.py`
 
-# ### Note:
+### Note:
 
 - Download suitable "chromdriver.exe" for your Chrome browser from this link: [chromedriver](https://chromedriver.chromium.org/downloads)
 - You can check your Chrome browser version by click on ![Thêm](https://lh3.googleusercontent.com/E2q6Vj9j60Dw0Z6NZFEx5vSB9yoZJp7C8suuvQXVA_2weMCXstGD7JEvNrzX3wuQrPtL=w36-h36 'Thêm') on the top right corner. Then, choose Help -> About Google Chrome
