@@ -1,0 +1,143 @@
+{
+  "main": {
+    "id": "874b8969247e7923",
+    "type": "split",
+    "children": [
+      {
+        "id": "5e4bd9c1392aee32",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Chỉ số P/E, EPS, và PEG là gì.md",
+            "mode": "source"
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "cd51cffa4d3221e8",
+    "type": "split",
+    "children": [
+      {
+        "id": "2535d5e00572001b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "60a19edc13faa73d",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "ab7a61cb22c91d45",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "chứng chỉ quỹ",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "ad3ee794630ed2ec",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "178f746209f18cce",
+    "type": "split",
+    "children": [
+      {
+        "id": "b6511604dae22f0a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "df0dacfb24453db9",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Chỉ số P/E, EPS, và PEG là gì.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "053af1bd645fb75a",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Chỉ số P/E, EPS, và PEG là gì.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "25ed16b04aa2983e",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "311d362e3bc982d3",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "5e4bd9c1392aee32",
+  "lastOpenFiles": [
+    "Chỉ số P/E, EPS, và PEG là gì.md",
+    "🏡Home Page.md",
+    "Nến nhật là gì.md",
+    "Tâm lý giao dịch chứng khoán.md",
+    "Sóng Elliott.md",
+    "Phân tích kỹ thuật.md",
+    "Kênh giá nối liền các đỉnh và đáy liên tiếp.md",
+    "Lý thuyết Dow.md",
+    "Kinh tế vĩ mô.md",
+    "Chứng khoán là gì.md"
+  ]
+}
