@@ -5,7 +5,7 @@ import pytz
 # Url of each stock exchange
 stock_exchanges = {
     "hose": "https://banggia.cafef.vn/stockhandler.ashx?center=1",
-    # "hnx": "https://banggia.cafef.vn/stockhandler.ashx?center=2",
+    "hnx": "https://banggia.cafef.vn/stockhandler.ashx?center=2",
     "upcom": "https://banggia.cafef.vn/stockhandler.ashx?center=9",
 }
 
