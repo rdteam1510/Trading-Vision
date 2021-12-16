@@ -30,12 +30,7 @@ def read_stocks_text_file(namefile):
     return stocks_list
 
 
-# Lay du lieu ve roi return vao bien se (Stock Exchange). se la 1 bien DataFrame cua Pandas.
-<<<<<<< HEAD
-def fetch_function(url, se_stocks,time_stamp):
-=======
 def fetch_function(url, se_stocks, time_stamp):
->>>>>>> 7d72ce1a2b03d38511daea87a1165823427632bc
     """
     Fetch function stock prices according to url of that stock exchange.
 
@@ -53,8 +48,8 @@ def fetch_function(url, se_stocks, time_stamp):
         se = pd.DataFrame.from_dict(
             pd.json_normalize(response.json()), orient="columns"
         )
-        # a: stock tickers | b: previous close | c: ceiling price| 
-        # d: floor price| v: highest price| w: lowest price| 
+        # a: stock tickers | b: previous close | c: ceiling price|
+        # d: floor price| v: highest price| w: lowest price|
         # n: volumn| l: match price
         se = se[["Time", "a", "b", "c", "d", "v", "w", "n", "l"]]
         se = se[se["a"].isin(se_stocks)]
@@ -64,5 +59,5 @@ def fetch_function(url, se_stocks, time_stamp):
             time_stamp,
         )
         se.columns = headers
-        se = se[se['Time'].notna()]
+        se = se[se["Time"].notna()]
         return se
