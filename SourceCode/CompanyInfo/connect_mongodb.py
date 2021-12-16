@@ -61,7 +61,7 @@ def my_pandas_dataFrame(namefile):
 
 # Function: import data to mongodb
 def import_to_mongodb(se, name):
-    db = client["CompanyInfo_demo"]
+    db = client["MinhCompanyInfo_demo"]
     data = se.to_dict(orient="records")
     for row in data:
         existing_document = db[f"{name}"].find_one(row)
