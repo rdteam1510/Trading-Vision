@@ -31,7 +31,11 @@ def read_stocks_text_file(namefile):
 
 
 # Lay du lieu ve roi return vao bien se (Stock Exchange). se la 1 bien DataFrame cua Pandas.
+<<<<<<< HEAD
+def fetch_function(url, se_stocks,time_stamp):
+=======
 def fetch_function(url, se_stocks, time_stamp):
+>>>>>>> 7d72ce1a2b03d38511daea87a1165823427632bc
     """
     Fetch function stock prices according to url of that stock exchange.
 
