@@ -1,13 +1,26 @@
 from fetch_stock_price import *
 from connect_mongodb import *
 import pytz
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7d72ce1a2b03d38511daea87a1165823427632bc
 # Url of each stock exchange
 stock_exchanges = {
     "hose": "https://banggia.cafef.vn/stockhandler.ashx?center=1",
     # "hnx": "https://banggia.cafef.vn/stockhandler.ashx?center=2",
-    # "upcom": "https://banggia.cafef.vn/stockhandler.ashx?center=9",
+    "upcom": "https://banggia.cafef.vn/stockhandler.ashx?center=9",
 }
+<<<<<<< HEAD
 TIME_STAMP = datetime.datetime.now(pytz.timezone("Asia/Ho_Chi_Minh")).strftime("%H:%M %d/%m/%Y")
+=======
+
+TIME_STAMP = datetime.datetime.now(
+    pytz.timezone("Asia/Ho_Chi_Minh")
+).strftime("%H:%M %d/%m/%Y")
+
+
+>>>>>>> 7d72ce1a2b03d38511daea87a1165823427632bc
 def main(namefile, se_url):
     """
     Execute fetch program
@@ -17,7 +30,11 @@ def main(namefile, se_url):
     :return: None
     """
     list_stocks = read_stocks_text_file(namefile)
+<<<<<<< HEAD
     se = fetch_function(se_url, list_stocks,TIME_STAMP)
+=======
+    se = fetch_function(se_url, list_stocks, TIME_STAMP)
+>>>>>>> 7d72ce1a2b03d38511daea87a1165823427632bc
     import_to_mongodb(se, namefile)
 
 
