@@ -8,6 +8,7 @@ client = MongoClient(
 )
 
 headers = [
+    "StockExchange",
     "Ticker",
     "CompanyName",
     "Category",
@@ -30,32 +31,38 @@ headers = [
     "TotalRevenue",
 ]
 
+
 def read_stocks_text_file(namefile):
     """
     Read stocks from a text file, remove end-line breaks, convert them into a list
     """
-    file = open(f".\stocktickers\{namefile}.txt", "r")
+    file = open(f".\stockstickers\{namefile}.txt", "r")
     content = file.read()
     stocks_list = content.split(", ")
     file.close()
     return stocks_list
 
 
+df = pd.DataFrame(columns=headers)
+
+
 def my_pandas_dataFrame(namefile):
-    df = pd.DataFrame(columns=headers)
+    global df
     se_list = read_stocks_text_file(namefile)
-    if namefile != 'UPCOM':
+    if namefile != "upcom":
         for stock in se_list:
             result = fetch_company_info(stock, namefile)
             df = df.append(
                 pd.Series(result, index=df.columns), ignore_index=True
             )
+            print("Complete", stock)
     else:
         for stock in se_list:
             result = fetch_company_info_upcom(stock, namefile)
             df = df.append(
                 pd.Series(result, index=df.columns), ignore_index=True
             )
+            print("Complete", stock)
     return df
 
 

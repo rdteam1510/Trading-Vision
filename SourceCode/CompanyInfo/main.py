@@ -1,17 +1,15 @@
 from connect_mongodb import *
 
 # stock_exchanges = ["HOSE"]
+se_lists = ["hose", "hnx", "upcom"]
 
 # Main function
 def main():
-    hose = my_pandas_dataFrame("hose")
-    import_to_mongodb(hose, "HOSE")
-
-    # hnx = my_pandas_dataFrame('hnx')
-    # import_to_mongodb(hnx, 'HNX')
-
-    # upcom = my_pandas_dataFrame('upcom')
-    # import_to_mongodb(upcom, 'UPCOM')
+    main_df = pd.DataFrame(columns=headers)
+    for se in se_lists:
+        main_df = my_pandas_dataFrame(se)
+        print('Complete all se')
+    import_to_mongodb(main_df, "CompaniesInfo")
 
 
 if __name__ == "__main__":

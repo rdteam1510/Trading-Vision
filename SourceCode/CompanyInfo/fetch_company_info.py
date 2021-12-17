@@ -12,7 +12,7 @@ def set_bs4(ticker, se):
     options = Options()
     options.headless = True
     driver = webdriver.Chrome(
-        service=Service("chromedriver.exe"), options=options
+        service=Service("CompanyInfo\chromedriver.exe"), options=options
     )
     url1 = f"https://www.tradingview.com/symbols/{se}-{ticker}/"
     url2 = f"https://www.stockbiz.vn/Stocks/{ticker}/Snapshot.aspx"
@@ -43,7 +43,6 @@ def fetch_company_info(ticker, se):
     info = doc1.find(
         "div", {"class": "tv-widget-description__text"}
     ).text.strip()
-    print(doc2.find_all("td", {"class": "right"})[2].text)
     link = doc2.find_all("td", {"class": "right"})[2].a.text.strip()
 
     # STATISTICS
@@ -97,6 +96,7 @@ def fetch_company_info(ticker, se):
     )[39].text.strip()
 
     return [
+        se,
         ticker,
         company_name,
         category,
@@ -192,6 +192,7 @@ def fetch_company_info_upcom(ticker, se):
     )[39].text.strip()
 
     return [
+        se,
         ticker,
         company_name,
         category,
