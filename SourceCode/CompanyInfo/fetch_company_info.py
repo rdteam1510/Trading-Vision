@@ -43,6 +43,7 @@ def fetch_company_info(ticker, se):
     info = doc1.find(
         "div", {"class": "tv-widget-description__text"}
     ).text.strip()
+    print(doc2.find_all("td", {"class": "right"})[2].text)
     link = doc2.find_all("td", {"class": "right"})[2].a.text.strip()
 
     # STATISTICS
@@ -132,14 +133,12 @@ def fetch_company_info_upcom(ticker, se):
         -1
     ].text.strip()
 
-    info = doc1.find(
-        "div", {"class": "tv-widget-description__text"}
-    )
+    info = doc1.find("div", {"class": "tv-widget-description__text"})
     if info is not None:
         info = info.text.strip()
     else:
-        info = '—'
-        
+        info = "—"
+
     link = doc2.find_all("td", {"class": "right"})[2].a.text.strip()
 
     # STATISTICS
