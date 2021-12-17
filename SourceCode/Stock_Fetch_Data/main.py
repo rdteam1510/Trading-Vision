@@ -1,6 +1,6 @@
 from fetch_stock_price import *
 from connect_mongodb import *
-import pytz
+import pytz,datetime
 
 # Url of each stock exchange
 stock_exchanges = {
