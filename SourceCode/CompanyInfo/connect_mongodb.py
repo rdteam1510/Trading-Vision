@@ -1,4 +1,4 @@
-from pymongo import MongoClient
+from pymongo import MongoClient, ReturnDocument
 import pandas as pd
 from fetch_company_info import *
 
@@ -34,7 +34,7 @@ def read_stocks_text_file(namefile):
     """
     Read stocks from a text file, remove end-line breaks, convert them into a list
     """
-    file = open(f".\stocktickers\{namefile}.txt", "r")
+    file = open(f"stockstickers\{namefile}.txt", "r")
     content = file.read()
     stocks_list = content.split(", ")
     file.close()
@@ -59,8 +59,15 @@ def my_pandas_dataFrame(namefile):
 # Function: import data to mongodb
 def import_to_mongodb(se, name):
     db = client["MinhCompanyInfo_demo"]
-    data = se.to_dict(orient="records")
-    for row in data:
-        existing_document = db[f"{name}"].find_one(row)
-        if not existing_document:
-            db[f"{name}"].insert_one(row)
+    old_data = pd.DataFrame(db[f"{name}"].find()).to_dict(orient="records")
+    new_data = se.to_dict(orient="records")
+    for row_old in old_data:
+        for row_new in new_data:
+            if(row_old['CompanyName'] == row_new['CompanyName']):
+                db[f"{name}"].find_one_and_replace(row_old, row_new)
+                
+    
+    # for row in data:
+    #     existing_document = db[f"{name}"].find_one(row)
+    #     if not existing_document:
+    #         db[f"{name}"].insert_one(row)

@@ -1,7 +1,7 @@
 from connect_mongodb import *
 
 # stock_exchanges = ["HOSE"]
-se_lists = ["hose", "hnx", "upcom"]
+se_lists = ["hose"]
 
 # Main function
 def main():
