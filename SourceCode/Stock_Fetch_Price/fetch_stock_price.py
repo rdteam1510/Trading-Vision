@@ -6,7 +6,7 @@ headers = [
     "TimeStamp",
     "StockExchange",
     "Time",
-    "Name",
+    "Ticker",
     "PreviousClosed",
     "Ceiling",
     "Floor",

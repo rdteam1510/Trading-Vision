@@ -8,7 +8,7 @@ client = MongoClient(
 
 db = client["Stock_Price"]
 se_lists = ["hose", "hnx", "upcom"]
-headers = ["Time", "Name", "Closed"]
+headers = ["Time", "Ticker", "Closed"]
 main_df = pd.DataFrame(columns=headers)
 
 
@@ -22,9 +22,9 @@ def Processing(se):
     global main_df
     data = db[f"{se}"].find().sort("TimeStamp", -1).limit(100)
     df = pd.DataFrame(data)
-    df = df[["Time", "Name", "PreviousClosed"]]
+    df = df[["Time", "Ticker", "PreviousClosed"]]
     df = df.rename(columns={"PreviousClosed": "Closed"})
-    df = df.sort_values(by=["Name"])
+    df = df.sort_values(by=["Ticker"])
     main_df = main_df.append(df)
     
 
