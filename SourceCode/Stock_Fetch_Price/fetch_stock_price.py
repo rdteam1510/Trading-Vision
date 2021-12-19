@@ -1,10 +1,10 @@
 import requests
 import pandas as pd
-import datetime
 
 # All column header names
 headers = [
     "TimeStamp",
+    "StockExchange",
     "Time",
     "Name",
     "PreviousClosed",
@@ -23,14 +23,14 @@ def read_stocks_text_file(namefile):
     :param: namefile
     :return: a list of stocks
     """
-    file = open(f"../stockstickers/{namefile}.txt", "r")
+    file = open(f"stockstickers/{namefile}.txt", "r")
     content = file.read()
     stocks_list = content.split(", ")
     file.close()
     return stocks_list
 
 
-def fetch_function(url, se_stocks, time_stamp):
+def fetch_function(stock_exchange, url, se_stocks, time_stamp):
     """
     Fetch function stock prices according to url of that stock exchange.
 
@@ -58,6 +58,7 @@ def fetch_function(url, se_stocks, time_stamp):
             "TimeStamp",
             time_stamp,
         )
+        se.insert(1, "StockExchange", stock_exchange)
         se.columns = headers
         se = se[se["Time"].notna()]
         se["TimeStamp"] = pd.to_datetime(

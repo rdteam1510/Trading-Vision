@@ -15,7 +15,7 @@ TIME_STAMP = datetime.datetime.now(
 ).strftime("%H:%M %d/%m/%Y")
 
 
-def main(namefile, se_url):
+def main():
     """
     Execute fetch program
 
@@ -23,11 +23,11 @@ def main(namefile, se_url):
     :param se_url: str
     :return: None
     """
-    list_stocks = read_stocks_text_file(namefile)
-    se = fetch_function(se_url, list_stocks, TIME_STAMP)
-    import_to_mongodb(se, namefile)
+    for name, se_url in stock_exchanges.items():
+        list_stocks = read_stocks_text_file(name)
+        se = fetch_function(name, se_url, list_stocks, TIME_STAMP)
+        import_to_mongodb(se, 'Stocks')
 
 
 if __name__ == "__main__":
-    for name, se_url in stock_exchanges.items():
-        main(name, se_url)
+    main()
