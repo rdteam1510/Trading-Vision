@@ -15,7 +15,7 @@ def import_to_mongodb(se):
     :param name: str
     :return: None
     """
-    db = client["Processed_Stock_Price"]
+    db = client["Processed_Stock_Price_Demo"]
     data = se.to_dict(orient="records")
     for row in data:
         existing_document = db["Processed_Stock_Price"].find_one(row)
