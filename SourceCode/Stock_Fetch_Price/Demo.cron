@@ -1,0 +1,4 @@
+59 1,5 * * SUN /usr/bin/python3 ~/Trading_Vision_Cron/Stock_Fetch_Data.py
+0-59 2-3,6-7 * * SUN /usr/bin/python3 ~/Trading_Vision_Cron/Stock_Fetch_Data.py
+0-34 4 * * SUN /usr/bin/python3 ~/Trading_Vision_Cron/Stock_Fetch_Data.py
+0-5 8 * * SUN /usr/bin/python3 ~/Trading_Vision_Cron/Stock_Fetch_Data.py

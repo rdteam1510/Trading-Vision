@@ -6,13 +6,13 @@ client = MongoClient(
     "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
 )
 
-db = client["Stock_Price"]
+db = client["Stocks"]
 se_lists = ["hose", "hnx", "upcom"]
-headers = ["Time", "Ticker", "Closed"]
+headers = ["StockExchange","Time", "Ticker", "Closed"]
 main_df = pd.DataFrame(columns=headers)
 
 
-def Processing(se):
+def Processing():
     """
     Get the latest 100 stocks according to the TimeStamp and put them into DataFrame. Just chose values from 3 columns Time, Name, PreviousClosed (changed it to Closed). Sort documents by their ticker labels aphabetical order. Finally, append them in to `main_df`
 
@@ -20,9 +20,9 @@ def Processing(se):
     :return: None
     """
     global main_df
-    data = db[f"{se}"].find().sort("TimeStamp", -1).limit(100)
+    data = db["Stocks"].find().sort("TimeStamp", -1).limit(300)
     df = pd.DataFrame(data)
-    df = df[["Time", "Ticker", "PreviousClosed"]]
+    df = df[["StockExchange", "Time", "Ticker", "PreviousClosed"]]
     df = df.rename(columns={"PreviousClosed": "Closed"})
     df = df.sort_values(by=["Ticker"])
     main_df = main_df.append(df)
@@ -31,7 +31,7 @@ def Processing(se):
 
 def Processed_Data():
     for se in se_lists:
-        Processing(se)
+        Processing()
     main_df['Time'] = main_df['Time'] - pd.to_timedelta(1, unit='d')
     main_df['Time'] = pd.to_datetime(main_df['Time'].dt.strftime('%d/%m/%Y'))
     return main_df

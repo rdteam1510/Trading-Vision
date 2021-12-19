@@ -3,6 +3,7 @@ import pandas as pd
 
 # All column header names
 headers = [
+    
     "TimeStamp",
     "StockExchange",
     "Time",
@@ -23,7 +24,7 @@ def read_stocks_text_file(namefile):
     :param: namefile
     :return: a list of stocks
     """
-    file = open(f"stockstickers/{namefile}.txt", "r")
+    file = open(f"/home/ubuntu/stockstickers/{namefile}.txt", "r")
     content = file.read()
     stocks_list = content.split(", ")
     file.close()
