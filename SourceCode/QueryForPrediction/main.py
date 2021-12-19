@@ -34,7 +34,7 @@ def main():
     main_df['Time'] = main_df['Time'] -  pd.to_timedelta(1, unit='d')
     main_df['Time'] = pd.to_datetime(main_df['Time'].dt.strftime('%d/%m/%Y'))
 
+
 if __name__ == "__main__":
     main()
-    main_df.to_csv("test.csv")
     print(main_df.info())

@@ -11,24 +11,22 @@ headers = [
     "StockExchange",
     "Ticker",
     "CompanyName",
-    "Category",
+    "Address",
+    "Website",
+    "Industry",
     "Info",
-    "Link",
-    "MarketCap",
-    "TotalSharesOutstanding",
+    "BasicEPS",
+    "DilutedEPS",
     "P/E",
-    "P/B",
-    "P/S",
-    "NetDebt",
-    "TotalDebt",
+    "BookValue",
+    "ListedShares",
+    "OutstandingShares",
+    "MarketCapitalization",
+    "LatestDivident",
+    "NetProfit",
     "TotalAssets",
     "ROA",
     "ROE",
-    "BasicEPS",
-    "EPS Diluted",
-    "NetIncome",
-    "GrossProfit",
-    "TotalRevenue",
 ]
 
 
@@ -36,7 +34,7 @@ def read_stocks_text_file(namefile):
     """
     Read stocks from a text file, remove end-line breaks, convert them into a list
     """
-    file = open(f".\stockstickers\{namefile}.txt", "r")
+    file = open(f".\stocktickers\{namefile}.txt", "r")
     content = file.read()
     stocks_list = content.split(", ")
     file.close()
@@ -49,20 +47,12 @@ df = pd.DataFrame(columns=headers)
 def my_pandas_dataFrame(namefile):
     global df
     se_list = read_stocks_text_file(namefile)
-    if namefile != "upcom":
-        for stock in se_list:
-            result = fetch_company_info(stock, namefile)
-            df = df.append(
-                pd.Series(result, index=df.columns), ignore_index=True
-            )
-            print("Complete", stock)
-    else:
-        for stock in se_list:
-            result = fetch_company_info_upcom(stock, namefile)
-            df = df.append(
-                pd.Series(result, index=df.columns), ignore_index=True
-            )
-            print("Complete", stock)
+    for stock in se_list:
+        result = fetch_company_info(stock, namefile)
+        df = df.append(
+            pd.Series(result, index=df.columns), ignore_index=True
+        )
+        print("Complete", stock)
     return df
 
 
