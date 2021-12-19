@@ -1,0 +1,16 @@
+# Minutes, Hours, Day of Month, Month, Day of the Week
+
+# Just run at 8:59 and 12:59, Monday to Friday
+59 8,12 * * 1-5 /usr/bin/python3 ~/Trading_Vision_Cron/Stock_Fetch_Data.py 
+
+# Run from 9:00 to 10:59, and from 13:00 to 14:59, Monday to Friday
+0-59 9-10,13-14 * * 1-5 /usr/bin/python3 ~/Trading_Vision_Cron/Stock_Fetch_Data.py
+
+# Run from 11:00 to 11h34, Monday to Friday
+0-34 11 * * 1-5 /usr/bin/python3 ~/Trading_Vision_Cron/Stock_Fetch_Data.py
+
+#Run from 15:00 to 15:05, Monday to Friday
+0-5 15 * * 1-5 /usr/bin/python3 ~/Trading_Vision_Cron/Stock_Fetch_Data.py
+
+#Import Processed Stock Price to MongoDB at 6:00PM from Mon to Fri
+0 11 * * 1-5 /usr/bin/python3 ~/Query_For_Prediction/main.py
