@@ -3,7 +3,6 @@ import pandas as pd
 
 # All column header names
 headers = [
-    
     "TimeStamp",
     "StockExchange",
     "Time",
@@ -41,7 +40,7 @@ def fetch_function(stock_exchange, url, se_stocks, time_stamp):
     """
     url_se = url
     try:
-        response = requests.get(url_se, timeout=30)
+        response = requests.get(url_se, timeout=10)
         response.raise_for_status()
     except requests.exceptions.ConnectionError as errc:
         print("Error Connecting:", errc)

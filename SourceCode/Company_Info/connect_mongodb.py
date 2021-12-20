@@ -4,7 +4,7 @@ from fetch_company_info import *
 
 # Connect to MongoClient
 client = MongoClient(
-    "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
+	"mongodb+srv://tradingvision:123@cluster0.xmnn8.mongodb.net/TradingVision?retryWrites=true&w=majority"
 )
 
 headers = [
