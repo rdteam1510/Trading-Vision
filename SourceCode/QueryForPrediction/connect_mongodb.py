@@ -3,8 +3,9 @@ import pandas as pd
 import datetime
 
 client = MongoClient(
-	"mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
+    "mongodb+srv://tradingvision:123@cluster0.xmnn8.mongodb.net/TradingVision?authSource=admin&replicaSet=atlas-kkwgbw-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true"
 )
+
 
 def import_to_mongodb(se):
     # Function: import data to mongodb
