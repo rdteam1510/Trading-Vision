@@ -3,12 +3,12 @@ import pandas as pd
 import datetime
 
 client = MongoClient(
-    "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
+
 )
 
 db = client["Stocks"]
 se_lists = ["hose", "hnx", "upcom"]
-headers = ["StockExchange","Time", "Ticker", "Closed"]
+headers = ["StockExchange", "Time", "Ticker", "Closed"]
 main_df = pd.DataFrame(columns=headers)
 
 
@@ -22,18 +22,14 @@ def Processing():
     global main_df
     data = db["Stocks"].find().sort("TimeStamp", -1).limit(300)
     df = pd.DataFrame(data)
-    df = df[["StockExchange", "Time", "Ticker", "PreviousClosed"]]
-    df = df.rename(columns={"PreviousClosed": "Closed"})
+    df = df[["StockExchange", "Time", "Ticker", "PreviousClose"]]
+    df = df.rename(columns={"PreviousClose": "Closed"})
     df = df.sort_values(by=["Ticker"])
     main_df = main_df.append(df)
-    
 
 
 def Processed_Data():
-    for se in se_lists:
-        Processing()
-    main_df['Time'] = main_df['Time'] - pd.to_timedelta(1, unit='d')
-    main_df['Time'] = pd.to_datetime(main_df['Time'].dt.strftime('%d/%m/%Y'))
+    Processing()
+    main_df["Time"] = pd.to_datetime(pd.to_datetime(main_df['Time']).dt.strftime("%Y-%m-%d")) - pd.Timedelta(1, unit='d')
     return main_df
-    
-    
+
