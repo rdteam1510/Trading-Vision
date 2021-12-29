@@ -1,6 +1,8 @@
 from fetch_stock_price import *
 from connect_mongodb import *
-import pytz,datetime
+import pytz,datetime,time
+
+start_time = time.time()
 
 # Url of each stock exchange
 stock_exchanges = {
@@ -31,3 +33,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+    print("----------%s seconds------------" % (time.time() - start_time))
+

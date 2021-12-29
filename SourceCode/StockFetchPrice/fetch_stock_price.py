@@ -23,7 +23,7 @@ def read_stocks_text_file(namefile):
     :param: namefile
     :return: a list of stocks
     """
-    file = open(f"/home/ubuntu/stockstickers/{namefile}.txt", "r")
+    file = open(f"E:\ITEC\AUT\RD\R&D - Trading Vision Project\SourceCode\stockstickers\{namefile}.txt", "r")
     content = file.read()
     stocks_list = content.split(", ")
     file.close()
