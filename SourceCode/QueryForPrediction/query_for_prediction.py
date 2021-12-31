@@ -3,7 +3,6 @@ import pandas as pd
 import datetime
 
 client = MongoClient(
-"mongodb+srv://tradingvision:123@cluster0.xmnn8.mongodb.net/TradingVision?authSource=admin&replicaSet=atlas-kkwgbw-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true"
 )
 
 db = client["Stocks_DEMO"]
