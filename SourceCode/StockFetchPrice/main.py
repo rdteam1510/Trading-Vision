@@ -20,35 +20,16 @@ def start_fetch(name):
     list_stocks = np.concatenate(
         (list_stocks, read_stocks_text_file(name)), axis=0
     )
-    fetch_function(
-        name, stock_exchanges[name], list_stocks, TIME_STAMP
-    )
-
-
-# def hnx_fetch():
-#     hnx_stocks = np.array([])
-#     hnx_stocks = np.concatenate(
-#         (hnx_stocks, read_stocks_text_file('hnx')), axis=0
-#     )
-#     # fetch_function("hnx", stock_exchanges["hnx"], hnx_stocks, TIME_STAMP)
-
-
-# def upcom_fetch():
-#     upcom_stocks = np.array([])
-#     upcom_stocks = np.concatenate(
-#         (upcom_stocks, read_stocks_text_file('upcom')), axis=0
-#     )
-#     # fetch_function(
-#     #     "upcom", stock_exchanges["upcom"], upcom_stocks, TIME_STAMP
-#     # )
+    result = fetch_function(name, stock_exchanges[name], list_stocks, TIME_STAMP)
+    import_to_mongodb(result)
 
 
 if __name__ == "__main__":
     start = time.perf_counter()
 
-    p1 = multiprocessing.Process(target=start_fetch, args=['hose'])
-    p2 = multiprocessing.Process(target=start_fetch, args=['hnx'])
-    p3 = multiprocessing.Process(target=start_fetch, args=['upcom'])
+    p1 = multiprocessing.Process(target=start_fetch, args=["hose"])
+    p2 = multiprocessing.Process(target=start_fetch, args=["hnx"])
+    p3 = multiprocessing.Process(target=start_fetch, args=["upcom"])
 
     p1.start()
     p2.start()
