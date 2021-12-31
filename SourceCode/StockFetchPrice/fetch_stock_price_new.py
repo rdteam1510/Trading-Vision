@@ -1,16 +1,47 @@
 import requests
-import time, pytz, datetime
+import time, datetime
 from pymongo import MongoClient
 
-start_time = time.time()
+client = MongoClient()
 
-TIME_STAMP = datetime.datetime.now(
-    pytz.timezone("Asia/Ho_Chi_Minh")
-).strftime("%H:%M %d/%m/%Y")
+TIME_STAMP = time.time()
+
+# These time are used to limit redundant request in HOSE stock exchange.
+hose_start_time = "02:14"
+hose_stop_time = "07:50"
+test = datetime.datetime.utcfromtimestamp(TIME_STAMP).strftime("%H:%M")
+
+columns = [
+    "TimeStamp",
+    "Time",
+    "StockExchange",
+    "a",
+    "b",
+    "c",
+    "d",
+    "v",
+    "w",
+    "n",
+    "l",
+]
 
 
-columns = ["TimeStamp","Time","StockExchange", "a", "b", "c", "d", "v", "w", "n", "l"]
-new_columns = ["TimeStamp",
+columns = [
+    "TimeStamp",
+    "Time",
+    "StockExchange",
+    "a",
+    "b",
+    "c",
+    "d",
+    "v",
+    "w",
+    "n",
+    "l",
+]
+
+new_columns = [
+    "TimeStamp",
     "Time",
     "StockExchange",
     "Ticker",
@@ -20,15 +51,22 @@ new_columns = ["TimeStamp",
     "Highest",
     "Lowest",
     "Volume",
+<<<<<<< HEAD
     "Match",]
 client = MongoClient(
    )
+=======
+    "Match",
+]
+
+>>>>>>> f467ee6e03b0827d9e59f63a79928d91fe2f3628
 
 stock_exchanges = {
     "hose": "https://banggia.cafef.vn/stockhandler.ashx?center=1",
     "hnx": "https://banggia.cafef.vn/stockhandler.ashx?center=2",
     "upcom": "https://banggia.cafef.vn/stockhandler.ashx?center=9",
-} 
+}
+
 
 def read_stocks_text_file(namefile):
     """
@@ -36,45 +74,54 @@ def read_stocks_text_file(namefile):
     :param: namefile
     :return: a list of stocks
     """
-    file = open(f"E:\ITEC\AUT\RD\R&D - Trading Vision Project\SourceCode\stockstickers\{namefile}.txt", "r")
+    file = open(
+        f"stockstickers/{namefile}.txt",
+        "r",
+    )
     content = file.read()
     stocks_list = content.split(", ")
     file.close()
     return stocks_list
 
 
-def fetch_stock(url,se):
+def fetch_stock(url, se):
     my_data = []
-    data = requests.get(url)
-    results = data.json()
 
-    for item in results:
-        item.update({'TimeStamp':TIME_STAMP})
-        item.update({'StockExchange': se})
-        new_item = {key : item[key] for key in columns}
-        new_item = dict(zip(new_columns, list(new_item.values())))
-        #print(new_item,"\n") 
-        my_data.append(new_item)
+    try:
+        response = requests.get(url, timeout=3)
+        response.raise_for_status()
+    except requests.exceptions.ConnectionError as errc:
+        print("Error Connecting:", errc)
+    else:
+        results = response.json()
+        for item in results:
+            item.update({"TimeStamp": TIME_STAMP})
+            item.update({"StockExchange": se})
+            new_item = {key: item[key] for key in columns}
+            if new_item["Time"] != None:
+                new_item["Time"] = time.mktime(
+                    datetime.datetime.strptime(
+                        new_item["Time"], "%H:%M %d/%m/%Y"
+                    ).timetuple()
+                )
+            else:
+                new_item["Time"] = TIME_STAMP
+            new_item = dict(zip(new_columns, list(new_item.values())))
+            my_data.append(new_item)
 
+        se_stock = read_stocks_text_file(se)
+        my_data = [i for i in my_data if i["Ticker"] in se_stock]
 
-    se_stock = read_stocks_text_file(se)
-    my_data = [i for i in my_data if i["Ticker"] in se_stock and i["Time"]!=None]
-    
-    # for item in my_data:
-    #     for key, value in item.items():
-    #         if key == "Time" or key == "TimeStamp":
-    #             value = datetime.datetime.strptime(value,'%H:%M %d/%m/%y')
-    #         # print(key, value)
-    
-        
-    
-    db = client["Stocks_DEMO_1"]
-    db["Stocks_Price"].insert_many(my_data)
+        db = client["Stocks"]
+        db["Stocks"].insert_many(my_data)
 
-    print("----------%s seconds------------" % (time.time() - start_time))
-
-
- 
 
 for name, se_url in stock_exchanges.items():
+<<<<<<< HEAD
     fetch_stock(se_url,name)
+=======
+    if name == "hose" and hose_start_time <= test <= hose_stop_time:
+        fetch_stock(se_url, name)
+    elif name == "hnx" or name == "upcom":
+        fetch_stock(se_url, name)
+>>>>>>> f467ee6e03b0827d9e59f63a79928d91fe2f3628

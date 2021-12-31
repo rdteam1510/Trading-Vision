@@ -1,11 +1,24 @@
 from pymongo import MongoClient
 import pandas as pd
-import datetime
+import datetime, time
 
-client = MongoClient(
-)
+client = MongoClient()
 
-db = client["Stocks_DEMO"]
+db = client["Stocks"]
+
+keys_drop = [
+    "_id",
+    "Ceiling",
+    "Floor",
+    "Match",
+    "Volume",
+    "Highest",
+    "Lowest",
+    "TimeStamp",
+]
+
+
+db = client["Stocks"]
 se_lists = ["hose", "hnx", "upcom"]
 headers = ["StockExchange", "Time", "Ticker", "Closed"]
 main_df = pd.DataFrame(columns=headers)
@@ -18,18 +31,18 @@ def Processing():
     :param se: str
     :return: None
     """
-    global main_df
-    
-    data = db["Stocks_Price"].find().sort("TimeStamp", -1).limit(300)
-    df = pd.DataFrame(data)
-    df = df[["StockExchange", "Time", "Ticker", "PreviousClosed"]]
-    df = df.rename(columns={"PreviousClosed": "Closed"})
-    df = df.sort_values(by=["Ticker"])
-    main_df = main_df.append(df)
+    total_data = []
+    data = db["Stocks"].find().sort("TimeStamp", -1).limit(300)
+    for item in data:
+        {item.pop(key) for key in keys_drop}
+        item["Time"] = (
+            datetime.datetime.utcfromtimestamp(item["Time"])
+            - datetime.timedelta(days=1)
+        ).strftime("%d/%m/%Y")
+        total_data.append(item)
+
+    db2 = client["ForPrediction"]
+    db2["ForPrediction"].insert_many(total_data)
 
 
-def Processed_Data():
-    Processing()
-    main_df["Time"] = pd.to_datetime(pd.to_datetime(main_df['Time']).dt.strftime("%Y-%m-%d")) - pd.Timedelta(1, unit='d')
-    return main_df
-
+Processing()
