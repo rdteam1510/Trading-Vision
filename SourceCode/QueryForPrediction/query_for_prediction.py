@@ -3,10 +3,10 @@ import pandas as pd
 import datetime
 
 client = MongoClient(
-
+"mongodb+srv://tradingvision:123@cluster0.xmnn8.mongodb.net/TradingVision?authSource=admin&replicaSet=atlas-kkwgbw-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true"
 )
 
-db = client["Stocks"]
+db = client["Stocks_DEMO"]
 se_lists = ["hose", "hnx", "upcom"]
 headers = ["StockExchange", "Time", "Ticker", "Closed"]
 main_df = pd.DataFrame(columns=headers)
@@ -20,10 +20,11 @@ def Processing():
     :return: None
     """
     global main_df
-    data = db["Stocks"].find().sort("TimeStamp", -1).limit(300)
+    
+    data = db["Stocks_Price"].find().sort("TimeStamp", -1).limit(300)
     df = pd.DataFrame(data)
-    df = df[["StockExchange", "Time", "Ticker", "PreviousClose"]]
-    df = df.rename(columns={"PreviousClose": "Closed"})
+    df = df[["StockExchange", "Time", "Ticker", "PreviousClosed"]]
+    df = df.rename(columns={"PreviousClosed": "Closed"})
     df = df.sort_values(by=["Ticker"])
     main_df = main_df.append(df)
 

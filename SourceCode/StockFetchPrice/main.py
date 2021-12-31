@@ -1,12 +1,10 @@
 from fetch_stock_price import *
 from connect_mongodb import *
-<<<<<<< HEAD
-import pytz,datetime,time
 
 start_time = time.time()
-=======
+
 import pytz, datetime, time, multiprocessing
->>>>>>> 592e6b3276e45731d511b3f128b94732e40f640c
+
 
 # Url of each stock exchange
 stock_exchanges = {
@@ -50,11 +48,9 @@ def start_fetch(name):
 
 
 if __name__ == "__main__":
-<<<<<<< HEAD
     main()
     print("----------%s seconds------------" % (time.time() - start_time))
 
-=======
     start = time.perf_counter()
 
     p1 = multiprocessing.Process(target=start_fetch, args=['hose'])
@@ -71,4 +67,3 @@ if __name__ == "__main__":
 
     finish = time.perf_counter()
     print(f"Finished in {round(finish-start, 5)} second(s)")
->>>>>>> 592e6b3276e45731d511b3f128b94732e40f640c

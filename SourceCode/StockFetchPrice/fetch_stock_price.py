@@ -15,11 +15,11 @@ def read_stocks_text_file(namefile):
     :param: namefile
     :return: a list of stocks
     """
-<<<<<<< HEAD
+
     file = open(f"E:\ITEC\AUT\RD\R&D - Trading Vision Project\SourceCode\stockstickers\{namefile}.txt", "r")
-=======
+
     file = open(f"stockstickers/{namefile}.txt", "r")
->>>>>>> 592e6b3276e45731d511b3f128b94732e40f640c
+
     content = file.read()
     stocks_list = content.split(", ")
     stocks_list = np.array(stocks_list)

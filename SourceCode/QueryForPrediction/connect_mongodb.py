@@ -3,6 +3,7 @@ import pandas as pd
 import datetime
 
 client = MongoClient(
+    "mongodb+srv://tradingvision:123@cluster0.xmnn8.mongodb.net/TradingVision?authSource=admin&replicaSet=atlas-kkwgbw-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true"
 )
 
 
@@ -15,9 +16,9 @@ def import_to_mongodb(se):
     :param name: str
     :return: None
     """
-    db = client["Processed_Stock_Price"]
+    db = client["Processed_Stock_Price_DEMO"]
     data = se.to_dict(orient="records")
     for row in data:
-        existing_document = db["Processed_Stock_Price"].find_one(row)
+        existing_document = db["Processed_Stock_Price_DEMO"].find_one(row)
         if not existing_document:
-            db["Processed_Stock_Price"].insert_one(row)
+            db["Processed_Stock_Price_DEMO"].insert_one(row)

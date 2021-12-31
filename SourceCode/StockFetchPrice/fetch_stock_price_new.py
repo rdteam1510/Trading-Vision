@@ -60,12 +60,16 @@ def fetch_stock(url,se):
 
     se_stock = read_stocks_text_file(se)
     my_data = [i for i in my_data if i["Ticker"] in se_stock and i["Time"]!=None]
-
-    db = client["Stocks_DEMO"]
-    # for row in my_data:
-    #     existing_document = db[f'{se}'].find_one(row)
-    #     if not existing_document:
-    #         db[f'{se}'].insert_one(row)
+    
+    # for item in my_data:
+    #     for key, value in item.items():
+    #         if key == "Time" or key == "TimeStamp":
+    #             value = datetime.datetime.strptime(value,'%H:%M %d/%m/%y')
+    #         # print(key, value)
+    
+        
+    
+    db = client["Stocks_DEMO_1"]
     db["Stocks_Price"].insert_many(my_data)
 
     print("----------%s seconds------------" % (time.time() - start_time))
