@@ -4,10 +4,8 @@ import numpy as np
 import requests, time
 
 
-client = MongoClient(
-    "mongodb+srv://tradingvision:123@cluster0.xmnn8.mongodb.net/TradingVision?authSource=admin&replicaSet=atlas-kkwgbw-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true"
-)
-db = client['CompanyInfo']
+client = MongoClient()
+db = client["CompanyInfo"]
 se_list = ["hose", "hnx", "upcom"]
 headers = [
     "StockExchange",
@@ -54,7 +52,7 @@ def set_bs4(ticker):
 
     :param ticker: str
     :return: doc1, doc2: bs4.BeautifulSoup
-    """    
+    """
 
     url1 = f"https://vcbs.com.vn/en/Research/Index/0?stocksymbol={ticker}"
     url2 = f"https://vcbs.com.vn/en/Research/Company?stocksymbol={ticker}"
@@ -75,7 +73,7 @@ def fetch_company_info(ticker, se):
     :param ticker: str
     :param se: str
     :return: None
-    """    
+    """
 
     doc1, doc2 = set_bs4(ticker)
 
@@ -152,7 +150,9 @@ def fetch_company_info(ticker, se):
             ],
         )
     )
-    db['CompanyInfo'].find_one_and_replace({'Ticker': transform_dict['Ticker']}, transform_dict, upsert=True)
+    db["CompanyInfo"].find_one_and_replace(
+        {"Ticker": transform_dict["Ticker"]}, transform_dict, upsert=True
+    )
 
 
 start = time.perf_counter()
