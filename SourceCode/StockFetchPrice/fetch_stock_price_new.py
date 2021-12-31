@@ -22,8 +22,7 @@ new_columns = ["TimeStamp",
     "Volume",
     "Match",]
 client = MongoClient(
-    "mongodb+srv://tradingvision:123@cluster0.xmnn8.mongodb.net/TradingVision?authSource=admin&replicaSet=atlas-kkwgbw-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true"
-)
+   )
 
 stock_exchanges = {
     "hose": "https://banggia.cafef.vn/stockhandler.ashx?center=1",
