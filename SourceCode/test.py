@@ -1,10 +1,9 @@
-import datetime
-import time
+import requests,  re
+from bs4 import BeautifulSoup
 
-now = time.time()
 
-transform = datetime.datetime.utcfromtimestamp(now) - datetime.timedelta(days=1)
+url2 = "https://vcbs.com.vn/en/Research/Company?stocksymbol=ACB"
 
-# s = time.mktime(datetime.datetime.strptime("9:12 30/12/2021", "%H:%M %d/%m/%Y").timetuple())
-# test = datetime.datetime.utcfromtimestamp(s).strftime('%H:%M')
-print(transform)
+result = requests.Session().get(url2)
+doc2 = BeautifulSoup(result.text, "lxml")
+print(doc2)

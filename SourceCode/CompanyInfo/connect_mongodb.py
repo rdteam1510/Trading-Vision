@@ -4,8 +4,10 @@ from fetch_company_info import *
 
 # Connect to MongoClient
 client = MongoClient(
-
+    "mongodb+srv://tradingvision:*****@cluster0.xmnn8.mongodb.net/TradingVision?authSource=admin&replicaSet=atlas-kkwgbw-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true"
 )
+
+se_lists = ["hose", "hnx", "upcom"]
 
 headers = [
     "StockExchange",
@@ -34,7 +36,7 @@ def read_stocks_text_file(namefile):
     """
     Read stocks from a text file, remove end-line breaks, convert them into a list
     """
-    file = open(f"E:\ITEC\AUT\RD\R&D - Trading Vision Project\SourceCode\stockstickers\{namefile}.txt", "r")
+    file = open(f"stockstickers/{namefile}.txt", "r")
     content = file.read()
     stocks_list = content.split(", ")
     file.close()
