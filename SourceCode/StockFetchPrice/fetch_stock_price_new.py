@@ -51,15 +51,8 @@ new_columns = [
     "Highest",
     "Lowest",
     "Volume",
-<<<<<<< HEAD
     "Match",]
-client = MongoClient(
-   )
-=======
-    "Match",
-]
 
->>>>>>> f467ee6e03b0827d9e59f63a79928d91fe2f3628
 
 stock_exchanges = {
     "hose": "https://banggia.cafef.vn/stockhandler.ashx?center=1",
@@ -117,11 +110,7 @@ def fetch_stock(url, se):
 
 
 for name, se_url in stock_exchanges.items():
-<<<<<<< HEAD
-    fetch_stock(se_url,name)
-=======
     if name == "hose" and hose_start_time <= test <= hose_stop_time:
         fetch_stock(se_url, name)
     elif name == "hnx" or name == "upcom":
         fetch_stock(se_url, name)
->>>>>>> f467ee6e03b0827d9e59f63a79928d91fe2f3628
