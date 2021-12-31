@@ -2,6 +2,8 @@ import requests
 import time, datetime
 from pymongo import MongoClient
 
+client = MongoClient()
+
 TIME_STAMP = time.time()
 
 # These time are used to limit redundant request in HOSE stock exchange.
@@ -22,6 +24,22 @@ columns = [
     "n",
     "l",
 ]
+
+
+columns = [
+    "TimeStamp",
+    "Time",
+    "StockExchange",
+    "a",
+    "b",
+    "c",
+    "d",
+    "v",
+    "w",
+    "n",
+    "l",
+]
+
 new_columns = [
     "TimeStamp",
     "Time",
@@ -36,9 +54,6 @@ new_columns = [
     "Match",
 ]
 
-client = MongoClient(
-    "mongodb+srv://tradingvision:123@cluster0.xmnn8.mongodb.net/TradingVision?authSource=admin&replicaSet=atlas-kkwgbw-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true"
-)
 
 stock_exchanges = {
     "hose": "https://banggia.cafef.vn/stockhandler.ashx?center=1",

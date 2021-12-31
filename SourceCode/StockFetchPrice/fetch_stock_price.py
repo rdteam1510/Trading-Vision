@@ -30,7 +30,11 @@ def read_stocks_text_file(namefile):
     :param: namefile
     :return: a list of stocks
     """
+
+    file = open(f"E:\ITEC\AUT\RD\R&D - Trading Vision Project\SourceCode\stockstickers\{namefile}.txt", "r")
+
     file = open(f"stockstickers/{namefile}.txt", "r")
+
     content = file.read()
     stocks_list = content.split(", ")
     stocks_list = np.array(stocks_list)
@@ -65,6 +69,4 @@ def fetch_function(stock_exchange, url, se_stocks, time_stamp):
                 final["StockExchange"] = stock_exchange
                 final = dict(zip(new_columns, list(final.values())))
                 save.append(final)
-                # print(final)
-                # import_to_mongodb(final)
         return save

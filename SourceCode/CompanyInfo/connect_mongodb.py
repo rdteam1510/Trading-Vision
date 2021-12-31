@@ -4,7 +4,7 @@ from fetch_company_info import *
 
 # Connect to MongoClient
 client = MongoClient(
-	
+
 )
 
 headers = [
@@ -34,7 +34,7 @@ def read_stocks_text_file(namefile):
     """
     Read stocks from a text file, remove end-line breaks, convert them into a list
     """
-    file = open(f"/home/ubuntu/stockstickers/{namefile}.txt", "r")
+    file = open(f"E:\ITEC\AUT\RD\R&D - Trading Vision Project\SourceCode\stockstickers\{namefile}.txt", "r")
     content = file.read()
     stocks_list = content.split(", ")
     file.close()
@@ -58,7 +58,7 @@ def my_pandas_dataFrame(namefile):
 
 # Function: import data to mongodb
 def import_to_mongodb(se, name):
-    db = client["CompanyInfo"]
+    db = client["CompanyInfo_DEMO"]
     data = se.to_dict(orient="records")
     for row in data:
         db[f"{name}"].find_one_and_replace(

@@ -1,17 +1,17 @@
 # Fetch Stock Price
 # Run at 8:59AM and 12:59PM from Mon to Fri
-59 1,5 * * 1-5 /usr/bin/python3 ~/Stock_Fetch_Price/main.py
+59 1,5 * * 1-5 /usr/bin/python3 ~/StockFetchPrice/main.py
 # Run from 9:00 to 10:59 and from 13:00 to 14:59 from Mon to Fri
-0-59 2-3,6-7 * * 1-5 /usr/bin/python3 ~/Stock_Fetch_Price/main.py
+0-59 2-3,6-7 * * 1-5 /usr/bin/python3 ~/StockFetchPrice/main.py
 # Run from 11:00 to 11:34 from Mon to Fri
-0-34 4 * * 1-5 /usr/bin/python3 ~/Stock_Fetch_Price/main.py
+0-34 4 * * 1-5 /usr/bin/python3 ~/StockFetchPrice/main.py
 # Run from 15:00 to 15:05 from Mon to Fri
-0-5 8 * * 1-5 /usr/bin/python3 ~/Stock_Fetch_Price/main.py
+0-5 8 * * 1-5 /usr/bin/python3 ~/StockFetchPrice/main.py
 # --------------------------------------------------------------------
 # Query for prediction
 # Run at 16:00 from Mon to Fri
-0 9 * * 1-5 /usr/bin/python3 ~/Query_For_Prediction/main.py
+0 9 * * 1-5 /usr/bin/python3 ~/QueryForPrediction/main.py
 #---------------------------------------------------------------------
 # Company Info 
 # Run at 20:00 from Mon to Fri
-0 13 * * 1-5 /usr/bin/python3 ~/Company_Info/main.py
+0 13 * * 1-5 /usr/bin/python3 ~/CompanyInfo/main.py

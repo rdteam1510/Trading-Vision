@@ -2,11 +2,10 @@ from pymongo import MongoClient
 import pandas as pd
 import datetime, time
 
-client = MongoClient(
-    "mongodb+srv://tradingvision:123@cluster0.xmnn8.mongodb.net/TradingVision?authSource=admin&replicaSet=atlas-kkwgbw-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true"
-)
+client = MongoClient()
 
 db = client["Stocks"]
+
 keys_drop = [
     "_id",
     "Ceiling",
@@ -17,6 +16,9 @@ keys_drop = [
     "Lowest",
     "TimeStamp",
 ]
+
+
+db = client["Stocks"]
 se_lists = ["hose", "hnx", "upcom"]
 headers = ["StockExchange", "Time", "Ticker", "Closed"]
 main_df = pd.DataFrame(columns=headers)

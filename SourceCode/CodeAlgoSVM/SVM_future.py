@@ -10,7 +10,7 @@ from sklearn import preprocessing,model_selection,svm
 from sklearn.linear_model import LinearRegression #
 import matplotlib.pyplot as plt
 from matplotlib import style
-style.use('ggplot')
+plt.style.use('seaborn-darkgrid')
 import pickle
 
 
@@ -29,6 +29,7 @@ df.drop('<Ticker>', axis = 1, inplace = True)
 
 # Sort DataFrame by date
 df = df.sort_values('<DTYYYYMMDD>')
+# print (df.head())
 
 #Calculating percent volatility
 df['HIGHLOW_PCT']=(df['<High>']-df['<Close>'])/(df['<Close>'])*100
@@ -41,9 +42,12 @@ df=df[['<Close>','HIGHLOW_PCT','PCT_Change','<Volume>']]
 #forecast volume to calculate future stocks
 forecast_col=['<Close>']
 df.fillna(-99999,inplace=True)
-forecast_out=int(math.ceil(0.2*len(df)))
-print (forecast_out)
+forecast_out=int(math.ceil(0.3*len(df)))
+# print (forecast_out)
 df['label']=df[forecast_col].shift(-forecast_out)
+# print (df.head())
+
+
 X = np.array(df.drop(['label'],1))
 X = preprocessing.scale(X)
 X = X[:-forecast_out]
@@ -52,17 +56,20 @@ X_lately=X[-forecast_out:]
 
 df.dropna(inplace=True)
 y=np.array(df['label'])
+
 #Train and test data set
 X_train,X_test,y_train,y_test=model_selection.train_test_split(X,y,test_size=0.3)
 #classification inorder to get X_train and Y_train
+# clf=LinearRegression(n_jobs=-1)
 clf=svm.SVR()
 clf.fit(X_train,y_train)
 accuracy=clf.score(X_test,y_test)
-print (accuracy)
+# print (accuracy)
+
 #We can pass single value or array of values or we are passing 99days of value
 forecast_set=clf.predict(X_lately)
 print (forecast_set,accuracy,forecast_out)
-#predict
+#draw
 df['Forecast']=np.nan
 last_date=df.iloc[-1].name
 last_unix = last_date.timestamp()
@@ -74,10 +81,10 @@ for i in forecast_set:
     next_unix += one_day
     df.loc[next_date]=[np.nan for _ in range(len(df.columns)-1)] + [i]
 
-df['<Close>'].plot()
-df['Forecast'].plot()
+plt.plot(df['<Close>'], label = "Data")
+plt.plot(df['Forecast'], label = "Prediction")
 plt.legend(loc=4)
 plt.xlabel('Date')
-plt.ylabel('Price')
+plt.ylabel('Close')
 plt.show()
     
