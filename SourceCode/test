@@ -1,1 +1,0 @@
-client = MongoClient('localhost', 27017)

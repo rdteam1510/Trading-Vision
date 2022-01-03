@@ -32,14 +32,15 @@ def Processing():
     :return: None
     """
     total_data = []
-    data = db["Stocks"].find().sort("TimeStamp", -1).limit(300)
-    for item in data:
-        {item.pop(key) for key in keys_drop}
-        item["Time"] = (
-            datetime.datetime.utcfromtimestamp(item["Time"])
-            - datetime.timedelta(days=1)
-        ).strftime("%d/%m/%Y")
-        total_data.append(item)
+    for se in se_lists:
+        data = db["Stocks"].find({"StockExchange":se}).sort("TimeStamp", -1).limit(100)
+        for item in data:
+            {item.pop(key) for key in keys_drop}
+            item["Time"] = (
+                datetime.datetime.fromtimestamp(item["Time"])
+                - datetime.timedelta(days=1)
+            ).strftime("%d/%m/%Y")
+            total_data.append(item)
 
     db2 = client["ForPrediction"]
     db2["ForPrediction"].insert_many(total_data)
