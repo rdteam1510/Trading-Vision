@@ -1,6 +1,5 @@
 from pymongo import MongoClient
-import pandas as pd
-import datetime, time
+import datetime
 
 client = MongoClient()
 
