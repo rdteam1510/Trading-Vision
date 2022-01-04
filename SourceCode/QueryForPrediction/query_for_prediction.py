@@ -2,7 +2,9 @@ from pymongo import MongoClient
 import pandas as pd
 import datetime, time
 
-client = MongoClient()
+client = MongoClient(
+    "mongodb+srv://tradingvision:123@cluster0.xmnn8.mongodb.net/TradingVision?authSource=admin&replicaSet=atlas-kkwgbw-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true"
+)
 
 db = client["Stocks"]
 
@@ -33,15 +35,26 @@ def Processing():
     """
     total_data = []
     for se in se_lists:
-        data = db["Stocks"].find({"StockExchange":se}).sort("TimeStamp", -1).limit(100)
+        data = (
+            db["Stocks"]
+            .find({"StockExchange": se})
+            .sort("TimeStamp", -1)
+            .limit(100)
+        )
         for item in data:
             {item.pop(key) for key in keys_drop}
-            item["Time"] = (
-                datetime.datetime.fromtimestamp(item["Time"])
-                - datetime.timedelta(days=1)
-            ).strftime("%d/%m/%Y")
+            utc = datetime.datetime.utcfromtimestamp(item["Time"]).strftime("%A")
+            if utc == 'Monday':
+                item["Time"] = (
+                    datetime.datetime.fromtimestamp(item["Time"])
+                    - datetime.timedelta(days=3)
+                ).strftime("%d/%m/%Y")
+            else:
+                item["Time"] = (
+                    datetime.datetime.fromtimestamp(item["Time"])
+                    - datetime.timedelta(days=1)
+                ).strftime("%d/%m/%Y")
             total_data.append(item)
-
     db2 = client["ForPrediction"]
     db2["ForPrediction"].insert_many(total_data)
 
