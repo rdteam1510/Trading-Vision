@@ -1,13 +1,20 @@
 from pymongo import MongoClient
-import pandas as pd
-import datetime, time
+import datetime
 
+<<<<<<< HEAD
 client = MongoClient('localhost',27017)
+=======
+client = MongoClient()
+>>>>>>> 8948eed6a72b67f3876ae9e06239f1cabf9cb505
 
 
 db = client["Stocks"]
 se_lists = ["hose", "hnx", "upcom"]
+<<<<<<< HEAD
 new_columns = ["Time","StockExchange","Ticker","Closed"]
+=======
+
+>>>>>>> 8948eed6a72b67f3876ae9e06239f1cabf9cb505
 
 def Processing():
     """
