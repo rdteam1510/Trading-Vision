@@ -6,24 +6,9 @@ client = MongoClient(
     "mongodb+srv://tradingvision:123@cluster0.xmnn8.mongodb.net/TradingVision?authSource=admin&replicaSet=atlas-kkwgbw-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true"
 )
 
-db = client["Stocks"]
-
-keys_drop = [
-    "_id",
-    "Ceiling",
-    "Floor",
-    "Match",
-    "Volume",
-    "Highest",
-    "Lowest",
-    "TimeStamp",
-]
-
 
 db = client["Stocks"]
 se_lists = ["hose", "hnx", "upcom"]
-headers = ["StockExchange", "Time", "Ticker", "Closed"]
-main_df = pd.DataFrame(columns=headers)
 
 
 def Processing():
@@ -37,14 +22,24 @@ def Processing():
     for se in se_lists:
         data = (
             db["Stocks"]
-            .find({"StockExchange": se})
+            .find(
+                {"StockExchange": se},
+                {
+                    "_id": 0,
+                    "StockExchange": 1,
+                    "Time": 1,
+                    "Ticker": 1,
+                    "PreviousClosed": 1,
+                },
+            )
             .sort("TimeStamp", -1)
             .limit(100)
         )
         for item in data:
-            {item.pop(key) for key in keys_drop}
-            utc = datetime.datetime.utcfromtimestamp(item["Time"]).strftime("%A")
-            if utc == 'Monday':
+            is_monday = datetime.datetime.utcfromtimestamp(
+                item["Time"]
+            ).strftime("%A")
+            if is_monday == "Monday":
                 item["Time"] = (
                     datetime.datetime.fromtimestamp(item["Time"])
                     - datetime.timedelta(days=3)
