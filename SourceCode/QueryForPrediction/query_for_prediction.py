@@ -1,20 +1,14 @@
 from pymongo import MongoClient
 import datetime
 
-<<<<<<< HEAD
 client = MongoClient('localhost',27017)
-=======
-client = MongoClient()
->>>>>>> 8948eed6a72b67f3876ae9e06239f1cabf9cb505
 
 
 db = client["Stocks"]
 se_lists = ["hose", "hnx", "upcom"]
-<<<<<<< HEAD
-new_columns = ["Time","StockExchange","Ticker","Closed"]
-=======
 
->>>>>>> 8948eed6a72b67f3876ae9e06239f1cabf9cb505
+new_columns = ["Time","StockExchange","Ticker","Close"]
+
 
 def Processing():
     """
@@ -34,7 +28,7 @@ def Processing():
                     "StockExchange": 1,
                     "Time": 1,
                     "Ticker": 1,
-                    "PreviousClosed": 1,
+                    "PreviousClose": 1,
                 },
             )
             .sort("TimeStamp", -1)

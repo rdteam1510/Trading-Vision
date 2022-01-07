@@ -45,7 +45,7 @@ new_columns = [
     "Time",
     "StockExchange",
     "Ticker",
-    "PreviousClosed",
+    "PreviousClose",
     "Ceiling",
     "Floor",
     "Highest",
