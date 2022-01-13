@@ -9,9 +9,9 @@
 0-5 8 * * 1-5 /usr/bin/python3 ~/StockFetchPrice/fetch_stock_price.py
 # --------------------------------------------------------------------
 # Query for prediction
-# Run at 16:00 from Mon to Fri
-0 9 * * 1-5 /usr/bin/python3 ~/QueryForPrediction/query_for_prediction.py
+# Run at 3:30PM from Mon to Fri
+30 8 * * 1-5 /usr/bin/python3 ~/QueryForPrediction/query_for_prediction.py
 #---------------------------------------------------------------------
 # Company Info 
-# Run at 20:00 from Mon to Fri
-0 13 * * 1-5 /usr/bin/python3 ~/CompanyInfo/fetch_company_info.py
+# Run at 4:00 PM from Mon to Fri
+0 9 * * 1-5 /usr/bin/python3 ~/CompanyInfo/fetch_company_info.py
