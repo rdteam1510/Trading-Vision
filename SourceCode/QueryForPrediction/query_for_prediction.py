@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-import datetime
+import datetime, time
 
 client = MongoClient('localhost',27017)
 
@@ -48,6 +48,11 @@ def Processing():
                     datetime.datetime.fromtimestamp(item["Time"])
                     - datetime.timedelta(days=1)
                 ).strftime("%d/%m/%Y")
+            item["Time"] = time.mktime(
+                        datetime.datetime.strptime(
+                            item["Time"], "%d/%m/%Y"
+                        ).timetuple()
+                    ) 
             item = dict(zip(new_columns, list(item.values())))
             total_data.append(item)
     db2 = client["ForPrediction"]
