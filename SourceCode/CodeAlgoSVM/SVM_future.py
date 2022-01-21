@@ -23,7 +23,7 @@ def parser(x):
 	return datetime.strptime(x,'%Y%m%d')
 df = pd.read_csv('HSX.csv',  header=0, index_col='<DTYYYYMMDD>', parse_dates=['<DTYYYYMMDD>'], squeeze=True, date_parser=parser, usecols=col_lists)
 #Get ticker AIC
-ticker = "ACB"
+ticker = "VNM"
 df = df[df['<Ticker>']==ticker]
 
 # Delete column Ticker
@@ -71,7 +71,7 @@ clf=LinearRegression(n_jobs=-1)
 # clf=svm.SVR()
 clf.fit(X_train,y_train)
 accuracy=clf.score(X_test,y_test)
-# print (accuracy)
+print (accuracy)
 
 #We can pass single value or array of values or we are passing 99days of value
 # forecast_set=clf.predict(X_test)
@@ -85,8 +85,8 @@ forecast_set=clf.predict(X_test)
 # print(y_test)
 testScore2 = math.sqrt(mean_squared_error(y_test, forecast_set))
 mape = mean_absolute_percentage_error(y_test,forecast_set)
-print('MAPE:  ', (mape))
-print('RMSE:  ' ,(testScore2))
+print('MAPE: ',(mape))
+print('RMSE: ' ,(testScore2))
 
 #draw
 # print(df)

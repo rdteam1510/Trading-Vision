@@ -110,13 +110,13 @@ print('Test Score Test: %.2f RMSE' % (testScore2))
 # In print MAPE
 
 mape = mean_absolute_percentage_error(y_test,cls.predict(X_test))
-print('MAPE: %.2f' % (mape))
+print('MAPE: %.2f '% (mape))
 
  
-plt.plot(df['Cum_Ret'],color='blue', label = "Training")
-plt.plot(df['Cum_Strategy'],color='red',label="Testing")
-# Khong phai training testing ma la stragetry va the stock of Reliance Industries
-plt.legend(loc=4)
-plt.xlabel('Date')
-plt.ylabel('Close')
-plt.show()
+# plt.plot(df['Cum_Ret'],color='blue', label = "Training")
+# plt.plot(df['Cum_Strategy'],color='red',label="Testing")
+# # Khong phai training testing ma la stragetry va the stock of Reliance Industries
+# plt.legend(loc=4)
+# plt.xlabel('Date')
+# plt.ylabel('Close')
+# plt.show()
