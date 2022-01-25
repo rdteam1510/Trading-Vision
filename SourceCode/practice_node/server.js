@@ -9,7 +9,7 @@ const client = new OAuth2Client(CLIENT_ID);
 
 const PORT= process.env.PORT || 5000;
 
-//Midelware
+//Middleware
 app.set('view engine','ejs');
 app.use(express.json());
 app.use(cookieParser());
