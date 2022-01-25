@@ -43,13 +43,13 @@ app.post('/login',(req,res)=>{
   catch(console.error);
 })
 
-app.get('/profile',(req,res)=>{
+app.get('/dashboard', checkAuthenticated, (req, res)=>{
     let user = req.user;
-    res.render('dashboard',(user));
+    res.render('dashboard', {user});
 })
 
-app.get('/protectedroute',checkAuthenticated,(req,res)=>{
-    res.render('protectedroute');
+app.get('/protectedRoute', checkAuthenticated, (req,res)=>{
+    res.send('This route is protected')
 })
 
 app.get('/logout',(req,res)=>{
