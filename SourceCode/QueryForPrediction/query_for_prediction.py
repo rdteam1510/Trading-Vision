@@ -3,7 +3,6 @@ import datetime, time
 
 client = MongoClient('localhost',27017)
 
-
 db = client["Stocks"]
 se_lists = ["hose", "hnx", "upcom"]
 
@@ -57,6 +56,6 @@ def Processing():
             total_data.append(item)
     db2 = client["ForPrediction"]
     db2["ForPrediction"].insert_many(total_data)
-
+    
 
 Processing()
