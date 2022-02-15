@@ -80,7 +80,7 @@ const StockTable = () => {
     const [stocks, setStocks] = useState([]);
     const [search, setSearch] = useState("")
     const [loading, setLoading] = useState(false)
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState(0)
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const history = useNavigate()
     const classes = useStyles()
