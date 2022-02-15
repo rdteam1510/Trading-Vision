@@ -38,7 +38,7 @@ const StockExchange = () => {
 
   return (
     
-      <Container>
+      <Container style={{textAlign: 'center'}}>
         <Typography
             variant="h4"
             style={{margin: 18, fontFamily: 'Montserrat'}}
