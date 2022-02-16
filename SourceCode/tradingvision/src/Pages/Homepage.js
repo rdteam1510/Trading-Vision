@@ -1,6 +1,6 @@
 import React from 'react';
-import Banner from "../Components/Banner/Banner"
-import StockExchange from '../Components/StockExchange';
+import Banner from "../components/Banner/Banner"
+import StockExchange from '../components/StockExchange';
 
 
 
