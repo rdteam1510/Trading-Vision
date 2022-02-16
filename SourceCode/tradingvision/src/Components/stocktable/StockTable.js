@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { Container, 
     createTheme, 
-    TextField, 
     ThemeProvider, 
-    Typography, 
     TableContainer, 
     LinearProgress,
     Table,
@@ -11,14 +9,11 @@ import { Container,
     TableRow,
     TableCell,
     TableBody,
-    makeStyles,
     Paper,
     TablePagination,
-    TableSortLabel
  } from '@material-ui/core'
 import { useNavigate } from 'react-router-dom';
-import { TableRows } from '@mui/icons-material';
-
+import useStyles from './style';
 
 
 const darkTheme = createTheme({
@@ -30,27 +25,7 @@ const darkTheme = createTheme({
     },
   });
 
-  const useStyles = makeStyles((theme) => ({
-    tablehead:{
-      backgroundColor:"#131110",
-    },
-    tablecell:{
-      color: "white",
-      fontWeight: "700",
-      fontFamily: "Montserrat",
-    },
-    row: {
-      backgroundColor: "#131110",
-      cursor: "pointer",
-      "&:hover": {
-        backgroundColor: "#36454F",
-      },
-      fontFamily: "Montserrat",
-    },
-    tableContainer: {
-      maxHeight: 550,
-    },
-}))
+  
 
 function createData(ticker, ceiling, floor, highest, lowest, match, volume) {
     return { ticker, ceiling, floor, highest, lowest, match, volume };
@@ -115,7 +90,7 @@ const StockTable = () => {
                     loading? (
                         <LinearProgress style={{backgroundColor:"primary"}}/>
                     ):(
-                        <Table>
+                        <Table stickyHeader aria-label="sticky table">
                             <TableHead  className={classes.tablehead}
                             rowCount={rows.length}>
                                 <TableRow>

@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles';
 import Tab from '@material-ui/core/Tab';
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
-import StockTable from '../components/StockTable';
+import StockTable from '../stocktable/StockTable';
 import { Container, 
   createTheme, 
   TextField, 
   ThemeProvider,
   Typography, 
 } from '@material-ui/core'
+import useStyles from './style'
 
 const darkTheme = createTheme({
   palette: {
@@ -21,12 +21,7 @@ const darkTheme = createTheme({
   },
 });
 
-const useStyles = makeStyles((theme) => ({
-  tablist:{
-    indicatorColor: "primary",
-    color: "orange",
-  }
-}))
+
 
 const StockExchange = () => {
   const classes = useStyles()
