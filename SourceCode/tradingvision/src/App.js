@@ -5,6 +5,7 @@ import Header from '././components/Header';
 import Homepage from './pages/Homepage';
 import Stockpage from './pages/Stockpage';
 import { makeStyles } from "@material-ui/core";
+import { FooterContainer } from './containers/footer';
 
 const useStyles = makeStyles(()=>({
   App:{
@@ -27,6 +28,7 @@ function App() {
             <Route exact path="/" element={<Homepage/>} />
             <Route exact path="/stocks/:ticker" element={<Stockpage/>} />
           </Routes>
+          <FooterContainer />
       </Router>
     </div>
   );
