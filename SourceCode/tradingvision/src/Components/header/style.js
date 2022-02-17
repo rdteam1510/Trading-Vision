@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) =>({
         fontFamily: "Montserrat",
         marginLeft: theme.spacing(10),
         "&:hover": {
-          color: "orange",
+          
           
         },
         menu: {

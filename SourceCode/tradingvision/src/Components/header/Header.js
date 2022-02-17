@@ -5,16 +5,18 @@ import { Avatar,
         Box,
         Button,
         Typography, InputBase, Link, Badge, IconButton, createTheme, ThemeProvider, CssBaseline} from "@material-ui/core";
-import React from "react";
+import React, {useState} from "react";
 import SearchIcon from '@mui/icons-material/Search';
 import { alpha } from '@mui/material/styles';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import LogoutIcon from '@mui/icons-material/Logout';
 import {useNavigate} from "react-router-dom";
 import useStyles from "./style";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Navbar from './Navbar'
+
 
 const darkTheme = createTheme({
     palette: {
@@ -86,7 +88,7 @@ const Header = () =>{
                             />
                         </div>
                         <div className={classes.navlinks}>
-                            <Button onClick={() => history("/")} className={classes.link}>
+                            {/* <Button onClick={() => history("/")} className={classes.link}>
                             Market
                             </Button>
                             <Button onClick={() => history("/favorite")} className={classes.link}>
@@ -94,7 +96,9 @@ const Header = () =>{
                             </Button>
                             <Button onClick={() => history("/reminder")} className={classes.link}>
                             Reminder
-                            </Button>
+                            </Button> */}
+                           <Navbar className={classes.link}/>
+                            
                         </div>
                         {auth && (
                         <div className={classes.menu} >
