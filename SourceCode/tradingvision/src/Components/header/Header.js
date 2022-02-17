@@ -1,24 +1,20 @@
-import { Avatar, 
+import { 
         AppBar, 
         Container, 
         Toolbar, 
-        Box,
-        Button,
-        Typography, InputBase, Link, Badge, IconButton, createTheme, ThemeProvider, CssBaseline} from "@material-ui/core";
+        Typography, InputBase, IconButton, createTheme, ThemeProvider, CssBaseline} from "@material-ui/core";
 import React, {useState} from "react";
 import SearchIcon from '@mui/icons-material/Search';
-import { alpha } from '@mui/material/styles';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import LogoutIcon from '@mui/icons-material/Logout';
 import {useNavigate} from "react-router-dom";
 import useStyles from "./style";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from './Navbar'
-import Popover from '@mui/material/Popover';
-import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 import StockTable from '../stocktable/StockTable';
+import Modal from '@mui/material/Modal';
+
 const darkTheme = createTheme({
     palette: {
       primary: {
@@ -48,6 +44,10 @@ const Header = () =>{
     };
 
     
+    const [test, setTest] = React.useState(false);
+  const handleOpen = () => setTest(true);
+  const handleClosed = () => setTest(false);
+
     return ( 
         <ThemeProvider theme={darkTheme}>
             <AppBar position="static" className={classes.appbar}>
@@ -80,46 +80,32 @@ const Header = () =>{
                             <div className={classes.searchIcon}>
                                 <SearchIcon />
                                 </div>
-                            
-                            <PopupState variant="popover" popupId="demo-popup-popover">
-                                    {(popupState) => (
-                                        <div>
-                                        <InputBase
+                            <InputBase
                                             placeholder="Search…"
                                             classes={{
                                                 root: classes.inputRoot,
                                                 input: classes.inputInput,
                                             }}
                                             inputProps={{ 'aria-label': 'search' }}
-                                            {...bindTrigger(popupState)}/>
-                                        <Popover className={classes.popover}
-                                            {...bindPopover(popupState)}
-                                            anchorPosition={{top:100, left: 2000}}
-                                            anchorOrigin={{
-                                            vertical: 'center',
-                                            horizontal: 'center',
-                                            }}
-                                            transformOrigin={{
-                                            vertical: 'center',
-                                            horizontal: 'center',
-                                            }}
-                                        >
-                                            <StockTable/>
-                                        </Popover>
-                                        </div>
-                                    )}
-                                    </PopupState>
+                                            onClick={handleOpen}
+
+                                            />
+                            
+                            <Modal
+                                keepMounted
+                                open={test}
+                                onClose={handleClosed}
+                                aria-labelledby="keep-mounted-modal-title"
+                                aria-describedby="keep-mounted-modal-description"
+                                style={{ alignItems: "center", justifyContent: "center", paddingTop: 100}}
+                            >
+                                <StockTable/>
+                            </Modal>
+                            
+
                         </div>
                         <div className={classes.navlinks}>
-                            {/* <Button onClick={() => history("/")} className={classes.link}>
-                            Market
-                            </Button>
-                            <Button onClick={() => history("/favorite")} className={classes.link}>
-                            Favorite
-                            </Button>
-                            <Button onClick={() => history("/reminder")} className={classes.link}>
-                            Reminder
-                            </Button> */}
+                           
                            <Navbar className={classes.link}/>
                             
                         </div>
