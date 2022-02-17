@@ -87,6 +87,8 @@ const useStyles = makeStyles((theme) =>({
           display: 'flex',
           justifyContent: 'center',
           backgroundColor: "black",
+          top: '100px !important', 
+          left: '100px !important'
         } 
     }
 }))
