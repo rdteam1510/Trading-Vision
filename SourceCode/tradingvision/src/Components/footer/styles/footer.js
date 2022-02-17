@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    padding: 80px 60px;
-    background: radial-gradient(circle, rgba(92, 39, 251, 1) 0%, rgba(112, 71, 247, 1) 100%);
-
+    padding: 30px 50px;
+    background: radial-gradient(circle, rgba(55, 58, 109, 1) 0%, rgba(55, 58, 109, 1) 100%);
+    font-family: 'Montserrat';
+   
 `
 
 export const Wrapper = styled.div`
@@ -12,17 +13,18 @@ export const Wrapper = styled.div`
     justify-content: center;
     max-width: 1000px;
     margin: 0 auto;
+    paddingLeft: 100px;
 `
 export const Column = styled.div`
     display: flex;
     flex-direction: column;
     text-align: left;
-    margin-left: 60px;
+    margin-left: 30px;
 `
 export const Row = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-    grid-gap: 20px;
+    grid-gap: 25px;
 
     @media (max-width: 1000px) {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -31,7 +33,7 @@ export const Row = styled.div`
 export const Link = styled.a`
     color: #fff;
     margin-bottom: 20px;
-    font-size: 18px;
+    font-size: 16px;
     text-decoration: none;
 
     &:hover {
@@ -40,8 +42,10 @@ export const Link = styled.a`
     }
 `
 export const Title = styled.div`
-    font-size: 24px;
+    font-size: 19px;
     color: #fff;
     margin-bottom: 40px;
     font-weight: bold;
+
 `
+

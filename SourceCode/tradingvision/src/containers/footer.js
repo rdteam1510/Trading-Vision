@@ -8,7 +8,7 @@ export function FooterContainer() {
             <Footer.Wrapper>
                 <Footer.Row>
                 <Footer.Column>
-                    <Footer.Title>TradingVision</Footer.Title>
+                    <Footer.Title href="/">TradingVision</Footer.Title>
                     
                     
                 </Footer.Column>
@@ -20,16 +20,16 @@ export function FooterContainer() {
                 </Footer.Column>
                 <Footer.Column>
                     <Footer.Title>Quick Links</Footer.Title>
-                    <Footer.Link href="#">Market</Footer.Link>
-                    <Footer.Link href="#">Favorite</Footer.Link>
-                    <Footer.Link href="#">Reminder</Footer.Link>
+                    <Footer.Link href="/">Market</Footer.Link>
+                    <Footer.Link href="/favorite">Favorite</Footer.Link>
+                    <Footer.Link href="/reminder">Reminder</Footer.Link>
                   
                 </Footer.Column>
                 <Footer.Column>
                     <Footer.Title>Follow Us</Footer.Title>
                     <Footer.Link href="#"><Icon className="fa-brands fa-facebook-square" />Facebook</Footer.Link>
                     <Footer.Link href="#"><Icon className="fa-brands fa-linkedin" />Linkedin</Footer.Link>
-                    <Footer.Link href="#"><Icon className="fa-brands fa-twitter-square" />twitter</Footer.Link>
+                    <Footer.Link href="#"><Icon className="fa-brands fa-twitter-square" />Twitter</Footer.Link>
                     
                 </Footer.Column>
                 </Footer.Row>

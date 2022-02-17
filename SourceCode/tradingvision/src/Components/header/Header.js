@@ -125,7 +125,7 @@ const Header = () =>{
                                 open={open}
                                 onClose={handleClose}
                             >
-                                <MenuItem onClick={handleClose}>
+                                <MenuItem onClick={() => history("/profile")}>
                                     <AccountCircle/>    
                                     <Typography
                                     style={{ marginLeft: '10px'}}>Profile</Typography>
