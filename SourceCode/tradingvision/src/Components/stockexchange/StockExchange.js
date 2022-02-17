@@ -4,6 +4,7 @@ import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
 import StockTable from '../stocktable/StockTable';
+import Test from '../stocktable/test';
 import { Container, 
   createTheme, 
   TextField, 
@@ -65,9 +66,9 @@ const StockExchange = () => {
               <Tab label="UPCOM" value="3" className={classes.tab}/>
             </TabList>
   
-          <TabPanel value="1"><StockTable/></TabPanel>
-          <TabPanel value="2"><StockTable/></TabPanel>
-          <TabPanel value="3"><StockTable/></TabPanel>
+          <TabPanel value="1"><Test /></TabPanel>
+          <TabPanel value="2"><Test /></TabPanel>
+          <TabPanel value="3"><Test /></TabPanel>
         </TabContext>
         
       
