@@ -2,12 +2,18 @@ import { makeStyles } from "@material-ui/core";
 import { alpha } from '@mui/material/styles';
 
 const useStyles = makeStyles((theme) =>({
-    grow: {
-        flexGrow: 1,
-      },
+    appbar:{
+      width: '100%',
+    },
+    logo: {
+      flexGrow: "1",
+      cursor: "pointer",
+    },
     title:{
-        fontWeight: "bold",
-        cursor: "pointer",
+      fontFamily: "Montserrat",
+      fontWeight: "bold",
+      cursor: "pointer",
+      paddingRight: "23px"
     },
     search: {
         position: 'relative',
@@ -47,7 +53,7 @@ const useStyles = makeStyles((theme) =>({
         },
       },
       navlinks: {
-        marginLeft: theme.spacing(1),
+        marginLeft: theme.spacing(10),
         display: "flex",
         [theme.breakpoints.up('sm')]: {
             display: 'flex',
@@ -65,10 +71,15 @@ const useStyles = makeStyles((theme) =>({
         },
         menu: {
             display: 'none',
+            paddingRight: "20px",
             [theme.breakpoints.up('md')]: {
               display: 'flex',
             },
           },
+        logo:{
+          height: 40,
+          width:150
+        }
     }
 }))
 

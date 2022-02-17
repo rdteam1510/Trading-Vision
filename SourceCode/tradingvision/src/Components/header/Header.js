@@ -1,4 +1,9 @@
-import { AppBar, Container, Toolbar, Typography, InputBase, Link, Badge, IconButton, createTheme, ThemeProvider} from "@material-ui/core";
+import { Avatar, 
+        AppBar, 
+        Container, 
+        Toolbar, 
+        Box,
+        Typography, InputBase, Link, Badge, IconButton, createTheme, ThemeProvider, CssBaseline} from "@material-ui/core";
 import React from "react";
 import SearchIcon from '@mui/icons-material/Search';
 import { alpha } from '@mui/material/styles';
@@ -10,6 +15,14 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import {useNavigate} from "react-router-dom";
 import useStyles from "./style";
 
+const darkTheme = createTheme({
+    palette: {
+      primary: {
+        main: "#000",
+      },
+      type: "dark",
+    },
+  });
 
 const Header = () =>{ 
     const classes = useStyles();
@@ -32,15 +45,32 @@ const Header = () =>{
 
     
     return ( 
-        <div className={classes.grow}>
-        
-            <AppBar color="primary" position="static">
+        <ThemeProvider theme={darkTheme}>
+            <AppBar position="static" className={classes.appbar}>
+                <CssBaseline/>
                 <Container>
                     <Toolbar>
+                        {/* <img src="logo.png" alt="logo" className={classes.logo} /> */}
+                        {/* <Box
+                            component="img"
+                            sx={{
+                            height: 40,
+                            width: 150,
+                            maxHeight: { xs: 233, md: 167 },
+                            maxWidth: { xs: 350, md: 250 },
+                            }}
+                            alt="logo"
+                            src="logo.png" 
+                            onClick={() => history("/")}
+                            className={classes.logo}
+                        /> */}
+
+
+
                         <Typography 
                         onClick={() => history("/")} 
                         className={classes.title}
-                        variant="h7"> Trading Vision </Typography>
+                        variant="h5"> Trading Vision </Typography>
                         <div className={classes.search}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
@@ -66,7 +96,7 @@ const Header = () =>{
                             </Link>
                         </div>
                         {auth && (
-                        <div className={classes.menu}>
+                        <div className={classes.menu} >
                             
                             <IconButton color="inherit" >
                                 <Badge  color="secondary">
@@ -81,7 +111,7 @@ const Header = () =>{
                                 color="inherit">
                                 <AccountCircle />
                             </IconButton>
-                            <Menu
+                            <Menu 
                                 id="menu-appbar"
                                 anchorEl={anchorEl}
                                 anchorOrigin={{
@@ -109,9 +139,7 @@ const Header = () =>{
                 </Container>
 
             </AppBar>
-            
-        </div>
-        
+            </ThemeProvider>
     )
 }
 
