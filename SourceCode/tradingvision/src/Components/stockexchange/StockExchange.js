@@ -44,7 +44,7 @@ const StockExchange = () => {
               <TextField 
                   label="Search for a Stock Ticker..."
                   variant="outlined"
-                  style={{marginBottom:20, width:"100%"}}
+                  className={classes.text}
                   onChange={(e) => setSearch(e.target.value)}>
               </TextField>
             </ThemeProvider>
@@ -60,9 +60,9 @@ const StockExchange = () => {
               backgroundColor: "#D97D54"
             }
             }}>
-              <Tab label="HOSE" value="1"/>
-              <Tab label="HNX" value="2" />
-              <Tab label="UPCOM" value="3"/>
+              <Tab label="HOSE" value="1" className={classes.tab}/>
+              <Tab label="HNX" value="2" className={classes.tab}/>
+              <Tab label="UPCOM" value="3" className={classes.tab}/>
             </TabList>
   
           <TabPanel value="1"><StockTable/></TabPanel>

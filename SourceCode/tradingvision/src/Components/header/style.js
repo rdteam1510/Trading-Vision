@@ -81,7 +81,13 @@ const useStyles = makeStyles((theme) =>({
         logo:{
           height: 40,
           width:150
-        }
+        },
+        popover:{
+          alignItems:'center',
+          display: 'flex',
+          justifyContent: 'center',
+          backgroundColor: "black",
+        } 
     }
 }))
 

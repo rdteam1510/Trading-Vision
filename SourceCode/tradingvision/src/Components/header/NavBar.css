@@ -40,6 +40,7 @@
   .nav-item {
     line-height: 40px;
     margin-right: 1rem;
+    font-family: "Montserrat";
   }
   
   .nav-item:after {
