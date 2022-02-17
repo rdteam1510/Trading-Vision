@@ -65,13 +65,15 @@ const useStyles = makeStyles((theme) =>({
         display: 'flex',
         color: "white",
         fontSize: "16px",
+        fontFamily: "Montserrat",
         marginLeft: theme.spacing(10),
         "&:hover": {
           color: "orange",
+          
         },
         menu: {
             display: 'none',
-            paddingRight: "20px",
+            paddingRight: theme.spacing(10),
             [theme.breakpoints.up('md')]: {
               display: 'flex',
             },

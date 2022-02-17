@@ -3,6 +3,7 @@ import { Avatar,
         Container, 
         Toolbar, 
         Box,
+        Button,
         Typography, InputBase, Link, Badge, IconButton, createTheme, ThemeProvider, CssBaseline} from "@material-ui/core";
 import React from "react";
 import SearchIcon from '@mui/icons-material/Search';
@@ -85,24 +86,18 @@ const Header = () =>{
                             />
                         </div>
                         <div className={classes.navlinks}>
-                            <Link to="/" className={classes.link}>
+                            <Button onClick={() => history("/")} className={classes.link}>
                             Market
-                            </Link>
-                            <Link to="/favorite" className={classes.link}>
+                            </Button>
+                            <Button onClick={() => history("/favorite")} className={classes.link}>
                             Favorite
-                            </Link>
-                            <Link to="/reminder" className={classes.link}>
+                            </Button>
+                            <Button onClick={() => history("/reminder")} className={classes.link}>
                             Reminder
-                            </Link>
+                            </Button>
                         </div>
                         {auth && (
                         <div className={classes.menu} >
-                            
-                            <IconButton color="inherit" >
-                                <Badge  color="secondary">
-                                    <NotificationsIcon />
-                                </Badge>
-                            </IconButton>
                             <IconButton
                                 aria-label="account of current user"
                                 aria-controls="menu-appbar"
@@ -127,10 +122,14 @@ const Header = () =>{
                                 onClose={handleClose}
                             >
                                 <MenuItem onClick={handleClose}>
-                                    <AccountCircle/>    Profile
+                                    <AccountCircle/>    
+                                    <Typography
+                                    style={{ marginLeft: '10px'}}>Profile</Typography>
                                 </MenuItem>
                                 <MenuItem onClick={handleClose}>
-                                    <LogoutIcon/>   Sign Out
+                                    <LogoutIcon/>
+                                    <Typography
+                                    style={{ marginLeft: '10px'}}>Sign Out</Typography>
                                 </MenuItem>
                             </Menu>
                         </div>
