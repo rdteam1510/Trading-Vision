@@ -12,8 +12,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import {useNavigate} from "react-router-dom";
 import useStyles from "./style";
 import Navbar from './Navbar'
-import StockTable from '../stocktable/StockTable';
 import Modal from '@mui/material/Modal';
+import SearchPopup from "../search/SearchPopup";
 
 const darkTheme = createTheme({
     palette: {
@@ -46,7 +46,10 @@ const Header = () =>{
     
     const [test, setTest] = React.useState(false);
   const handleOpen = () => setTest(true);
-  const handleClosed = () => setTest(false);
+  const handleClosed = () => {  
+    setTest(false)
+    
+};
 
     return ( 
         <ThemeProvider theme={darkTheme}>
@@ -88,18 +91,21 @@ const Header = () =>{
                                             }}
                                             inputProps={{ 'aria-label': 'search' }}
                                             onClick={handleOpen}
-
+                                            style={{fontFamily: "Montserrat"}}
                                             />
                             
                             <Modal
                                 keepMounted
                                 open={test}
                                 onClose={handleClosed}
+                                
                                 aria-labelledby="keep-mounted-modal-title"
                                 aria-describedby="keep-mounted-modal-description"
                                 style={{ alignItems: "center", justifyContent: "center", paddingTop: 100}}
+                                BackdropProps={{ style: { backgroundColor: 'rgba(0,0,0,0.93)',
+                                 } }}
                             >
-                                <StockTable/>
+                                <SearchPopup />
                             </Modal>
                             
 

@@ -46,7 +46,8 @@ const StockExchange = () => {
                   label="Search for a Stock Ticker..."
                   variant="outlined"
                   className={classes.text}
-                  onChange={(e) => setSearch(e.target.value)}>
+                  onChange={(e) => setSearch(e.target.value)}
+                  style={{fontFamily: "Montserrat"}}>
               </TextField>
             </ThemeProvider>
 

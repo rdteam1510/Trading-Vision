@@ -11,7 +11,9 @@ import {
     createTheme,
     ThemeProvider,
     } from '@mui/material/styles';
-import { makeStyles } from "@mui/styles";
+import {useState} from 'react'
+import {useNavigate} from 'react-router-dom'
+
 const darkTheme = createTheme({
     palette: {
       primary: {
@@ -94,6 +96,12 @@ const columns = [
 
 
   export default function DataGridDemo() {
+    const history = useNavigate()
+    const [click, setClick] = useState(null)
+    const handleOnClick = (param)=>{
+      (history(`/stocks/${param}`))
+    }
+
     return (
         <ThemeProvider theme={darkTheme}>
         <div style={{ height: 400, width: '100%'}}>
@@ -101,7 +109,7 @@ const columns = [
         <DataGrid
             rows={rows}
             columns={columns}
-            
+
             components={{
             Toolbar: CustomToolbar,
             color: 'white',
@@ -117,8 +125,11 @@ const columns = [
                 display:'flex',
                 fontWeight: 'bold',
                 border: null,
-                }
+                }}
+            onRowClick={(params) => 
+              history(`/stocks/${params.row.ticker}`)
             }
+
         />
         </div>
         </ThemeProvider>
