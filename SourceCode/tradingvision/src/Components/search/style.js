@@ -47,23 +47,23 @@ const useStyles = makeStyles((theme)=>({
         fontFamily: "Montserrat",
       },
       tablehead:{
-        backgroundColor:"#131110",
+        backgroundColor:"rgba(55,58,109,0.8)",
       },
       tablecell:{
         color: "white",
         fontWeight: "700",
         fontFamily: "Montserrat",
+        backgroundColor:"rgba(55,58,109)",
       },
       row: {
-        backgroundColor: "#131110",
         cursor: "pointer",
-        "&:hover": {
-          backgroundColor: "#36454F",
-        },
         fontFamily: "Montserrat",
+        backgroundColor: "rgba(55,58,109,0.8)",
+        '&:hover': {
+          backgroundColor: "rgba(55,58,109,0.5)",
       },
+    },
       cell:{
-        
         color:'white',
       },
       tableContainer: {

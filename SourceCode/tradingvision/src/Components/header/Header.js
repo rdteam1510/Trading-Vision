@@ -9,11 +9,12 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import LogoutIcon from '@mui/icons-material/Logout';
-import {useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import useStyles from "./style";
 import Navbar from './Navbar'
 import Modal from '@mui/material/Modal';
 import SearchPopup from "../search/SearchPopup";
+
 
 const darkTheme = createTheme({
     palette: {
@@ -140,12 +141,13 @@ const Header = () =>{
                                 open={open}
                                 onClose={handleClose}
                             >
-                                <MenuItem onClick={() => history("/profile")}>
-                                    <AccountCircle/>    
+                                <MenuItem onClick={() => {history("/profile"); handleClose()}}
+                                            >
+                                    <AccountCircle/>  
                                     <Typography
                                     style={{ marginLeft: '10px'}}>Profile</Typography>
                                 </MenuItem>
-                                <MenuItem onClick={handleClose}>
+                                <MenuItem onClick={() => {history("/login"); handleClose()}}>
                                     <LogoutIcon/>
                                     <Typography
                                     style={{ marginLeft: '10px'}}>Sign Out</Typography>

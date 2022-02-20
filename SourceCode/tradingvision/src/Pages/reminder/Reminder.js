@@ -1,8 +1,10 @@
+import { Typography } from '@material-ui/core'
 import React from 'react'
 
 const Reminder = () => {
   return (
-    <div>Reminder</div>
+    <Typography>This is reminder page</Typography>
+
   )
 }
 
