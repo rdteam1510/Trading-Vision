@@ -19,6 +19,7 @@ for i in data:
     stocks_list.append(i.values())
     
 stocks_list = list(itertools.chain(*stocks_list))
+stocks_list = stocks_list[0:50]
 
 if __name__ == "__main__":
     # Choose time and close price columns 
@@ -27,15 +28,15 @@ if __name__ == "__main__":
         close_data, close_date = get_data(ticker)
                     
         # Retrain model
-        model = load_model('././Model/{}_model'.format(ticker))
+        model = load_model('/home/ubuntu/Model/{}_model'.format(ticker))
         model = only_train(close_data, model, ticker)
         # Predict price
         num_prediction = 6
         forecast, forecast_dates = make_predict(num_prediction, model, close_data, close_date)
 
         # Save new model
-        model.save('././Model/{}_model'.format(ticker))
-        print(f"---------{ticker}--------")
+        model.save('/home/ubuntu/Model/{}_model'.format(ticker))
+        #print(f"---------{ticker}--------")
         # print("Model exported")
         # print(close_data, close_date)
         # print(forecast, forecast_dates)
@@ -54,5 +55,5 @@ if __name__ == "__main__":
         time.sleep(5)
     
     
-    print('The CPU usage is: ', psutil.cpu_percent(4))        
-    print(f"{round(time.time()-start,2)}s")
+    # print('The CPU usage is: ', psutil.cpu_percent(4))        
+    # print(f"{round(time.time()-start,2)}s")
