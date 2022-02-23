@@ -14,6 +14,7 @@ export const Wrapper = styled.div`
     max-width: 1000px;
     margin: 0 auto;
     paddingLeft: 100px;
+    max-height: 400px;
 `
 export const Column = styled.div`
     display: flex;
@@ -26,7 +27,7 @@ export const Row = styled.div`
     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     grid-gap: 25px;
 
-    @media (max-width: 1000px) {
+    @media (max-width: 500px, max-height: 450px) {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }
 `

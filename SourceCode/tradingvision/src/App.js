@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import './App.css';
 
 import Header, {popupState} from '././components/header/Header';
-import Homepage from './pages/Homepage';
-import Stockpage from './pages/Stockpage';
+import Homepage from './pages/homepage/Homepage';
+import Stockpage from './pages/specificticker/Stockpage';
 import { makeStyles } from "@material-ui/core";
 import { FooterContainer } from './containers/footer';
 import Favorite from "./pages/favorite/Favorite";
@@ -13,7 +13,7 @@ import Profile from "./pages/profile/Profile";
 
 const useStyles = makeStyles(()=>({
   App:{
-    backgroundColor: "#14161a",
+    backgroundColor: "black",
     color: "white",
     minHeight: "100vh",
   
