@@ -1,6 +1,7 @@
 import React from 'react'
 import useStyles from './style'
 
+
 const Profile = () => {
     const classes = useStyles()
 
