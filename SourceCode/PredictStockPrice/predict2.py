@@ -8,11 +8,11 @@ client
 
 stocks_list = []
 db = client['CompanyInfo']
-db1 = client['PredictedStockPrice']
+db1 = client['Prediction']
 data = db['CompanyInfo'].find({},
                               {"Ticker":1,
                                "_id":0})
-new_columns = ["PredictedPrice","Date","Ticker","TimeStamp"]
+new_columns = ["Ticker","PredictedPrice","Date","TimeStamp"]
 
 
 for i in data:
@@ -43,17 +43,16 @@ if __name__ == "__main__":
         dt = {}
         l = []
         for i in range(len(forecast)):
-            dt["PredictedPrice"] = forecast[i]
-            dt["Date"] = forecast_dates[i]
             dt["Ticker"] = ticker
+            dt["PredictedPrice"] = forecast[i]
+            dt["Date"] = forecast_dates[i] 
             dt["TimeStamp"] = datetime.datetime.now()
             new_item = dict(zip(new_columns, list(dt.values())))
             l.append(new_item)
             
-        db1["PredictedPrice"].insert_many(l)
+        db1["Prediction"].insert_many(l)
         gc.collect()
         time.sleep(5)
-    
     
     # print('The CPU usage is: ', psutil.cpu_percent(4))        
     # print(f"{round(time.time()-start,2)}s")

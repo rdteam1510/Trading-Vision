@@ -26,6 +26,9 @@ const useStyles = makeStyles(()=>({
         width: '150px',
         marginTop: '3px',
     },
+    fav_border: {
+        paddingLeft: '20px',
+    },
 
 }))
 
