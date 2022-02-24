@@ -1,19 +1,22 @@
 import * as React from 'react';
 import {
     DataGrid,
-    GridToolbarContainer,
-    GridToolbarColumnsButton,
-    GridToolbarFilterButton,
-    GridToolbarDensitySelector,
-    GridToolbarExport,
+    GridToolbar,
+    gridPageCountSelector,
+    gridPageSelector,
+    useGridApiContext,
+    useGridSelector,
 } from '@mui/x-data-grid';
 import { 
     createTheme,
     ThemeProvider,
     } from '@mui/material/styles';
-import {useState} from 'react'
-import {useNavigate} from 'react-router-dom'
-
+import {useNavigate} from 'react-router-dom';
+import TablePagination from '@mui/material/TablePagination';
+import {  makeStyles } from '@material-ui/core/styles';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+ // Styles
 const darkTheme = createTheme({
     palette: {
       primary: {
@@ -22,23 +25,22 @@ const darkTheme = createTheme({
       type: "dark",
     },
   });
-
-function CustomToolbar() {
-  return (
-    <GridToolbarContainer>
-      <GridToolbarColumnsButton />
-      <GridToolbarFilterButton />
-      <GridToolbarDensitySelector />
-      <GridToolbarExport />
-    </GridToolbarContainer>
-  );
-}
+const useStyles = makeStyles({
+  root: {
+    '&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus, &.MuiDataGrid-root .MuiDataGrid-cell:focus': {
+        outline: 'none',
+    },
+    '&.MuiDataGrid-menuIcon &.MuiDataGrid-menuIconButton 	&.MuiDataGrid-menuOpen': {
+      color: 'white',
+    },
+  }
+});
 const columns = [
     {
       field: 'ticker',
       headerName: 'Ticker',
       width: 150,
-      
+
     },
     {
         field: 'ceiling',
@@ -83,55 +85,91 @@ const columns = [
     
     },
   ];
-  const rows = [
+const rows = [
     { id: 1, ticker: 'ACB', ceiling: 305, floor: 3.7, highest: 67, lowest: 4.3, match: 0.4, volume: 2300 },
     { id: 2, ticker: 'ASM', ceiling: 262, floor: 16.0, highest: 24, lowest: 6.0, match: 4.8, volume: 900 },
-    { id: 3, ticker: 'BVH', ceiling: 375, floor: 0.0, highest: 94, lowest: 0.0, match: 1.4, volume: 1000 },
-    { id: 3, ticker: 'DGC', ceiling: 318, floor: 0.0, highest: 81, lowest: 2.0, match: 4.8, volume: 1500 },
-
-    { id: 4, ticker: 'BCM', ceiling: 159, floor: 6.0, highest: 24, lowest: 4.0,match: 9.3,volume: 1200},
-    { id: 5, ticker: 'BHN', ceiling: 356, floor: 16.0, highest: 49, lowest: 3.9,match: 1.4,volume: 700},
-    
+    { id: 3, ticker: 'BVH', ceiling: 375, floor: 2.0, highest: 94, lowest: 0.0, match: 1.4, volume: 1000 },
+    { id: 4, ticker: 'DGC', ceiling: 318, floor: 0.0, highest: 81, lowest: 2.0, match: 4.8, volume: 1500 },
+    { id: 5, ticker: 'BCM', ceiling: 159, floor: 6.0, highest: 24, lowest: 4.0,match: 9.3,volume: 1200},
+    { id: 6, ticker: 'BHN', ceiling: 356, floor: 16.0, highest: 49, lowest: 3.9,match: 1.4,volume: 700},
   ]; 
+function CustomPagination() {
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
+    const handleChangePage = (event, newPage) => {
+      setPage(newPage);
+    };
 
-  export default function DataGridDemo() {
-    const history = useNavigate()
-    const [click, setClick] = useState(null)
-    const handleOnClick = (param)=>{
-      (history(`/stocks/${param}`))
-    }
+    const handleChangeRowsPerPage = (event) => {
+      setRowsPerPage(parseInt(event.target.value, 10));
+      setPage(0);
+    };
 
     return (
-        <ThemeProvider theme={darkTheme}>
-        <div style={{ height: 400, width: '100%'}}>
+      <TablePagination
+        component="div"
+        count = {rows.length}
+        page={page}
+        onPageChange={handleChangePage}
+        rowsPerPage={rowsPerPage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+        sx = {{
+          color:'white'
+        }}
+      />
+    );
+  }
+export function SortedDescendingIcon() {
+  return <ExpandMoreIcon 
+  className="icon"
+  sx = {{
+    color:'white',
+  }}
+  />;
+}
 
+export function SortedAscendingIcon() {
+  return <ExpandLessIcon className="icon" />;
+}
+export default function DataGridDemo() {
+    const history = useNavigate()
+    const classes = useStyles();
+    
+    return (
+      <ThemeProvider theme={darkTheme}>
+        <div style={{ height: 600, width: '100%'}}>
         <DataGrid
             rows={rows}
             columns={columns}
-
             components={{
-            Toolbar: CustomToolbar,
-            color: 'white',
+            Toolbar: GridToolbar,
+            Pagination: CustomPagination,
+            ColumnSortedDescendingIcon: SortedDescendingIcon,
+            ColumnSortedAscendingIcon: SortedAscendingIcon,
             }}
+            classeName = {classes.root}
             initialState={{
                 sorting: {
                   sortModel: [{ field: 'ticker', sort: 'asc' }],
                 },
               }}
+            
             sx={{
                 color: 'white',
-                font: "Monsterrat",
-                display:'flex',
-                fontWeight: 'bold',
-                border: null,
+                fontFamily: 'Montserrat',
+                cursor: "pointer",
+                fontSize: 18,
                 }}
+            
             onRowClick={(params) => 
               history(`/stocks/${params.row.ticker}`)
-            }
-
+            }    
+            
         />
+      
         </div>
-        </ThemeProvider>
+    </ThemeProvider>
     );
+    
 }
