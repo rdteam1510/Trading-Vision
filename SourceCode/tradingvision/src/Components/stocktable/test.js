@@ -16,6 +16,7 @@ import TablePagination from '@mui/material/TablePagination';
 import {  makeStyles } from '@material-ui/core/styles';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
  // Styles
 const darkTheme = createTheme({
     palette: {
@@ -120,6 +121,7 @@ function CustomPagination() {
       />
     );
   }
+// Define icons
 export function SortedDescendingIcon() {
   return <ArrowDownwardIcon
   className="icon"
@@ -135,6 +137,13 @@ export function SortedAscendingIcon() {
     color:'white',
   }}/>;
 }
+export function MenuIcon() {
+  return <MoreVertIcon className="icon"
+  sx = {{
+    color:'white',
+  }}/>;
+}
+// Datagirid
 export default function DataGridDemo() {
     const history = useNavigate()
     const classes = useStyles();
@@ -150,6 +159,7 @@ export default function DataGridDemo() {
             Pagination: CustomPagination,
             ColumnSortedDescendingIcon: SortedDescendingIcon,
             ColumnSortedAscendingIcon: SortedAscendingIcon,
+            ColumnMenuIcon: MenuIcon,
             }}
             classeName = {classes.root}
             initialState={{
