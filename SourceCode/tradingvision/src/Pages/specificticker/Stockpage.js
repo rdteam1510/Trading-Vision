@@ -7,6 +7,9 @@ import {Container,
       Divider, } from '@material-ui/core'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { TabContext, TabList, TabPanel } from '@material-ui/lab';
+import Profile from '../../components/specificticker/Profile'
+import Financials from '../../components/specificticker/Financials'
+
 
 const Stockpage = () => {
   const classes = useStyles()
@@ -66,8 +69,8 @@ const Stockpage = () => {
                     className={classes.tab}/>
               </TabList>
 
-          <TabPanel value="1"></TabPanel>
-          <TabPanel value="2"></TabPanel>
+          <TabPanel value="1"><Profile/></TabPanel>
+          <TabPanel value="2"><Financials/></TabPanel>
         </TabContext>
       </div>
 
