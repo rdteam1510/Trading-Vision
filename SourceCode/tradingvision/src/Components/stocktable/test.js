@@ -14,8 +14,8 @@ import {
 import {useNavigate} from 'react-router-dom';
 import TablePagination from '@mui/material/TablePagination';
 import {  makeStyles } from '@material-ui/core/styles';
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
  // Styles
 const darkTheme = createTheme({
     palette: {
@@ -121,7 +121,7 @@ function CustomPagination() {
     );
   }
 export function SortedDescendingIcon() {
-  return <ExpandMoreIcon 
+  return <ArrowDownwardIcon
   className="icon"
   sx = {{
     color:'white',
@@ -130,7 +130,10 @@ export function SortedDescendingIcon() {
 }
 
 export function SortedAscendingIcon() {
-  return <ExpandLessIcon className="icon" />;
+  return <ArrowUpwardIcon className="icon" 
+  sx = {{
+    color:'white',
+  }}/>;
 }
 export default function DataGridDemo() {
     const history = useNavigate()
