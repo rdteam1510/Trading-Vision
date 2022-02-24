@@ -9,7 +9,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { TabContext, TabList, TabPanel } from '@material-ui/lab';
 import Profile from '../../components/specificticker/Profile'
 import Financials from '../../components/specificticker/Financials'
-
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const Stockpage = () => {
   const classes = useStyles()
@@ -34,6 +34,7 @@ const Stockpage = () => {
       </div>
 
       <div className={classes.info}>
+
         <TabContext value={value}>
               
               <TabList
