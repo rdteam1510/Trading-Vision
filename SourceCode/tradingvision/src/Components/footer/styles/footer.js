@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
     max-width: 1000px;
     margin: 0 auto;
     paddingLeft: 100px;
-    max-height: 400px;
+    
 `
 export const Column = styled.div`
     display: flex;
