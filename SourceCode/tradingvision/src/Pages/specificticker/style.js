@@ -27,9 +27,24 @@ const useStyles = makeStyles(()=>({
         marginTop: '3px',
     },
     fav_border: {
-        paddingLeft: '20px',
+        marginLeft: "30px",
+        marginTop: "-20px", 
+        padding: "-3px",
     },
-
+    tablist:{
+        color: "orange",
+      },
+    tab:{
+        marginTop: 15,
+        fontFamily: "Montserrat",
+        marginLeft: -20,
+    },
+    divider:{
+        height:"50px",
+        marginTop: "10px",
+        marginLeft: "-25px",
+        backgroundColor: "rgba(255, 165, 0, 0.5)"
+    }
 }))
 
 
