@@ -2,7 +2,7 @@ import {
         AppBar, 
         Container, 
         Toolbar, 
-        Typography, InputBase, IconButton, createTheme, ThemeProvider, CssBaseline} from "@material-ui/core";
+        Typography, InputBase, IconButton, createTheme, ThemeProvider, CssBaseline, Dialog} from "@material-ui/core";
 import React, {useState} from "react";
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
@@ -14,6 +14,7 @@ import useStyles from "./style";
 import Navbar from './Navbar'
 import Modal from '@mui/material/Modal';
 import SearchPopup from "../search/SearchPopup";
+import PropTypes from 'prop-types';
 
 
 const darkTheme = createTheme({
@@ -30,8 +31,8 @@ const Header = () =>{
     const history = useNavigate(); 
     const [auth, setAuth] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const open = Boolean(anchorEl);
-
+    // const open = Boolean(anchorEl);
+    
     const handleChange = (event) => {
         setAuth(event.target.checked);
     };
@@ -43,14 +44,16 @@ const Header = () =>{
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const [ open, setOpen ] = React.useState(false)
+    
+   const handleOpen = () => {
+       setOpen(true)
+   }
+    const handleClosed = () => {
+        setOpen(false)
+      };
+    
 
-    
-    const [test, setTest] = React.useState(false);
-  const handleOpen = () => setTest(true);
-  const handleClosed = () => {  
-    setTest(false)
-    
-};
 
     return ( 
         <ThemeProvider theme={darkTheme}>
@@ -95,9 +98,9 @@ const Header = () =>{
                                             style={{fontFamily: "Montserrat"}}
                                             />
                             
-                            <Modal
+                            <Dialog
                                 keepMounted
-                                open={test}
+                                open={open}
                                 onClose={handleClosed}
                                 
                                 aria-labelledby="keep-mounted-modal-title"
@@ -107,7 +110,7 @@ const Header = () =>{
                                  } }}
                             >
                                 <SearchPopup />
-                            </Modal>
+                            </Dialog>
                             
 
                         </div>

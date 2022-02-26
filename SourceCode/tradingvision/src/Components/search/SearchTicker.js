@@ -52,6 +52,7 @@ const SearchTicker = () => {
   const handleOpen = () => setTest(true);
   const handleClosed = () => setTest(false);
 
+
   return (
     <ThemeProvider theme={darkTheme}>
       <TableContainer 
@@ -81,7 +82,8 @@ const SearchTicker = () => {
                                 {rows
                                 .map((row)=> (
                                     <TableRow
-                                    onClick={() => history(`/stocks/${row.ticker}`)}
+                                    onClick={() => history(`/stocks/${row.ticker}`) }
+                                    onClick = {handleClosed}
                                     className ={classes.row}
                                     key={row.ticker}>
                                     <TableCell component='th' scope='row'
