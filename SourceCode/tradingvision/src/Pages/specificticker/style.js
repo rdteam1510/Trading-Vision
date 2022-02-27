@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 
-const useStyles = makeStyles(()=>({
+const useStyles = makeStyles((theme)=>({
     container:{
         backgroundColor: "black",
         paddingLeft: '2%',
@@ -12,6 +12,7 @@ const useStyles = makeStyles(()=>({
         paddingTop: 25,
         paddingBottom: 30,
         fontFamily: "Montserrat",
+        
     },
     field:{
         fontFamily: "Montserrat",

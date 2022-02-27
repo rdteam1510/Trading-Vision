@@ -9,8 +9,8 @@ const Financials = () => {
     
   return (
     <div className={classes.financials}>
-    <Grid container spacing={4} 
-      columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+    <Grid container spacing={2}
+      columnSpacing={{ xs: 1, sm: 3, md: 3 }}>
       <Grid container className={classes.grid} item xs >
               <Grid item xs container spacing={2}>
                 <Grid item xs >

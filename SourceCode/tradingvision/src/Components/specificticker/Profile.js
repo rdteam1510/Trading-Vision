@@ -17,7 +17,7 @@ incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consecte
 sed do eiusmod tempor incididunt ut labore et dolore magna dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 </Typography>
 
-<Grid container spacing={2} className={classes.grid}>
+<Grid container className={classes.grid}>
     <Grid item xs container spacing={2}>
       <Grid item xs >
         <Typography 
@@ -50,21 +50,21 @@ sed do eiusmod tempor incididunt ut labore et dolore magna dolor sit amet, conse
       <Typography 
         variant="subtitle1" 
         gutterBottom
-        className={classes.item}>
+        className={classes.value}>
           1xxxxxxx
       </Typography>
 
       <Typography 
         variant="subtitle1" 
         gutterBottom
-        className={classes.item}>
+        className={classes.value}>
           Lorem ipsum
       </Typography>
 
       <Typography 
         variant="subtitle1" 
         gutterBottom
-        className={classes.item}>
+        className={classes.value}>
           Lorem ipsum
       </Typography>
     </Grid>

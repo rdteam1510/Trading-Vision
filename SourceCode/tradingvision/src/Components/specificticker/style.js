@@ -11,6 +11,10 @@ const useStyles = makeStyles((theme) => ({
         marginTop: 15,
         fontFamily: "Montserrat",
         marginLeft: -20,
+        fontSize: 15,
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 13,
+          },
     },
     divider:{
         height:"50px",
@@ -25,7 +29,10 @@ const useStyles = makeStyles((theme) => ({
     description:{
         fontFamily:"Montserrat",
         fontSize:"15px",
-        textAlign: "justify"
+        textAlign: "justify",
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 13,
+          },
     },
     profile:{
         maxWidth: "1000px",
@@ -33,16 +40,34 @@ const useStyles = makeStyles((theme) => ({
     item: {
         fontFamily: "Montserrat",
         fontSize: "15px",
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 13,
+          },
+        [theme.breakpoints.down('xs')]: {
+            fontSize: 10,
+            },
     },
     grid_info:{
         marginLeft: "-35%",
+        [theme.breakpoints.up('sm')]: {
+            marginLeft: "-25%"
+          },
     },
 
     // Financial's styles
     value:{
         fontFamily: "Montserrat",
         fontSize: "15px",
-    }
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 13,
+          },
+          [theme.breakpoints.down('xs')]: {
+            fontSize: 10,
+          },
+    },
+    financial:{
+        maxWidth: "1000px",
+    },
 }))
 
 
