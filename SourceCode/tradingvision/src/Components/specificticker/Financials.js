@@ -1,7 +1,10 @@
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, 
+          List, 
+          ListItem, 
+          Typography } from '@material-ui/core';
 import React from 'react';
 import useStyles from "./style";
-
+import CircleIcon from '@mui/icons-material/Circle';
 
 const Financials = () => {
     const classes = useStyles()
@@ -218,7 +221,27 @@ const Financials = () => {
             </Grid>
         </Grid>
       </Grid>
+
+      <List className={classes.note}>
+        <ListItem>
+          <CircleIcon sx={{ fontSize: 8}}/>
+          <Typography className={classes.note_info}>
+          FY: Fiscal Year</Typography>
+        </ListItem>
+        <ListItem>
+          <CircleIcon sx={{ fontSize: 8}}/>
+          <Typography className={classes.note_info}>
+          MRQ: Most Recent Quarter</Typography>
+        </ListItem>
+        <ListItem>
+          <CircleIcon sx={{ fontSize: 8}}/>
+          <Typography className={classes.note_info}>
+          TTM: Trailling Twelve Months</Typography>
+        </ListItem>
+      </List>
     </div>
+      
+
   )
 }
 

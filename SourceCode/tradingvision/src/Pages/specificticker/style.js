@@ -32,6 +32,16 @@ const useStyles = makeStyles((theme)=>({
         marginTop: "-20px", 
         padding: "-3px",
     },
+    // -------------------- graph ---------------------
+    graph:{
+        marginBottom: "20px",
+    },
+    button: {
+        cursor: "pointer",
+        radial: "3px",
+        backgroundColor: "orange",
+        borderRadius: 50,
+    },
     
 }))
 

@@ -68,6 +68,22 @@ const useStyles = makeStyles((theme) => ({
     financial:{
         maxWidth: "1000px",
     },
+    note:{
+        marginLeft: "-1%",
+        [theme.breakpoints.down('sm')]: {
+            marginLeft: "-3%",
+          },
+    },
+    note_info:{
+        fontFamily: "Montserrat",
+        fontSize: "11px",
+        marginLeft: "1%",
+        fontStyle: "italic",
+        [theme.breakpoints.down('xs')]: {
+            fontSize: 9,
+          },
+    },
+    
 }))
 
 

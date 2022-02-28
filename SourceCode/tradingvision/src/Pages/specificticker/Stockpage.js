@@ -2,9 +2,12 @@ import React, {useState} from 'react';
 import {useParams} from 'react-router-dom';
 import useStyles from './style'
 import {Container,
-      Typography,} from '@material-ui/core'
+      Typography,
+      Button,
+    } from '@material-ui/core'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import TabInfo from '../../components/specificticker/TabInfo'
+import LineChart from '../../components/specificticker/LineChart';
 
 
 const Stockpage = () => {
@@ -35,6 +38,16 @@ const Stockpage = () => {
 
       <div className={classes.info}>
         <TabInfo/> 
+        
+      </div>
+
+      <div className={classes.graph}>
+         <Button 
+            variant="contained"
+            className={classes.button}>
+           Compare
+         </Button>
+         <LineChart/>
       </div>
 
       </Container>
