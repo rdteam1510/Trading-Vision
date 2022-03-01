@@ -50,7 +50,12 @@ const SearchTicker = () => {
     const [test, setTest] = React.useState(false);
   const handleOpen = () => setTest(true);
   const handleClosed = () => setTest(false);
-
+  const refreshPage = () =>{
+    window.location.reload(false);
+  }
+  const navigatePage = (row_ticker) =>{
+    history(`/stocks/${row_ticker}`)
+  }
   return (
     <ThemeProvider theme={darkTheme}>
       <TableContainer 
@@ -80,7 +85,7 @@ const SearchTicker = () => {
                                 {rows
                                 .map((row)=> (
                                     <TableRow
-                                    onClick={() => history(`/stocks/${row.ticker}`)}
+                                    onClick={() => {navigatePage(row.ticker); refreshPage();}}
                                     className ={classes.row}
                                     key={row.ticker}>
                                     <TableCell component='th' scope='row'
