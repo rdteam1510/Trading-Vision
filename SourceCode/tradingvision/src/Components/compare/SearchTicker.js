@@ -88,7 +88,7 @@ const SearchTicker = () => {
                                           fontWeight: 'bold',
                                         }}
                                         className={classes.cell}> {row.ticker}
-                                        
+                                        onClick={handleClosed}
                                     </TableCell>
                                     <TableCell align="left" className={classes.cell}>{row.description}</TableCell>
                                     <TableCell align="left" className={classes.cell}>{row.industry}</TableCell>

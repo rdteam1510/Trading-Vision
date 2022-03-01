@@ -10,6 +10,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import TabInfo from '../../components/specificticker/TabInfo'
 import LineChart from '../../components/specificticker/LineChart';
 import ComparePopup from '../../components/compare/ComparePopup';
+import SearchPopup from '../../components/compare/ComparePopup';
 import Dialog  from '@mui/material/Dialog';
 import Modal from '@mui/material/Modal';
 const Stockpage = () => {
@@ -78,7 +79,7 @@ const Stockpage = () => {
         BackdropProps={{ style: { backgroundColor: 'rgba(0,0,0,0.93)', }}}
         
         >
-          <ComparePopup onClick={handleClosed}/>
+          <SearchPopup onClick={handleClosed}/>
       </Modal>
       </Container>
   )

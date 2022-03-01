@@ -43,16 +43,13 @@ const rows = [
   { id: 3, ticker: 'BID', description: "JOINT STOCK COMMERCIAL BANK FOR INVESTMENT AND DEVELOPMENT OF VIETNAM", industry:"Financials"},
 
 ]; 
-const SearchTicker = () => {
+const SearchTicker = (props) => {
     const classes = useStyles()
     const [loading, setLoading] = useState(false)
     const history = useNavigate()
-    const [test, setTest] = React.useState(false);
-  const handleOpen = () => setTest(true);
-  const handleClosed = () => setTest(false);
-  const refreshPage = () =>{
-    window.location.reload(false);
-  }
+    const { onClose, selectedValue, open } = props;
+
+  const handleClosed = () => onClose(selectedValue);
   const navigatePage = (row_ticker) =>{
     history(`/stocks/${row_ticker}`)
   }

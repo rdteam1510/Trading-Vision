@@ -15,7 +15,7 @@ const ComparePopup = () => {
 
   return (
     
-        <SearchPopup onClick = {handleClose}/>
+        <SearchPopup/>
    
   );
 }
