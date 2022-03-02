@@ -42,6 +42,8 @@ const Stockpage = () => {
   const handleClosed = () => setOpen(false);
   const label = { inputProps: { 'aria-label': 'Checkbox favorite' } }; 
  
+  const [collapse, setCollapsed] = React.useState(true);
+
   return (
   
       <Container className={classes.container}>
@@ -64,8 +66,9 @@ const Stockpage = () => {
         <div className={classes.line}/>
       </div>
 
+  
       <div className={classes.info}>
-        <TabInfo/> 
+          <TabInfo/>
       </div>
 
       <div className={classes.graph}>
