@@ -49,9 +49,11 @@ const SearchTicker = (props) => {
     const history = useNavigate()
     const { onClose, selectedValue, open } = props;
 
-  const handleClosed = () => onClose(selectedValue);
   const navigatePage = (row_ticker) =>{
     history(`/stocks/${row_ticker}`)
+  }
+  const refreshPage = () => {
+    window.location.reload();
   }
   return (
     <ThemeProvider theme={darkTheme}>
