@@ -4,15 +4,17 @@ import useStyles from './style'
 import {Container,
       Typography,
       Button,
-      DialogContent,
+      Checkbox,
     } from '@material-ui/core'
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import TabInfo from '../../components/specificticker/TabInfo'
 import LineChart from '../../components/specificticker/LineChart';
 import ComparePopup from '../../components/compare/ComparePopup';
-import SearchPopup from '../../components/compare/ComparePopup';
-import Dialog  from '@mui/material/Dialog';
 import Modal from '@mui/material/Modal';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
+
+
+
 const Stockpage = () => {
 
 
@@ -33,7 +35,7 @@ const Stockpage = () => {
   };
   const handleOpen = () => setOpen(true);
   const handleClosed = () => setOpen(false);
-  
+  const label = { inputProps: { 'aria-label': 'Checkbox favorite' } }; 
  
   return (
   
@@ -49,7 +51,10 @@ const Stockpage = () => {
           variant="h4" 
           className={classes.name}>
           Company Name (Ticker label) 
-          <FavoriteBorderIcon sx={{ fontSize: 50 }} className={classes.fav_border}/>
+          <Checkbox {...label} 
+            icon={<FavoriteBorderIcon sx={{ fontSize: 45, color:"#fff"}}/>} 
+            className={classes.fav_border}
+            checkedIcon={<Favorite sx={{ fontSize: 45}}/>} />
         </Typography>
         <div className={classes.line}/>
       </div>
@@ -79,7 +84,7 @@ const Stockpage = () => {
         BackdropProps={{ style: { backgroundColor: 'rgba(0,0,0,0.93)', }}}
         
         >
-          <SearchPopup onClick={handleClosed}/>
+          <ComparePopup onClick={handleClosed}/>
       </Modal>
       </Container>
   )
