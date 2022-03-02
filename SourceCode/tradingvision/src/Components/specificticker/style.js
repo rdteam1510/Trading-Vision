@@ -83,7 +83,13 @@ const useStyles = makeStyles((theme) => ({
             fontSize: 9,
           },
     },
-
+    toggle:{
+        color: "orange",
+        backgroundColor: "orange"
+    },
+    formControlLabel:{
+        fontFamily: "Montserrat",
+    }
     
 }))
 

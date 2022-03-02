@@ -9,16 +9,16 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { styled } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
 
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(-90deg)' : 'rotate(0deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+// const ExpandMore = styled((props) => {
+//   const { expand, ...other } = props;
+//   return <IconButton {...other} />;
+// })(({ theme, expand }) => ({
+//   transform: !expand ? 'rotate(-90deg)' : 'rotate(0deg)',
+//   marginLeft: 'auto',
+//   transition: theme.transitions.create('transform', {
+//     duration: theme.transitions.duration.shortest,
+//   }),
+// }));
 
 
 const TabInfo = () => {
@@ -46,13 +46,16 @@ const TabInfo = () => {
     <FormControlLabel
       control={<Switch 
               color="primary" 
+              size='normal'
               checked={expanded}
               className={classes.toogle}
               onChange={() => {
                   setExpanded((prev) => !prev);
               
                 }} />}
-        label="Show/Hide Details"/>
+        label={<Typography className={classes.formControlLabel}>Show/Hide details</Typography>}
+        
+        />
     <TabContext value={value}>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <TabList
