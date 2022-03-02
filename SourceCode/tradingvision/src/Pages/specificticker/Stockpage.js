@@ -5,6 +5,12 @@ import {Container,
       Typography,
       Button,
       Checkbox,
+      Menu,
+      MenuItem,
+      IconButton,
+      List,
+      ListItem,
+      ListItemText
     } from '@material-ui/core'
 import TabInfo from '../../components/specificticker/TabInfo'
 import LineChart from '../../components/specificticker/LineChart';
@@ -12,8 +18,8 @@ import ComparePopup from '../../components/compare/ComparePopup';
 import Modal from '@mui/material/Modal';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
-
-
+import SettingsIcon from '@mui/icons-material/Settings';
+import CandlestickChart from '../../components/specificticker/CandlestickChart';
 
 const Stockpage = () => {
 
@@ -24,7 +30,6 @@ const Stockpage = () => {
 
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(false);
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -61,7 +66,6 @@ const Stockpage = () => {
 
       <div className={classes.info}>
         <TabInfo/> 
-        
       </div>
 
       <div className={classes.graph}>
@@ -71,8 +75,8 @@ const Stockpage = () => {
             onClick={handleOpen}>
            Compare
          </Button>
+        <LineChart/>
         
-         <LineChart/>
       </div>
       <Modal 
         open={open} 
