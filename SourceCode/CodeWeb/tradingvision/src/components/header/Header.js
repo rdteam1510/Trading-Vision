@@ -31,7 +31,7 @@ const Header = () =>{
 const classes = useStyles();
 const history = useNavigate(); 
 const [auth, setAuth] = React.useState(true);
-const [anchorEl, setAnchorEl] = React.useState(null);
+const [anchorEl, setAnchorEl] = React.useState(false);
 const open = Boolean(anchorEl);
 
 const handleChange = (event) => {

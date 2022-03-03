@@ -13,14 +13,16 @@ import {Container,
       ListItemText
     } from '@material-ui/core'
 import TabInfo from '../../components/specificticker/TabInfo'
+import Chart from '../../components/specificticker/ChartTab'
 import LineChart from '../../components/specificticker/LineChart';
 import ComparePopup from '../../components/compare/ComparePopup';
 import Modal from '@mui/material/Modal';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 import SettingsIcon from '@mui/icons-material/Settings';
-import CandlestickChart from '../../components/specificticker/CandlestickChart';
-
+import Candlestick from '../../components/candlestick/Candlestick'
+import { Dialog, Box } from '@mui/material';
+import CloseIcon from '@material-ui/icons/Close';
 const Stockpage = () => {
 
 
@@ -70,30 +72,37 @@ const Stockpage = () => {
       <div className={classes.info}>
           <TabInfo/>
       </div>
-
-      <div className={classes.graph}>
-         <Button 
+      <Button 
             variant="contained"
             className={classes.button}
             onClick={handleOpen}>
            Compare
-         </Button>
-        <LineChart/>
+      </Button>
+      <div className={classes.graph}>
         
+         <Chart />
       </div>
-      <Modal 
+      
+      <Dialog
         open={open} 
         onClose={handleClosed}
 
         aria-labelledby="keep-mounted-modal-title"
         aria-describedby="keep-mounted-modal-description"
-        style={{ alignItems: "center", justifyContent: "center", paddingTop: 100}}
-        BackdropProps={{ style: { backgroundColor: 'rgba(0,0,0,0.93)', }}}
         
+        BackdropProps={{ style: { backgroundColor: 'rgba(0,0,0,0.50)', }}}
+        PaperProps={{ style: { backgroundColor: 'rgba(0,0,0,0.90)', color:'white' }}}
         >
-          <ComparePopup onClick={handleClosed}/>
-      </Modal>
+         <Box >     
+            <IconButton style = {{color: 'white', marginLeft: '85%',}} onClick={handleClosed}>
+                  <CloseIcon />
+            </IconButton>
+            <ComparePopup />
+              
+          </Box>                        
+      </Dialog>
       </Container>
+
   )
 }
 

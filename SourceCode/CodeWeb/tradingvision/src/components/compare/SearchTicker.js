@@ -79,8 +79,13 @@ const SearchTicker = () => {
                                 {rows
                                 .map((row)=> (
                                     <TableRow                                   
-                                    onClick={handleClosed}
+                                    onClick={classes.tableRowSelected}
                                     className ={classes.row}
+                                    
+                                    classes={{
+                                      root: classes.tableRowRoot,
+                                      selected: classes. tableRowSelected,
+                                    }}
                                     key={row.ticker}>
                                     
                                     <TableCell component='th' scope='row'

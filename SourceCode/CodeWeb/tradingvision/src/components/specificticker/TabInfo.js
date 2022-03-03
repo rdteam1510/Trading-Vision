@@ -22,7 +22,7 @@ import Collapse from '@mui/material/Collapse';
 
 
 const TabInfo = () => {
-
+  
   const [value, setValue] = React.useState('1');
   const handleChange = (event, newValue) => {
       setValue(newValue);

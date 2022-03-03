@@ -70,6 +70,14 @@ const useStyles = makeStyles((theme)=>({
         marginTop: 10,
         maxHeight: 400,
       },
+      tableRowRoot: {
+        "&$tableRowSelected, &$tableRowSelected:hover": {
+          backgroundColor: theme.palette.primary.main
+        }
+      },
+      tableRowSelected: {
+        backgroundColor: theme.palette.primary.main
+      }
 }))
 
 export default useStyles
