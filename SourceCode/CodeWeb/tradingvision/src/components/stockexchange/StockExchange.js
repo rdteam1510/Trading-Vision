@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Tab from '@material-ui/core/Tab';
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
@@ -13,6 +13,7 @@ import { Container,
 } from '@material-ui/core'
 import useStyles from './style'
 
+
 const darkTheme = createTheme({
   palette: {
     primary: {
@@ -24,13 +25,14 @@ const darkTheme = createTheme({
 
 
 
-const StockExchange = () => {
+const StockExchange = props => {
   const classes = useStyles()
   const [value, setValue] = React.useState('1');
   const [search, setSearch] = useState("")
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
 
   return (
     

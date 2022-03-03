@@ -3,6 +3,7 @@ from train_model import *
 import itertools, time
 import gc
 import psutil
+import tensorflow as tf
 start = time.time()
 client
 
@@ -28,6 +29,7 @@ if __name__ == "__main__":
         close_data, close_date = get_data(ticker)
                     
         # Retrain model
+        tf.keras.backend.clear_session()
         model = load_model('/home/ubuntu/Model/{}_model'.format(ticker))
         model = only_train(close_data, model, ticker)
         # Predict price
