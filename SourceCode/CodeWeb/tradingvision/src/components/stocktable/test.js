@@ -100,12 +100,11 @@ function CustomPagination() {
       setRowsPerPage(parseInt(event.target.value, 10));
       setPage(0);
     };
-    
-    
+
     return (
       <TablePagination
         component="div"
-        count = "100"
+        count = {300}
         page={page}
         onPageChange={handleChangePage}
         rowsPerPage={rowsPerPage}
@@ -164,7 +163,7 @@ const DataGridDemo = () => {
 
     const rows = stocks.map((stock) => {
       return {
-        id: stock._id,
+        id: stock.Ticker,
         ceiling: stock.Ceiling,
         floor: stock.Floor,
         highest: stock.Highest,
@@ -174,7 +173,9 @@ const DataGridDemo = () => {
         volume: stock.Volume,
       };
     })
-    console.log(rows);
+    
+    const rowlength = rows.length;
+    console.log(rowlength);
     return (
       <ThemeProvider theme={darkTheme}>
         <div style={{ height: 600, width: '100%'}}>
@@ -199,14 +200,15 @@ const DataGridDemo = () => {
                 color: 'white',
                 fontFamily: 'Montserrat',
                 cursor: "pointer",
-                fontSize: 18,
+                fontSize: 16,
                 }}
             
             onRowClick={(params) => 
-              history(`/stocks/${params.rows.ticker}`)
+              history(`/stocks/${params.row.ticker}`)
             }
+            
         />
-         
+  
         </div>
     </ThemeProvider>
     );

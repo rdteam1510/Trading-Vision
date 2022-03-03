@@ -2,7 +2,7 @@ import StocksDAO from "../dao/stocksDAO.js"
 
 export default class StocksController {
   static async apiGetStocks(req, res, next) {
-    const stocksPerPage = req.query.stocksPerPage ? parseInt(req.query.stocksPerPage, 100) : 200
+    const stocksPerPage = req.query.stocksPerPage ? parseInt(req.query.stocksPerPage, 100) : 300
     const page = req.query.page ? parseInt(req.query.page, 100) : 0
 
     let filters = {}

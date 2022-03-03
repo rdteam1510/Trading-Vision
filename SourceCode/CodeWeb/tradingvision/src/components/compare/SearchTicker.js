@@ -24,18 +24,7 @@ const darkTheme = createTheme({
     },
   });
 
-  // function createData(ticker, description, industry) {
-  //   return { ticker, description, industry};
-  // }
 
-// const rows =[
-//   createData("ACB","Asia Commercial Joint Stock Bank","Financials"),
-//   createData("BID","JOINT STOCK COMMERCIAL BANK FOR INVESTMENT AND DEVELOPMENT OF VIETNAM","Financials"),
-//   createData("ACB","Asia Commercial Joint Stock Bank","Financials"),
-//   createData("BID","JOINT STOCK COMMERCIAL BANK FOR INVESTMENT AND DEVELOPMENT OF VIETNAM","Financials"),
-//   createData("ACB","Asia Commercial Joint Stock Bank","Financials"),
-//   createData("BID","JOINT STOCK COMMERCIAL BANK FOR INVESTMENT AND DEVELOPMENT OF VIETNAM","Financials"),
-// ]
 const rows = [
   { id: 1, ticker: 'ACB', description: "Asia Commercial Joint Stock Bank", industry:"Financials"},
   { id: 2, ticker: 'ACB', description: "Asia Commercial Joint Stock Bank", industry:"Financials"},  
