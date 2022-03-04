@@ -8,8 +8,7 @@ start = time.time()
 client
 
 stocks_list = []
-db = client['CompanyInfo']
-db1 = client['Prediction']
+db = client['TradingVision']
 data = db['CompanyInfo'].find({},
                               {"Ticker":1,
                                "_id":0})
@@ -52,7 +51,7 @@ if __name__ == "__main__":
             new_item = dict(zip(new_columns, list(dt.values())))
             l.append(new_item)
             
-        db1["Prediction"].insert_many(l)
+        db["Prediction"].insert_many(l)
         gc.collect()
         time.sleep(5)
     

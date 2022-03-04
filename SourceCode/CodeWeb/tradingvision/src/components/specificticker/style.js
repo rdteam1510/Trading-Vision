@@ -89,7 +89,21 @@ const useStyles = makeStyles((theme) => ({
     },
     formControlLabel:{
         fontFamily: "Montserrat",
-    }
+    },
+    // ----------TabList---------------------
+    tablist_chart:{
+        color: "orange",
+    },
+    tab_chart:{
+        marginTop: 1,
+        fontFamily: "Montserrat",
+        paddingTop: "-20px",
+        marginLeft: "-5%",
+        fontSize: 15,
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 13,
+          },
+    },
     
 }))
 

@@ -5,22 +5,13 @@ import {Container,
       Typography,
       Button,
       Checkbox,
-      Menu,
-      MenuItem,
       IconButton,
-      List,
-      ListItem,
-      ListItemText
     } from '@material-ui/core'
 import TabInfo from '../../components/specificticker/TabInfo'
 import Chart from '../../components/specificticker/ChartTab'
-import LineChart from '../../components/specificticker/LineChart';
 import ComparePopup from '../../components/compare/ComparePopup';
-import Modal from '@mui/material/Modal';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
-import SettingsIcon from '@mui/icons-material/Settings';
-import Candlestick from '../../components/candlestick/Candlestick'
 import { Dialog, Box } from '@mui/material';
 import CloseIcon from '@material-ui/icons/Close';
 const Stockpage = () => {
@@ -68,21 +59,16 @@ const Stockpage = () => {
         <div className={classes.line}/>
       </div>
 
-  
       <div className={classes.info}>
           <TabInfo/>
       </div>
+
       <Button 
             variant="contained"
             className={classes.button}
             onClick={handleOpen}>
            Compare
       </Button>
-      <div className={classes.graph}>
-        
-         <Chart />
-      </div>
-      
       <Dialog
         open={open} 
         onClose={handleClosed}
@@ -101,6 +87,10 @@ const Stockpage = () => {
               
           </Box>                        
       </Dialog>
+
+      <div className={classes.graph}>
+         <Chart />
+      </div>
       </Container>
 
   )

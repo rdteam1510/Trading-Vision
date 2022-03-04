@@ -88,6 +88,22 @@ const columns = [
     },
   ];
 
+  const rows = [
+    { id: 1, ticker: 'ACB', ceiling: 305, floor: 3.7, highest: 67, lowest: 4.3, match: 0.4, volume: 2300 },
+    { id: 2, ticker: 'ASM', ceiling: 262, floor: 16.0, highest: 24, lowest: 6.0, match: 4.8, volume: 900 },
+    { id: 3, ticker: 'BVH', ceiling: 375, floor: 2.0, highest: 94, lowest: 0.0, match: 1.4, volume: 1000 },
+    { id: 4, ticker: 'DGC', ceiling: 318, floor: 0.0, highest: 81, lowest: 2.0, match: 4.8, volume: 1500 },
+    { id: 5, ticker: 'BCM', ceiling: 159, floor: 6.0, highest: 24, lowest: 4.0,match: 9.3,volume: 1200},
+    { id: 6, ticker: 'BHN', ceiling: 356, floor: 16.0, highest: 49, lowest: 3.9,match: 1.4,volume: 700},
+    { id: 7, ticker: 'VNM', ceiling: 318, floor: 0.0, highest: 81, lowest: 2.0, match: 4.8, volume: 1500 },
+    { id: 8, ticker: 'APM', ceiling: 159, floor: 6.0, highest: 24, lowest: 4.0,match: 9.3,volume: 1200},
+    { id: 9, ticker: 'HCM', ceiling: 356, floor: 16.0, highest: 49, lowest: 3.9,match: 1.4,volume: 700},
+    { id: 10, ticker: 'X20', ceiling: 318, floor: 0.0, highest: 81, lowest: 2.0, match: 4.8, volume: 1500 },
+    { id: 11, ticker: 'VRE', ceiling: 159, floor: 6.0, highest: 24, lowest: 4.0,match: 9.3,volume: 1200},
+    { id: 12, ticker: 'VIN', ceiling: 356, floor: 16.0, highest: 49, lowest: 3.9,match: 1.4,volume: 700},
+  
+  ]; 
+
 function CustomPagination() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -104,13 +120,13 @@ function CustomPagination() {
     return (
       <TablePagination
         component="div"
-        count = {300}
+        count = {rows.length}
         page={page}
         onPageChange={handleChangePage}
         rowsPerPage={rowsPerPage}
         onRowsPerPageChange={handleChangeRowsPerPage}
         sx = {{
-          color:'white'
+          color:'white',
         }}
       />
     );
@@ -161,21 +177,21 @@ const DataGridDemo = () => {
         })
     };
 
-    const rows = stocks.map((stock) => {
-      return {
-        id: stock.Ticker,
-        ceiling: stock.Ceiling,
-        floor: stock.Floor,
-        highest: stock.Highest,
-        lowest: stock.Lowest,
-        match: stock.Match,
-        ticker: stock.Ticker,
-        volume: stock.Volume,
-      };
-    })
+    // const rows = stocks.map((stock) => {
+    //   return {
+    //     id: stock.Ticker,
+    //     ceiling: stock.Ceiling,
+    //     floor: stock.Floor,
+    //     highest: stock.Highest,
+    //     lowest: stock.Lowest,
+    //     match: stock.Match,
+    //     ticker: stock.Ticker,
+    //     volume: stock.Volume,
+    //   };
+    // })
     
-    const rowlength = rows.length;
-    console.log(rowlength);
+    // const rowlength = rows.length;
+    // console.log(rowlength);
     return (
       <ThemeProvider theme={darkTheme}>
         <div style={{ height: 600, width: '100%'}}>

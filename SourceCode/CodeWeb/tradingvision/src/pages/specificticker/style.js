@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme)=>({
     },
     // -------------------- graph ---------------------
     graph:{
+        marginTop: "20px",
         marginBottom: "20px",
     },
     button: {

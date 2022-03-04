@@ -1,5 +1,8 @@
 {
   "dependencies": {
-    "axios": "^0.26.0"
+    "@mui/base": "^5.0.0-alpha.70",
+    "@mui/system": "^5.4.4",
+    "axios": "^0.26.0",
+    "prop-types": "^15.8.1"
   }
 }
