@@ -33,8 +33,8 @@ def get_data(get_ticker):
 # Time series generator
 def only_train(close_data, model, ticker):
     look_back = 6
-    train_generator = TimeseriesGenerator(close_data, close_data, length = look_back, batch_size=20)
-    num_epochs = 25
+    train_generator = TimeseriesGenerator(close_data, close_data, length = look_back, batch_size=14)
+    num_epochs = 20
     earlyStopping = EarlyStopping(
         monitor='loss',
         patience=10, 

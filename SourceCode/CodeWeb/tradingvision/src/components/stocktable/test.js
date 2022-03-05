@@ -18,7 +18,7 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import StockTableService from '../../services/stock'
- 
+import style from './style'
 // Styles
 const darkTheme = createTheme({
     palette: {
@@ -88,43 +88,31 @@ const columns = [
     },
   ];
 
-  // const rows = [
-  //   { id: 1, ticker: 'ACB', ceiling: 305, floor: 3.7, highest: 67, lowest: 4.3, match: 0.4, volume: 2300 },
-  //   { id: 2, ticker: 'ASM', ceiling: 262, floor: 16.0, highest: 24, lowest: 6.0, match: 4.8, volume: 900 },
-  //   { id: 3, ticker: 'BVH', ceiling: 375, floor: 2.0, highest: 94, lowest: 0.0, match: 1.4, volume: 1000 },
-  //   { id: 4, ticker: 'DGC', ceiling: 318, floor: 0.0, highest: 81, lowest: 2.0, match: 4.8, volume: 1500 },
-  //   { id: 5, ticker: 'BCM', ceiling: 159, floor: 6.0, highest: 24, lowest: 4.0,match: 9.3,volume: 1200},
-  //   { id: 6, ticker: 'BHN', ceiling: 356, floor: 16.0, highest: 49, lowest: 3.9,match: 1.4,volume: 700},
-  //   { id: 7, ticker: 'VNM', ceiling: 318, floor: 0.0, highest: 81, lowest: 2.0, match: 4.8, volume: 1500 },
-  //   { id: 8, ticker: 'APM', ceiling: 159, floor: 6.0, highest: 24, lowest: 4.0,match: 9.3,volume: 1200},
-  //   { id: 9, ticker: 'HCM', ceiling: 356, floor: 16.0, highest: 49, lowest: 3.9,match: 1.4,volume: 700},
-  //   { id: 10, ticker: 'X20', ceiling: 318, floor: 0.0, highest: 81, lowest: 2.0, match: 4.8, volume: 1500 },
-  //   { id: 11, ticker: 'VRE', ceiling: 159, floor: 6.0, highest: 24, lowest: 4.0,match: 9.3,volume: 1200},
-  //   { id: 12, ticker: 'VIN', ceiling: 356, floor: 16.0, highest: 49, lowest: 3.9,match: 1.4,volume: 700},
+  const rows = [
+    { id: 1, ticker: 'ACB', ceiling: 305, floor: 3.7, highest: 67, lowest: 4.3, match: 0.4, volume: 2300 },
+    { id: 2, ticker: 'ASM', ceiling: 262, floor: 16.0, highest: 24, lowest: 6.0, match: 4.8, volume: 900 },
+    { id: 3, ticker: 'BVH', ceiling: 375, floor: 2.0, highest: 94, lowest: 0.0, match: 1.4, volume: 1000 },
+    { id: 4, ticker: 'DGC', ceiling: 318, floor: 0.0, highest: 81, lowest: 2.0, match: 4.8, volume: 1500 },
+    { id: 5, ticker: 'BCM', ceiling: 159, floor: 6.0, highest: 24, lowest: 4.0,match: 9.3,volume: 1200},
+    { id: 6, ticker: 'BHN', ceiling: 356, floor: 16.0, highest: 49, lowest: 3.9,match: 1.4,volume: 700},
+    { id: 7, ticker: 'VNM', ceiling: 318, floor: 0.0, highest: 81, lowest: 2.0, match: 4.8, volume: 1500 },
+    { id: 8, ticker: 'APM', ceiling: 159, floor: 6.0, highest: 24, lowest: 4.0,match: 9.3,volume: 1200},
+    { id: 9, ticker: 'HCM', ceiling: 356, floor: 16.0, highest: 49, lowest: 3.9,match: 1.4,volume: 700},
+    { id: 10, ticker: 'X20', ceiling: 318, floor: 0.0, highest: 81, lowest: 2.0, match: 4.8, volume: 1500 },
+    { id: 11, ticker: 'VRE', ceiling: 159, floor: 6.0, highest: 24, lowest: 4.0,match: 9.3,volume: 1200},
+    { id: 12, ticker: 'VIN', ceiling: 356, floor: 16.0, highest: 49, lowest: 3.9,match: 1.4,volume: 700},
   
-  // ]; 
+  ]; 
 
-function CustomPagination() {
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
-    const handleChangePage = (event, newPage) => {
-      setPage(newPage);
-    };
-
-    const handleChangeRowsPerPage = (event) => {
-      setRowsPerPage(parseInt(event.target.value, 10));
-      setPage(0);
-    };
-
+function CustomPagination(pageSize, setpagesize) {
+    
+    
     return (
       <TablePagination
-        component="div"
-        count = {300}
-        page={page}
-        onPageChange={handleChangePage}
-        rowsPerPage={rowsPerPage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
+      pageSize={pageSize}
+      onPageSizeChange={(newPageSize) => setpagesize(newPageSize)}
+      rowsPerPageOptions={[5, 10, 20]}
+      pagination
         sx = {{
           color:'white',
         }}
@@ -177,31 +165,36 @@ const DataGridDemo = () => {
         })
     };
 
-    const rows = stocks.map((stock) => {
-      return {
-        id: stock.Ticker,
-        ceiling: stock.Ceiling,
-        floor: stock.Floor,
-        highest: stock.Highest,
-        lowest: stock.Lowest,
-        match: stock.Match,
-        ticker: stock.Ticker,
-        volume: stock.Volume,
-      };
-    })
-    
+    // const rows = stocks.map((stock) => {
+    //   return {
+    //     id: stock.Ticker,
+    //     ceiling: stock.Ceiling,
+    //     floor: stock.Floor,
+    //     highest: stock.Highest,
+    //     lowest: stock.Lowest,
+    //     match: stock.Match,
+    //     ticker: stock.Ticker,
+    //     volume: stock.Volume,
+    //   };
+    // })
+    const [pageSize, setPageSize] = React.useState(5);
+
     // const rowlength = rows.length;
     // console.log(rowlength);
     return (
       <ThemeProvider theme={darkTheme}>
-        <div style={{ height: 600, width: '100%'}}>
+        <div style={{ height: 600, width: '100%', color:'white'}}>
         <DataGrid
           
             rows={rows}
             columns={columns}
+            pageSize={pageSize}
+            onPageSizeChange={(newPage) => setPageSize(newPage)}
+            rowsPerPageOptions={[5, 10, 20]}
+            pagination 
             components={{
             Toolbar: GridToolbar,
-            Pagination: CustomPagination,
+            //Pagination: CustomPagination(pageSize, setPageSize),
             ColumnSortedDescendingIcon: SortedDescendingIcon,
             ColumnSortedAscendingIcon: SortedAscendingIcon,
             ColumnMenuIcon: MenuIcon,
