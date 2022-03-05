@@ -40,8 +40,6 @@ const useStyles = makeStyles((theme)=>({
     button: {
         cursor: "pointer",
         radial: "3px",
-        backgroundColor: "orange",
-        borderRadius: 50,
     },
     
 }))

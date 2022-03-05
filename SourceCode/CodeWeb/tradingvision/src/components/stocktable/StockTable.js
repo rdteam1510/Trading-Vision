@@ -68,14 +68,14 @@ const StockTable = () => {
             // stock.symbol.toLowerCase().includes(search)
         );
       };
-    const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-    };
-
-    const handleChangeRowsPerPage = (event) => {
-      setRowsPerPage(parseInt(event.target.value, 10));
-      setPage(0);
-    };
+      const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+      };
+    
+      const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+      };
 
 
 
