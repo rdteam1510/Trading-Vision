@@ -6,6 +6,7 @@ import {
     gridPageSelector,
     useGridApiContext,
     useGridSelector,
+    useGridSlotComponentProps
 } from '@mui/x-data-grid';
 import { 
     createTheme,
@@ -18,7 +19,8 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import StockTableService from '../../services/stock'
-import style from './style'
+import Pagination from '@material-ui/lab/Pagination';
+
 // Styles
 const darkTheme = createTheme({
     palette: {
@@ -36,6 +38,9 @@ const useStyles = makeStyles({
     '&.MuiDataGrid-menuIcon &.MuiDataGrid-menuIconButton 	&.MuiDataGrid-menuOpen': {
       color: 'white',
     },
+    'MuiTablePagination-root .css-rtrcn9-MuiTablePagination-root':{
+      color: 'white',
+    }
   }
 });
 const columns = [
@@ -104,21 +109,20 @@ const columns = [
   
   ]; 
 
-function CustomPagination(pageSize, setpagesize) {
-    
-    
-    return (
-      <TablePagination
-      pageSize={pageSize}
-      onPageSizeChange={(newPageSize) => setpagesize(newPageSize)}
-      rowsPerPageOptions={[5, 10, 20]}
-      pagination
-        sx = {{
-          color:'white',
-        }}
-      />
-    );
-  }
+// function CustomPagination() {
+//   const { state, apiRef } = useGridSlotComponentProps();
+//   const classes = useStyles();
+
+//   return (
+//     <Pagination
+//       className={classes.root}
+//       color="primary"
+//       count={state.pagination.pageCount}
+//       page={state.pagination.page + 1}
+//       onChange={(event, value) => apiRef.current.setPage(value - 1)}
+//     />
+//     );
+//   }
 // Define icons
 export function SortedDescendingIcon() {
 
@@ -192,9 +196,22 @@ const DataGridDemo = () => {
             onPageSizeChange={(newPage) => setPageSize(newPage)}
             rowsPerPageOptions={[5, 10, 20]}
             pagination 
+            sx={{
+              color: 'white',
+              fontFamily: 'Montserrat',
+              cursor: "pointer",
+              fontSize: 16,
+              '& .MuiTablePagination-root':{
+                color: 'white',
+               
+                  },
+              '& .MuiTablePagination-selectIcon': {
+                color: 'white',
+              },
+            }}
             components={{
             Toolbar: GridToolbar,
-            //Pagination: CustomPagination(pageSize, setPageSize),
+            //Pagination: CustomPagination,
             ColumnSortedDescendingIcon: SortedDescendingIcon,
             ColumnSortedAscendingIcon: SortedAscendingIcon,
             ColumnMenuIcon: MenuIcon,
@@ -206,12 +223,7 @@ const DataGridDemo = () => {
                 },
               }}
             
-            sx={{
-                color: 'white',
-                fontFamily: 'Montserrat',
-                cursor: "pointer",
-                fontSize: 16,
-                }}
+            
             
             onRowClick={(params) => 
               history(`/stocks/${params.row.ticker}`)
