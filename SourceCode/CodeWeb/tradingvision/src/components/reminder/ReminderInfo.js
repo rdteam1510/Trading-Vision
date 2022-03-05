@@ -12,13 +12,14 @@ import {
     Paper,
     Container,
     TablePagination,
-    Button,
-    Dialog,
+
   } from '@material-ui/core'
   import { useNavigate } from 'react-router-dom';
   import useStyles from './style'
   import EditIcon from '@mui/icons-material/Edit';
   import DeleteIcon from '@mui/icons-material/Delete';
+  import SetReminderButton from "./SetReminderButton";
+
   const darkTheme = createTheme({
     palette: {
       primary: {
@@ -50,15 +51,7 @@ const ReminderInfo = () => {
     const [loading, setLoading] = useState(false)
     const [page, setPage] = useState(0)
     const [rowsPerPage, setRowsPerPage] = useState(10);
-    const [openSetReminder, setOpenReminder] = React.useState(false);
 
-    const handleClickOpen = () => {
-      setOpenReminder(true);
-    };
-  
-    const handleClose = () => {
-      setOpenReminder(false);
-    };
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -73,13 +66,7 @@ const ReminderInfo = () => {
       <Container>
     <ThemeProvider theme={darkTheme}>
       <div>
-        <Button variant="contained"> Set Reminder</Button>
-        <Dialog 
-          open={openSetReminder}
-          onClose={setOpenReminder}>
-          
-        </Dialog>
-      
+        <SetReminderButton/>
       </div>
       <TableContainer 
             className={classes.tableContainer}
@@ -131,7 +118,7 @@ const ReminderInfo = () => {
                 }
                 <TablePagination
                 className={classes.pagination}
-                rowsPerPageOptions={[10,25,100]}
+                rowsPerPageOptions={[5,10,25,100]}
                 component="div"
                 count={rows.length}
                 page={page}

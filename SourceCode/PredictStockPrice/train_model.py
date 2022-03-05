@@ -6,7 +6,7 @@ from pymongo import MongoClient
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau
 
 #client = MongoClient("localhost", 27017)
-client = MongoClient("mongodb+srv://tradingvision:123@cluster0.xmnn8.mongodb.net/TradingVision?authSource=admin&replicaSet=atlas-kkwgbw-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true")
+client = MongoClient("mongodb+srv://tradingvision:123@cluster0.4fh3n.mongodb.net/test?authSource=admin&replicaSet=atlas-fyx376-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true")
 
 # Specify date format
 # def parser(x):
@@ -14,8 +14,8 @@ client = MongoClient("mongodb+srv://tradingvision:123@cluster0.xmnn8.mongodb.net
 
 #Get ticker ' ' 
 def sort_data(ticker):
-    db = client["ForPrediction"]
-    data = db["For_Prediction"]
+    db = client["TradingVision"]
+    data = db["ForPrediction"]
     df = data.find({"Ticker":ticker}).sort('Time',-1).limit(7)
     return df
 # Data Preprocessing
@@ -33,8 +33,8 @@ def get_data(get_ticker):
 # Time series generator
 def only_train(close_data, model, ticker):
     look_back = 6
-    train_generator = TimeseriesGenerator(close_data, close_data, length = look_back, batch_size=20)
-    num_epochs = 25
+    train_generator = TimeseriesGenerator(close_data, close_data, length = look_back, batch_size=15)
+    num_epochs = 20
     earlyStopping = EarlyStopping(
         monitor='loss',
         patience=10, 
@@ -95,6 +95,6 @@ def make_predict(num_prediction, model, close_data, close_date):
     forecast_dates = predict_dates(num_prediction + num, close_date)
     return forecast, forecast_dates
 
-def mape(actual, pred):
-    actual, pred = np.array(actual), np.array(pred)
-    return np.mean(np.abs((actual - pred) / actual)) * 100
+# def mape(actual, pred):
+#     actual, pred = np.array(actual), np.array(pred)
+#     return np.mean(np.abs((actual - pred) / actual)) * 100

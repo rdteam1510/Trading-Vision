@@ -1,22 +1,59 @@
-from datetime import datetime
-import datetime
-from pymongo import MongoClient
-client = MongoClient("mongodb+srv://tradingvision:123@cluster0.xmnn8.mongodb.net/TradingVision?authSource=admin&replicaSet=atlas-kkwgbw-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true")
-db = client["PredictedStockPrice"]
-a = [6.15, 5.95, 5.64, 5.55, 5.67] 
-b = ['2022-01-24 07:00:00','2022-01-25 07:00:00','2022-01-26 07:00:00','2022-01-27 07:00:00','2022-01-28 07:00:00']
-dt = {}
-l = []
-new_columns = ["PredictedPrice","Date","Ticker","TimeStamp"]
-for i in range(len(a)):
-    dt["PredictedPrice"] = a[i]
-    dt["Date"] = b[i]
-    dt["Ticker"] = 'ACB'
-    dt["TimeStamp"] = datetime.datetime.now()
-    new_item = dict(zip(new_columns, list(dt.values())))
-    print(dt)
-    print(new_item)
-    #l.append(new_item)
+from keras.models import load_model
+from train_model import * 
+import itertools, time
+import gc
+import psutil
+import tensorflow as tf
+start = time.time()
+client
 
+db = client['TradingVision']
+data = db['CompanyInfo'].find({},
+                              {"Ticker":1,
+                               "_id":0})
+new_columns = ["Ticker","PredictedPrice","Date","TimeStamp"]
+stocks_list = []
 
-#db["PredictedStockPrice"].insert_many(l)
+for i in data:
+    stocks_list.append(i.values())
+    
+stocks_list = list(itertools.chain(*stocks_list))
+stocks_list = stocks_list[0:50]
+
+if __name__ == "__main__":
+    # Choose time and close price columns 
+    for ticker in stocks_list:   
+        # Get data for retraining
+        close_data, close_date = get_data(ticker)
+                    
+        # Retrain model
+        tf.keras.backend.clear_session()
+        model = load_model('././Model/{}_model'.format(ticker))
+        model = only_train(close_data, model, ticker)
+        # Predict price
+        num_prediction = 6
+        forecast, forecast_dates = make_predict(num_prediction, model, close_data, close_date)
+
+        # Save new model
+        model.save('././Model/{}_model'.format(ticker))
+        #print(f"---------{ticker}--------")
+        # print("Model exported")
+        # print(close_data, close_date)
+        # print(forecast, forecast_dates)
+        dt = {}
+        l = []
+        for i in range(len(forecast)):
+            dt["Ticker"] = ticker
+            dt["PredictedPrice"] = forecast[i]
+            dt["Date"] = forecast_dates[i] 
+            dt["TimeStamp"] = datetime.datetime.now()
+            new_item = dict(zip(new_columns, list(dt.values())))
+            l.append(new_item)
+            
+        db["Prediction"].insert_many(l)
+        gc.collect()
+        time.sleep(5)
+    
+    
+    print('The CPU usage is: ', psutil.cpu_percent(4))        
+    print(f"{round(time.time()-start,2)}s")
