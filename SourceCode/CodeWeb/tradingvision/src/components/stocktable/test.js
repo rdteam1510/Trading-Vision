@@ -6,6 +6,7 @@ import {
     gridPageSelector,
     useGridApiContext,
     useGridSelector,
+    useGridSlotComponentProps
 } from '@mui/x-data-grid';
 import { 
     createTheme,
@@ -18,7 +19,8 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import StockTableService from '../../services/stock'
- 
+import Pagination from '@material-ui/lab/Pagination';
+
 // Styles
 const darkTheme = createTheme({
     palette: {
@@ -36,6 +38,9 @@ const useStyles = makeStyles({
     '&.MuiDataGrid-menuIcon &.MuiDataGrid-menuIconButton 	&.MuiDataGrid-menuOpen': {
       color: 'white',
     },
+    'MuiTablePagination-root .css-rtrcn9-MuiTablePagination-root':{
+      color: 'white',
+    }
   }
 });
 const columns = [
@@ -104,33 +109,20 @@ const columns = [
   
   ]; 
 
-function CustomPagination() {
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+// function CustomPagination() {
+//   const { state, apiRef } = useGridSlotComponentProps();
+//   const classes = useStyles();
 
-    const handleChangePage = (event, newPage) => {
-      setPage(newPage);
-    };
-
-    const handleChangeRowsPerPage = (event) => {
-      setRowsPerPage(parseInt(event.target.value, 10));
-      setPage(0);
-    };
-
-    return (
-      <TablePagination
-        component="div"
-        count = {300}
-        page={page}
-        onPageChange={handleChangePage}
-        rowsPerPage={rowsPerPage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-        sx = {{
-          color:'white',
-        }}
-      />
-    );
-  }
+//   return (
+//     <Pagination
+//       className={classes.root}
+//       color="primary"
+//       count={state.pagination.pageCount}
+//       page={state.pagination.page + 1}
+//       onChange={(event, value) => apiRef.current.setPage(value - 1)}
+//     />
+//     );
+//   }
 // Define icons
 export function SortedDescendingIcon() {
 
@@ -189,19 +181,41 @@ const DataGridDemo = () => {
     //     volume: stock.Volume,
     //   };
     // })
+<<<<<<< HEAD
     
+=======
+    const [pageSize, setPageSize] = React.useState(5);
+
+>>>>>>> 85952ce0a5120920722aa71ee052a5461e36fa22
     // const rowlength = rows.length;
     // console.log(rowlength);
     return (
       <ThemeProvider theme={darkTheme}>
-        <div style={{ height: 600, width: '100%'}}>
+        <div style={{ height: 600, width: '100%', color:'white'}}>
         <DataGrid
           
             rows={rows}
             columns={columns}
+            pageSize={pageSize}
+            onPageSizeChange={(newPage) => setPageSize(newPage)}
+            rowsPerPageOptions={[5, 10, 20]}
+            pagination 
+            sx={{
+              color: 'white',
+              fontFamily: 'Montserrat',
+              cursor: "pointer",
+              fontSize: 16,
+              '& .MuiTablePagination-root':{
+                color: 'white',
+               
+                  },
+              '& .MuiTablePagination-selectIcon': {
+                color: 'white',
+              },
+            }}
             components={{
             Toolbar: GridToolbar,
-            Pagination: CustomPagination,
+            //Pagination: CustomPagination,
             ColumnSortedDescendingIcon: SortedDescendingIcon,
             ColumnSortedAscendingIcon: SortedAscendingIcon,
             ColumnMenuIcon: MenuIcon,
@@ -213,12 +227,7 @@ const DataGridDemo = () => {
                 },
               }}
             
-            sx={{
-                color: 'white',
-                fontFamily: 'Montserrat',
-                cursor: "pointer",
-                fontSize: 16,
-                }}
+            
             
             onRowClick={(params) => 
               history(`/stocks/${params.row.ticker}`)

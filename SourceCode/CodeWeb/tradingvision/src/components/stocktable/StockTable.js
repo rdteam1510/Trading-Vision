@@ -59,7 +59,7 @@ const StockTable = () => {
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const history = useNavigate()
     const classes = useStyles()
-   
+    
 
     const handleSearch = () => {
         return stocks.filter(
