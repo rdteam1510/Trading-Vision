@@ -11,8 +11,10 @@ import {
   TableCell,
   TableBody,
   Paper,
+  Select,
 } from '@material-ui/core'
 import { useNavigate } from 'react-router-dom';
+
 
 const darkTheme = createTheme({
     palette: {
@@ -30,15 +32,15 @@ const rows = [
   { id: 2, ticker: 'ACB', description: "Asia Commercial Joint Stock Bank", industry:"Financials"},  
   { id: 3, ticker: 'BID', description: "JOINT STOCK COMMERCIAL BANK FOR INVESTMENT AND DEVELOPMENT OF VIETNAM", industry:"Financials"},
 
-]; 
-const SearchTicker = () => {
+];
+
+const SearchTicker = (props) => {
     const classes = useStyles()
     const [loading, setLoading] = React.useState(false)
     const history = useNavigate()
     const handleOpen = () => setLoading(true);
-    const handleClosed = () => setLoading(false);
-  
-    
+
+
   return (
     <ThemeProvider theme={darkTheme}>
       <TableContainer 
@@ -63,14 +65,18 @@ const SearchTicker = () => {
                                 ))}
                                 </TableRow>
                             </TableHead>
-                    
-                            <TableBody>
+                              
+                            <TableBody deselectOnClickaway={false}>
                                 {rows
                                 .map((row)=> (
                                     <TableRow                                   
-                                    onClick={classes.tableRowSelected}
-                                    className ={classes.row}
+                                    onClick={() => {
+                                      props.onSelectRow(row.id);
+                                    }}
                                     
+                                    selected={props.RowID === row.id}
+                                    className ={classes.row}
+                                   
                                     classes={{
                                       root: classes.tableRowRoot,
                                       selected: classes. tableRowSelected,
@@ -82,7 +88,10 @@ const SearchTicker = () => {
                                           fontWeight: 'bold',
                                         }}
                                         className={classes.cell}
-                                        onClick={handleClosed}> {row.ticker}
+                                        onClick={() => {
+                                          props.onSelectRow(row.id);
+                                        }}> 
+                                        {row.ticker}
                                         
                                     </TableCell>
                                     <TableCell align="left" className={classes.cell}>{row.description}</TableCell>
@@ -90,7 +99,9 @@ const SearchTicker = () => {
                                     
                                 </TableRow>
                                 ))}
+                              
                             </TableBody>
+                             
                         </Table>
                     )
                 }
