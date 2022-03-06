@@ -20,6 +20,7 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import StockTableService from '../../services/stock'
 import Pagination from '@material-ui/lab/Pagination';
+import { Typography } from '@material-ui/core';
 
 // Styles
 const darkTheme = createTheme({
@@ -118,7 +119,7 @@ export function MenuIcon() {
   }}/>;
 }
 // Datagirid
-const DataGridDemo = () => {
+const DataGridDemo = ({stockExchange}) => {
     const history = useNavigate()
     const classes = useStyles();
     
@@ -129,7 +130,7 @@ const DataGridDemo = () => {
     },[]);
     
     const retrieveStocks = () => {
-      StockTableService.get("hnx")
+      StockTableService.get({stockExchange})
         .then(response =>{
           console.log(response.data);
           setStock(response.data.stocks);
@@ -199,7 +200,7 @@ const DataGridDemo = () => {
             }
             
         />
-  
+          <Typography>{stockExchange}</Typography>
         </div>
     </ThemeProvider>
     );

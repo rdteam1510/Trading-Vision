@@ -25,7 +25,7 @@ const darkTheme = createTheme({
 
 
 
-const StockExchange = props => {
+const StockExchange = () => {
   const classes = useStyles()
   const [value, setValue] = React.useState('1');
   const [search, setSearch] = useState("")
@@ -69,9 +69,9 @@ const StockExchange = props => {
               <Tab label="UPCOM" value="3" className={classes.tab}/>
             </TabList>
   
-          <TabPanel value="1"><Test /></TabPanel>
-          <TabPanel value="2"><Test /></TabPanel>
-          <TabPanel value="3"><Test /></TabPanel>
+          <TabPanel value="1"><Test stockExchange={'hose'}/></TabPanel>
+          <TabPanel value="2"><Test stockExchange={'hnx'}/></TabPanel>
+          <TabPanel value="3"><Test stockExchange={'upcom'}/></TabPanel>
         </TabContext>
         
       
