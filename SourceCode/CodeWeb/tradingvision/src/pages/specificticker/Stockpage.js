@@ -37,9 +37,6 @@ const Stockpage = () => {
  
   const [collapse, setCollapsed] = React.useState(true);
 
-  const [selectedID, setSelectedID] = useState(null);
-  
-
   return (
   
       <Container className={classes.container}>
@@ -80,14 +77,13 @@ const Stockpage = () => {
         aria-describedby="keep-mounted-modal-description"
         
         BackdropProps={{ style: { backgroundColor: 'rgba(0,0,0,0.50)', }}}
-        PaperProps={{ style: { backgroundColor: 'rgba(0,0,0,0.90)', color:'white' }}
-        }
+        PaperProps={{ style: { backgroundColor: 'rgba(0,0,0,0.90)', color:'white' }}}
         >
          <Box >     
             <IconButton style = {{color: 'white', marginLeft: '85%',}} onClick={handleClosed}>
                   <CloseIcon />
             </IconButton>
-            <ComparePopup selectedID = {selectedID} setSelectedID = {setSelectedID} />
+            <ComparePopup />
               
           </Box>                        
       </Dialog>

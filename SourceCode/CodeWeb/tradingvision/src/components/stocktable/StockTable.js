@@ -76,7 +76,7 @@ const StockTable = () => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
       };
-      
+
 
 
     return (
