@@ -2,24 +2,17 @@ import React, {useState, useEffect} from 'react';
 import {
     DataGrid,
     GridToolbar,
-    gridPageCountSelector,
-    gridPageSelector,
-    useGridApiContext,
-    useGridSelector,
-    useGridSlotComponentProps
 } from '@mui/x-data-grid';
 import { 
     createTheme,
     ThemeProvider,
     } from '@mui/material/styles';
 import {useNavigate} from 'react-router-dom';
-import TablePagination from '@mui/material/TablePagination';
 import {  makeStyles } from '@material-ui/core/styles';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import StockTableService from '../../services/stock'
-import Pagination from '@material-ui/lab/Pagination';
 import { Typography } from '@material-ui/core';
 
 // Styles

@@ -4,21 +4,7 @@ import {Tab, Divider, Typography, FormControlLabel, Switch} from '@material-ui/c
 import Profile from './Profile'
 import Financials from './Financials'
 import useStyles from './style'
-import IconButton from '@mui/material/IconButton';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { styled } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
-
-// const ExpandMore = styled((props) => {
-//   const { expand, ...other } = props;
-//   return <IconButton {...other} />;
-// })(({ theme, expand }) => ({
-//   transform: !expand ? 'rotate(-90deg)' : 'rotate(0deg)',
-//   marginLeft: 'auto',
-//   transition: theme.transitions.create('transform', {
-//     duration: theme.transitions.duration.shortest,
-//   }),
-// }));
 
 
 const TabInfo = () => {
@@ -30,19 +16,9 @@ const TabInfo = () => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(true);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   return (
     <>
-    {/* <ExpandMore
-    expand={expanded}
-    onClick={handleExpandClick}
-    aria-expanded={expanded}
-    aria-label="show more">
-    <ExpandMoreIcon sx={{ fontSize: 45, color:"#fff"}}/>
-  </ExpandMore> */}
     <FormControlLabel
       control={<Switch 
               color="primary" 

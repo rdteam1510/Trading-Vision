@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-import {useParams} from 'react-router-dom';
+import React from 'react';
 import useStyles from './style'
 import {Container,
       Typography,
@@ -18,25 +17,12 @@ const Stockpage = () => {
 
 
   const classes = useStyles()
-  const {ticker} = useParams()
-  const [stock, setStock] = useState()
 
   const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(false);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (value) => {
-    setOpen(false);
-    setSelectedValue(value);
-  };
   const handleOpen = () => setOpen(true);
   const handleClosed = () => setOpen(false);
   const label = { inputProps: { 'aria-label': 'Checkbox favorite' } }; 
  
-  const [collapse, setCollapsed] = React.useState(true);
-
   return (
   
       <Container className={classes.container}>

@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import './App.css';
 
-import Header, {popupState} from '././components/header/Header';
+import Header from '././components/header/Header';
 import Homepage from './pages/homepage/Homepage';
 import Stockpage from './pages/specificticker/Stockpage';
 import { makeStyles } from "@material-ui/core";

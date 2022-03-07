@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Tab from '@material-ui/core/Tab';
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
-import StockTable from '../stocktable/StockTable';
 import Test from '../stocktable/test';
 import { Container, 
   createTheme, 
@@ -28,7 +27,7 @@ const darkTheme = createTheme({
 const StockExchange = () => {
   const classes = useStyles()
   const [value, setValue] = React.useState('1');
-  const [search, setSearch] = useState("")
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -48,7 +47,6 @@ const StockExchange = () => {
                   label="Search for a Stock Ticker..."
                   variant="outlined"
                   className={classes.text}
-                  onChange={(e) => setSearch(e.target.value)}
                   style={{fontFamily: "Montserrat"}}>
               </TextField>
             </ThemeProvider>
