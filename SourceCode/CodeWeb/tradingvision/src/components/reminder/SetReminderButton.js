@@ -42,11 +42,10 @@ const SetReminderButton = () => {
         <Dialog 
           open={open} 
           onClose={handleClose}
-          className={classes.dialog}
           PaperProps={{
             style: {
               backgroundColor: 'white',
-              height: '300px',
+              height: '400px',
               width: '650px',}
           }}
         >
@@ -94,15 +93,14 @@ const SetReminderButton = () => {
                 <Box
                     border={4}
                     borderColor="black"
-                    display="flex"
-                    width="500px"
-                    
+                    height="170px" 
                   >
                  <TextField
                   placeholder="Content"
                   multiline
                   maxRows={5}
                   value={value}
+                  className={classes.reminder}
                   onChange={handleChange}
                   InputProps={{
                     disableUnderline: true,
@@ -117,7 +115,7 @@ const SetReminderButton = () => {
               </Box>  
           </DialogContentText>
           </DialogContent>
-          <DialogActions>
+          <DialogActions className={classes.btn}>
             <Button 
               onClick={handleClose}
               className={classes.btn_Save}>Save</Button>

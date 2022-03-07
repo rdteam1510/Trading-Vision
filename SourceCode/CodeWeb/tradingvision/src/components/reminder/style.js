@@ -48,7 +48,25 @@ const useStyles = makeStyles((theme)=>({
     calendar:{
       color:"black"
     },
-    remide
+    reminder:{
+      padding:"2%"
+    },
+    btn:{
+      marginBottom: "3%",
+      marginRight: "2%",
+    },
+    btn_Save: {
+      backgroundColor:"#00FF00",
+      "&:hover":{
+        backgroundColor:"#00A300",
+      }
+    },
+    btn_Cancel: {
+      backgroundColor:"#868B8E",
+      "&:hover":{
+        backgroundColor:"#4E4F50",
+      }
+    }
 
 }))
 
