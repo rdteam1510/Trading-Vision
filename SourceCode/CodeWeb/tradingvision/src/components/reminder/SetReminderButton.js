@@ -8,18 +8,24 @@ import {Button,
         DialogContent,
         DialogContentText ,
         DialogTitle,
-        IconButton, 
-        InputAdornment 
+        Box,
 } from '@material-ui/core';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
 
+
+
 const SetReminderButton = () => {
     const classes = useStyles()
     const [open, setOpen] = React.useState(false);
-    const [value, setValue] = React.useState(new Date());
+    const [date, setDate] = React.useState(new Date());
+    const [value, setValue] = React.useState();
+
+    const handleChange = (event) => {
+      setValue(event.target.value);
+    };
+
     const handleClickOpen = () => {
       setOpen(true);
     };
@@ -27,7 +33,7 @@ const SetReminderButton = () => {
     const handleClose = () => {
       setOpen(false);
     };
-    
+
     return (
       <div>
         <Button variant="outlined" onClick={handleClickOpen}>
@@ -49,7 +55,7 @@ const SetReminderButton = () => {
               placeholder="Add Title" 
               InputProps={{ disableUnderline: true,
                     style:{
-                      fontSize:"17px",
+                      fontSize:"18px",
                       fontFamily: "Montserrat",
                       color:"black",
                     }}} 
@@ -67,25 +73,49 @@ const SetReminderButton = () => {
                   <DateTimePicker
                     renderInput={(props) => <TextField {...props} />}
                     label="DateTimePicker"
-                    value={value}
+                    value={date}
+                    variant="inline"
                     onChange={(newValue) => {
-                      setValue(newValue);
+                      setDate(newValue);
                     }}
                     className={classes.calendar}
-                    sx={{color:"black"}}
+                    inputProps={{
+                        style: {
+                          color: "black",
+                          fontFamily:"Montserrat",
+                          fontSize:"15px",
+                        },
+                      }}
                   />
               </LocalizationProvider>
 
             </DialogContentText>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              label="Email Address"
-              type="email"
-              fullWidth
-              variant="standard"
-            />
+            <DialogContentText>
+                <Box
+                    border={4}
+                    borderColor="black"
+                    display="flex"
+                    width="500px"
+                    
+                  >
+                 <TextField
+                  placeholder="Content"
+                  multiline
+                  maxRows={5}
+                  value={value}
+                  onChange={handleChange}
+                  InputProps={{
+                    disableUnderline: true,
+                    style:{
+                      fontSize:"17px",
+                      fontFamily: "Montserrat",
+                      color:"black",
+                      width:"500px",
+                    },
+                    }}
+                />
+              </Box>  
+          </DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button 

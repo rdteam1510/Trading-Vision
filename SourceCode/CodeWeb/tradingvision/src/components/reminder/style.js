@@ -43,11 +43,13 @@ const useStyles = makeStyles((theme)=>({
       backgroundColor: 'orange',
     },
     dialog_content: {
-      marginTop: "3%",
+      marginTop: "2%",
     },
     calendar:{
       color:"black"
-    }
+    },
+    remide
+
 }))
 
 export default useStyles
