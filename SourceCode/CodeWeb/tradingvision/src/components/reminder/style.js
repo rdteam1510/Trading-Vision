@@ -32,8 +32,22 @@ const useStyles = makeStyles((theme)=>({
       },
     pagination: {
         backgroundColor: "black",
+    },
+    // ------ Popup Set Reminder --------------
+    line:{
+      border: 'solid orange',
+      height: '1.4px',
+      width: '150px',
+      marginTop: '-2%',
+      marginLeft: '4%',
+      backgroundColor: 'orange',
+    },
+    dialog_content: {
+      marginTop: "3%",
+    },
+    calendar:{
+      color:"black"
     }
-      
 }))
 
 export default useStyles
