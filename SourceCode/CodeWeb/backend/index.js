@@ -1,28 +1,43 @@
-import app from "./server.js"
-import mongodb from "mongodb"
-import dotenv from "dotenv"
-import CompaniesDAO from "./dao/companiesDAO.js"
-import StocksDAO from "./dao/stocksDAO.js"
-dotenv.config()
-const MongoClient = mongodb.MongoClient
+const express = require("express");
+const mongoose = require("mongoose");
+const CompanyInfo = require("./models/CompanyInfo");
+const Stocks = require("./models/Stocks");
 
-const port = process.env.PORT || 8000
+const app = express();
 
-MongoClient.connect(
-    process.env.RESTREVIEWS_DB_URI,
-    {
-        maxPoolSize: 50,
-        wtimeoutMS: 2500,
-        useNewUrlParser: true}
-    )
-    .catch(err => {
-        console.log(err.stack)
-        process.exit(1)
-    })
-    .then(async client => {
-        await StocksDAO.injectDB(client)
-        await CompaniesDAO.injectDB(client)
-        app.listen(port, () => {
-            console.log(`listening on port ${port}`)
-        })
-    })
+app.use(express.json());
+
+mongoose
+	.connect("mongodb+srv://tradingvision:123@cluster0.4fh3n.mongodb.net/TradingVision?authSource=admin&replicaSet=atlas-fyx376-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true")
+	.then(() => {
+		console.log("Database is connected");
+	})
+	.catch((err) => {
+		console.log(err);
+	});
+
+const PORT = process.env.PORT || 4040;
+
+// Show all Company Info
+app.get("/companyinfo", async (req, res) => {
+	try {
+		const companyInfos = await CompanyInfo.find();
+		return res.json({ success: true, companyInfos });
+	} catch (error) {
+		return res.status(204).json({ success: false, message: error.message });
+	}
+});
+
+// Show all stocks
+app.get("/stocks", async (req, res) => {
+	try {
+		const stocks = await Stocks.find().limit(300);
+		return res.json({ success: true, stocks });
+	} catch (error) {
+		return res.status(204).json({ success: false, message: error.message });
+	}
+});
+
+app.listen(PORT, () => {
+	console.log(`Server is running on port ${PORT}`);
+});

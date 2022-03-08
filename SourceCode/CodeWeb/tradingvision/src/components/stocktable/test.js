@@ -12,9 +12,8 @@ import {  makeStyles } from '@material-ui/core/styles';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import StockTableService from '../../services/stock'
 import { Typography } from '@material-ui/core';
-
+import axios from 'axios';
 // Styles
 const darkTheme = createTheme({
     palette: {
@@ -118,22 +117,19 @@ const DataGridDemo = ({stockExchange}) => {
     
     const [stocks, setStock] = useState([]);
 
-    useEffect(()=>{
-      retrieveStocks();
-    },[]);
-    
-    const retrieveStocks = () => {
-      StockTableService.get({stockExchange})
-        .then(response =>{
+    // 
+    useEffect(() => {
+      componentDidMount()
+    },[])
+
+    const componentDidMount = async() =>{
+       axios.get("/stocks")
+       .then((response)=>{
           console.log(response.data);
           setStock(response.data.stocks);
 
-        })
-        .catch(error =>{
-          console.log(error);
-        })
-    };
-
+       })
+    }
     const rows = stocks.map((stock) => {
       return {
         id: stock.Ticker,
@@ -147,6 +143,7 @@ const DataGridDemo = ({stockExchange}) => {
       };
     })
 
+    console.log({rows});
     const [pageSize, setPageSize] = React.useState(10);
 
     return (

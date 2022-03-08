@@ -51,6 +51,7 @@ const SetReminderButton = () => {
         >
           <DialogTitle>
             <TextField
+              required
               placeholder="Add Title" 
               InputProps={{ disableUnderline: true,
                     style:{
@@ -96,6 +97,7 @@ const SetReminderButton = () => {
                     height="170px" 
                   >
                  <TextField
+                 required  
                   placeholder="Content"
                   multiline
                   maxRows={5}
