@@ -65,9 +65,6 @@ const ReminderInfo = () => {
   return (
       <Container>
     <ThemeProvider theme={darkTheme}>
-      <div>
-        <SetReminderButton/>
-      </div>
       <TableContainer 
             className={classes.tableContainer}
             component={Paper}>
@@ -95,8 +92,20 @@ const ReminderInfo = () => {
                 }
                 
         </TableContainer>
-        <Typography variant="h6" component="h6">
-        There is nothing here. Please add your reminder
+        <Typography 
+        variant="h6" 
+        component="h6"
+        align="center" >
+        There is nothing here.<br/> 
+        Please add your reminder
+        
+                <br/><br/><br/>
+                <div>
+                  <SetReminderButton/>
+                </div>
+                <br/><br/><br/>
+
+        
         </Typography>
             
     </ThemeProvider>

@@ -9,7 +9,7 @@ import useStyles from './style'
 const Reminder = () => {
   return (
     <div>
-      <ReminderEmpty/>
+      <ReminderInfo/>
     </div>
 
   )
