@@ -130,17 +130,21 @@ const DataGridDemo = ({stockExchange}) => {
 
        })
     }
-    const rows = stocks.map((stock) => {
-      return {
-        id: stock.Ticker,
-        ceiling: stock.Ceiling,
-        floor: stock.Floor,
-        highest: stock.Highest,
-        lowest: stock.Lowest,
-        match: stock.Match,
-        ticker: stock.Ticker,
-        volume: stock.Volume,
-      };
+    const rows = stocks
+    .filter((stock) => stock.StockExchange === stockExchange)
+    .map((stock) => {
+      console.log(stock.StockExchange);
+        return {
+          id: stock._id,
+          ceiling: stock.Ceiling,
+          floor: stock.Floor,
+          highest: stock.Highest,
+          lowest: stock.Lowest,
+          match: stock.Match,
+          ticker: stock.Ticker,
+          volume: stock.Volume,
+        };
+      
     })
 
     console.log({rows});
@@ -190,7 +194,6 @@ const DataGridDemo = ({stockExchange}) => {
             }
             
         />
-          <Typography>{stockExchange}</Typography>
         </div>
     </ThemeProvider>
     );
