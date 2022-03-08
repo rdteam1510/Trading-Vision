@@ -7,19 +7,18 @@ import tensorflow as tf
 start = time.time()
 client
 
-stocks_list = []
 db = client['TradingVision']
 data = db['CompanyInfo'].find({},
                               {"Ticker":1,
                                "_id":0})
 new_columns = ["Ticker","PredictedPrice","Date","TimeStamp"]
-
+stocks_list = []
 
 for i in data:
     stocks_list.append(i.values())
     
 stocks_list = list(itertools.chain(*stocks_list))
-stocks_list = stocks_list[50:100]
+stocks_list = stocks_list[20:40]
 
 if __name__ == "__main__":
     # Choose time and close price columns 
@@ -28,19 +27,20 @@ if __name__ == "__main__":
         close_data, close_date = get_data(ticker)
                     
         # Retrain model
-        tf.keras.backend.clear_session()
+        
         model = load_model('/home/ubuntu/Model/{}_model'.format(ticker))
         model = only_train(close_data, model, ticker)
         # Predict price
         num_prediction = 6
         forecast, forecast_dates = make_predict(num_prediction, model, close_data, close_date)
 
+        
+
         # Save new model
         model.save('/home/ubuntu/Model/{}_model'.format(ticker))
-        #print(f"---------{ticker}--------")
-        # print("Model exported")
-        # print(close_data, close_date)
-        # print(forecast, forecast_dates)
+        gc.collect() 
+    
+    
         dt = {}
         l = []
         for i in range(len(forecast)):
@@ -52,8 +52,9 @@ if __name__ == "__main__":
             l.append(new_item)
             
         db["Prediction"].insert_many(l)
-        gc.collect()
+        
         time.sleep(5)
+    
     
     # print('The CPU usage is: ', psutil.cpu_percent(4))        
     # print(f"{round(time.time()-start,2)}s")

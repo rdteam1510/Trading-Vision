@@ -18,7 +18,7 @@ for i in data:
     stocks_list.append(i.values())
     
 stocks_list = list(itertools.chain(*stocks_list))
-stocks_list = stocks_list[0:50]
+stocks_list = stocks_list[0:10]
 
 if __name__ == "__main__":
     # Choose time and close price columns 
@@ -27,19 +27,20 @@ if __name__ == "__main__":
         close_data, close_date = get_data(ticker)
                     
         # Retrain model
-        tf.keras.backend.clear_session()
-        model = load_model('././Model/{}_model'.format(ticker))
+        
+        model = load_model('../Model/{}_model'.format(ticker))
         model = only_train(close_data, model, ticker)
         # Predict price
         num_prediction = 6
         forecast, forecast_dates = make_predict(num_prediction, model, close_data, close_date)
 
+        
+
         # Save new model
-        model.save('././Model/{}_model'.format(ticker))
-        #print(f"---------{ticker}--------")
-        # print("Model exported")
-        # print(close_data, close_date)
-        # print(forecast, forecast_dates)
+        model.save('../Model/{}_model'.format(ticker))
+        gc.collect() 
+    
+    
         dt = {}
         l = []
         for i in range(len(forecast)):
@@ -50,8 +51,8 @@ if __name__ == "__main__":
             new_item = dict(zip(new_columns, list(dt.values())))
             l.append(new_item)
             
-        db["Prediction"].insert_many(l)
-        gc.collect()
+        db["test"].insert_many(l)
+        
         time.sleep(5)
     
     

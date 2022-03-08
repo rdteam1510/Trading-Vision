@@ -18,7 +18,7 @@ for i in data:
     stocks_list.append(i.values())
     
 stocks_list = list(itertools.chain(*stocks_list))
-stocks_list = stocks_list[40:60]
+stocks_list = stocks_list[200:220]
 
 if __name__ == "__main__":
     # Choose time and close price columns 
