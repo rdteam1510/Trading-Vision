@@ -14,7 +14,6 @@ import {
     TablePagination,
 
   } from '@material-ui/core'
-  import { useNavigate } from 'react-router-dom';
   import useStyles from './style'
   import EditIcon from '@mui/icons-material/Edit';
   import DeleteIcon from '@mui/icons-material/Delete';
@@ -106,7 +105,10 @@ const ReminderInfo = () => {
                                     </TableCell>
                                     <TableCell align="left" className={classes.cell}>{row.time}</TableCell>
                                     <TableCell align="left" className={classes.cell}>{row.ticker}</TableCell>
-                                    <TableCell align="left" className={classes.cell}>{row.content}</TableCell>
+                                    <TableCell align="left" className={classes.cell} >
+                                    Read more
+
+                                    </TableCell>
                                     <TableCell align="left" className={classes.cell}><EditIcon/></TableCell>
                                     <TableCell align="left" className={classes.cell}><DeleteIcon style={{marginLeft:"10%"}}/></TableCell>
                                 </TableRow>

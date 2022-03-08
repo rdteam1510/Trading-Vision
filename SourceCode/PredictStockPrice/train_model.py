@@ -4,9 +4,10 @@ import datetime
 from tensorflow.keras.preprocessing.sequence import TimeseriesGenerator
 from pymongo import MongoClient
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau
-
+import tensorflow as tf
+import gc
 #client = MongoClient("localhost", 27017)
-client = MongoClient("mongodb+srv://tradingvision:123@cluster0.4fh3n.mongodb.net/test?authSource=admin&replicaSet=atlas-fyx376-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true")
+client = MongoClient("mongodb+srv://tradingvision:123@cluster0.xmnn8.mongodb.net/TradingVision?authSource=admin&replicaSet=atlas-kkwgbw-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true")
 
 # Specify date format
 # def parser(x):
@@ -65,8 +66,10 @@ def predict(num_prediction, model, close_data):
     for _ in range(num_prediction-1):
         x = prediction_list[-num_prediction:]
         x = x.reshape((1, num_prediction, 1))
-        out = model.predict(x)[0][0]
+        out = model.predict_on_batch(x)[0][0]
         prediction_list = np.append(prediction_list, out)
+        tf.keras.backend.clear_session()
+        gc.collect()
     prediction_list = prediction_list[num_prediction:]
         
     return prediction_list
