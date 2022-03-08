@@ -19,7 +19,7 @@ const darkTheme = createTheme({
     },
   });
 
-const ComparePopup = () => {
+const ComparePopup = (props) => {
     const classes = useStyles()
     const [test, setTest] = React.useState(false);
     const handleOpen = () => setTest(true);
@@ -28,7 +28,7 @@ const ComparePopup = () => {
     const handleChange = (event, newValue) => {
         setValue(newValue);
       };
-
+    const {selectedID, setSelectedID} = props;
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -66,9 +66,9 @@ const ComparePopup = () => {
                     <Tab label="UPCOM" value="3" className={classes.tab}/>
                 </TabList>
 
-            <TabPanel value="1" ><SearchTicker/></TabPanel>
-            <TabPanel value="2"><SearchTicker/></TabPanel>
-            <TabPanel value="3"><SearchTicker/></TabPanel>
+            <TabPanel value="1" ><SearchTicker RowID = {selectedID} onSelectRow = {setSelectedID}/></TabPanel>
+            <TabPanel value="2"><SearchTicker RowID = {selectedID} onSelectRow = {setSelectedID}/></TabPanel>
+            <TabPanel value="3"><SearchTicker RowID = {selectedID} onSelectRow = {setSelectedID}/></TabPanel>
         </TabContext>
         </div>
     </Container>

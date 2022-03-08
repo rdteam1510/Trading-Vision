@@ -22,6 +22,7 @@ const Stockpage = () => {
   const handleOpen = () => setOpen(true);
   const handleClosed = () => setOpen(false);
   const label = { inputProps: { 'aria-label': 'Checkbox favorite' } }; 
+  const [selectedID, setSelectedID] = React.useState(null)
  
   return (
   
@@ -69,7 +70,7 @@ const Stockpage = () => {
             <IconButton style = {{color: 'white', marginLeft: '85%',}} onClick={handleClosed}>
                   <CloseIcon />
             </IconButton>
-            <ComparePopup />
+            <ComparePopup selectedID = {selectedID} setSelectedID = {setSelectedID} />
               
           </Box>                        
       </Dialog>

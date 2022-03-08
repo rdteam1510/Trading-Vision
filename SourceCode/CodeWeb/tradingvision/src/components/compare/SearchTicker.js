@@ -31,7 +31,7 @@ const rows = [
   { id: 3, ticker: 'BID', description: "JOINT STOCK COMMERCIAL BANK FOR INVESTMENT AND DEVELOPMENT OF VIETNAM", industry:"Financials"},
 
 ]; 
-const SearchTicker = () => {
+const SearchTicker = (props) => {
     const classes = useStyles()
     const [loading, setLoading] = React.useState(false)
     const history = useNavigate()
@@ -68,9 +68,13 @@ const SearchTicker = () => {
                                 {rows
                                 .map((row)=> (
                                     <TableRow                                   
-                                    onClick={classes.tableRowSelected}
-                                    className ={classes.row}
                                     
+                                    className ={classes.row}
+                                    onClick={() => {
+                                      props.onSelectRow(row.id);
+                                    }}
+
+                                    selected={props.RowID === row.id}
                                     classes={{
                                       root: classes.tableRowRoot,
                                       selected: classes. tableRowSelected,
