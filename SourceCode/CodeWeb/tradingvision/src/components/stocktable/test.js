@@ -186,9 +186,7 @@ const DataGridDemo = ({stockExchange}) => {
                   sortModel: [{ field: 'ticker', sort: 'asc' }],
                 },
               }}
-            
-            
-            
+          
             onRowClick={(params) => 
               history(`/stocks/${params.row.ticker}`)
             }
