@@ -2,18 +2,19 @@ import React, {useState} from 'react'
 import useStyles from './style'
 
 import {Button,
-        TextField,
+        
         Dialog,
         DialogActions,
         DialogContent,
         DialogContentText ,
         DialogTitle,
-        Box,
+       
 } from '@material-ui/core';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
-
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 
 const SetReminderButton = () => {
@@ -92,12 +93,20 @@ const SetReminderButton = () => {
             </DialogContentText>
             <DialogContentText>
                 <Box
+                    component = "form"
                     border={4}
                     borderColor="black"
                     height="170px" 
+                    // sx={{
+                    //   '& .MuiTextField-root': { m: 1, width: '25ch' },
+                    // }}
+                    noValidate
+                    autoComplete="off"
                   >
                  <TextField
-                 required  
+                 
+                  error
+                  required  
                   placeholder="Content"
                   multiline
                   maxRows={5}
@@ -113,6 +122,8 @@ const SetReminderButton = () => {
                       width:"500px",
                     },
                     }}
+                  
+                  helperText="Empty content"
                 />
               </Box>  
           </DialogContentText>

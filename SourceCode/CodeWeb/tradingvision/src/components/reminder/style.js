@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme)=>({
     line:{
       border: 'solid orange',
       height: '1.4px',
-      width: '150px',
+      width: '50px',
       marginTop: '-2%',
       marginLeft: '4%',
       backgroundColor: 'orange',
