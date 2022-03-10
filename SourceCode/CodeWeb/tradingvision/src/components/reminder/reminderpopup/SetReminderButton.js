@@ -1,38 +1,75 @@
 import React, {useState} from 'react'
-import useStyles from './style'
+import useStyles from '../style'
 
 import {Button,
-        TextField,
+        
         Dialog,
         DialogActions,
         DialogContent,
         DialogContentText ,
         DialogTitle,
-        Box,
+       
 } from '@material-ui/core';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import { CardContent } from '@mui/material';
+import { useForm, Form } from '../useForm';
 
-
-
+const initialFValues = {
+  id: 0,
+  title: '',
+  content: '',
+  hireDate: new Date(),
+}
 const SetReminderButton = () => {
     const classes = useStyles()
     const [open, setOpen] = React.useState(false);
     const [date, setDate] = React.useState(new Date());
-    const [value, setValue] = React.useState();
-
-    const handleChange = (event) => {
-      setValue(event.target.value);
-    };
-
+    
+    
     const handleClickOpen = () => {
       setOpen(true);
     };
   
     const handleClose = () => {
-      setOpen(false);
+      resetForm()
+      setDate(null)
+      setOpen(false)
     };
+    const validate = (fieldValues = values) => {
+      let temp = { ...errors }
+      if ('title' in fieldValues)
+          temp.title = fieldValues.title ? "" : "This field is required."
+      if ('content' in fieldValues)
+          temp.content = fieldValues.content ? "" : "This field is required."
+          
+      setErrors({
+          ...temp
+      })
+
+      if (fieldValues == values)
+          return Object.values(temp).every(x => x == "")
+  }
+  const {
+    values,
+    setValues,
+    errors,
+    setErrors,
+    handleInputChange,
+    resetForm
+} = useForm(initialFValues, true, validate);
+      const handleSubmit = e => {
+        e.preventDefault()
+        // ham insert reminder vo database
+        if (validate()){
+            resetForm()
+            handleClose()
+        }
+        
+    }
 
     return (
       <div>
@@ -45,21 +82,31 @@ const SetReminderButton = () => {
           PaperProps={{
             style: {
               backgroundColor: 'white',
-              height: '400px',
-              width: '650px',}
+              height: '430px',
+              width: '555px',}
           }}
         >
+        <Form onSubmit={handleSubmit}>
           <DialogTitle>
             <TextField
+            component = "form"
+              variant = "standard" //to disable outline
               required
               placeholder="Add Title" 
-              InputProps={{ disableUnderline: true,
+              noValidate
+              autoComplete="off"
+              InputProps={{ 
+                    disableUnderline: true,
                     style:{
                       fontSize:"18px",
                       fontFamily: "Montserrat",
                       color:"black",
                     }}} 
-              
+              name="title"        
+              value={values.title}
+              onChange={handleInputChange}
+              error={errors.title}
+              helperText = {errors.title}
             /> 
           </DialogTitle>
           <div className={classes.line}></div>
@@ -71,20 +118,26 @@ const SetReminderButton = () => {
               }}> 
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                   <DateTimePicker
+                    component = "form"
+                    noValidate
+                    autoComplete="off"
                     renderInput={(props) => <TextField {...props} />}
-                    label="DateTimePicker"
+                   
                     value={date}
-                    variant="inline"
+                    
                     onChange={(newValue) => {
                       setDate(newValue);
                     }}
                     className={classes.calendar}
                     inputProps={{
+                        disableUnderline: true,
                         style: {
                           color: "black",
                           fontFamily:"Montserrat",
                           fontSize:"15px",
                         },
+                        readOnly: true,
+                        
                       }}
                   />
         
@@ -93,19 +146,17 @@ const SetReminderButton = () => {
 
             </DialogContentText>
             <DialogContentText>
-                <Box
-                    border={4}
-                    borderColor="black"
-                    height="170px" 
-                  >
+                
                  <TextField
-                 required  
+                  component = "form"                  
+                  noValidate
+                  autoComplete="off"
+                  
+                  required  
                   placeholder="Content"
                   multiline
-                  maxRows={5}
-                  value={value}
+                  rows={4}
                   className={classes.reminder}
-                  onChange={handleChange}
                   InputProps={{
                     disableUnderline: true,
                     style:{
@@ -113,20 +164,30 @@ const SetReminderButton = () => {
                       fontFamily: "Montserrat",
                       color:"black",
                       width:"500px",
-                    },
+                      },
                     }}
+                  variant = "outlined"
+                  size = "large"
+                  name="content"        
+                  value={values.content}
+                  onChange={handleInputChange}
+                  error={errors.content}
+                  helperText={errors.content}
+                  
                 />
-              </Box>  
+             
           </DialogContentText>
           </DialogContent>
           <DialogActions className={classes.btn}>
             <Button 
-              onClick={handleClose}
+              type = "submit"
+             
               className={classes.btn_Save}>Save</Button>
             <Button
               onClick={handleClose}
               className={classes.btn_Cancel}>Cancel</Button>
           </DialogActions>
+          </Form>
         </Dialog>
       </div>
     );

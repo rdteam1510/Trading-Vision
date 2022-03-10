@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme)=>({
     line:{
       border: 'solid orange',
       height: '1.4px',
-      width: '150px',
+      width: '50px',
       marginTop: '-2%',
       marginLeft: '4%',
       backgroundColor: 'orange',
@@ -62,11 +62,12 @@ const useStyles = makeStyles((theme)=>({
       }
     },
     btn_Cancel: {
-      backgroundColor:"#868B8E",
+      backgroundColor:"#c1c1c1",
       "&:hover":{
-        backgroundColor:"#4E4F50",
+        backgroundColor:"#AAAAAA",
       }
-    }
+    },
+    
 
 }))
 

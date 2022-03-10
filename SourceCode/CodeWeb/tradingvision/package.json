@@ -2,8 +2,12 @@
   "name": "tradingvision",
   "version": "0.1.0",
   "private": true,
+<<<<<<< HEAD
   "proxy":"http://localhost:4040",
+=======
+>>>>>>> 2dd92dc390a09670724077d5fbcff297f5c02b5e
   "dependencies": {
+    "@date-io/date-fns": "^2.13.1",
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
     "@material-ui/core": "^4.12.3",
@@ -39,7 +43,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+<<<<<<< HEAD
     "start": "concurrently \"node node_modules/react-scripts/scripts/start.js\" \"cd ../backend && nodemon index\"",
+=======
+    "start": "node node_modules/react-scripts/scripts/start.js",
+>>>>>>> 2dd92dc390a09670724077d5fbcff297f5c02b5e
     "build": "node node_modules/react-scripts/scripts/build.js",
     "test": "node node_modules/react-scripts/scripts/test.js",
     "eject": "node node_modules/react-scripts/scripts/eject.js"

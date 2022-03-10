@@ -1,14 +1,24 @@
 import { Grid, 
-          List, 
-          ListItem, 
           Typography } from '@material-ui/core';
 import React from 'react';
 import useStyles from "./style";
-import CircleIcon from '@mui/icons-material/Circle';
 
-const Financials = () => {
+
+const Financials = ({info}) => {
     const classes = useStyles()
 
+    const details = {
+      outstanding: info.OutstandingShares,
+      pe: info['P/E'],
+      roa: info.ROA,
+      roe: info.ROE,
+      totalassets: info.TotalAssets,
+      basicEPS: info.BasicEPS,
+      dilutedEPS: info.DilutedEPS,
+      bookValue: info.BookValue,
+      listedShares: info.ListedShares,
+
+    }
     
   return (
     <div className={classes.financials}>
@@ -24,48 +34,35 @@ const Financials = () => {
                     style={{fontWeight: 'bold'}}>
                       Outstanding Shares:
                   </Typography>
-                  <Typography 
+                  <Typography
                     gutterBottom 
                     variant="subtitle1" 
                     className={classes.item}
                     style={{fontWeight: 'bold'}}>
-                      P/E (TTM):
+                      Listed Shares:
+                  </Typography>
+                  <Typography
+                    gutterBottom 
+                    variant="subtitle1" 
+                    className={classes.item}
+                    style={{fontWeight: 'bold'}}>
+                      Book Value:
                   </Typography>
                   <Typography 
                     gutterBottom 
                     variant="subtitle1" 
                     className={classes.item}
                     style={{fontWeight: 'bold'}}>
-                      P/B (FY):
+                      ROA :
                   </Typography>
                   <Typography 
                     gutterBottom 
                     variant="subtitle1" 
                     className={classes.item}
                     style={{fontWeight: 'bold'}}>
-                      P/S (FY):
+                      ROE :
                   </Typography>
-                  <Typography 
-                    gutterBottom 
-                    variant="subtitle1" 
-                    className={classes.item}
-                    style={{fontWeight: 'bold'}}>
-                      ROA (TTM):
-                  </Typography>
-                  <Typography 
-                    gutterBottom 
-                    variant="subtitle1" 
-                    className={classes.item}
-                    style={{fontWeight: 'bold'}}>
-                      ROE (TTM):
-                  </Typography>
-                  <Typography 
-                    gutterBottom 
-                    variant="subtitle1" 
-                    className={classes.item}
-                    style={{fontWeight: 'bold'}}>
-                      Basic EPS (FY):
-                  </Typography>
+
                 </Grid>
             </Grid>
 
@@ -76,44 +73,33 @@ const Financials = () => {
                   variant="subtitle1" 
                   gutterBottom
                   className={classes.value}>
-                    xxx
+                    {details.outstanding}
                 </Typography>
                 <Typography 
                   variant="subtitle1" 
                   gutterBottom
                   className={classes.value}>
-                    xxx
+                    {details.listedShares}
                 </Typography>
                 <Typography 
                   variant="subtitle1" 
                   gutterBottom
                   className={classes.value}>
-                    xxx
+                    {details.bookValue}
                 </Typography>
                 <Typography 
                   variant="subtitle1" 
                   gutterBottom
                   className={classes.value}>
-                    xxx
+                    {details.roa}
                 </Typography>
                 <Typography 
                   variant="subtitle1" 
                   gutterBottom
                   className={classes.value}>
-                    xxx
+                    {details.roe}
                 </Typography>
-                <Typography 
-                  variant="subtitle1" 
-                  gutterBottom
-                  className={classes.value}>
-                    xxx
-                </Typography>
-                <Typography 
-                  variant="subtitle1" 
-                  gutterBottom
-                  className={classes.value}>
-                    xxx
-                </Typography>
+
               </Grid>
             </Grid>
           </Grid>
@@ -121,55 +107,38 @@ const Financials = () => {
           <Grid container spacing={2} className={classes.grid} item xs>
               <Grid item xs container spacing={2}>
                 <Grid item xs >
+
                   <Typography
                     gutterBottom 
                     variant="subtitle1" 
                     className={classes.item}
                     style={{fontWeight: 'bold'}}>
-                      Net Debt (MRQ):
+                      Total Assets:
                   </Typography>
+                  
                   <Typography
                     gutterBottom 
                     variant="subtitle1" 
                     className={classes.item}
                     style={{fontWeight: 'bold'}}>
-                      Total Debt (MRQ):
+                      EPS Diluted:
                   </Typography>
-                  <Typography
+                  <Typography 
                     gutterBottom 
                     variant="subtitle1" 
                     className={classes.item}
                     style={{fontWeight: 'bold'}}>
-                      Total Assets (MRQ):
+                      Basic EPS:
                   </Typography>
-                  <Typography
+                  <Typography 
                     gutterBottom 
                     variant="subtitle1" 
                     className={classes.item}
                     style={{fontWeight: 'bold'}}>
-                      Net Income (FY):
+                      P/E :
                   </Typography>
-                  <Typography
-                    gutterBottom 
-                    variant="subtitle1" 
-                    className={classes.item}
-                    style={{fontWeight: 'bold'}}>
-                      Gross Profit (FY):
-                  </Typography>
-                  <Typography
-                    gutterBottom 
-                    variant="subtitle1" 
-                    className={classes.item}
-                    style={{fontWeight: 'bold'}}>
-                      Total Revenue (FY): 
-                  </Typography>
-                  <Typography
-                    gutterBottom 
-                    variant="subtitle1" 
-                    className={classes.item}
-                    style={{fontWeight: 'bold'}}>
-                      EPS Diluted(FY):
-                  </Typography>
+                  
+            
               </Grid>
             <Grid item xs container 
                   className={classes.grid_info_finanical} >
@@ -178,43 +147,25 @@ const Financials = () => {
                   variant="subtitle1" 
                   gutterBottom
                   className={classes.value}>
-                    xxx
+                    {details.totalassets}
                 </Typography>
                 <Typography 
                   variant="subtitle1" 
                   gutterBottom
                   className={classes.value}>
-                    xxx
+                    {details.dilutedEPS}
                 </Typography>
                 <Typography 
                   variant="subtitle1" 
                   gutterBottom
                   className={classes.value}>
-                    xxx
+                    {details.basicEPS}
                 </Typography>
                 <Typography 
                   variant="subtitle1" 
                   gutterBottom
                   className={classes.value}>
-                    xxx
-                </Typography>
-                <Typography 
-                  variant="subtitle1" 
-                  gutterBottom
-                  className={classes.value}>
-                    xxx
-                </Typography>
-                <Typography 
-                  variant="subtitle1" 
-                  gutterBottom
-                  className={classes.value}>
-                    xxx
-                </Typography>
-                <Typography 
-                  variant="subtitle1" 
-                  gutterBottom
-                  className={classes.value}>
-                    xxx
+                    {details.pe}
                 </Typography>
               </Grid>
             </Grid>
@@ -222,23 +173,14 @@ const Financials = () => {
         </Grid>
       </Grid>
 
-      <List className={classes.note}>
+      {/* <List className={classes.note}>
         <ListItem>
           <CircleIcon sx={{ fontSize: 8}}/>
           <Typography className={classes.note_info}>
-          FY: Fiscal Year</Typography>
+          VND</Typography>
         </ListItem>
-        <ListItem>
-          <CircleIcon sx={{ fontSize: 8}}/>
-          <Typography className={classes.note_info}>
-          MRQ: Most Recent Quarter</Typography>
-        </ListItem>
-        <ListItem>
-          <CircleIcon sx={{ fontSize: 8}}/>
-          <Typography className={classes.note_info}>
-          TTM: Trailling Twelve Months</Typography>
-        </ListItem>
-      </List>
+
+      </List> */}
     </div>
       
 

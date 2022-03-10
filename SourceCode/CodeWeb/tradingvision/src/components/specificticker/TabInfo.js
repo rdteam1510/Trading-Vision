@@ -7,7 +7,7 @@ import useStyles from './style'
 import Collapse from '@mui/material/Collapse';
 
 
-const TabInfo = () => {
+const TabInfo = ({info}) => {
   
   const [value, setValue] = React.useState('1');
   const handleChange = (event, newValue) => {
@@ -15,7 +15,6 @@ const TabInfo = () => {
     };
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(true);
-
 
   return (
     <>
@@ -66,8 +65,9 @@ const TabInfo = () => {
                       value="2" 
                       className={classes.tab}/>
                 </TabList>
-          <TabPanel value="1"><Profile/></TabPanel>
-          <TabPanel value="2"><Financials/></TabPanel>
+          <TabPanel value="1"><Profile info={info}/></TabPanel>
+          
+          <TabPanel value="2"><Financials info={info}/></TabPanel>
         </Collapse> </TabContext>
       </>
   )

@@ -46,9 +46,7 @@ const SearchTicker = ({stockExchange}) => {
     const componentDidMount = async() =>{
        axios.get("/api/companyinfo")
        .then((response)=>{
-          console.log(response.data);
           setCompanies(response.data.companyinfo);
-          console.log(companies)
        })
     }
 
