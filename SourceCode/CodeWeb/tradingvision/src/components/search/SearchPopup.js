@@ -29,7 +29,7 @@ const SearchPopup = () => {
         setValue(newValue);
       };
 
-
+    
   return (
     <ThemeProvider theme={darkTheme}>
     <Container>
@@ -66,9 +66,9 @@ const SearchPopup = () => {
                     <Tab label="UPCOM" value="3" className={classes.tab}/>
                 </TabList>
 
-            <TabPanel value="1"><SearchTicker/></TabPanel>
-            <TabPanel value="2"><SearchTicker/></TabPanel>
-            <TabPanel value="3"><SearchTicker/></TabPanel>
+            <TabPanel value="1"><SearchTicker stockExchange={'hose'}/></TabPanel>
+            <TabPanel value="2"><SearchTicker stockExchange={'hnx'}/></TabPanel>
+            <TabPanel value="3"><SearchTicker stockExchange={'upcom'}/></TabPanel>
         </TabContext>
         </div>
     </Container>

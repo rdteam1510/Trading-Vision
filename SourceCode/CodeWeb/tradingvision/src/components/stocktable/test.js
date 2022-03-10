@@ -123,7 +123,7 @@ const DataGridDemo = ({stockExchange}) => {
     },[])
 
     const componentDidMount = async() =>{
-       axios.get("/stocks")
+       axios.get("/api/stocks")
        .then((response)=>{
           console.log(response.data);
           setStock(response.data.stocks);

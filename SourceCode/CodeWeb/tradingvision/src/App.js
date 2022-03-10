@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import './App.css';
-
 import Header from '././components/header/Header';
 import Homepage from './pages/homepage/Homepage';
 import Stockpage from './pages/specificticker/Stockpage';
@@ -10,6 +9,7 @@ import Favorite from "./pages/favorite/Favorite";
 import Reminder from "./pages/reminder/Reminder";
 import Login from "./pages/login/Login";
 import Profile from "./pages/profile/Profile";
+import React from 'react';
 
 const useStyles = makeStyles(()=>({
   App:{
