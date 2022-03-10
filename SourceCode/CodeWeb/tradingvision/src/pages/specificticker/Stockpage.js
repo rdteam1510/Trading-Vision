@@ -57,7 +57,7 @@ const Stockpage = () => {
         <Typography 
           variant="h4" 
           className={classes.name}>
-            {info.CompanyName}
+            {info.CompanyName} ({info.Ticker})
           <Checkbox {...label} 
             icon={<FavoriteBorderIcon sx={{ fontSize: 45, color:"#fff"}}/>} 
             className={classes.fav_border}
