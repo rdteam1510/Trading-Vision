@@ -14,6 +14,7 @@ import Favorite from '@mui/icons-material/Favorite';
 import { Dialog, Box } from '@mui/material';
 import CloseIcon from '@material-ui/icons/Close';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const Stockpage = () => {
 
@@ -25,16 +26,15 @@ const Stockpage = () => {
   const handleClosed = () => setOpen(false);
   const label = { inputProps: { 'aria-label': 'Checkbox favorite' } }; 
   const [selectedID, setSelectedID] = React.useState(null)
- 
+  const {ticker} = useParams();
   const [company, setCompany] = useState([]);
-
   // 
   useEffect(() => {
     componentDidMount()
   },[])
 
   const componentDidMount = async() =>{
-     axios.get(`/api/companyinfo/ACB`)
+     axios.get(`/api/companyinfo/${ticker}`)
      .then((response)=>{
         console.log(response.data);
         setCompany(response.data.companyinfo)

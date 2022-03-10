@@ -30,7 +30,7 @@ function App() {
           <Header/>
           <Routes>
             <Route exact path="/" element={<Homepage/>} />
-            <Route exact path="/stocks/:ticker" element={<Stockpage/>} />
+            <Route exact path="/stocks/:ticker" element={<Stockpage />} />
             <Route path="/favorite" element={<Favorite/>} />
             <Route path="/reminder" element={<Reminder/>} />
             <Route path="/login" element={<Login/>} />

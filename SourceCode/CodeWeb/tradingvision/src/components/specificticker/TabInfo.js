@@ -29,7 +29,9 @@ const TabInfo = ({info}) => {
               
                 }} />}
         label={<Typography className={classes.formControlLabel}>Show/Hide details</Typography>}
-        
+        style={{
+          marginTop: "2%",
+        }}
         />
     <TabContext value={value}>
         <Collapse in={expanded} timeout="auto" unmountOnExit>

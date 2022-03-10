@@ -32,21 +32,21 @@ const Financials = ({info}) => {
                     variant="subtitle1" 
                     className={classes.item}
                     style={{fontWeight: 'bold'}}>
-                      Outstanding Shares:
+                      Outstanding Shares (VND):
                   </Typography>
                   <Typography
                     gutterBottom 
                     variant="subtitle1" 
                     className={classes.item}
                     style={{fontWeight: 'bold'}}>
-                      Listed Shares:
+                      Listed Shares (VND):
                   </Typography>
                   <Typography
                     gutterBottom 
                     variant="subtitle1" 
                     className={classes.item}
                     style={{fontWeight: 'bold'}}>
-                      Book Value:
+                      Book Value (VND):
                   </Typography>
                   <Typography 
                     gutterBottom 
@@ -113,7 +113,7 @@ const Financials = ({info}) => {
                     variant="subtitle1" 
                     className={classes.item}
                     style={{fontWeight: 'bold'}}>
-                      Total Assets:
+                      Total Assets (VND):
                   </Typography>
                   
                   <Typography
@@ -121,14 +121,14 @@ const Financials = ({info}) => {
                     variant="subtitle1" 
                     className={classes.item}
                     style={{fontWeight: 'bold'}}>
-                      EPS Diluted:
+                      EPS Diluted (VND):
                   </Typography>
                   <Typography 
                     gutterBottom 
                     variant="subtitle1" 
                     className={classes.item}
                     style={{fontWeight: 'bold'}}>
-                      Basic EPS:
+                      Basic EPS (VND):
                   </Typography>
                   <Typography 
                     gutterBottom 

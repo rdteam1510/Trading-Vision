@@ -85,10 +85,14 @@ const useStyles = makeStyles((theme) => ({
     },
     toggle:{
         color: "orange",
-        backgroundColor: "orange"
+        backgroundColor: "orange",
+    },
+    info:{
+        marginTop: "10%",
     },
     formControlLabel:{
         fontFamily: "Montserrat",
+        marginTop: "5%",
     },
     // ----------TabList---------------------
     tablist_chart:{
