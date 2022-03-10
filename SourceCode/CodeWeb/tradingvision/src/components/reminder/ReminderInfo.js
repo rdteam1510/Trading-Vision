@@ -17,14 +17,12 @@ import {
   import useStyles from './style'
   import EditIcon from '@mui/icons-material/Edit';
   import DeleteIcon from '@mui/icons-material/Delete';
-  import SetReminderButton from "./SetReminderButton";
-  import Dialog from '@mui/material/Dialog';
-  import DialogActions from '@mui/material/DialogActions';
-  import DialogContent from '@mui/material/DialogContent';
-  import DialogContentText from '@mui/material/DialogContentText';
-  import DialogTitle from '@mui/material/DialogTitle';
-  import Button from '@mui/material/Button';
-  import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+  import SetReminderButton from "./reminderpopup/SetReminderButton";  
+  import ReminderDelete from './reminderpopup/ReminderDelete';
+  import ReminderDetail from './reminderpopup/ReminderDetail';
+
+  
+
   const darkTheme = createTheme({
     palette: {
       primary: {
@@ -56,8 +54,13 @@ const ReminderInfo = () => {
     const [loading, setLoading] = useState(false)
     const [page, setPage] = useState(0)
     const [rowsPerPage, setRowsPerPage] = useState(10);
-
-
+    const [openReminder, setOpenReminder] = React.useState(false)
+    const handleOpenReminder = () => {
+      setOpenReminder(true);
+    };
+    const handleCloseReminder = () => {
+      setOpenReminder(false);
+    };
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
       };
@@ -67,14 +70,12 @@ const ReminderInfo = () => {
     setPage(0);
     };
 
-    const [open, setOpen] = React.useState(false);
-
-    const handleClickOpen = () => {
-      setOpen(true);
-    };
-
-    const handleClose = () => {
-      setOpen(false);
+    const [openDelete, setOpenDelete] = useState(false);
+    const handleOpenDelete = () => {
+      setOpenDelete(true);
+    }
+    const handleCloseDelete = () => {
+      setOpenDelete(false);
     };
 
 
@@ -122,12 +123,12 @@ const ReminderInfo = () => {
                                     </TableCell>
                                     <TableCell align="left" className={classes.cell}>{row.time}</TableCell>
                                     <TableCell align="left" className={classes.cell}>{row.ticker}</TableCell>
-                                    <TableCell align="left" className={classes.cell} >
+                                    <TableCell align="left" className={classes.cell} onClick = {handleOpenReminder} >
                                     Read more
-
+                                    
                                     </TableCell>
                                     <TableCell align="left" className={classes.cell}><EditIcon/></TableCell>
-                                    <TableCell align="left" className={classes.cell}><DeleteIcon style={{marginLeft:"10%"}}/></TableCell>
+                                    <TableCell align="left" className={classes.cell}><DeleteIcon style={{marginLeft:"10%"}} onClick = {handleOpenDelete}/></TableCell>
 
                                 </TableRow>
                                 ))}
@@ -146,44 +147,12 @@ const ReminderInfo = () => {
                 rowsPerPage={rowsPerPage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
                 />
+                
             </TableContainer>
-                  <Dialog
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
-            >
+            <ReminderDetail open = {openReminder} onClose = {handleCloseReminder} />  
+            <ReminderDelete open = {openDelete} onClose = {handleCloseDelete} />   
              
-              <DialogTitle id="alert-dialog-title" color = '#f12323' align = "center">
-              <DeleteForeverIcon
-                align = "center" 
-                sx = {{
-                  fontSize:80,
-                  color:'#f12323',}}/> <br/>
-                {"You are about to delete a reminder"}
-              </DialogTitle>
-              <DialogContent>
-                <DialogContentText id="alert-dialog-description" align = "center">
-                  This will delete the reminder from reminder list. <br/>Are you sure?
-                </DialogContentText>
-              </DialogContent>
-              <DialogActions>
-                <Button 
-                  onClick={handleClose} 
-                  sx = {{
-                    color: 'white',
-                    backgroundColor:'#f12312'
-                  }}>Delete</Button>
-                <Button 
-                  onClick={handleClose}
-                  sx = {{
-                    color: 'black',
-                    backgroundColor:'grey'
-                  }}>
-                  Cancel
-                </Button>
-              </DialogActions>
-            </Dialog>
+        
     </ThemeProvider>
     </Container>
   )

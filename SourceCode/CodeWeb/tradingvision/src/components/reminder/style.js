@@ -62,11 +62,12 @@ const useStyles = makeStyles((theme)=>({
       }
     },
     btn_Cancel: {
-      backgroundColor:"#868B8E",
+      backgroundColor:"#c1c1c1",
       "&:hover":{
-        backgroundColor:"#4E4F50",
+        backgroundColor:"#AAAAAA",
       }
-    }
+    },
+    
 
 }))
 

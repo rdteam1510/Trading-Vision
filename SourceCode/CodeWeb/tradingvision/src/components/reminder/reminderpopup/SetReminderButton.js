@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import useStyles from './style'
+import useStyles from '../style'
 
 import {Button,
         
@@ -16,7 +16,7 @@ import DateTimePicker from '@mui/lab/DateTimePicker';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { CardContent } from '@mui/material';
-import { useForm, Form } from './useForm';
+import { useForm, Form } from '../useForm';
 
 const initialFValues = {
   id: 0,
@@ -28,11 +28,7 @@ const SetReminderButton = () => {
     const classes = useStyles()
     const [open, setOpen] = React.useState(false);
     const [date, setDate] = React.useState(new Date());
-    const [value, setValue] = React.useState();
-    const [title, setTitle] = React.useState(false)
-    const handleChange = (event) => {
-      setValue(event.target.value);
-    };
+    
     
     const handleClickOpen = () => {
       setOpen(true);
@@ -40,6 +36,7 @@ const SetReminderButton = () => {
   
     const handleClose = () => {
       resetForm()
+      setDate(null)
       setOpen(false)
     };
     const validate = (fieldValues = values) => {
@@ -85,8 +82,8 @@ const SetReminderButton = () => {
           PaperProps={{
             style: {
               backgroundColor: 'white',
-              height: '450px',
-              width: '650px',}
+              height: '430px',
+              width: '555px',}
           }}
         >
         <Form onSubmit={handleSubmit}>
@@ -121,6 +118,9 @@ const SetReminderButton = () => {
               }}> 
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                   <DateTimePicker
+                    component = "form"
+                    noValidate
+                    autoComplete="off"
                     renderInput={(props) => <TextField {...props} />}
                    
                     value={date}
@@ -136,6 +136,7 @@ const SetReminderButton = () => {
                           fontFamily:"Montserrat",
                           fontSize:"15px",
                         },
+                        readOnly: true,
                         
                       }}
                   />
@@ -143,19 +144,11 @@ const SetReminderButton = () => {
 
             </DialogContentText>
             <DialogContentText>
-                <Box
-                    component = "form"
-                    // border={4}
-                    // borderColor="black"
-                    // height="170px" 
-                    // sx={{
-                    //   '& .MuiTextField-root': { m: 1, width: '25ch' },
-                    // }}
-                    noValidate
-                    autoComplete="off"
-                  >
+                
                  <TextField
-                  
+                  component = "form"                  
+                  noValidate
+                  autoComplete="off"
                   
                   required  
                   placeholder="Content"
@@ -180,7 +173,7 @@ const SetReminderButton = () => {
                   helperText={errors.content}
                   
                 />
-              </Box>  
+             
           </DialogContentText>
           </DialogContent>
           <DialogActions className={classes.btn}>
