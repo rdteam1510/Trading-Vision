@@ -111,7 +111,7 @@ export function MenuIcon() {
   }}/>;
 }
 // Datagirid
-const DataGridDemo = ({stockExchange}) => {
+const DataGridDemo = ({stockExchange, handleSearch}) => {
     const history = useNavigate()
     const classes = useStyles();
     
@@ -154,7 +154,6 @@ const DataGridDemo = ({stockExchange}) => {
       <ThemeProvider theme={darkTheme}>
         <div style={{ height: 600, width: '100%', color:'white'}}>
         <DataGrid
-          
             rows={rows}
             columns={columns}
             pageSize={pageSize}

@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
     },
     tab:{
       fontFamily: "Montserrat",
+    },
+    label:{ 
+      fontFamily: "Montserrat",
     }
   }))
 

@@ -31,7 +31,7 @@ const darkTheme = createTheme({
 //   { id: 3, ticker: 'BID', companyName: "JOINT STOCK COMMERCIAL BANK FOR INVESTMENT AND DEVELOPMENT OF VIETNAM", industry:"Financials"},
 
 // ]; 
-const SearchTicker = ({stockExchange}) => {
+const SearchTicker = ({stockExchange, handleSearch}) => {
     const classes = useStyles()
     const [loading, setLoading] = useState(false)
     const history = useNavigate()
@@ -97,7 +97,7 @@ const SearchTicker = ({stockExchange}) => {
                             </TableHead>
                     
                             <TableBody>
-                                {rows
+                                {handleSearch()
                                 .map((row)=> (
                                     <TableRow
                                     onClick={() => {navigatePage(row.ticker); refreshPage();}}
