@@ -32,7 +32,6 @@ const SearchPopup = () => {
         setValue(newValue);
       };
     const [search,setSearch] = React.useState('');
-    
 
     const [companies, setCompanies] = useState([]);
 
@@ -56,12 +55,12 @@ const SearchPopup = () => {
           ticker: company.Ticker,
           companyName: company.CompanyName,
           industry: company.Industry,
-          
+          stockExchange: company.StockExchange,
         };
       
     })
 
-    const handleSearch = () => {
+    const handleSearch = (rows) => {
       return rows.filter(
         (row) =>
         row.ticker.toLowerCase().includes(search) ||

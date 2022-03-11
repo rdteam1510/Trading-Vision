@@ -53,7 +53,6 @@ const SearchTicker = ({stockExchange, handleSearch}) => {
     const rows = companies
     .filter((company) => company.StockExchange === stockExchange)
     .map((company) => {
-      console.log(company);
         return {
           id: company._id,
           ticker: company.Ticker,
@@ -63,7 +62,6 @@ const SearchTicker = ({stockExchange, handleSearch}) => {
         };
       
     })
-
 
   const navigatePage = (row_ticker) =>{
     history(`/stocks/${row_ticker}`)
@@ -97,7 +95,7 @@ const SearchTicker = ({stockExchange, handleSearch}) => {
                             </TableHead>
                     
                             <TableBody>
-                                {handleSearch()
+                                {handleSearch(rows)
                                 .map((row)=> (
                                     <TableRow
                                     onClick={() => {navigatePage(row.ticker); refreshPage();}}
