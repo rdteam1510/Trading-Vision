@@ -1,8 +1,6 @@
-////////////////////////////////
 // Import modules
 const Stock = require("../models/Stocks");
 
-////////////////////////////////
 // GET: get all stocks
 exports.fetchAllStocks = async (req, res) => {
 	try {
@@ -13,7 +11,6 @@ exports.fetchAllStocks = async (req, res) => {
 	}
 };
 
-////////////////////////////////
 // GET: get stock by ticker
 exports.fetchStockByTicker = async (req, res) => {
 	try {

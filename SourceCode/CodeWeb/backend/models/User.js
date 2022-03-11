@@ -3,32 +3,36 @@ const validator = require("validator");
 
 const userSchema = new mongoose.Schema(
 	{
-		// UserID,
-		UserName: {
+		googleId: {
 			type: String,
-			minLength: 3,
-			maxLength: 15,
-			unique: true,
-			trim: true,
-			required: [true, "Username is required."],
+			required: true,
 		},
-		Name: {
+		displayName: {
 			type: String,
-			minLength: 3,
-			maxLength: 30,
+			unique: true,
 			trim: true,
 			required: [true, "Name is required."],
 		},
-		Email: {
+		firstName: {
+			type: String,
+			trim: true,
+			required: [true, "firstName is required."],
+		},
+		lastName: {
+			type: String,
+			trim: true,
+			required: [true, "lastName is required."],
+		},
+		image: {
+			type: String,
+		},
+		email: {
 			type: String,
 			validate(value) {
 				if (!validator.isEmail(value)) {
 					throw new Error("Invalid email!");
 				}
 			},
-			unique: true,
-			lowercase: true,
-			trim: true,
 			required: [true, "Email is required."],
 		},
 	},
