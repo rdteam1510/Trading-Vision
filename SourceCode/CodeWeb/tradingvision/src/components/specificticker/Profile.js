@@ -4,7 +4,7 @@ import { Typography,
 } from '@material-ui/core';
 import React from 'react';
 import useStyles from './style';
-
+import { ExternalLink } from 'react-external-link';
 
 const Profile = ({info}) => {
 const classes = useStyles()
@@ -15,6 +15,11 @@ const details = {
   marketcap: info.MarketCapitalization,
 }
 
+const getClickableLink = link => {
+  return link.startsWith("http://") || link.startsWith("https://") ?
+    link
+    : `https://${link}`;
+};
 
 return (
 <div className={classes.profile}>
@@ -67,11 +72,14 @@ return (
           {details.address}
       </Typography>
 
-      <Link
-        to={{pathname: details.website}} target="_blank"
+      <Typography 
+        variant="subtitle1" 
+        gutterBottom
         className={classes.value}>
-          {details.website}
-      </Link>
+          <ExternalLink href={getClickableLink(details.website)}
+            style={{color:"#ffc87c"}}
+          />
+      </Typography>
     </Grid>
   </Grid>
 </Grid>

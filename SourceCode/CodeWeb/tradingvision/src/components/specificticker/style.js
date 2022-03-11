@@ -42,9 +42,24 @@ const useStyles = makeStyles((theme) => ({
         fontSize: "15px",
         [theme.breakpoints.down('sm')]: {
             fontSize: 13,
+            marginTop:"10px",
           },
         [theme.breakpoints.down('xs')]: {
             fontSize: 10,
+            marginTop:"15px",
+            },
+    },
+    value:{
+        fontFamily: "Montserrat",
+        fontSize: "15px",
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 13,
+            marginTop:"10px",
+          },
+        [theme.breakpoints.down('xs')]: {
+            fontSize: 10,
+            marginTop:"12px",
+            marginLeft:"14%",
             },
     },
     grid_info:{
@@ -55,15 +70,29 @@ const useStyles = makeStyles((theme) => ({
     },
 
     // Financial's styles
-    value:{
+    item_financial: {
+        fontFamily: "Montserrat",
+        fontSize: "15px",
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 12,
+            marginTop:"10%",
+          },
+        [theme.breakpoints.down('xs')]: {
+            fontSize: 10,
+            marginTop:"10%",
+            },
+    },
+    value_financial:{
         fontFamily: "Montserrat",
         fontSize: "15px",
         [theme.breakpoints.down('sm')]: {
             fontSize: 13,
+            marginTop:"10%",
           },
-          [theme.breakpoints.down('xs')]: {
+        [theme.breakpoints.down('xs')]: {
             fontSize: 10,
-          },
+            paddingTop:"10%",
+            },
     },
     financial:{
         maxWidth: "1000px",

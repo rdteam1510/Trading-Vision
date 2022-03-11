@@ -30,35 +30,35 @@ const Financials = ({info}) => {
                   <Typography
                     gutterBottom 
                     variant="subtitle1" 
-                    className={classes.item}
+                    className={classes.item_financial}
                     style={{fontWeight: 'bold'}}>
                       Outstanding Shares (VND):
                   </Typography>
                   <Typography
                     gutterBottom 
                     variant="subtitle1" 
-                    className={classes.item}
+                    className={classes.item_financial}
                     style={{fontWeight: 'bold'}}>
                       Listed Shares (VND):
                   </Typography>
                   <Typography
                     gutterBottom 
                     variant="subtitle1" 
-                    className={classes.item}
+                    className={classes.item_financial}
                     style={{fontWeight: 'bold'}}>
                       Book Value (VND):
                   </Typography>
                   <Typography 
                     gutterBottom 
                     variant="subtitle1" 
-                    className={classes.item}
+                    className={classes.item_financial}
                     style={{fontWeight: 'bold'}}>
                       ROA :
                   </Typography>
                   <Typography 
                     gutterBottom 
                     variant="subtitle1" 
-                    className={classes.item}
+                    className={classes.item_financial}
                     style={{fontWeight: 'bold'}}>
                       ROE :
                   </Typography>
@@ -72,31 +72,31 @@ const Financials = ({info}) => {
                 <Typography 
                   variant="subtitle1" 
                   gutterBottom
-                  className={classes.value}>
+                  className={classes.value_financial}>
                     {details.outstanding}
                 </Typography>
                 <Typography 
                   variant="subtitle1" 
                   gutterBottom
-                  className={classes.value}>
+                  className={classes.value_financial}>
                     {details.listedShares}
                 </Typography>
                 <Typography 
                   variant="subtitle1" 
                   gutterBottom
-                  className={classes.value}>
+                  className={classes.value_financial}>
                     {details.bookValue}
                 </Typography>
                 <Typography 
                   variant="subtitle1" 
                   gutterBottom
-                  className={classes.value}>
+                  className={classes.value_financial}>
                     {details.roa}
                 </Typography>
                 <Typography 
                   variant="subtitle1" 
                   gutterBottom
-                  className={classes.value}>
+                  className={classes.value_financial}>
                     {details.roe}
                 </Typography>
 
@@ -119,21 +119,21 @@ const Financials = ({info}) => {
                   <Typography
                     gutterBottom 
                     variant="subtitle1" 
-                    className={classes.item}
+                    className={classes.item_financial}
                     style={{fontWeight: 'bold'}}>
                       EPS Diluted (VND):
                   </Typography>
                   <Typography 
                     gutterBottom 
                     variant="subtitle1" 
-                    className={classes.item}
+                    className={classes.item_financial}
                     style={{fontWeight: 'bold'}}>
                       Basic EPS (VND):
                   </Typography>
                   <Typography 
                     gutterBottom 
                     variant="subtitle1" 
-                    className={classes.item}
+                    className={classes.item_financial}
                     style={{fontWeight: 'bold'}}>
                       P/E :
                   </Typography>
@@ -146,25 +146,25 @@ const Financials = ({info}) => {
                 <Typography 
                   variant="subtitle1" 
                   gutterBottom
-                  className={classes.value}>
+                  className={classes.value_financial}>
                     {details.totalassets}
                 </Typography>
                 <Typography 
                   variant="subtitle1" 
                   gutterBottom
-                  className={classes.value}>
+                  className={classes.value_financial}>
                     {details.dilutedEPS}
                 </Typography>
                 <Typography 
                   variant="subtitle1" 
                   gutterBottom
-                  className={classes.value}>
+                  className={classes.value_financial}>
                     {details.basicEPS}
                 </Typography>
                 <Typography 
                   variant="subtitle1" 
                   gutterBottom
-                  className={classes.value}>
+                  className={classes.value_financial}>
                     {details.pe}
                 </Typography>
               </Grid>
