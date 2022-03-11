@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import useStyles from '../style'
 
 import {Button,
@@ -15,27 +15,23 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
 import TextField from '@mui/material/TextField';
 import { useForm, Form } from '../useForm';
-
 const initialFValues = {
-  id: 0,
-  title: '',
-  content: '',
-  hireDate: new Date(),
-}
-const SetReminderButton = () => {
+    id: 0,
+    title: 'helloWorld',
+    content: 'remember to do sth',
+    date: new Date(),
+  }
+
+const ReminderEdit = (props) => {
     const classes = useStyles()
-    const [open, setOpen] = React.useState(false);
     const [date, setDate] = React.useState(new Date());
+    const {open, onClose} = props
     
     
-    const handleClickOpen = () => {
-      setOpen(true);
-    };
-  
     const handleClose = () => {
       resetForm()
-      setDate(null)
-      setOpen(false)
+      
+      onClose()
     };
     const validate = (fieldValues = values) => {
       let temp = { ...errors }
@@ -51,29 +47,26 @@ const SetReminderButton = () => {
       if (fieldValues == values)
           return Object.values(temp).every(x => x == "")
   }
-  const {
+    const {
     values,
     setValues,
     errors,
     setErrors,
     handleInputChange,
     resetForm
-} = useForm(initialFValues, true, validate);
-      const handleSubmit = e => {
+    } = useForm(initialFValues, true, validate);
+    const handleSubmit = e => {
         e.preventDefault()
         // ham insert reminder vo database
         if (validate()){
             resetForm()
-            handleClose()
+            onClose()
         }
         
     }
-
     return (
-      <div>
-        <Button variant="outlined" onClick={handleClickOpen}>
-          Set Reminder
-        </Button>
+        <div>
+        
         <Dialog 
           open={open} 
           onClose={handleClose}
@@ -90,11 +83,13 @@ const SetReminderButton = () => {
             component = "form"
               variant = "standard" //to disable outline
               required
+              defaultValue = "ACB"
               placeholder="Add Title" 
               noValidate
               autoComplete="off"
               InputProps={{ 
                     disableUnderline: true,
+                    defaultValue: "This is the default value",
                     style:{
                       fontSize:"18px",
                       fontFamily: "Montserrat",
@@ -120,8 +115,8 @@ const SetReminderButton = () => {
                     noValidate
                     autoComplete="off"
                     renderInput={(props) => <TextField {...props} />}
-                   
-                    value={date}
+                    name = "date"
+                    value={values.date}
                     
                     onChange={(newValue) => {
                       setDate(newValue);
@@ -186,8 +181,7 @@ const SetReminderButton = () => {
           </Form>
         </Dialog>
       </div>
-    );
+  )
 }
 
-export default SetReminderButton
-
+export default ReminderEdit;

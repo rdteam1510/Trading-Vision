@@ -2,6 +2,7 @@
   "name": "tradingvision",
   "version": "0.1.0",
   "private": true,
+  
   "dependencies": {
     "@date-io/date-fns": "^2.13.1",
     "@emotion/react": "^11.8.1",
@@ -21,9 +22,11 @@
     "@types/highcharts": "^7.0.0",
     "axios": "^0.26.0",
     "chart.js": "^3.7.1",
+    "concurrently": "^7.0.0",
     "date-fns": "^2.28.0",
     "faker": "^6.6.6",
     "highcharts": "^9.3.3",
+    "http-proxy-middleware": "^2.0.3",
     "material-ui-popup-state": "^2.0.0",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
@@ -39,7 +42,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "node node_modules/react-scripts/scripts/start.js",
+    "start": "concurrently \"node node_modules/react-scripts/scripts/start.js\" \"cd ../backend && nodemon index\"",
     "build": "node node_modules/react-scripts/scripts/build.js",
     "test": "node node_modules/react-scripts/scripts/test.js",
     "eject": "node node_modules/react-scripts/scripts/eject.js"

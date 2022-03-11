@@ -20,6 +20,8 @@ import {
   import SetReminderButton from "./reminderpopup/SetReminderButton";  
   import ReminderDelete from './reminderpopup/ReminderDelete';
   import ReminderDetail from './reminderpopup/ReminderDetail';
+  import ReminderEdit from './reminderpopup/ReminderEdit';
+
 
   
 
@@ -54,6 +56,7 @@ const ReminderInfo = () => {
     const [loading, setLoading] = useState(false)
     const [page, setPage] = useState(0)
     const [rowsPerPage, setRowsPerPage] = useState(10);
+    //Open reminder content
     const [openReminder, setOpenReminder] = React.useState(false)
     const handleOpenReminder = () => {
       setOpenReminder(true);
@@ -61,6 +64,17 @@ const ReminderInfo = () => {
     const handleCloseReminder = () => {
       setOpenReminder(false);
     };
+    
+    //Open reminder edit
+    const [openEdit, setOpenEdit] = React.useState(false)
+    const handleOpenEdit = () => {
+      setOpenEdit(true);
+    };
+    const handleCloseEdit = () => {
+      setOpenEdit(false);
+    };
+
+    //Handle pagination
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
       };
@@ -69,7 +83,8 @@ const ReminderInfo = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
     };
-
+    
+    //Open reminder delete
     const [openDelete, setOpenDelete] = useState(false);
     const handleOpenDelete = () => {
       setOpenDelete(true);
@@ -127,7 +142,7 @@ const ReminderInfo = () => {
                                     Read more
                                     
                                     </TableCell>
-                                    <TableCell align="left" className={classes.cell}><EditIcon/></TableCell>
+                                    <TableCell align="left" className={classes.cell}><EditIcon onClick = {handleOpenEdit}/></TableCell>
                                     <TableCell align="left" className={classes.cell}><DeleteIcon style={{marginLeft:"10%"}} onClick = {handleOpenDelete}/></TableCell>
 
                                 </TableRow>
@@ -149,7 +164,9 @@ const ReminderInfo = () => {
                 />
                 
             </TableContainer>
-            <ReminderDetail open = {openReminder} onClose = {handleCloseReminder} />  
+            <ReminderDetail open = {openReminder} onClose = {handleCloseReminder} /> 
+            <ReminderEdit open = {openEdit} onClose = {handleCloseEdit} />   
+ 
             <ReminderDelete open = {openDelete} onClose = {handleCloseDelete} />   
              
         
