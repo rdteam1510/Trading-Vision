@@ -72,12 +72,13 @@ const useStyles = makeStyles((theme)=>({
       },
       tableRowRoot: {
         "&$tableRowSelected, &$tableRowSelected:hover": {
-          backgroundColor: theme.palette.primary.main
+          backgroundColor: "6064AA"
+        },
+        tableRowSelected: {
+          backgroundColor: "rgd(143,146,195)"
         }
       },
-      tableRowSelected: {
-        backgroundColor: theme.palette.primary.main
-      }
+      
 }))
 
 export default useStyles
