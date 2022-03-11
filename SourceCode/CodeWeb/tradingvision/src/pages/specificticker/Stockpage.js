@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import useStyles from './style'
 import {Container,
       Typography,
@@ -13,6 +13,9 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 import { Dialog, Box } from '@mui/material';
 import CloseIcon from '@material-ui/icons/Close';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+
 const Stockpage = () => {
 
 
@@ -23,33 +26,52 @@ const Stockpage = () => {
   const handleClosed = () => setOpen(false);
   const label = { inputProps: { 'aria-label': 'Checkbox favorite' } }; 
   const [selectedID, setSelectedID] = React.useState(null)
- 
-  return (
+  const {ticker} = useParams();
+  const [company, setCompany] = useState([]);
+  // 
+  useEffect(() => {
+    componentDidMount()
+  },[])
+
+  const componentDidMount = async() =>{
+     axios.get(`/api/companyinfo/${ticker}`)
+     .then((response)=>{
+        console.log(response.data);
+        setCompany(response.data.companyinfo)
+        
+     })
+  }
   
+
+  return (
+
       <Container className={classes.container}>
       <div className={classes.title}>
+      {company.map(info =>(
+        <>
         <Typography 
           variant="h6" 
           className={classes.field}
-         >
-            Field
+         > {info.Industry}
         </Typography>
         <Typography 
-          variant="h4" 
+          variant="h5" 
           className={classes.name}>
-          Company Name (Ticker label) 
+            {info.CompanyName} ({info.Ticker})
           <Checkbox {...label} 
             icon={<FavoriteBorderIcon sx={{ fontSize: 45, color:"#fff"}}/>} 
             className={classes.fav_border}
             checkedIcon={<Favorite sx={{ fontSize: 45}}/>} />
         </Typography>
         <div className={classes.line}/>
-      </div>
 
-      <div className={classes.info}>
-          <TabInfo/>
-      </div>
-
+          <div className={classes.info}>
+              <TabInfo info={info}/>
+          </div>
+        </>
+      ))}
+        
+    </div>
       <Button 
             variant="contained"
             className={classes.button}

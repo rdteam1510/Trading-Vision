@@ -111,7 +111,7 @@ export function MenuIcon() {
   }}/>;
 }
 // Datagirid
-const DataGridDemo = ({stockExchange}) => {
+const DataGridDemo = ({stockExchange, handleSearch}) => {
     const history = useNavigate()
     const classes = useStyles();
     
@@ -123,7 +123,7 @@ const DataGridDemo = ({stockExchange}) => {
     },[])
 
     const componentDidMount = async() =>{
-       axios.get("/stocks")
+       axios.get("/api/stocks")
        .then((response)=>{
           console.log(response.data);
           setStock(response.data.stocks);
@@ -154,7 +154,6 @@ const DataGridDemo = ({stockExchange}) => {
       <ThemeProvider theme={darkTheme}>
         <div style={{ height: 600, width: '100%', color:'white'}}>
         <DataGrid
-          
             rows={rows}
             columns={columns}
             pageSize={pageSize}

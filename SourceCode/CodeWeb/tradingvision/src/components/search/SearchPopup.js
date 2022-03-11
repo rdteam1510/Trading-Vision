@@ -1,13 +1,15 @@
+import axios from 'axios'
 import { Container,
         InputBase,
         ThemeProvider,
         createTheme,
         Tab,} from '@material-ui/core'
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import useStyles from './style'
 import SearchIcon from '@mui/icons-material/Search';
 import { TabContext, TabList, TabPanel } from '@material-ui/lab';
 import SearchTicker from './SearchTicker';
+
 
 const darkTheme = createTheme({
     palette: {
@@ -19,6 +21,7 @@ const darkTheme = createTheme({
     },
   });
 
+
 const SearchPopup = () => {
     const classes = useStyles()
     const [test, setTest] = React.useState(false);
@@ -28,6 +31,49 @@ const SearchPopup = () => {
     const handleChange = (event, newValue) => {
         setValue(newValue);
       };
+    const [search,setSearch] = React.useState('');
+    
+
+    const [companies, setCompanies] = useState([]);
+
+    // 
+    useEffect(() => {
+      componentDidMount()
+    },[])
+
+    const componentDidMount = async() =>{
+       axios.get("/api/companyinfo")
+       .then((response)=>{
+          setCompanies(response.data.companyinfo);
+       })
+    }
+
+    const rows = companies
+    .map((company) => {
+      console.log(company);
+        return {
+          id: company._id,
+          ticker: company.Ticker,
+          companyName: company.CompanyName,
+          industry: company.Industry,
+          
+        };
+      
+    })
+
+    const handleSearch = () => {
+      return rows.filter(
+        (row) =>
+        row.ticker.toLowerCase().includes(search) ||
+        row.industry.toLowerCase().includes(search) ||
+        row.ticker.includes(search) ||
+        row.industry.includes(search) 
+      );
+    };
+
+
+
+
 
 
   return (
@@ -46,7 +92,7 @@ const SearchPopup = () => {
                     inputProps={{ 'aria-label': 'search' }}
                     onClick={handleOpen}
                     style={{fontFamily: "Montserrat"}}
-                    />
+                    onChange={(e) => setSearch(e.target.value)}/>
                             
         </div>
         <div className={classes.table}>
@@ -66,9 +112,15 @@ const SearchPopup = () => {
                     <Tab label="UPCOM" value="3" className={classes.tab}/>
                 </TabList>
 
-            <TabPanel value="1"><SearchTicker/></TabPanel>
-            <TabPanel value="2"><SearchTicker/></TabPanel>
-            <TabPanel value="3"><SearchTicker/></TabPanel>
+            <TabPanel value="1">
+               <SearchTicker stockExchange={'hose'} handleSearch={handleSearch}/>
+            </TabPanel>
+            <TabPanel value="2">
+                <SearchTicker stockExchange={'hnx'} handleSearch={handleSearch}/>
+              </TabPanel>
+            <TabPanel value="3">
+                <SearchTicker stockExchange={'upcom'} handleSearch={handleSearch}/>
+            </TabPanel>
         </TabContext>
         </div>
     </Container>

@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import './App.css';
-
 import Header from '././components/header/Header';
 import Homepage from './pages/homepage/Homepage';
 import Stockpage from './pages/specificticker/Stockpage';
@@ -10,6 +9,7 @@ import Favorite from "./pages/favorite/Favorite";
 import Reminder from "./pages/reminder/Reminder";
 import Login from "./pages/login/Login";
 import Profile from "./pages/profile/Profile";
+import React from 'react';
 
 const useStyles = makeStyles(()=>({
   App:{
@@ -30,7 +30,7 @@ function App() {
           <Header/>
           <Routes>
             <Route exact path="/" element={<Homepage/>} />
-            <Route exact path="/stocks/:ticker" element={<Stockpage/>} />
+            <Route exact path="/stocks/:ticker" element={<Stockpage />} />
             <Route path="/favorite" element={<Favorite/>} />
             <Route path="/reminder" element={<Reminder/>} />
             <Route path="/login" element={<Login/>} />

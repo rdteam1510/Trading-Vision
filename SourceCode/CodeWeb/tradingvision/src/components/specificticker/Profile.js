@@ -1,21 +1,33 @@
 import { Typography,
-  Grid
+  Grid,
+  Link,
 } from '@material-ui/core';
 import React from 'react';
 import useStyles from './style';
+import { ExternalLink } from 'react-external-link';
 
-
-const Profile = () => {
+const Profile = ({info}) => {
 const classes = useStyles()
+const details = {
+  address: info.Address,
+  info: info.Info,
+  website: info.Website,
+  marketcap: info.MarketCapitalization,
+}
+
+const getClickableLink = link => {
+  return link.startsWith("http://") || link.startsWith("https://") ?
+    link
+    : `https://${link}`;
+};
 
 return (
 <div className={classes.profile}>
-<Typography variant='body1' 
-className={classes.description}>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-sed do eiusmod tempor incididunt ut labore et dolore magna dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-</Typography>
+
+  <Typography variant='body1' 
+    className={classes.description}> {details.info}
+  </Typography>
+
 
 <Grid container className={classes.grid}>
     <Grid item xs container spacing={2}>
@@ -25,7 +37,7 @@ sed do eiusmod tempor incididunt ut labore et dolore magna dolor sit amet, conse
           variant="subtitle1" 
           className={classes.item}
           style={{fontWeight: 'bold'}}>
-            Market Capital:
+            Market Capital (Billions VND):
         </Typography>
         <Typography 
           gutterBottom 
@@ -50,22 +62,23 @@ sed do eiusmod tempor incididunt ut labore et dolore magna dolor sit amet, conse
       <Typography 
         variant="subtitle1" 
         gutterBottom
-        className={classes.value}>
-          1xxxxxxx
+        className={classes.value}> {details.marketcap}
       </Typography>
 
       <Typography 
         variant="subtitle1" 
         gutterBottom
         className={classes.value}>
-          Lorem ipsum
+          {details.address}
       </Typography>
 
       <Typography 
         variant="subtitle1" 
         gutterBottom
         className={classes.value}>
-          Lorem ipsum
+          <ExternalLink href={getClickableLink(details.website)}
+            style={{color:"#ffc87c"}}
+          />
       </Typography>
     </Grid>
   </Grid>
