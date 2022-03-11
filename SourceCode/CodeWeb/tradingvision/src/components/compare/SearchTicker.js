@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import useStyles from '../search/style'
 import {  
   createTheme, 
@@ -13,6 +13,8 @@ import {
   Paper,
 } from '@material-ui/core'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 
 const darkTheme = createTheme({
     palette: {
@@ -37,7 +39,7 @@ const SearchTicker = (props) => {
     const history = useNavigate()
     const handleOpen = () => setLoading(true);
     const handleClosed = () => setLoading(false);
-  
+
     
   return (
     <ThemeProvider theme={darkTheme}>

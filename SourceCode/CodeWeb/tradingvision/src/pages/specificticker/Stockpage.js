@@ -55,7 +55,7 @@ const Stockpage = () => {
          > {info.Industry}
         </Typography>
         <Typography 
-          variant="h4" 
+          variant="h5" 
           className={classes.name}>
             {info.CompanyName} ({info.Ticker})
           <Checkbox {...label} 

@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme)=>({
     name:{
         fontFamily: "Montserrat",
         fontWeight: "bold",
+        
     },
     line:{
         border: 'solid orange',
