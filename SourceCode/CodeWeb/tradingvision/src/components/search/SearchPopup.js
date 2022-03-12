@@ -64,9 +64,11 @@ const SearchPopup = () => {
       return rows.filter(
         (row) =>
         row.ticker.toLowerCase().includes(search) ||
+        row.companyName.toLowerCase().includes(search) ||
         row.industry.toLowerCase().includes(search) ||
         row.ticker.includes(search) ||
-        row.industry.includes(search) 
+        row.industry.includes(search) ||
+        row.companyName.includes(search) 
       );
     };
 
