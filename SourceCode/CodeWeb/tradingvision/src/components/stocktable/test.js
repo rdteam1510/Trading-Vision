@@ -133,7 +133,6 @@ const DataGridDemo = ({stockExchange, handleSearch}) => {
     const rows = stocks
     .filter((stock) => stock.StockExchange === stockExchange)
     .map((stock) => {
-      console.log(stock.StockExchange);
         return {
           id: stock._id,
           ceiling: stock.Ceiling,

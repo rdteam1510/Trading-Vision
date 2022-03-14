@@ -10,7 +10,7 @@ import {
   HighchartsStockChart, Chart, withHighcharts, XAxis, YAxis,
   OHLCSeries, ColumnSeries, Navigator, RangeSelector, Tooltip, CandlestickSeries
 } from 'react-jsx-highstock';
-
+import {useParams} from 'react-router-dom'
 addIndicatorsAllModule(Highcharts)
 addDragPanesModule(Highcharts)
 addAnnotationsAdvancedModule(Highcharts)
@@ -45,8 +45,10 @@ function tooltipPositioner (width, height, point) {
   return position;
 }
 
-const MyChart = ({ ohlc, volume, onUpdate }) => (
-  <HighchartsStockChart >
+const MyChart = ({ ohlc, volume, onUpdate}) => {
+  const {ticker} = useParams()
+  return (<>
+    <HighchartsStockChart >
     <Chart 
     height = "65%"
     onUpdate={onUpdate} />
@@ -92,7 +94,7 @@ const MyChart = ({ ohlc, volume, onUpdate }) => (
       resize={{
         enabled: true
       }}>
-      <CandlestickSeries id="ohlc" name="AAPL Stock Price" data={ohlc} />
+      <CandlestickSeries id="ohlc" name={ticker + ' Stock Price'} data={ohlc} />
     </YAxis>
 
     <YAxis
@@ -104,13 +106,16 @@ const MyChart = ({ ohlc, volume, onUpdate }) => (
       height="10%"
       offset={0}
       >
-      <ColumnSeries id="vol" name="AAPL Volume" data={volume} />
+      <ColumnSeries id="vol" name={ticker + " Volume"} data={volume} />
     </YAxis>
 
     <Navigator>
       <Navigator.Series seriesId="ohlc" />
     </Navigator>
   </HighchartsStockChart>
-);
+  </>
+  )
+  
+}
 
 export default withHighcharts(MyChart, Highcharts);

@@ -1,64 +1,109 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { render } from 'react-dom';
 import Candle from './Candle';
 import './style.css';
+import axios from 'axios'
+import {useParams} from 'react-router-dom'
+// class Candlestick extends Component {
+//   state = {
+//     ohlc: [],
+//     volume: []
+//   };
 
-class Candlestick extends Component {
-  state = {
-    ohlc: [],
-    volume: []
-  };
+//   componentDidMount () {
+//     fetch('https://rawcdn.githack.com/highcharts/highcharts/1a37c045270770251ac68b963614ebcca9b0f5d8/samples/data/aapl-ohlcv.json')
+//       .then(res => {
+//         if (!res.ok) {
+//           console.log('No data')
+//           return []
+//         }
+//         return res.json()
+//       })
+//       .then(data => {
+//         // split the data set into ohlc and volume
+//         const ohlc = [];
+//         const volume = [];
 
-  componentDidMount () {
-    fetch('https://rawcdn.githack.com/highcharts/highcharts/1a37c045270770251ac68b963614ebcca9b0f5d8/samples/data/aapl-ohlcv.json')
-      .then(res => {
-        if (!res.ok) {
-          console.log('No data')
-          return []
-        }
-        return res.json()
-      })
-      .then(data => {
-        // split the data set into ohlc and volume
-        const ohlc = [];
-        const volume = [];
+//         data.forEach(point => {
+//           ohlc.push([
+//             point[0], // the date
+//             point[1], // open
+//             point[2], // high
+//             point[3], // low
+//             point[4] // close
+//           ]);
 
-        data.forEach(point => {
-          ohlc.push([
-            point[0], // the date
-            point[1], // open
-            point[2], // high
-            point[3], // low
-            point[4] // close
-          ]);
+//           volume.push([
+//             point[0], // the date
+//             point[5] // the volume
+//           ]);
+//         })
 
-          volume.push([
-            point[0], // the date
-            point[5] // the volume
-          ]);
-        })
+//         this.setState({
+//           ohlc,
+//           volume
+//         })
+//       })
+//   }
+  
+//   handleUpdate = e => {
+//     const chart = e.target;
+//     chart.navigationBindings.update();
+//   }
+  
+//   render () {
+//     const { ohlc, volume } = this.state
+//     if (ohlc.length === 0) return null
+//     console.log(ohlc)
+//     return (
+//       <div className="candlestick">
+//         <Candle ohlc={ohlc} volume={volume} onUpdate={this.handleUpdate} />
+//       </div>
+//     );
+//   }
+// }
 
-        this.setState({
-          ohlc,
-          volume
-        })
-      })
+const Candlestick = () => {
+  const {ticker} = useParams()
+  const [data, setData] = useState([])
+  
+  useEffect(() => {
+    componentDidMount()
+  },[])
+
+  const componentDidMount = async() => {
+    axios.get(`/api/stocks/${ticker}`)
+    .then((response) =>{
+      setData(response.data.stock)
+    })
   }
 
-  handleUpdate = e => {
-    const chart = e.target;
-    chart.navigationBindings.update();
-  }
+  const ohlc = [];
+  const volume = [];
 
-  render () {
-    const { ohlc, volume } = this.state
-    if (ohlc.length === 0) return null
+  const handleUpdate = e => {
+        const chart = e.target;
+        chart.navigationBindings.update();
+      }
+  data.map(point => {
+    ohlc.push([
+      point.TimeStamp, // the date
+      point.Floor, // open
+      point.Highest, // high
+      point.Lowest, // low
+      point.PreviousClose // close
+    ]);
 
-    return (
-      <div className="candlestick">
-        <Candle ohlc={ohlc} volume={volume} onUpdate={this.handleUpdate} />
-      </div>
-    );
-  }
+    volume.push([
+      point.TimeStamp, // the date
+      point.Volume // the volume
+    ]);
+  })
+  console.log(ohlc)
+  return (
+    <div className="candlestick">
+         <Candle ohlc={ohlc} volume={volume} onUpdate={handleUpdate} data={data}/>
+    </div>
+  )
 }
 export default Candlestick;

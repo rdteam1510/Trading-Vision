@@ -49,7 +49,7 @@ const SearchPopup = () => {
 
     const rows = companies
     .map((company) => {
-      console.log(company);
+     
         return {
           id: company._id,
           ticker: company.Ticker,
