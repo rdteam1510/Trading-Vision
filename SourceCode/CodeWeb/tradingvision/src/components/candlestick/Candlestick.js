@@ -88,10 +88,10 @@ const Candlestick = () => {
   data.map(point => {
     ohlc.push([
       point.TimeStamp, // the date
-      point.Floor, // open
+      point.PreviousClose, // open
       point.Highest, // high
       point.Lowest, // low
-      point.PreviousClose // close
+      point.Match // close
     ]);
 
     volume.push([
