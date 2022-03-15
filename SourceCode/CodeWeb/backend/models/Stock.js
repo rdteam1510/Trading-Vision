@@ -6,7 +6,7 @@ const stockSchema = new mongoose.Schema({
 	Highest: Number,
 	Lowest: Number,
 	Match: Number,
-	Previous: Number,
+	PreviousClose: Number,
 	StockExchange: String,
 	Ticker: String,
 	Time: Number,
@@ -14,6 +14,4 @@ const stockSchema = new mongoose.Schema({
 	Volume: Number,
 });
 
-const Stocks = mongoose.model("Stocks", stockSchema);
-
-module.exports = Stocks;
+module.exports = mongoose.model("Stock", stockSchema);

@@ -1,24 +1,25 @@
-// Import modules
+// Import Modules
 const CompanyInfo = require("../models/CompanyInfo");
 
-// GET: get all company information
-exports.fetchAllCompanyInfo = async (req, res) => {
+exports.getAllCompanyInfo = async (req, res) => {
 	try {
-		const companyinfo = await CompanyInfo.find();
-		return res.json({ success: true, companyinfo });
+		const companyinfo = await CompanyInfo.find({});
+		res.status(200).json({ success: true, companyinfo });
 	} catch (error) {
-		return res.status(404).json({ success: false, message: error.message });
+		res.status(500).json({ msg: error });
 	}
 };
 
-// GET: get company info by ticker
-exports.fetchCompanyInfoByTicker = async (req, res) => {
+exports.getCompanyInfoByTicker = async (req, res) => {
 	try {
-		const companyinfo = await CompanyInfo.find({
+		const companyinfo = await CompanyInfo.findOne({
 			Ticker: req.params.ticker,
 		});
-		return res.json({ success: true, companyinfo });
+		if (!companyinfo) {
+			return res.status(404).json({ msg: "Company does not exist." });
+		}
+		res.status(200).json({ success: true, companyinfo });
 	} catch (error) {
-		return res.status(404).json({ success: false, message: error.message });
+		res.status(500).json({ msg: error });
 	}
 };

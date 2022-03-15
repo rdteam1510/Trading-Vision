@@ -1,19 +1,19 @@
 // Import modules
 const express = require("express");
+const router = express.Router();
 const {
-	fetchAllStocks,
-	fetchStockByTicker,
+	getAllStocks,
+	getStockByTicker,
 } = require("../controllers/stock.controller");
 
-// Initialize Router
-const router = express.Router();
-
-// @desc Get all stocks
+// @desc Get all stocks (300 stocks)
+// @method GET
 // @route /api/stocks
-router.get("/api/stocks", fetchAllStocks);
+router.route("/").get(getAllStocks);
 
 // @desc Get stock by ticker
+// @method GET
 // @route /api/stocks/:ticker
-router.get("/api/stocks/:ticker", fetchStockByTicker);
+router.route("/:ticker").get(getStockByTicker);
 
 module.exports = router;

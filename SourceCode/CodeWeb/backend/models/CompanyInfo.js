@@ -20,6 +20,4 @@ const companyInfoSchema = new mongoose.Schema({
 	Website: String,
 });
 
-const CompanyInfo = mongoose.model("CompanyInfos", companyInfoSchema);
-
-module.exports = CompanyInfo;
+module.exports = mongoose.model("CompanyInfos", companyInfoSchema);

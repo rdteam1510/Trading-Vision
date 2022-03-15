@@ -11,17 +11,17 @@ const userSchema = new mongoose.Schema(
 			type: String,
 			unique: true,
 			trim: true,
-			required: [true, "Name is required."],
+			require: [true, "Name is required"],
 		},
 		firstName: {
 			type: String,
 			trim: true,
-			required: [true, "firstName is required."],
+			required: [true, "firstName is required"],
 		},
 		lastName: {
 			type: String,
 			trim: true,
-			required: [true, "lastName is required."],
+			required: [true, "lastName is required"],
 		},
 		image: {
 			type: String,
@@ -33,12 +33,10 @@ const userSchema = new mongoose.Schema(
 					throw new Error("Invalid email!");
 				}
 			},
-			required: [true, "Email is required."],
+			required: [true, "Email is required"],
 		},
 	},
 	{ timestamps: true }
 );
 
-const User = mongoose.model("User", userSchema);
-
-module.exports = User;
+module.exports = mongoose.model("User", userSchema);

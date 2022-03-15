@@ -7,6 +7,4 @@ const predictionSchema = new mongoose.Schema({
 	TimeStamp: { type: Date },
 });
 
-const Prediction = mongoose.model("Prediction", predictionSchema);
-
-module.exports = Prediction;
+module.exports = mongoose.model("Prediction", predictionSchema);

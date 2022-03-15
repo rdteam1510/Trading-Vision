@@ -1,3 +1,13 @@
+- [How to run](#how-to-run)
+  - [You can check data with POSTMAN](#you-can-check-data-with-postman)
+- [Routes](#routes)
+  - [CompanyInfo](#companyinfo)
+  - [Stokcs](#stokcs)
+  - [Predictions](#predictions)
+  - [Google oAuth2.0](#google-oauth20)
+
+---
+
 # How to run
 
 1. `npm install`

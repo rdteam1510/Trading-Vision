@@ -1,22 +1,22 @@
-// Import modules
-const Stock = require("../models/Stocks");
+const Stock = require("../models/Stock.js");
 
-// GET: get all stocks
-exports.fetchAllStocks = async (req, res) => {
+exports.getAllStocks = async (req, res) => {
 	try {
-		const stocks = await Stock.find().limit(300);
-		return res.json({ success: true, stocks });
+		const stocks = await Stock.find({}).limit(300);
+		res.status(200).json({ stocks });
 	} catch (error) {
-		return res.status(404).json({ success: false, message: error.message });
+		res.status(500).json({ msg: error });
 	}
 };
 
-// GET: get stock by ticker
-exports.fetchStockByTicker = async (req, res) => {
+exports.getStockByTicker = async (req, res) => {
 	try {
 		const stock = await Stock.find({ Ticker: req.params.ticker });
-		return res.json({ success: true, stock });
+		if (!stock) {
+			return res.status(404).json({ msg: "Stock does not exist" });
+		}
+		res.status(200).json({ stock });
 	} catch (error) {
-		return res.status(404).json({ success: false, message: error.message });
+		res.status(500).json({ msg: error });
 	}
 };

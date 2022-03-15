@@ -1,14 +1,13 @@
 // Import modules
 const express = require("express");
+const router = express.Router();
 const {
-	fetchPredictionByTicker,
+	getPredictionByTicker,
 } = require("../controllers/prediction.controller");
 
-// Initalize router
-const router = express.Router();
-
-// @desc get all predictions
+// @desc Get all predictions
+// @method GET
 // @route /api/predictions
-router.get("/api/predictions/:ticker", fetchPredictionByTicker);
+router.route("/:ticker").get(getPredictionByTicker);
 
 module.exports = router;

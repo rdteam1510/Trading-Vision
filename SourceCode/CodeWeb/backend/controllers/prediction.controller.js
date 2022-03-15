@@ -2,7 +2,7 @@
 const Prediction = require("../models/Prediction");
 
 // Get predictions
-exports.fetchPredictionByTicker = async (req, res) => {
+exports.getPredictionByTicker = async (req, res) => {
 	try {
 		const prediction = await Prediction.find({
 			Ticker: req.params.ticker,
