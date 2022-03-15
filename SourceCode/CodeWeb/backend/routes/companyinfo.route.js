@@ -9,11 +9,12 @@ const {
 // @desc Get all company info
 // @method GET
 // @route /api/companyinfo
-router.route("/").get(getAllCompanyInfo);
+router.route("/api/companyinfo").get(getAllCompanyInfo);
 
 // @desc Get company info by ticker
 // @method GET
 // @route /api/companyinfo/:ticker
-router.route("/:ticker").get(getCompanyInfoByTicker);
+//router.route("/api/companyinfo/:ticker").get(getCompanyInfoByTicker);
+router.get("/api/companyinfo/:ticker",getCompanyInfoByTicker);
 
 module.exports = router;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import useStyles from '../style'
 
 import {Button,
@@ -8,6 +8,7 @@ import {Button,
         DialogContent,
         DialogContentText ,
         DialogTitle,
+        Typography,
        
 } from '@material-ui/core';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
@@ -15,10 +16,15 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
 import TextField from '@mui/material/TextField';
 import { useForm, Form } from '../useForm';
+import Autocomplete from '@mui/material/Autocomplete';
+import axios from 'axios'
+
+
 const initialFValues = {
     id: 0,
     title: 'helloWorld',
     content: 'remember to do sth',
+    ticker: 'ACB',
     date: new Date(),
   }
 
@@ -39,7 +45,8 @@ const ReminderEdit = (props) => {
           temp.title = fieldValues.title ? "" : "This field is required."
       if ('content' in fieldValues)
           temp.content = fieldValues.content ? "" : "This field is required."
-          
+      if   ('ticker' in fieldValues)
+          temp.ticker = fieldValues.ticker ? "" : "This field is required."
       setErrors({
           ...temp
       })
@@ -64,6 +71,36 @@ const ReminderEdit = (props) => {
         }
         
     }
+
+    const [stocks, setStock] = useState([])
+
+    useEffect(() => {
+      componentDidMount()
+    },[])
+
+    const componentDidMount = async() => {
+      axios.get(`/api/stocks`)
+      .then((response) =>{
+        setStock(response.data.stocks)
+      })
+    }
+
+    const listStocks = stocks.map((stock) =>{
+      return {
+        ticker: stock.Ticker,
+        stockExchange: stock.StockExchange,
+      }
+    })
+    
+    const options = listStocks.map((option) => {
+      const firstLetter = option.ticker[0].toUpperCase();
+      return {
+        firstLetter: /[0-9]/.test(firstLetter) ? '0-9' : firstLetter,
+        ...option,
+      };
+    });
+
+
     return (
         <div>
         
@@ -134,8 +171,24 @@ const ReminderEdit = (props) => {
                       }}
                   />
               </LocalizationProvider>
-
             </DialogContentText>
+
+            <DialogContentText>
+            <Autocomplete
+                id="grouped-demo"
+                options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
+                groupBy={(option) => option.firstLetter}
+                getOptionLabel={(option) => option.ticker}
+                sx={{ width: 300 }}
+                value={values.ticker}
+                renderInput={(params) => <TextField 
+                {...params} 
+                required
+                label={<Typography style={{fontFamily:"Montserrat"}}>Choose a ticker...</Typography>} />}
+              />
+            </DialogContentText>
+
+
             <DialogContentText>
                 
                  <TextField

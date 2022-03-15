@@ -12,7 +12,7 @@ exports.getAllCompanyInfo = async (req, res) => {
 
 exports.getCompanyInfoByTicker = async (req, res) => {
 	try {
-		const companyinfo = await CompanyInfo.findOne({
+		const companyinfo = await CompanyInfo.find({
 			Ticker: req.params.ticker,
 		});
 		if (!companyinfo) {

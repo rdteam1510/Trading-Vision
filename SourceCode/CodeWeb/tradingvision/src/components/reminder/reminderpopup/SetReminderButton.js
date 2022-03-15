@@ -23,6 +23,7 @@ const initialFValues = {
   id: 0,
   title: '',
   content: '',
+  ticker: '',
   hireDate: new Date(),
 }
 const SetReminderButton = () => {
@@ -46,14 +47,14 @@ const SetReminderButton = () => {
           temp.title = fieldValues.title ? "" : "This field is required."
       if ('content' in fieldValues)
           temp.content = fieldValues.content ? "" : "This field is required."
-      if ('ticker' in fieldValues)
-          temp.content = fieldValues.content ? "" : "This field is required."    
+          if   ('ticker' in fieldValues)
+          temp.ticker = fieldValues.ticker ? "" : "This field is required."
       setErrors({
           ...temp
       })
 
-      if (fieldValues == values)
-          return Object.values(temp).every(x => x == "")
+      if (fieldValues === values)
+          return Object.values(temp).every(x => x === "")
   }
   const {
       values,
@@ -112,8 +113,8 @@ const SetReminderButton = () => {
           PaperProps={{
             style: {
               backgroundColor: 'white',
-              height: '430px',
-              width: '555px',}
+              height: '500px',
+              width: '560px',}
           }}
         >
         <Form onSubmit={handleSubmit}>
@@ -152,9 +153,7 @@ const SetReminderButton = () => {
                     noValidate
                     autoComplete="off"
                     renderInput={(props) => <TextField {...props} />}
-                   
                     value={date}
-                    
                     onChange={(newValue) => {
                       setDate(newValue);
                     }}
@@ -186,6 +185,14 @@ const SetReminderButton = () => {
                 renderInput={(params) => <TextField 
                 {...params} 
                 required
+                // name="ticker"        
+                // component = "form"
+                // autoComplete="off"
+                
+                // noValidate
+                // onChange={handleInputChange}
+                // error={errors.ticker}
+                // helperText={errors.ticker}
                 label={<Typography style={{fontFamily:"Montserrat"}}>Choose a ticker...</Typography>} />}
               />
             </DialogContentText>
