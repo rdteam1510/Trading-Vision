@@ -1,6 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import useStyles from '../style'
-
 import {Button,
         
         Dialog,
@@ -15,6 +14,10 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
 import TextField from '@mui/material/TextField';
 import { useForm, Form } from '../useForm';
+import Autocomplete from '@mui/material/Autocomplete';
+import axios from 'axios'
+import { Typography } from '@mui/material';
+
 
 const initialFValues = {
   id: 0,
@@ -43,7 +46,8 @@ const SetReminderButton = () => {
           temp.title = fieldValues.title ? "" : "This field is required."
       if ('content' in fieldValues)
           temp.content = fieldValues.content ? "" : "This field is required."
-          
+      if ('ticker' in fieldValues)
+          temp.content = fieldValues.content ? "" : "This field is required."    
       setErrors({
           ...temp
       })
@@ -52,22 +56,50 @@ const SetReminderButton = () => {
           return Object.values(temp).every(x => x == "")
   }
   const {
-    values,
-    setValues,
-    errors,
-    setErrors,
-    handleInputChange,
-    resetForm
-} = useForm(initialFValues, true, validate);
-      const handleSubmit = e => {
-        e.preventDefault()
-        // ham insert reminder vo database
-        if (validate()){
-            resetForm()
-            handleClose()
-        }
-        
+      values,
+      setValues,
+      errors,
+      setErrors,
+      handleInputChange,
+      resetForm
+  } = useForm(initialFValues, true, validate);
+        const handleSubmit = e => {
+          e.preventDefault()
+          // ham insert reminder vo database
+          if (validate()){
+              resetForm()
+              handleClose()
+          }
+          
+      }
+
+    const [stocks, setStock] = useState([])
+
+    useEffect(() => {
+      componentDidMount()
+    },[])
+
+    const componentDidMount = async() => {
+      axios.get(`/api/stocks`)
+      .then((response) =>{
+        setStock(response.data.stocks)
+      })
     }
+
+    const listStocks = stocks.map((stock) =>{
+      return {
+        ticker: stock.Ticker,
+        stockExchange: stock.StockExchange,
+      }
+    })
+    
+    const options = listStocks.map((option) => {
+      const firstLetter = option.ticker[0].toUpperCase();
+      return {
+        firstLetter: /[0-9]/.test(firstLetter) ? '0-9' : firstLetter,
+        ...option,
+      };
+    });
 
     return (
       <div>
@@ -87,7 +119,7 @@ const SetReminderButton = () => {
         <Form onSubmit={handleSubmit}>
           <DialogTitle>
             <TextField
-            component = "form"
+             component = "form"
               variant = "standard" //to disable outline
               required
               placeholder="Add Title" 
@@ -143,6 +175,21 @@ const SetReminderButton = () => {
               </LocalizationProvider>
 
             </DialogContentText>
+            
+            <DialogContentText>
+            <Autocomplete
+                id="grouped-demo"
+                options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
+                groupBy={(option) => option.firstLetter}
+                getOptionLabel={(option) => option.ticker}
+                sx={{ width: 300 }}
+                renderInput={(params) => <TextField 
+                {...params} 
+                required
+                label={<Typography style={{fontFamily:"Montserrat"}}>Choose a ticker...</Typography>} />}
+              />
+            </DialogContentText>
+
             <DialogContentText>
                 
                  <TextField
@@ -171,7 +218,6 @@ const SetReminderButton = () => {
                   onChange={handleInputChange}
                   error={errors.content}
                   helperText={errors.content}
-                  
                 />
              
           </DialogContentText>

@@ -91,7 +91,7 @@ const Candlestick = () => {
       point.PreviousClose, // open
       point.Highest, // high
       point.Lowest, // low
-      point.Match // close
+      point.Match // close doi thanh cot close sau
     ]);
 
     volume.push([
