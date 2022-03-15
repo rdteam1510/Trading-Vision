@@ -7,7 +7,6 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const mongoose = require("mongoose");
 
-
 // Import express and initialize
 const express = require("express");
 const app = express();
@@ -48,7 +47,7 @@ app.use(passport.session());
 // Company Info
 const companyinfoRoutes = require("./routes/companyinfo.route");
 
-app.use(companyinfoRoutes);
+app.use("/api/companyinfo", companyinfoRoutes);
 
 // Stocks
 const stocksRoutes = require("./routes/stock.route");

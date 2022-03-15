@@ -2,6 +2,7 @@
   - [You can check data with POSTMAN](#you-can-check-data-with-postman)
 - [Routes](#routes)
   - [CompanyInfo](#companyinfo)
+    - [CompanyInfo search](#companyinfo-search)
   - [Stokcs](#stokcs)
   - [Predictions](#predictions)
   - [Google oAuth2.0](#google-oauth20)
@@ -27,6 +28,17 @@
 
 -   http://localhost:4040/api/companyinfo
 -   http://localhost:4040/api/companyinfo/[ticker]
+
+### CompanyInfo search
+
+-   http://localhost:4040/api/companyinfo?comapanyname=asia&stockexchange=hnx...
+    |Parameters|Description|Type|
+    |----------|-----------|----|
+    |companyname|company name query (does not need full name)| String|
+    |stockexchange| stockexchange query. Available options: <br/> `hnx`, `hose`, `upcom` | String|
+    |industry| industry query. Availabe options:<br/> `Basic Materials`, `Consumer Goods`, `Financials`, `Health Care`, `Industrials`, `Oil & Gas`, `Technology`, `Utilities`, `others`| String|
+
+**!NOTE:**`&` is replaced with `%26` in URL
 
 ## Stokcs
 
