@@ -178,6 +178,7 @@ const SetReminderButton = () => {
             <DialogContentText>
             <Autocomplete
                 id="grouped-demo"
+                selectOnFocus
                 options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
                 groupBy={(option) => option.firstLetter}
                 getOptionLabel={(option) => option.ticker}

@@ -99,7 +99,7 @@ const ReminderEdit = (props) => {
         ...option,
       };
     });
-
+    const [input, setInput] = useState("ACB");
 
     return (
         <div>
@@ -176,15 +176,18 @@ const ReminderEdit = (props) => {
             <DialogContentText>
             <Autocomplete
                 id="grouped-demo"
+                selectOnFocus
                 options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
                 groupBy={(option) => option.firstLetter}
                 getOptionLabel={(option) => option.ticker}
                 sx={{ width: 300 }}
-                value={values.ticker}
+                inputValue={input}
+                onChange={(e,v) => setInput(v)}
                 renderInput={(params) => <TextField 
                 {...params} 
                 required
-                label={<Typography style={{fontFamily:"Montserrat"}}>Choose a ticker...</Typography>} />}
+                onChange={({target}) => setInput(target.value)}
+                label={<Typography style={{fontFamily:"Montserrat"}} >Choose a ticker...</Typography>} />}
               />
             </DialogContentText>
 
