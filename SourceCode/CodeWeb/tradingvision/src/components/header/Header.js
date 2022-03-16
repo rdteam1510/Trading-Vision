@@ -4,7 +4,7 @@ import {
     Toolbar, 
     Typography, InputBase, 
     IconButton, createTheme, 
-    ThemeProvider, CssBaseline} from "@material-ui/core";
+    ThemeProvider, CssBaseline, Avatar} from "@material-ui/core";
 import React, {useState} from "react";
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
@@ -27,36 +27,36 @@ palette: {
 },
 });
 
-const Header = () =>{ 
-const classes = useStyles();
-const history = useNavigate(); 
-const [auth, setAuth] = React.useState(true);
-const [anchorEl, setAnchorEl] = React.useState(false);
-const open = Boolean(anchorEl);
+const Header = ({user}) =>{ 
 
-const handleChange = (event) => {
-    setAuth(event.target.checked);
-};
+    const classes = useStyles();
+    const history = useNavigate(); 
+    const [auth, setAuth] = React.useState(true);
+    const [anchorEl, setAnchorEl] = React.useState(false);
+    const open = Boolean(anchorEl);
 
-const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-};
+    const handleChange = (event) => {
+        setAuth(event.target.checked);
+    };
 
-const handleClose = () => {
-    setAnchorEl(null);
-};
+    const handleMenu = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
 
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
-const [test, setTest] = React.useState(false);
-const handleOpen = () => setTest(true);
-const handleClosed = () => {  
-setTest(false)
+    const [test, setTest] = React.useState(false);
+    const handleOpen = () => setTest(true);
+    const handleClosed = () => {  
+    setTest(false)
 
-};
-const logout = () => {
-    window.open("http://localhost:4040/auth/logout", "_self");
-  };
-
+    };
+    const logout = () => {
+        window.open("http://localhost:4040/auth/logout", "_self");
+    };
+    
 return ( 
     <ThemeProvider theme={darkTheme}>
         <AppBar position="static" className={classes.appbar}>
@@ -130,8 +130,10 @@ return (
                             onClick={handleMenu}
                             color="inherit">
                             <AccountCircle />
+                            {/* <Avatar src={user.image} alt='avatar'/> */}
                         </IconButton>
-                        <Menu 
+                        {user ? (
+                            <Menu 
                             id="menu-appbar"
                             anchorEl={anchorEl}
                             anchorOrigin={{
@@ -158,6 +160,28 @@ return (
                                 style={{ marginLeft: '10px'}}>Sign Out</Typography>
                             </MenuItem>
                         </Menu>
+                        ):(
+                            <Menu id="menu-appbar"
+                            anchorEl={anchorEl}
+                            anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                            }}
+                            open={open}
+                            onClose={handleClose}>
+                                <MenuItem onClick={() => {history("/login"); handleClose();}}>
+                                    <LogoutIcon/>
+                                    <Typography
+                                    style={{ marginLeft: '10px'}}>Sign In</Typography>
+                                </MenuItem>
+                            </Menu>
+                        )}
+                        
                     </div>
                     )}
                 </Toolbar>

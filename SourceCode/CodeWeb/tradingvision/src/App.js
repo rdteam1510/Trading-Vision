@@ -45,14 +45,14 @@ function App() {
   return (
     <div className={classes.App} >
       <Router >
-          <Header/>
+          <Header user={user}/>
           <Routes>
             <Route exact path="/" element={<Homepage/>} />
             <Route exact path="/stocks/:ticker" element={user ? <Stockpage /> : <Navigate to="/login"/>} />
             <Route path="/favorite" element={user ? <Favorite/>:<Navigate to="/login"/> }/>
             <Route path="/reminder" element={user ? <Reminder/>: <Navigate to="/login"/>} />
             <Route path="/login" element={user ? <Navigate to="/"/> : <Login/>} />
-            <Route path="/profile" element={user ? <Profile/>: <Navigate to="/login"/>} />
+            <Route path="/profile" element={<Profile user={user}/>}/>
           </Routes>
           <FooterContainer />
       </Router>
