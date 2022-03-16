@@ -2,6 +2,7 @@
 const express = require("express");
 const passport = require("passport");
 const router = express.Router();
+const CLIENT_URL = "http://localhost:3000/";
 
 // Check if user is logged in or not
 function isLoggedIn(req, res, next) {
@@ -12,7 +13,13 @@ function isLoggedIn(req, res, next) {
 // @method GET
 // @route /auth/success
 router.get("/auth/success", isLoggedIn, (req, res) => {
-	res.status(200).json({ success: true, message: "LogInSuccess" });
+	if (req.user){
+		res.status(200).json({ 
+			success: true, 
+			message: "LogInSuccess",
+			user: req.user});
+	}
+	
 });
 
 // @desc Fail login
@@ -28,6 +35,7 @@ router.get("/auth/failure", (req, res) => {
 router.get("/auth/logout", (req, res) => {
 	req.logout();
 	req.session.destroy();
+	res.redirect(CLIENT_URL + 'login')
 	res.status(200).json({ success: true, message: "Logout" });
 });
 
@@ -45,7 +53,7 @@ router.get(
 router.get(
 	"/auth/google/callback",
 	passport.authenticate("google", {
-		successRedirect: "/auth/success",
+		successRedirect: CLIENT_URL,
 		failureRedirect: "/auth/failure",
 	})
 );

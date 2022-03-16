@@ -53,6 +53,9 @@ const handleClosed = () => {
 setTest(false)
 
 };
+const logout = () => {
+    window.open("http://localhost:4040/auth/logout", "_self");
+  };
 
 return ( 
     <ThemeProvider theme={darkTheme}>
@@ -149,7 +152,7 @@ return (
                                 <Typography
                                 style={{ marginLeft: '10px'}}>Profile</Typography>
                             </MenuItem>
-                            <MenuItem onClick={() => {history("/login"); handleClose()}}>
+                            <MenuItem onClick={() => {history("/login"); handleClose(); logout();}}>
                                 <LogoutIcon/>
                                 <Typography
                                 style={{ marginLeft: '10px'}}>Sign Out</Typography>

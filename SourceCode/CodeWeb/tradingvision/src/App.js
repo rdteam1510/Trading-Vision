@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import './App.css';
 import Header from '././components/header/Header';
 import Homepage from './pages/homepage/Homepage';
@@ -9,8 +9,8 @@ import Favorite from "./pages/favorite/Favorite";
 import Reminder from "./pages/reminder/Reminder";
 import Login from "./pages/login/Login";
 import Profile from "./pages/profile/Profile";
-import React from 'react';
-
+import React, {useState, useEffect} from 'react';
+import axios from "axios";
 const useStyles = makeStyles(()=>({
   App:{
     backgroundColor: "black",
@@ -23,6 +23,24 @@ const useStyles = makeStyles(()=>({
 function App() {
   
   const classes = useStyles() 
+  const [user,setUser] = useState(null);
+
+  useEffect(() => {
+    const getUser = () => {
+      axios.get('/auth/success')
+        .then((response) => {
+          if (response.status === 200) return response;
+          throw new Error("authentication has been failed!");
+        })
+        .then((resObject) => {
+          setUser(resObject.data.user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getUser();
+  }, []);
 
   return (
     <div className={classes.App} >
@@ -30,11 +48,11 @@ function App() {
           <Header/>
           <Routes>
             <Route exact path="/" element={<Homepage/>} />
-            <Route exact path="/stocks/:ticker" element={<Stockpage />} />
-            <Route path="/favorite" element={<Favorite/>} />
-            <Route path="/reminder" element={<Reminder/>} />
-            <Route path="/login" element={<Login/>} />
-            <Route path="/profile" element={<Profile/>} />
+            <Route exact path="/stocks/:ticker" element={user ? <Stockpage /> : <Navigate to="/login"/>} />
+            <Route path="/favorite" element={user ? <Favorite/>:<Navigate to="/login"/> }/>
+            <Route path="/reminder" element={user ? <Reminder/>: <Navigate to="/login"/>} />
+            <Route path="/login" element={user ? <Navigate to="/"/> : <Login/>} />
+            <Route path="/profile" element={user ? <Profile/>: <Navigate to="/login"/>} />
           </Routes>
           <FooterContainer />
       </Router>

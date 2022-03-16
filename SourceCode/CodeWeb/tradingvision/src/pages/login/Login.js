@@ -6,6 +6,13 @@ import GoogleIcon from '@mui/icons-material/Google';
 
 const Login = () => {
   const classes = useStyles()
+  const google = () => {
+    window.open("http://localhost:4040/auth/google", "_self");
+  };
+  const facebook = () => {
+    window.open("http://localhost:4040/auth/facebook", "_self");
+  };
+
   return (
     <div className={classes.container}>
       <Container className={classes.content}>
@@ -14,7 +21,8 @@ const Login = () => {
         <div className={classes.Facebook}>
           <Button 
             variant="outlined"
-            className={classes.btn_fb}>
+            className={classes.btn_fb}
+            onClick={facebook}>
             <FacebookIcon className={classes.icon} style={{fontSize:'35px'}}/>
             SIGN IN WITH FACEBOOK
           </Button>
@@ -22,7 +30,8 @@ const Login = () => {
         <div className={classes.Google}>
           <Button 
             variant="outlined"
-            className={classes.btn_gg}>
+            className={classes.btn_gg}
+            onClick={google}>
             <GoogleIcon className={classes.icon} style={{fontSize:'35px'}}/>
             SIGN IN WITH GOOGLE
           </Button>

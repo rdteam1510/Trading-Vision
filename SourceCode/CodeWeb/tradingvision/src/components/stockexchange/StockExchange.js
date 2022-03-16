@@ -46,7 +46,6 @@ const StockExchange = () => {
 
   const rows = stocks
   .map((stock) => {
-    console.log(stock);
       return {
         id: stock._id,
         ticker: stock.Ticker,

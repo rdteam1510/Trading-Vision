@@ -124,7 +124,6 @@ const DataGridDemo = ({stockExchange, handleSearch}) => {
     const componentDidMount = async() =>{
        axios.get("/api/stocks")
        .then((response)=>{
-          console.log(response.data);
           setStock(response.data.stocks);
 
        })
@@ -145,7 +144,6 @@ const DataGridDemo = ({stockExchange, handleSearch}) => {
       
     })
 
-    console.log({rows});
     const [pageSize, setPageSize] = React.useState(10);
 
     return (
