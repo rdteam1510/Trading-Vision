@@ -69,8 +69,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-### Note: 
-
+### Note:
 
 "start": "node node_modules/react-scripts/scripts/start.js",
 
@@ -81,12 +80,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
     "eject": "node node_modules/react-scripts/scripts/eject.js"
 
 **OR**
-
-
-"start": "react-scripts start",
-
-    "build": "react-scripts build",
-
-    "test": "react-scripts test",
-
-    "eject": "react-scripts eject"
