@@ -1,9 +1,10 @@
 const passport = require("passport");
 const { UnauthenticatedError } = require("../errors");
 const CustomAPIError = require("../errors/custom-error");
+const CLIENT_URL = "http://localhost:3000/"
 
 exports.login = (req, res) => {
-	res.redirect("/auth/google");
+	res.redirect(CLIENT_URL+'homepage');
 };
 
 exports.successLogin = (req, res) => {
@@ -18,6 +19,7 @@ exports.failedLogin = (req, res) => {
 exports.logout = (req, res) => {
 	req.logout();
 	req.session.destroy();
+	res.redirect(CLIENT_URL + 'login')
 	res.status(200).json({ msg: "Logout" });
 };
 
@@ -26,6 +28,6 @@ exports.googleAuth = passport.authenticate("google", {
 });
 
 exports.googleAuthCallback = passport.authenticate("google", {
-	successRedirect: "/auth/success",
+	successRedirect: CLIENT_URL,
 	failureRedirect: "/auth/login",
 });
