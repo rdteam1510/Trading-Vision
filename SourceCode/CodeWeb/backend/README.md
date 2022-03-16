@@ -3,8 +3,9 @@
 - [Routes](#routes)
   - [CompanyInfo](#companyinfo)
     - [CompanyInfo search](#companyinfo-search)
-  - [Stokcs](#stokcs)
+  - [Stocks](#stocks)
   - [Predictions](#predictions)
+  - [Reminders](#reminders)
   - [Google oAuth2.0](#google-oauth20)
 
 ---
@@ -40,7 +41,7 @@
 
 **!NOTE:**`&` is replaced with `%26` in URL
 
-## Stokcs
+## Stocks
 
 -   http://localhost:4040/api/stocks
 -   http://localhost:4040/api/stocks/[ticker]
@@ -49,11 +50,18 @@
 
 -   http://localhost:4040/api/predictions/[ticker]
 
+## Reminders
+
+-   http://localhost:4040/api/reminders
+
 ## Google oAuth2.0
 
--   http://localhost:4040/auth/google => request to login with google. It has 2 outcomes:
+-   http://localhost:4040/auth/login => request to login with google http://localhost:4040/auth/google. It has 2 outcomes:
 
     1.http://localhost:4040/auth/success => login successfully. The info of user's google account will be added into DB if it has not already been created. The session will also be created and saved to the DB.
+
+    -   If user does not login, he/she **cannot** access this route.
+
     2.http://localhost:4040/auth/failure => login failed
 
 -   http://localhost:4040/auth/logout => logout account on the application. The session will be destroyed and removed from the DB.

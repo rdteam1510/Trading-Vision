@@ -1,13 +1,13 @@
-// import modules
+//* Import modules
+require("express-async-errors");
 const morgan = require("morgan");
 const connectDB = require("./config/db");
-const notFound = require("./middleware/not-found");
 const passport = require("passport");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const mongoose = require("mongoose");
 
-// Import express and initialize
+//* Import express and initialize
 const express = require("express");
 const app = express();
 
@@ -37,6 +37,10 @@ app.use(
 
 /* ====================================================== */
 /* MIDDLEWARE */
+const notFoundMiddleware = require("./middleware/not-found");
+const errorHandlerMiddleware = require("./middleware/error-handler");
+const { ensureAuth } = require("./middleware/googleAuth.js");
+
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(passport.initialize());
@@ -44,9 +48,12 @@ app.use(passport.session());
 
 /* ====================================================== */
 /* ROUTES */
+// GoogleAuth
+const googleAuthRoutes = require("./routes/googleAuth.route");
+app.use(googleAuthRoutes);
+
 // Company Info
 const companyinfoRoutes = require("./routes/companyinfo.route");
-
 app.use("/api/companyinfo", companyinfoRoutes);
 
 // Stocks
@@ -57,11 +64,12 @@ app.use("/api/stocks", stocksRoutes);
 const predictionRoutes = require("./routes/prediction.route");
 app.use("/api/predictions", predictionRoutes);
 
-// GoogleAuth
-const googleAuthRoutes = require("./routes/googleAuth.route");
-app.use(googleAuthRoutes);
+// Reminders
+const reminderRoutes = require("./routes/reminder.route");
+app.use("/api/reminders", ensureAuth, reminderRoutes);
 
-app.use(notFound);
+app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
 /* ====================================================== */
 // Server is listening
 const start = async () => {

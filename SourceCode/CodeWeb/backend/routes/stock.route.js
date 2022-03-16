@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const {
 	getAllStocks,
+	getAllStocksQuery,
 	getStockByTicker,
 } = require("../controllers/stock.controller");
 
@@ -10,6 +11,7 @@ const {
 // @method GET
 // @route /api/stocks
 router.route("/").get(getAllStocks);
+router.route("/query").get(getAllStocksQuery);
 
 // @desc Get stock by ticker
 // @method GET

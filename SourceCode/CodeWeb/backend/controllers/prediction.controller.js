@@ -1,14 +1,14 @@
 // Import modules
+const { NotFoundError } = require("../errors");
 const Prediction = require("../models/Prediction");
 
 // Get predictions
 exports.getPredictionByTicker = async (req, res) => {
-	try {
-		const prediction = await Prediction.find({
-			Ticker: req.params.ticker,
-		});
-		return res.json({ success: true, prediction });
-	} catch (error) {
-		return res.status(404).json({ success: false, message: error.message });
+	const prediction = await Prediction.find({
+		Ticker: req.params.ticker,
+	});
+	if (!prediction) {
+		throw new NotFoundError("Cannot find prediction with this ticker");
 	}
+	return res.json({ success: true, prediction });
 };
