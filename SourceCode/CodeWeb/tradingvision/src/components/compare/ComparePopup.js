@@ -26,10 +26,11 @@ const ComparePopup = (props) => {
     const handleOpen = () => setTest(true);
     const handleClosed = () => setTest(false);
     const [value, setValue] = React.useState('1');
+    const {selectedID, setSelectedID, selectedTab, setSelectedTab} = props;
     const handleChange = (event, newValue) => {
-        setValue(newValue);
+        setSelectedTab(newValue);
       };
-    const {selectedID, setSelectedID} = props;
+    
 
     const [search,setSearch] = React.useState('');
     const [companies, setCompanies] = useState([]);
@@ -88,10 +89,11 @@ const ComparePopup = (props) => {
                             
         </div>
         <div className={classes.table}>
-            <TabContext value={value}>
+            <TabContext value={selectedTab}>
             
                 <TabList
                 className={classes.tablist}
+                
                 onChange={handleChange} 
                 aria-label="simple tabs "
                 TabIndicatorProps={{

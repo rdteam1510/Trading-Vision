@@ -25,6 +25,7 @@ const Stockpage = () => {
 	const handleClosed = () => setOpen(false);
 	const label = { inputProps: { "aria-label": "Checkbox favorite" } };
 	const [selectedID, setSelectedID] = React.useState(null);
+	const [selectedTab, setSelectedTab] = React.useState('1');
 	const { ticker } = useParams();
 	const [company, setCompany] = useState([]);
 	//
@@ -101,6 +102,8 @@ const Stockpage = () => {
 					<ComparePopup
 						selectedID={selectedID}
 						setSelectedID={setSelectedID}
+						selectedTab={selectedTab}
+						setSelectedTab={setSelectedTab}
 					/>
 				</Box>
 			</Dialog>
