@@ -67,6 +67,12 @@ const useStyles = makeStyles((theme)=>({
         backgroundColor:"#AAAAAA",
       }
     },
+    ticker_field: {
+      color: "grey",
+      fontSize: "Montserrat",
+      borderColor: "grey",
+      marginBottom: "3%",
+    }
     
 
 }))

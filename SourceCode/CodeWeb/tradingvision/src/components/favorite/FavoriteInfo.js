@@ -14,9 +14,7 @@ import {
     TablePagination,
 
   } from '@material-ui/core'
-  import { useNavigate } from 'react-router-dom';
   import useStyles from './style'
-  import EditIcon from '@mui/icons-material/Edit';
   import DeleteIcon from '@mui/icons-material/Delete';
   
 

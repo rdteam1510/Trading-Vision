@@ -12,7 +12,6 @@ import {  makeStyles } from '@material-ui/core/styles';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { Typography } from '@material-ui/core';
 import axios from 'axios';
 // Styles
 const darkTheme = createTheme({

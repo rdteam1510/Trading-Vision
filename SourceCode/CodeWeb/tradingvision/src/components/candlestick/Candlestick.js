@@ -1,5 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
-import { render } from 'react-dom';
+import React, { useState, useEffect } from 'react';
 import Candle from './Candle';
 import './style.css';
 import axios from 'axios'

@@ -138,7 +138,7 @@ const ReminderInfo = () => {
                                     </TableCell>
                                     <TableCell align="left" className={classes.cell}>{row.time}</TableCell>
                                     <TableCell align="left" className={classes.cell}>{row.ticker}</TableCell>
-                                    <TableCell align="left" className={classes.cell} onClick = {handleOpenReminder}>
+                                    <TableCell align="left" className={classes.cell} onClick = {handleOpenReminder} info='ACB' >
                                     Read more
                                     </TableCell>
                                     <TableCell align="left" className={classes.cell}><EditIcon onClick = {handleOpenEdit}/></TableCell>

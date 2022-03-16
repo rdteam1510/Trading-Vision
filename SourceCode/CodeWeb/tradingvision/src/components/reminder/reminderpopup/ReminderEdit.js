@@ -88,19 +88,19 @@ const ReminderEdit = (props) => {
     const listStocks = stocks.map((stock) =>{
       return {
         ticker: stock.Ticker,
-        stockExchange: stock.StockExchange,
       }
     })
     
-    const options = listStocks.map((option) => {
+    const options= listStocks.map((option) => {
       const firstLetter = option.ticker[0].toUpperCase();
       return {
         firstLetter: /[0-9]/.test(firstLetter) ? '0-9' : firstLetter,
         ...option,
       };
     });
-    const [input, setInput] = useState("ACB");
-
+    const [inputValue, setInputValue] = React.useState('');
+    const [input, setInput] = useState()
+ 
     return (
         <div>
         
@@ -120,7 +120,7 @@ const ReminderEdit = (props) => {
             component = "form"
               variant = "standard" //to disable outline
               required
-              defaultValue = "ACB"
+              // defaultValue = "ACB"
               placeholder="Add Title" 
               noValidate
               autoComplete="off"
@@ -179,14 +179,22 @@ const ReminderEdit = (props) => {
                 selectOnFocus
                 options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
                 groupBy={(option) => option.firstLetter}
-                getOptionLabel={(option) => option.ticker}
+                getOptionLabel={(option) => option.ticker }
                 sx={{ width: 300 }}
-                inputValue={input}
-                onChange={(e,v) => setInput(v)}
+                getOptionSelected={(option, value) => option.ticker === value.ticker}
+                isOptionEqualToValue={(option, value) => option.ticker === value.ticker}
+                defaultValue={options.filter((item) => {
+                    return item.ticker === values.ticker;
+                  })[0] || ""}
+                onInputChange={(event, newValue) => {
+                    setInput(newValue);
+                  }}
+                onChange={(event, newInputValue) => {
+                      setInputValue(newInputValue);
+                    }}
                 renderInput={(params) => <TextField 
                 {...params} 
                 required
-                onChange={({target}) => setInput(target.value)}
                 label={<Typography style={{fontFamily:"Montserrat"}} >Choose a ticker...</Typography>} />}
               />
             </DialogContentText>
