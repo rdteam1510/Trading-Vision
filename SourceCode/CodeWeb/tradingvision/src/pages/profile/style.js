@@ -70,13 +70,56 @@ const useStyles = makeStyles((theme) =>({
         marginTop:"15px"
     },
     btn:{
-        backgroundColor: "#F12323",
+        backgroundColor: "rgb(241, 35, 35)",
         borderRadius: "7px",
         color: "#FFFFFF",
         marginLeft:"2%", 
         marginTop: "14px",
         fontFamily: "Montserrat",
         fontWeight: "600",
+        "&:hover":{
+            backgroundColor: "rgba(241, 35, 35, 0.7)"
+        }
+    },
+    dialog_title: {
+        fontWeight: "600",
+        fontFamily: "Montserrat",
+        fontSize: "19px",
+        color: "rgb(241, 35, 35)",
+    },
+    dialog_content:{
+        marginTop: "2%",
+    },
+    dialog_content_text:{
+        fontFamily: "Montserrat",
+        fontSize: "15px",
+        marginTop: "1%",
+    },
+    btn_Delete:{
+        backgroundColor: "rgb(241, 35, 35)",
+        borderRadius: "10px",
+        color: "#FFFFFF",
+        marginBottom:"3%", 
+        marginRight:"2%",
+        marginTop: "14px",
+        fontFamily: "Montserrat",
+        fontWeight: "600",
+        "&:hover":{
+            backgroundColor: "rgba(241, 35, 35, 0.7)"
+        }
+    },
+    btn_Cancel: {
+        backgroundColor: "#c1c1c1",
+        borderRadius: "10px",
+        color: "#FFFFFF",
+        marginRight:"2%", 
+        marginBottom:"3%",
+        marginTop: "14px",
+        fontFamily: "Montserrat",
+        fontWeight: "600",
+        "&:hover":{
+            backgroundColor: "#AAAAAA"
+        }
     }
 
 

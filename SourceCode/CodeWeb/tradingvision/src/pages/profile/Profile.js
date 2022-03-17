@@ -6,11 +6,21 @@ import { Typography,
 import React, { useState } from 'react'
 import useStyles from './style'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-
+import { DialogTitle, DialogContent, Dialog, DialogContentText, DialogActions } from '@mui/material';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 const Profile = ({user}) => {
   const classes = useStyles()
-  
+  const [open, setOpen]= useState(false)
+
+  const handleOpen = () =>{
+    setOpen(true);
+  }
+  const handleClose = () =>{
+    setOpen(false);
+  }
+
+
   return (
     <div className={classes.container}>
 
@@ -55,7 +65,28 @@ const Profile = ({user}) => {
             <Typography className={classes.warning}>
                       Be careful - All of your data and information will be deleted.
             </Typography>
-            <Button className={classes.btn}> Delete All</Button>
+            <Button 
+              className={classes.btn}
+              onClick={handleOpen}> 
+                Delete All
+            </Button>
+            <Dialog 
+              open={open}
+					    onClose={handleClose}>
+              <DialogTitle alignItems="center">
+                <DeleteOutlineIcon sx={{ fontSize: 60, color:"#f12323", marginLeft:"42.5%"}}/>
+                <Typography align="center" className={classes.dialog_title}>Are you sure you want to delete your account?</Typography>
+              </DialogTitle>
+              <DialogContentText className={classes.dialog_content}>
+                <Typography  align="center" className={classes.dialog_content_text}>This will delete all the information related to your account. </Typography>
+                <Typography align="center" className={classes.dialog_content_text}>You cannot undo this action</Typography>
+              </DialogContentText>
+              <DialogActions justifyItems="right">
+                <Button className={classes.btn_Delete} type = "submit"> Delete</Button>
+                <Button className={classes.btn_Cancel} onClick={handleClose}> Cancel</Button>
+
+              </DialogActions>
+            </Dialog>
 
           </Grid>
 
