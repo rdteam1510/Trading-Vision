@@ -95,12 +95,13 @@ const SearchTicker = (props) => {
                                 {props.handleSearch(rows)
                                 .map((row)=> (
                                     <TableRow                                   
-                                    
+                                    ref = {props.myRef}
                                     className ={classes.row}
                                     onClick={() => {
                                       props.onSelectRow(row.id);
+                                      props.executeScroll();
                                     }}
-
+                                    
                                     selected={props.RowID === row.id}
                                     classes={{
                                       root: classes.tableRowRoot,

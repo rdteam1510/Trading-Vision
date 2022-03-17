@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import useStyles from "./style";
 import {
 	Container,
@@ -16,10 +16,11 @@ import { Dialog, Box } from "@mui/material";
 import CloseIcon from "@material-ui/icons/Close";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-
+const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)  
 const Stockpage = () => {
 	const classes = useStyles();
-
+	const myRef = useRef(null)
+	const executeScroll = () => scrollToRef(myRef)
 	const [open, setOpen] = React.useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClosed = () => setOpen(false);
@@ -104,6 +105,8 @@ const Stockpage = () => {
 						setSelectedID={setSelectedID}
 						selectedTab={selectedTab}
 						setSelectedTab={setSelectedTab}
+						myRef = {myRef}
+						executeScroll = {executeScroll}
 					/>
 				</Box>
 			</Dialog>
