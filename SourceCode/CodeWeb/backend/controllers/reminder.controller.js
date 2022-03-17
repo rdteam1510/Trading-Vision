@@ -5,7 +5,6 @@ const Reminder = require("../models/Reminder");
 
 exports.getReminder = async (req, res) => {
 	const reminder = await Reminder.find({ UserId: req.user._id });
-	console.log(req.user);
 	res.status(200).json({ reminder });
 };
 

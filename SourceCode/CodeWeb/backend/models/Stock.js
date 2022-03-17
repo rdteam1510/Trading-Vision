@@ -7,7 +7,7 @@ const stockSchema = new mongoose.Schema({
 	Lowest: Number,
 	Match: Number,
 	PreviousClose: Number,
-	StockExchange: String,
+	StockExchange: { type: String, enum: ["hose", "hnx", "upcom"] },
 	Ticker: String,
 	Time: Number,
 	TimeStamp: Number,

@@ -14,7 +14,7 @@ const companyInfoSchema = new mongoose.Schema({
 	"P/E": String,
 	ROA: String,
 	ROE: String,
-	StockExchange: String,
+	StockExchange: { type: String, enum: ["hose", "hnx", "upcom"] },
 	Ticker: String,
 	TotalAssets: String,
 	Website: String,
