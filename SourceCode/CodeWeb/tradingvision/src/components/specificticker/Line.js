@@ -14,9 +14,9 @@ const Line =() =>{
     },[])
   
     const componentDidMount = async() => {
-      axios.get(`/api/stocks/${ticker}`)
+      axios.get(`/api/forpredictions/${ticker}`)
       .then((response) =>{
-        setData(response.data.stock)
+        setData(response.data)
       })
     }
   
@@ -28,10 +28,10 @@ const Line =() =>{
     }
     console.log(predictions);
     const priceData =[]
-    predictions.map(point => {
+    data.map(point => {
         priceData.push([
-          Date.parse(point.Date),
-          point.PredictedPrice])
+          point.Time*1000,
+          point.Close,])
         
     })
     console.log(priceData);
