@@ -6,7 +6,9 @@ const Prediction = require("../models/Prediction");
 exports.getPredictionByTicker = async (req, res) => {
 	const prediction = await Prediction.find({
 		Ticker: req.params.ticker,
-	});
+	})
+		.sort({ TimeStamp: -1, Date: -1 })
+		.limit(5);
 	if (!prediction) {
 		throw new NotFoundError("Cannot find prediction with this ticker");
 	}
