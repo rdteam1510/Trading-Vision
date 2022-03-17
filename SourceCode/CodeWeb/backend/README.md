@@ -2,7 +2,7 @@
   - [You can check data with POSTMAN](#you-can-check-data-with-postman)
 - [Routes](#routes)
   - [CompanyInfo](#companyinfo)
-    - [CompanyInfo search](#companyinfo-search)
+      - [CompanyInfo query](#companyinfo-query)
   - [Stocks](#stocks)
   - [Predictions](#predictions)
   - [Reminders](#reminders)
@@ -27,10 +27,9 @@
 
 ## CompanyInfo
 
--   http://localhost:4040/api/companyinfo
--   http://localhost:4040/api/companyinfo/[ticker]
+-   Get all company info: http://localhost:4040/api/companyinfo
 
-### CompanyInfo search
+#### CompanyInfo query
 
 -   http://localhost:4040/api/companyinfo?comapanyname=asia&stockexchange=hnx...
     |Parameters|Description|Type|
@@ -39,20 +38,34 @@
     |stockexchange| stockexchange query. Available options: <br/> `hnx`, `hose`, `upcom` | String|
     |industry| industry query. Availabe options:<br/> `Basic Materials`, `Consumer Goods`, `Financials`, `Health Care`, `Industrials`, `Oil & Gas`, `Technology`, `Utilities`, `others`| String|
 
-**!NOTE:**`&` is replaced with `%26` in URL
+    **!NOTE:**`&` is replaced with `%26` in URL
+
+-   Get company by ticker: http://localhost:4040/api/companyinfo/[ticker]
 
 ## Stocks
 
--   http://localhost:4040/api/stocks
--   http://localhost:4040/api/stocks/[ticker]
+-   Get all stocks: http://localhost:4040/api/stocks
+    |Parameters|Description|Type|
+    |----------|-----------|----|
+    |ticker|Query stock by ticker| String|
+    |stockexchange| stockexchange query. Available options: <br/> `hnx`, `hose`, `upcom` | String|
+    |sort| Sort values in suitable feature. Example: <br/> - Ascending: sort=Ticker <br/> - Descending: sort=-Ticker <br/> Default: sort by latest _TimeStamp_|String|
+    |limit| Limit retrieved documents | Number|
+    |page| Jump to specific page | Number |
+-   Get stock by ticker: http://localhost:4040/api/stocks/[ticker]
 
 ## Predictions
 
--   http://localhost:4040/api/predictions/[ticker]
+-   Get predictions by ticker: http://localhost:4040/api/predictions/[ticker]
 
 ## Reminders
 
--   http://localhost:4040/api/reminders
+**NOTE**: User must log in before using reminders
+
+-   Get all reminders owned by that user: http://localhost:4040/api/reminders
+-   http://localhost:4040/api/reminders/[id] is used for:
+    -   Delete reminder
+    -   Update reminder
 
 ## Google oAuth2.0
 

@@ -4,12 +4,14 @@ const router = express.Router();
 const {
 	getAllCompanyInfo,
 	getCompanyInfoByTicker,
+	getRelevant,
 } = require("../controllers/companyinfo.controller");
 
 // @desc Get all company info
 // @method GET
 // @route /api/companyinfo
 router.route("/").get(getAllCompanyInfo);
+router.route("/relevant").get(getRelevant);
 
 // @desc Get company info by ticker
 // @method GET

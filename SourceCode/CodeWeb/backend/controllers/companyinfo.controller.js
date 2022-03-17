@@ -36,3 +36,19 @@ exports.getCompanyInfoByTicker = async (req, res) => {
 	}
 	res.status(200).json({ success: true, companyinfo });
 };
+
+exports.getRelevant = async (req, res) => {
+	CompanyInfo.aggregate([
+		{
+			$lookup: {
+				from: "stocks",
+				localField: "Ticker",
+				foreignField: "Ticker",
+				as: "Ticker",
+			},
+		},
+	]).exec((err, result) => {
+		if (err) throw err;
+		res.send(result[0].Ticker);
+	});
+};

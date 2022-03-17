@@ -4,12 +4,8 @@ const { NotFoundError, BadRequestError } = require("../errors");
 const Reminder = require("../models/Reminder");
 
 exports.getReminder = async (req, res) => {
-	const reminder = await Reminder.find({});
-	res.status(200).json({ reminder });
-};
-
-exports.getSingleReminder = async (req, res) => {
-	const reminder = await Reminder.find({ _id: req.params.id });
+	const reminder = await Reminder.find({ UserId: req.user._id });
+	console.log(req.user);
 	res.status(200).json({ reminder });
 };
 

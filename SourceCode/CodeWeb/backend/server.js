@@ -70,6 +70,7 @@ app.use("/api/reminders", ensureAuth, reminderRoutes);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
+
 /* ====================================================== */
 // Server is listening
 const start = async () => {
