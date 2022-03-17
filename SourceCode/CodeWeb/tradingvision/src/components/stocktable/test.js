@@ -221,7 +221,9 @@ const DataGridDemo = ({stockExchange, handleSearch, user}) => {
                   sortModel: [{ field: 'ticker', sort: 'asc' }],
                 },
               }}
-            
+              onRowClick={(params) => 
+                history(`/login`)
+              }
         />
 
         )}

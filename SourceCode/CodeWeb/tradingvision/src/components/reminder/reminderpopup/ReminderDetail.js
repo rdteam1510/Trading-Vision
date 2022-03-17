@@ -12,18 +12,25 @@ import { Autocomplete } from '@mui/material';
 import { TextField } from '@material-ui/core';
 const ReminderDetail = (props) => {
     const classes = useStyles();
-    const ticker = 'ACB'
+    // const details = {
+    //   content: rowID.content,
+    //   title: rowID.title,
+    //   ticker: rowID.ticker,
+    // }
+   
   return (
     <Dialog
               open={props.open}
               onClose={props.onClose}
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
+              width = '500px'
+              height = '500px'
             >
              
               <DialogTitle id="alert-dialog-title" color = 'black' fontWeight = "500" fontSize = "25px">
               
-                {"ACB Reminder"}
+                {props.title}
                 
 
               </DialogTitle>
@@ -31,20 +38,15 @@ const ReminderDetail = (props) => {
               <DialogContent>
                 <DialogContentText id="alert-dialog-description" >
                 <Typography gutterBottom  fontWeight = "400">
-                    05/02/2021 11:10pm
+                   {props.time}
                 </Typography>
-                <TextField
-                  label="Ticker"
-                  defaultValue={ticker}
-                  InputProps={{ readOnly: true,
-                    disableUnderline: true,
-                    className: classes.ticker_field}}        
-                />
+                
+                <Typography gutterBottom  fontWeight = "400">
+                   Ticker: {props.ticker}
+                </Typography>
           <Box sx={{ border: 0.5, borderRadius: '10px'}}>
                 <Typography gutterBottom marginLeft = '4%'  marginTop = '4%' marginBottom = '4%'>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-            consectetur ac, vestibulum at eros.
+                  {props.content}
           </Typography>
           </Box>
                 </DialogContentText>

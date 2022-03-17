@@ -19,13 +19,7 @@ import axios from 'axios'
 import { Typography } from '@mui/material';
 
 
-const initialFValues = {
-  id: 0,
-  title: '',
-  content: '',
-  ticker: '',
-  hireDate: new Date(),
-}
+
 const SetReminderButton = () => {
     const classes = useStyles()
     const [open, setOpen] = React.useState(false);
@@ -56,14 +50,21 @@ const SetReminderButton = () => {
       if (fieldValues === values)
           return Object.values(temp).every(x => x === "")
   }
-  const {
-      values,
-      setValues,
-      errors,
-      setErrors,
-      handleInputChange,
-      resetForm
-  } = useForm(initialFValues, true, validate);
+      const initialFValues = {
+        id: 0,
+        title: '',
+        content: '',
+        ticker: '',
+        hireDate: new Date(),
+      }
+      const {
+          values,
+          setValues,
+          errors,
+          setErrors,
+          handleInputChange,
+          resetForm
+      } = useForm(initialFValues, true, validate);
         const handleSubmit = e => {
           e.preventDefault()
           // ham insert reminder vo database
