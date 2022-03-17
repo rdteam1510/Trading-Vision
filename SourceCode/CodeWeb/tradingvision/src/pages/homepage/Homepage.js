@@ -4,12 +4,12 @@ import StockExchange from '../../components/stockexchange/StockExchange';
 
 
 
-const Homepage = () => {
+const Homepage = ({user}) => {
 
 
   return <>
     <Banner/>
-    <StockExchange />
+    <StockExchange user={user}/>
   </>
 };
 

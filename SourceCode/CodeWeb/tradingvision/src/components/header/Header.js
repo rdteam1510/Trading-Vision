@@ -84,12 +84,12 @@ return (
                     onClick={() => history("/")} 
                     className={classes.title}
                     variant="h5"> Trading Vision </Typography>
-                    
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
-                            </div>
-                        <InputBase
+                        </div>
+                        {user ? (
+                            <InputBase
                                         placeholder="Search…"
                                         classes={{
                                             root: classes.inputRoot,
@@ -99,6 +99,19 @@ return (
                                         onClick={handleOpen}
                                         style={{fontFamily: "Montserrat"}}
                                         />
+                        ):(
+                            <InputBase
+                                        placeholder="Search…"
+                                        classes={{
+                                            root: classes.inputRoot,
+                                            input: classes.inputInput,
+                                        }}
+                                        inputProps={{ 'aria-label': 'search' }}
+                                        style={{fontFamily: "Montserrat"}}
+                                        />
+                        )}
+                        
+                        
                         
                         <Modal
                             keepMounted
@@ -111,11 +124,10 @@ return (
                             BackdropProps={{ style: { backgroundColor: 'rgba(0,0,0,0.93)',
                              } }}
                         >
-                            <SearchPopup />
+                            <SearchPopup user={user}/>
                         </Modal>
-                        
-
                     </div>
+
                     <div className={classes.navlinks}>
                        
                        <Navbar className={classes.link}/>

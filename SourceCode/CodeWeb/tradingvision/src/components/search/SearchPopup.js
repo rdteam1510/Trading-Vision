@@ -34,7 +34,7 @@ const SearchPopup = () => {
 	const [search, setSearch] = React.useState("");
 
 	const [companies, setCompanies] = useState([]);
-
+	
 	//
 	useEffect(() => {
 		componentDidMount();
@@ -120,18 +120,21 @@ const SearchPopup = () => {
 							<SearchTicker
 								stockExchange={"hose"}
 								handleSearch={handleSearch}
+							
 							/>
 						</TabPanel>
 						<TabPanel value="2">
 							<SearchTicker
 								stockExchange={"hnx"}
 								handleSearch={handleSearch}
+							
 							/>
 						</TabPanel>
 						<TabPanel value="3">
 							<SearchTicker
 								stockExchange={"upcom"}
 								handleSearch={handleSearch}
+								
 							/>
 						</TabPanel>
 					</TabContext>

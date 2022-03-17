@@ -37,7 +37,7 @@ const SearchTicker = ({ stockExchange, handleSearch }) => {
 	const history = useNavigate();
 
 	const [companies, setCompanies] = useState([]);
-
+	
 	//
 	useEffect(() => {
 		componentDidMount();
@@ -101,6 +101,7 @@ const SearchTicker = ({ stockExchange, handleSearch }) => {
 							{handleSearch(rows).map((row) => (
 								<TableRow
 									onClick={() => {
+										
 										navigatePage(row.ticker);
 										refreshPage();
 									}}

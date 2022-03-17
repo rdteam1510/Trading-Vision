@@ -110,7 +110,7 @@ export function MenuIcon() {
   }}/>;
 }
 // Datagirid
-const DataGridDemo = ({stockExchange, handleSearch}) => {
+const DataGridDemo = ({stockExchange, handleSearch, user}) => {
     const history = useNavigate()
     const classes = useStyles();
     
@@ -149,7 +149,8 @@ const DataGridDemo = ({stockExchange, handleSearch}) => {
     return (
       <ThemeProvider theme={darkTheme}>
         <div style={{ height: 600, width: '100%', color:'white'}}>
-        <DataGrid
+        {user ? (
+          <DataGrid
             rows={rows}
             columns={columns}
             pageSize={pageSize}
@@ -187,6 +188,44 @@ const DataGridDemo = ({stockExchange, handleSearch}) => {
             }
             
         />
+        ):(
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            pageSize={pageSize}
+            onPageSizeChange={(newPage) => setPageSize(newPage)}
+            rowsPerPageOptions={[10, 20, 50]}
+            pagination 
+            sx={{
+              color: 'white',
+              fontFamily: 'Montserrat',
+              cursor: "pointer",
+              fontSize: 16,
+              '& .MuiTablePagination-root':{
+                color: 'white',
+                  },
+              '& .MuiTablePagination-selectIcon': {
+                color: 'white',
+              },
+            }}
+            components={{
+            Toolbar: GridToolbar,
+            //Pagination: CustomPagination,
+            ColumnSortedDescendingIcon: SortedDescendingIcon,
+            ColumnSortedAscendingIcon: SortedAscendingIcon,
+            ColumnMenuIcon: MenuIcon,
+            }}
+            classeName = {classes.root}
+            initialState={{
+                sorting: {
+                  sortModel: [{ field: 'ticker', sort: 'asc' }],
+                },
+              }}
+            
+        />
+
+        )}
+        
         </div>
     </ThemeProvider>
     );

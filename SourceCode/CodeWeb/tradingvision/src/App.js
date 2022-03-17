@@ -47,8 +47,8 @@ function App() {
       <Router >
           <Header user={user}/>
           <Routes>
-            <Route exact path="/" element={<Homepage/>} />
-            <Route exact path="/stocks/:ticker" element={user ? <Stockpage /> : <Navigate to="/login"/>} />
+            <Route exact path="/" element={<Homepage user={user}/>} />
+            <Route exact path="/stocks/:ticker" element={<Stockpage/>} />
             <Route path="/favorite" element={user ? <Favorite/>:<Navigate to="/login"/> }/>
             <Route path="/reminder" element={user ? <Reminder/>: <Navigate to="/login"/>} />
             <Route path="/login" element={user ? <Navigate to="/"/> : <Login/>} />
