@@ -163,7 +163,7 @@ const ReminderInfo = () => {
  
                                     <ReminderDelete open = {openDelete} onClose = {handleCloseDelete} />   
                                 </TableRow>
-                                <ReminderDetail 
+                                {/* <ReminderDetail 
                                         open = {openReminder} 
                                         onClose = {handleCloseReminder}
                                         content = {selectedRow?.content}
@@ -172,7 +172,7 @@ const ReminderInfo = () => {
                                         time = {selectedRow?.time}
 
 
-                                         /> 
+                                         />  */}
                                 </>
                                 ))}
                             </TableBody>
