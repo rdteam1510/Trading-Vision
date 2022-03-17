@@ -47,9 +47,10 @@ ChartJS.register(
 const LineChart = () => {
   const {ticker} = useParams()
   const [data, setData] = useState([])
-
+  const [predictions, setPredictions] = useState([])
   useEffect(() => {
     componentDidMount()
+    componentDidMountPredictions()
   },[])
 
   const componentDidMount = async() => {
@@ -58,6 +59,15 @@ const LineChart = () => {
       setData(response.data.stock)
     })
   }
+
+  const componentDidMountPredictions = async() => {
+    axios.get(`/api/predictions/${ticker}`)
+    .then((response) =>{
+      setPredictions(response.data.prediction)
+    })
+  }
+  console.log(predictions);
+
 
   const labels = data.map(dt => 
     // dt.TimeStamp

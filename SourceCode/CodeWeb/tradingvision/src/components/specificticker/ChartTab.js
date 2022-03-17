@@ -7,6 +7,7 @@ import SelectUnstyled, { selectUnstyledClasses } from '@mui/base/SelectUnstyled'
 import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
+import Line from './Line'
 
 const StyledButton = styled('button')(
   ({}) => `
@@ -154,7 +155,7 @@ const ChartTab = () => {
       </CustomSelect>
       {
         chart === "Line" ? (
-          <div><LineChart/></div>
+          <div><Line/></div>
         ) : (
           <div><Candlestick/></div>
         )
