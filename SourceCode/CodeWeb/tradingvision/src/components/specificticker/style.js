@@ -137,6 +137,10 @@ const useStyles = makeStyles((theme) => ({
             fontSize: 13,
           },
     },
+    chart:{
+        marginTop: '3%',
+        marginBottom: '8%'
+    },
     
 }))
 

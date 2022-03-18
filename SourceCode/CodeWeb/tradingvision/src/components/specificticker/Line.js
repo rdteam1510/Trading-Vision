@@ -4,37 +4,64 @@ import moment from 'moment'
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
 
+
 const Line =() =>{
+    const compareTicker = 'X20'
     const {ticker} = useParams()
     const [data, setData] = useState([])
     const [predictions, setPredictions] = useState([])
+    const [compare, setCompare] = useState([])
+    const [comparePredictions, setComparePredictions] = useState([])
+    const priceData =[]
+    const predictPrice=[]
+    const compareData =[]
+    const predictCompare=[]
+
+
     useEffect(() => {
-      componentDidMount()
-      componentDidMountPredictions()
+      actualPrice()
+      currentStockPredictions()
+      compareStocks()
+      compareStockPredictions()
     },[])
   
-    const componentDidMount = async() => {
+    const actualPrice = async() => {
       axios.get(`/api/forpredictions/${ticker}`)
       .then((response) =>{
         setData(response.data)
       })
     }
   
-    const componentDidMountPredictions = async() => {
+    const currentStockPredictions = async() => {
       axios.get(`/api/predictions/${ticker}`)
       .then((response) =>{
         setPredictions(response.data.prediction)
       })
     }
-    console.log(predictions);
-    const priceData =[]
+
+    const compareStocks = async()=>{
+      axios.get(`/api/forpredictions/${compareTicker}`)
+      .then((response) =>{
+        setCompare(response.data)
+      })
+    }
+
+    const compareStockPredictions = async() => {
+      axios.get(`/api/predictions/${compareTicker}`)
+      .then((response) =>{
+        setComparePredictions(response.data.prediction)
+      })
+    }
+
+    // actual price list
     data.map(point => {
         priceData.push([
           point.Time*1000,
           point.Close,])
         
     })
-    const predictPrice=[]
+    
+    // current stock's prediction price list 
     predictions.map(point => {
       predictPrice.push([
         Date.parse(point.Date),
@@ -42,6 +69,23 @@ const Line =() =>{
       ])
     })
     priceData.push(predictPrice[0])
+
+    // compared ticker's price list
+    compare.map(point=>{
+      compareData.push([
+        point.Time*1000,
+        point.Close,])
+    })
+
+    // compared stock's prediction price list
+    comparePredictions.map(point => {
+      predictCompare.push([
+        Date.parse(point.Date),
+        point.PredictedPrice
+      ])
+    })
+    compareData.push(predictCompare[0])
+
     const options = {currency: 'VND'};
     const numberFormat = new Intl.NumberFormat('en-US', options);
     const configPrice = {
@@ -66,16 +110,18 @@ const Line =() =>{
         
       ],
       tooltip: {
-        shared: true,
-        formatter: function () {
-          return numberFormat.format(this.y, 0) +  '</b><br/>' + moment(this.x).format('MMMM Do YYYY')
-        }
+        shared: false,
+        // formatter: function () {
+        //   return numberFormat.format(this.y, 0) +  '</b><br/>' + moment(this.x).format('MMMM Do YYYY')
+        // },
+        split: true,
+        
       },
       plotOptions: {
         series: {
           showInNavigator: true,
           gapSize: 6,
-
+        
         }
       },
       rangeSelector: {
@@ -140,17 +186,19 @@ const Line =() =>{
         }],
         selected: 4, 
         buttonTheme: {
+          fill: "rgba(0,0,0,1)",
+          'stroke-width': 0,
           style: {
             color: 'grey',
-            fontWeight: 'bold'
         },
         states: {
             hover: {
             },
             select: {
-                fill: 'white',
+                fill: '#FD7F20',
                 style: {
-                    color: 'black'
+                    color: '#fff',
+                    fontWeight: 'bold'
                 }
             }
         }},
@@ -161,14 +209,14 @@ const Line =() =>{
       
       },
       series: [{
-        name: `${ticker} Price`,
+        name: `${ticker} `,
         type: 'spline',
   
         data: priceData,
         tooltip: {
           valueDecimals: 2
         },
-        color: '#59D7EE',
+        color: '#04F9F2',
   
       },
       {
@@ -179,10 +227,33 @@ const Line =() =>{
         tooltip: {
           valueDecimals: 2
         },
-        color: '#D3F4FB',
+        color: '#CFE9EF',
+  
+      },
+      {
+        name: `${compareTicker}`,
+        type: 'spline',
+  
+        data: compareData,
+        tooltip: {
+          valueDecimals: 2
+        },
+        color: '#F51663',
+  
+      },
+      {
+        name: `${compareTicker} Predicted Price`,
+        type: 'spline',
+  
+        data: predictCompare,
+        tooltip: {
+          valueDecimals: 2
+        },
+        color: '#EAC5B0',
   
       }
-      ]
+      ],
+      
     };
     return (
       <div>
