@@ -34,7 +34,14 @@ const Line =() =>{
           point.Close,])
         
     })
-    console.log(priceData);
+    const predictPrice=[]
+    predictions.map(point => {
+      predictPrice.push([
+        Date.parse(point.Date),
+        point.PredictedPrice
+      ])
+    })
+    priceData.push(predictPrice[0])
     const options = {currency: 'VND'};
     const numberFormat = new Intl.NumberFormat('en-US', options);
     const configPrice = {
@@ -47,20 +54,21 @@ const Line =() =>{
             return numberFormat.format(this.value) 
           }
           ,
-          x: -15,
+          x:-15,
           style: {
-            "color": "#000", "position": "absolute"
-
+            "color": "#fff",
+            "position": "absolute",
           },
-          align: 'left'
+          align: 'left',
         },
+        
       },
         
       ],
       tooltip: {
         shared: true,
         formatter: function () {
-          return numberFormat.format(this.y, 0) +  '</b><br/>' + moment(this.x).format('MMMM Do YYYY, h:mm')
+          return numberFormat.format(this.y, 0) +  '</b><br/>' + moment(this.x).format('MMMM Do YYYY')
         }
       },
       plotOptions: {
@@ -72,9 +80,14 @@ const Line =() =>{
       },
       rangeSelector: {
         selected: 1
+        
       },
       title: {
-        text: `${ticker} stock price`
+        text: `${ticker} stock price`,
+        style: {
+          color: '#F2F1F0',
+          fontSize: '18px'
+        }
       },
       chart: {
         height: 600,
@@ -85,10 +98,23 @@ const Line =() =>{
       },
   
       legend: {
-        enabled: true
+        enabled: true,
+        itemStyle:{
+            color: '#F2F1F0',
+            fontSize: '13px'
+        },
+        itemHoverStyle:{
+          color: '#E5E8E8',
+        },
       },
       xAxis: {
         type: 'date',
+        labels: {
+          style: {
+            "color": "#F2F1F0",
+            "position": "absolute",
+          },
+        }
       },
       rangeSelector: {
         buttons: [{
@@ -112,16 +138,48 @@ const Line =() =>{
           type: 'all',
           text: 'All'
         }],
-        selected: 4
+        selected: 4, 
+        buttonTheme: {
+          style: {
+            color: 'grey',
+            fontWeight: 'bold'
+        },
+        states: {
+            hover: {
+            },
+            select: {
+                fill: 'white',
+                style: {
+                    color: 'black'
+                }
+            }
+        }},
+        inputStyle: {
+          color: 'grey',
+          fontWeight: 'bold'
+      },
+      
       },
       series: [{
-        name: 'Price',
+        name: `${ticker} Price`,
         type: 'spline',
   
         data: priceData,
         tooltip: {
           valueDecimals: 2
         },
+        color: '#59D7EE',
+  
+      },
+      {
+        name: `${ticker} Predicted Price`,
+        type: 'spline',
+  
+        data: predictPrice,
+        tooltip: {
+          valueDecimals: 2
+        },
+        color: '#D3F4FB',
   
       }
       ]
