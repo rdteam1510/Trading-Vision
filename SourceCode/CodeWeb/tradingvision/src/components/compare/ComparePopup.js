@@ -26,7 +26,7 @@ const ComparePopup = (props) => {
     const handleOpen = () => setTest(true);
     const handleClosed = () => setTest(false);
     const [value, setValue] = React.useState('1');
-    const {selectedID, setSelectedID, selectedTab, setSelectedTab, myRef, executeScroll} = props;
+    const {selectedID, setSelectedID, selectedTab, setSelectedTab, myRef, executeScroll, handleSelection} = props;
     const handleChange = (event, newValue) => {
         setSelectedTab(newValue);
       };
@@ -110,19 +110,19 @@ const ComparePopup = (props) => {
               <SearchTicker 
               stockExchange={'hose'} handleSearch={handleSearch}
               RowID = {selectedID} onSelectRow = {setSelectedID}
-              myRef = {myRef} executeScroll = {executeScroll} />
+              myRef = {myRef} executeScroll = {executeScroll}  handleSelection = {handleSelection} />
             </TabPanel>
             <TabPanel value="2">
               <SearchTicker 
               stockExchange={'hnx'} handleSearch={handleSearch}
               RowID = {selectedID} onSelectRow = {setSelectedID}
-              myRef = {myRef} executeScroll = {executeScroll}/>
+              myRef = {myRef} executeScroll = {executeScroll}  handleSelection = {handleSelection}/>
             </TabPanel>
             <TabPanel value="3">
               <SearchTicker 
               stockExchange={'upcom'} handleSearch={handleSearch}
               RowID = {selectedID} onSelectRow = {setSelectedID}
-              myRef = {myRef} executeScroll = {executeScroll}/>
+              myRef = {myRef} executeScroll = {executeScroll} handleSelection = {handleSelection}/>
             </TabPanel>
         </TabContext>
         </div>

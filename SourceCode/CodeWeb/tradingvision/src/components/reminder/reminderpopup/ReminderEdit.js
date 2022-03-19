@@ -33,7 +33,13 @@ const ReminderEdit = (props) => {
     const [date, setDate] = React.useState(new Date());
     const {open, onClose} = props
     
-    
+    const initialFValues = {
+        id: props.id,
+        title: props.title,
+        content: props.content,
+        ticker: props.ticker,
+        hireDate: new Date(),
+    }
     const handleClose = () => {
       resetForm()
       
@@ -133,7 +139,7 @@ const ReminderEdit = (props) => {
                       color:"black",
                     }}} 
               name="title"        
-              value={values.title}
+              value={props.title}
               onChange={handleInputChange}
               error={errors.title}
               helperText = {errors.title}
@@ -153,7 +159,7 @@ const ReminderEdit = (props) => {
                     autoComplete="off"
                     renderInput={(props) => <TextField {...props} />}
                     name = "date"
-                    value={values.date}
+                    value={props.time}
                     
                     onChange={(newValue) => {
                       setDate(newValue);
@@ -181,10 +187,10 @@ const ReminderEdit = (props) => {
                 groupBy={(option) => option.firstLetter}
                 getOptionLabel={(option) => option.ticker }
                 sx={{ width: 300 }}
-                getOptionSelected={(option, value) => option.ticker === value.ticker}
-                isOptionEqualToValue={(option, value) => option.ticker === value.ticker}
+                getOptionSelected={(option, value) => option.ticker === props.ticker}
+                isOptionEqualToValue={(option, value) => option.ticker === props.ticker}
                 defaultValue={options.filter((item) => {
-                    return item.ticker === values.ticker;
+                    return item.ticker === props.ticker;
                   })[0] || ""}
                 onInputChange={(event, newValue) => {
                     setInput(newValue);
@@ -192,7 +198,8 @@ const ReminderEdit = (props) => {
                 onChange={(event, newInputValue) => {
                       setInputValue(newInputValue);
                     }}
-                renderInput={(params) => <TextField 
+                renderInput={(params) => 
+                <TextField 
                 {...params} 
                 required
                 label={<Typography style={{fontFamily:"Montserrat"}} >Choose a ticker...</Typography>} />}
@@ -224,7 +231,7 @@ const ReminderEdit = (props) => {
                   variant = "outlined"
                   size = "large"
                   name="content"        
-                  value={values.content}
+                  value={props.content}
                   onChange={handleInputChange}
                   error={errors.content}
                   helperText={errors.content}

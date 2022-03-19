@@ -98,15 +98,16 @@ const SearchTicker = (props) => {
                                     ref = {props.myRef}
                                     className ={classes.row}
                                     onClick={() => {
-                                      props.onSelectRow(row.id);
-                                      props.executeScroll();
+                                     
+                                      props.handleSelection(row.ticker);
+                                     
                                     }}
                                     
-                                    selected={props.RowID === row.id}
-                                    classes={{
-                                      root: classes.tableRowRoot,
-                                      selected: classes. tableRowSelected,
-                                    }}
+                                    selected={props.RowID === row.ticker}
+                                    // classes={{
+                                    //   root: classes.tableRowRoot,
+                                    //   selected: classes. tableRowSelected,
+                                    // }}
                                     key={row.ticker}>
                                     
                                     <TableCell component='th' scope='row'

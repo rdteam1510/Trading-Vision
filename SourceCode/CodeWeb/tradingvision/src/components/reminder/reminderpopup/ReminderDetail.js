@@ -24,8 +24,8 @@ const ReminderDetail = (props) => {
               onClose={props.onClose}
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
-              width = '500px'
-              height = '500px'
+              minWidth = '500px'
+              minHeight = '500px'
             >
              
               <DialogTitle id="alert-dialog-title" color = 'black' fontWeight = "500" fontSize = "25px">

@@ -26,7 +26,18 @@ import { useParams } from "react-router-dom";
 		const handleOpen = () => setOpen(true);
 		const handleClosed = () => setOpen(false);
 		const label = { inputProps: { "aria-label": "Checkbox favorite" } };
+		// Set selected row and tab
 		const [selectedID, setSelectedID] = React.useState(null);
+		const handleSelection = (newSelection) => {
+			if (selectedID !== newSelection)
+			{
+				setSelectedID(newSelection);
+			}
+			else
+			{
+				setSelectedID(null);
+			}
+		}
 		const [selectedTab, setSelectedTab] = React.useState('1');
 		const { ticker } = useParams();
 		const [company, setCompany] = useState([]);
@@ -103,7 +114,8 @@ import { useParams } from "react-router-dom";
 							selectedTab={selectedTab}
 							setSelectedTab={setSelectedTab}
 							myRef={myRef}
-							executeScroll={executeScroll} />
+							executeScroll={executeScroll}
+							handleSelection = {handleSelection} />
 					</Box>
 				</Dialog>
 

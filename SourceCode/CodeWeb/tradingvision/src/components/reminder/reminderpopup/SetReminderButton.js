@@ -31,17 +31,23 @@ const SetReminderButton = () => {
     };
   
     const handleClose = () => {
-      resetForm()
-      setDate(null)
-      setOpen(false)
+      resetForm();
+      setOpen(false);
     };
+    const initialFValues = {
+      id: 0,
+      title: '',
+      content: '',
+      ticker: '',
+      hireDate: new Date(),
+    }
     const validate = (fieldValues = values) => {
       let temp = { ...errors }
       if ('title' in fieldValues)
           temp.title = fieldValues.title ? "" : "This field is required."
       if ('content' in fieldValues)
           temp.content = fieldValues.content ? "" : "This field is required."
-          if   ('ticker' in fieldValues)
+      if ('ticker' in fieldValues)
           temp.ticker = fieldValues.ticker ? "" : "This field is required."
       setErrors({
           ...temp
@@ -49,14 +55,8 @@ const SetReminderButton = () => {
 
       if (fieldValues === values)
           return Object.values(temp).every(x => x === "")
-  }
-      const initialFValues = {
-        id: 0,
-        title: '',
-        content: '',
-        ticker: '',
-        hireDate: new Date(),
       }
+      
       const {
           values,
           setValues,
@@ -66,13 +66,14 @@ const SetReminderButton = () => {
           resetForm
       } = useForm(initialFValues, true, validate);
         const handleSubmit = e => {
-          e.preventDefault()
-          // ham insert reminder vo database
+          e.preventDefault();
+         
           if (validate()){
-              resetForm()
-              handleClose()
+             // ham insert reminder vo database
+            resetForm()
+            setOpen(false)
+             
           }
-          
       }
 
     const [stocks, setStock] = useState([])
@@ -102,6 +103,8 @@ const SetReminderButton = () => {
         ...option,
       };
     });
+    const [inputValue, setInputValue] = React.useState('');
+    const [input, setInput] = useState()
 
     return (
       <div>
@@ -123,7 +126,7 @@ const SetReminderButton = () => {
             <TextField
              component = "form"
               variant = "standard" //to disable outline
-              required
+              required 
               placeholder="Add Title" 
               noValidate
               autoComplete="off"
@@ -153,7 +156,7 @@ const SetReminderButton = () => {
                     component = "form"
                     noValidate
                     autoComplete="off"
-                    renderInput={(props) => <TextField {...props} />}
+                    renderInput={(props) => <TextField {...props} required/>}
                     value={date}
                     onChange={(newValue) => {
                       setDate(newValue);
@@ -179,22 +182,26 @@ const SetReminderButton = () => {
             <DialogContentText>
             <Autocomplete
                 id="grouped-demo"
-                selectOnFocus
+                selectOnFocus          
                 options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
                 groupBy={(option) => option.firstLetter}
                 getOptionLabel={(option) => option.ticker}
+                getOptionSelected={(option, value) => option.ticker === value.ticker}
+                isOptionEqualToValue={(option, value) => option.ticker === value.ticker}
+                
+                onInputChange={(event, newValue) => {
+                  setInput(newValue);
+                }}
+
+                onChange={(event, newInputValue) => {
+                    setInputValue(newInputValue);
+                  }}
                 sx={{ width: 300 }}
                 renderInput={(params) => <TextField 
                 {...params} 
                 required
-                // name="ticker"        
-                // component = "form"
-                // autoComplete="off"
                 
-                // noValidate
-                // onChange={handleInputChange}
-                // error={errors.ticker}
-                // helperText={errors.ticker}
+        
                 label={<Typography style={{fontFamily:"Montserrat"}}>Choose a ticker...</Typography>} />}
               />
             </DialogContentText>
@@ -234,7 +241,7 @@ const SetReminderButton = () => {
           <DialogActions className={classes.btn}>
             <Button 
               type = "submit"
-             
+              onClick = {handleSubmit}
               className={classes.btn_Save}>Save</Button>
             <Button
               onClick={handleClose}

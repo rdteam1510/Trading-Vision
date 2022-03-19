@@ -19,7 +19,7 @@ export function useForm(initialFValues, validateOnChange = false, validate) {
 
     const resetForm = () => {
         setValues(initialFValues);
-        setErrors({})
+        setErrors({});
     }
 
 
@@ -29,8 +29,7 @@ export function useForm(initialFValues, validateOnChange = false, validate) {
         errors,
         setErrors,
         handleInputChange,
-        resetForm
-
+        resetForm,
     }
 }
 
