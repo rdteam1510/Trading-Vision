@@ -12,7 +12,7 @@ import {
     Paper,
     Container,
     TablePagination,
-
+    Typography
   } from '@material-ui/core'
   import useStyles from './style'
   import EditIcon from '@mui/icons-material/Edit';
@@ -21,9 +21,6 @@ import {
   import ReminderDelete from './reminderpopup/ReminderDelete';
   import ReminderDetail from './reminderpopup/ReminderDetail';
   import ReminderEdit from './reminderpopup/ReminderEdit';
-
-
-  
 
   const darkTheme = createTheme({
     palette: {
@@ -100,14 +97,13 @@ const ReminderInfo = () => {
       setOpenDelete(false);
     };
 
-
   return (
-      <Container>
+    <Container>
     <ThemeProvider theme={darkTheme}>
-      <div>
-        <SetReminderButton/>
-      </div>
-      <TableContainer 
+    <div>
+       <SetReminderButton/>
+    </div>
+    <TableContainer 
             className={classes.tableContainer}
             component={Paper}>
                 {
@@ -162,13 +158,14 @@ const ReminderInfo = () => {
                                     <TableCell align="left" className={classes.cell}><DeleteIcon style={{marginLeft:"10%"}} onClick = {handleOpenDelete}/></TableCell>
                                     
                                 </TableRow>
-                                <ReminderDetail 
+                                {/* <ReminderDetail 
                                         open = {openReminder} 
                                         onClose = {handleCloseReminder}
                                         content = {selectedRow?.content}
                                         ticker = {selectedRow?.ticker}
                                         title = {selectedRow?.title}
                                         time = {selectedRow?.time}
+<<<<<<< HEAD
                                          /> 
                                 <ReminderEdit 
                                   open = {openEdit} 
@@ -180,6 +177,11 @@ const ReminderInfo = () => {
                                   id = {selectedRow?.id}/>   
 
                                 <ReminderDelete open = {openDelete} onClose = {handleCloseDelete} />   
+=======
+
+
+                                         />  */}
+>>>>>>> 13b8e3945a5ef400ab7b6fe0190b160b33d9656f
                                 </>
                                 ))}
                             </TableBody>
@@ -199,11 +201,10 @@ const ReminderInfo = () => {
                 />
                 
             </TableContainer>
-            
-            
-             
-        
+
     </ThemeProvider>
+
+    
     </Container>
   )
 }

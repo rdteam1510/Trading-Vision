@@ -129,8 +129,12 @@ return (
                     </div>
 
                     <div className={classes.navlinks}>
+                       {user ?(
+                        <Navbar className={classes.link}/>
+                       ):(
+                        <></>
+                       )}
                        
-                       <Navbar className={classes.link}/>
                         
                     </div>
                     {auth && (
