@@ -1,14 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import useStyles from '../style'
 import {Button,
-        
         Dialog,
         DialogActions,
         DialogContent,
         DialogContentText ,
         DialogTitle,
-       
-} from '@material-ui/core';
+      } from '@material-ui/core';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
@@ -24,7 +22,7 @@ const SetReminderButton = () => {
     const classes = useStyles()
     const [open, setOpen] = React.useState(false);
     const [date, setDate] = React.useState(new Date());
-    
+    const [stockTicker,setTicker] = React.useState([]);
     
     const handleClickOpen = () => {
       setOpen(true);
@@ -65,22 +63,41 @@ const SetReminderButton = () => {
           handleInputChange,
           resetForm
       } = useForm(initialFValues, true, validate);
-        const handleSubmit = e => {
-          e.preventDefault()
-          // ham insert reminder vo database
-          if (validate()){
-              resetForm()
-              handleClose()
-          }
-          
+
+      const submitValues = {
+        Content: values.content,
+        Title: values.title,
+        Ticker: values.ticker
+      }
+      const handleSubmit = e => {
+        e.preventDefault()
+        // ham insert reminder vo database
+        fetch("api/reminders", {
+            method: "POST",
+            body: JSON.stringify({
+              Content: values.content,
+              Title: values.title,
+              Ticker: stockTicker.ticker,
+              RemindAt: date,
+            }),
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+            },
+          })
+            .then((res) => res.json())
+            .then(console.log);
+            
+        if (validate()){
+            resetForm()
+            handleClose()
+        }
+        
       }
 
     const [stocks, setStock] = useState([])
-
     useEffect(() => {
       componentDidMount()
     },[])
-
     const componentDidMount = async() => {
       axios.get(`/api/stocks`)
       .then((response) =>{
@@ -102,7 +119,8 @@ const SetReminderButton = () => {
         ...option,
       };
     });
-
+    console.log(stockTicker.ticker)
+    console.log(date);
     return (
       <div>
         <Button variant="outlined" onClick={handleClickOpen}>
@@ -183,18 +201,13 @@ const SetReminderButton = () => {
                 options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
                 groupBy={(option) => option.firstLetter}
                 getOptionLabel={(option) => option.ticker}
+                etOptionSelected={(option, value) => option.ticker === value.ticker}
+                isOptionEqualToValue={(option, value) => option.ticker === value.ticker}
                 sx={{ width: 300 }}
+                onChange={(event, value) => setTicker(value)}
                 renderInput={(params) => <TextField 
                 {...params} 
                 required
-                // name="ticker"        
-                // component = "form"
-                // autoComplete="off"
-                
-                // noValidate
-                // onChange={handleInputChange}
-                // error={errors.ticker}
-                // helperText={errors.ticker}
                 label={<Typography style={{fontFamily:"Montserrat"}}>Choose a ticker...</Typography>} />}
               />
             </DialogContentText>
