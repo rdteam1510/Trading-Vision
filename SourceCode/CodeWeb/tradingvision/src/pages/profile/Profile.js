@@ -6,7 +6,7 @@ import { Typography,
 import React, { useState } from 'react'
 import useStyles from './style'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import { DialogTitle, DialogContent, Dialog, DialogContentText, DialogActions } from '@mui/material';
+import { DialogTitle, Dialog, DialogContentText, DialogActions } from '@mui/material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 const Profile = ({user}) => {
