@@ -12,7 +12,7 @@ import {
     Paper,
     Container,
     TablePagination,
-
+    Typography
   } from '@material-ui/core'
   import useStyles from './style'
   import EditIcon from '@mui/icons-material/Edit';
@@ -21,9 +21,6 @@ import {
   import ReminderDelete from './reminderpopup/ReminderDelete';
   import ReminderDetail from './reminderpopup/ReminderDetail';
   import ReminderEdit from './reminderpopup/ReminderEdit';
-
-
-  
 
   const darkTheme = createTheme({
     palette: {
@@ -99,14 +96,13 @@ const ReminderInfo = () => {
       setOpenDelete(false);
     };
 
-
   return (
-      <Container>
+    <Container>
     <ThemeProvider theme={darkTheme}>
-      <div>
-        <SetReminderButton/>
-      </div>
-      <TableContainer 
+    <div>
+       <SetReminderButton/>
+    </div>
+    <TableContainer 
             className={classes.tableContainer}
             component={Paper}>
                 {
@@ -192,11 +188,10 @@ const ReminderInfo = () => {
                 />
                 
             </TableContainer>
-            
-            
-             
-        
+
     </ThemeProvider>
+
+    
     </Container>
   )
 }

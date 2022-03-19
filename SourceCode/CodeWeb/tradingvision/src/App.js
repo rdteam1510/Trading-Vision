@@ -49,8 +49,8 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Homepage user={user}/>} />
             <Route exact path="/stocks/:ticker" element={<Stockpage/>} />
-            <Route path="/favorite" element={user ? <Favorite/>:<Navigate to="/login"/> }/>
-            <Route path="/reminder" element={user ? <Reminder/>: <Navigate to="/login"/>} />
+            <Route path="/favorite" element={<Favorite/>}/>
+            <Route path="/reminder" element={<Reminder/>}/>
             <Route path="/login" element={user ? <Navigate to="/"/> : <Login/>} />
             <Route path="/profile" element={<Profile user={user}/>}/>
           </Routes>

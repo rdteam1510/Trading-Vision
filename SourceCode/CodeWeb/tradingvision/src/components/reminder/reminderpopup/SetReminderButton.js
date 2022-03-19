@@ -16,6 +16,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios'
 import { Typography } from '@mui/material';
 
+import { useNavigate } from "react-router-dom";
 
 
 const SetReminderButton = () => {
@@ -23,7 +24,7 @@ const SetReminderButton = () => {
     const [open, setOpen] = React.useState(false);
     const [date, setDate] = React.useState(new Date());
     const [stockTicker,setTicker] = React.useState([]);
-    
+    const history = useNavigate();
     const handleClickOpen = () => {
       setOpen(true);
     };
@@ -33,6 +34,9 @@ const SetReminderButton = () => {
       setDate(null)
       setOpen(false)
     };
+    const handleCloseModal = () => {
+      setOpen(false)
+    }
     const validate = (fieldValues = values) => {
       let temp = { ...errors }
       if ('title' in fieldValues)
@@ -119,8 +123,9 @@ const SetReminderButton = () => {
         ...option,
       };
     });
-    console.log(stockTicker.ticker)
-    console.log(date);
+    const refreshPage = () =>{
+      window.location.reload(false);
+    }
     return (
       <div>
         <Button variant="outlined" onClick={handleClickOpen}>
@@ -247,7 +252,7 @@ const SetReminderButton = () => {
           <DialogActions className={classes.btn}>
             <Button 
               type = "submit"
-             
+              onClick={()=>{handleCloseModal(); refreshPage()}}
               className={classes.btn_Save}>Save</Button>
             <Button
               onClick={handleClose}
