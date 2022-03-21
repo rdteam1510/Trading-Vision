@@ -158,14 +158,17 @@ const ReminderInfo = () => {
                                     <TableCell align="left" className={classes.cell}><DeleteIcon style={{marginLeft:"10%"}} onClick = {handleOpenDelete}/></TableCell>
                                     
                                 </TableRow>
-                                {/* <ReminderDetail 
+                                <ReminderDetail 
                                         open = {openReminder} 
                                         onClose = {handleCloseReminder}
                                         content = {selectedRow?.content}
                                         ticker = {selectedRow?.ticker}
                                         title = {selectedRow?.title}
                                         time = {selectedRow?.time}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5a7091622e6b85a5620c6fdf5fc05edae6279c8d
                                          /> 
                                 <ReminderEdit 
                                   open = {openEdit} 
@@ -177,10 +180,17 @@ const ReminderInfo = () => {
                                   id = {selectedRow?.id}/>   
 
                                 <ReminderDelete open = {openDelete} onClose = {handleCloseDelete} />   
+<<<<<<< HEAD
 
 
 
                                          />  */}
+=======
+
+
+
+                                     
+>>>>>>> 5a7091622e6b85a5620c6fdf5fc05edae6279c8d
 
                                 </>
                                 ))}
