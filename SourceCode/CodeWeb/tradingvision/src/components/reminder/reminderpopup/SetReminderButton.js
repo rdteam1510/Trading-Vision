@@ -16,15 +16,14 @@ import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios'
 import { Typography } from '@mui/material';
 
-import { useNavigate } from "react-router-dom";
 
 
 const SetReminderButton = () => {
     const classes = useStyles()
     const [open, setOpen] = React.useState(false);
     const [date, setDate] = React.useState(new Date());
-    const [stockTicker,setTicker] = React.useState([]);
-    const history = useNavigate();
+    
+    
     const handleClickOpen = () => {
       setOpen(true);
     };
@@ -33,18 +32,14 @@ const SetReminderButton = () => {
       resetForm();
       setOpen(false);
     };
-<<<<<<< HEAD
+
     const initialFValues = {
-      id: 0,
       title: '',
       content: '',
       ticker: '',
       hireDate: new Date(),
-=======
-    const handleCloseModal = () => {
-      setOpen(false)
->>>>>>> 13b8e3945a5ef400ab7b6fe0190b160b33d9656f
     }
+    
     const validate = (fieldValues = values) => {
       let temp = { ...errors }
       if ('title' in fieldValues)
@@ -69,53 +64,36 @@ const SetReminderButton = () => {
           handleInputChange,
           resetForm
       } = useForm(initialFValues, true, validate);
-<<<<<<< HEAD
-        const handleSubmit = e => {
-          e.preventDefault();
-         
-          if (validate()){
-             // ham insert reminder vo database
-            resetForm()
-            setOpen(false)
-             
-          }
-=======
 
-      const submitValues = {
-        Content: values.content,
-        Title: values.title,
-        Ticker: values.ticker
-      }
-      const handleSubmit = e => {
-        e.preventDefault()
-        // ham insert reminder vo database
-        fetch("api/reminders", {
-            method: "POST",
-            body: JSON.stringify({
-              Content: values.content,
-              Title: values.title,
-              Ticker: stockTicker.ticker,
-              RemindAt: date,
-            }),
-            headers: {
-              "Content-type": "application/json; charset=UTF-8",
-            },
-          })
-            .then((res) => res.json())
-            .then(console.log);
-            
-        if (validate()){
-            resetForm()
-            handleClose()
-        }
-        
->>>>>>> 13b8e3945a5ef400ab7b6fe0190b160b33d9656f
+        const handleSubmit = e => {
+            e.preventDefault()
+            if (validate()){
+              // ham insert reminder vo database
+              fetch("api/reminders", {
+                method: "POST",
+                body: JSON.stringify({
+                  Content: values.content,
+                  Title: values.title,
+                  Ticker: stockTicker.ticker,
+                  RemindAt: date,
+                }),
+                headers: {
+                  "Content-type": "application/json; charset=UTF-8",
+                },
+              })
+                .then((res) => res.json())
+                .then(console.log);
+              handleClose()
+          }
+          
       }
 
     const [stocks, setStock] = useState([])
+
     useEffect(() => {
       componentDidMount()
     },[])
+
     const componentDidMount = async() => {
       axios.get(`/api/stocks`)
       .then((response) =>{
@@ -137,15 +115,8 @@ const SetReminderButton = () => {
         ...option,
       };
     });
-<<<<<<< HEAD
-    const [inputValue, setInputValue] = React.useState('');
-    const [input, setInput] = useState()
 
-=======
-    const refreshPage = () =>{
-      window.location.reload(false);
-    }
->>>>>>> 13b8e3945a5ef400ab7b6fe0190b160b33d9656f
+    const [stockTicker,setTicker] = React.useState([]);
     return (
       <div>
         <Button variant="outlined" onClick={handleClickOpen}>
@@ -226,31 +197,14 @@ const SetReminderButton = () => {
                 options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
                 groupBy={(option) => option.firstLetter}
                 getOptionLabel={(option) => option.ticker}
-<<<<<<< HEAD
                 getOptionSelected={(option, value) => option.ticker === value.ticker}
                 isOptionEqualToValue={(option, value) => option.ticker === value.ticker}
                 
-                onInputChange={(event, newValue) => {
-                  setInput(newValue);
-                }}
-
-                onChange={(event, newInputValue) => {
-                    setInputValue(newInputValue);
-                  }}
-=======
-                etOptionSelected={(option, value) => option.ticker === value.ticker}
-                isOptionEqualToValue={(option, value) => option.ticker === value.ticker}
->>>>>>> 13b8e3945a5ef400ab7b6fe0190b160b33d9656f
-                sx={{ width: 300 }}
                 onChange={(event, value) => setTicker(value)}
+                sx={{ width: 300 }}
                 renderInput={(params) => <TextField 
                 {...params} 
                 required
-<<<<<<< HEAD
-                
-        
-=======
->>>>>>> 13b8e3945a5ef400ab7b6fe0190b160b33d9656f
                 label={<Typography style={{fontFamily:"Montserrat"}}>Choose a ticker...</Typography>} />}
               />
             </DialogContentText>
@@ -290,11 +244,7 @@ const SetReminderButton = () => {
           <DialogActions className={classes.btn}>
             <Button 
               type = "submit"
-<<<<<<< HEAD
-              onClick = {handleSubmit}
-=======
-              onClick={()=>{handleCloseModal(); refreshPage()}}
->>>>>>> 13b8e3945a5ef400ab7b6fe0190b160b33d9656f
+              onClick={handleSubmit}
               className={classes.btn_Save}>Save</Button>
             <Button
               onClick={handleClose}
