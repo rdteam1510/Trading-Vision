@@ -13,18 +13,21 @@ const Reminder = () => {
   },[])
 
   const retrieveReminders = async() =>{
-    axios.get(`/api/reminders`)
-    .then((response)=>{
-      setReminders(response.data.reminder)
-    })
+    setInterval(()=> {
+      axios.get(`/api/reminders`)
+      .then((response) =>{
+        setReminders(response.data.reminder)
+      })
+    }, 500)
+
   }
-  console.log(reminders);
+
   return (
     <div>
       {reminders.length ===  0 ? (
         <ReminderEmpty/>
       ):(
-        <ReminderInfo/>
+        <ReminderInfo reminders={reminders}/>
       )}
       {/* <ReminderInfo/> */}
     </div>

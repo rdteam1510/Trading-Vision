@@ -33,30 +33,15 @@ import {
       fontFamily: "Montserrat",
     },
   });
+
  
-const ReminderInfo = () => {
+const ReminderInfo = ({reminders}) => {
   
     const classes = useStyles()
     const [loading, setLoading] = useState(false)
     const [page, setPage] = useState(0)
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [selectedRow, setSelectedRow] = useState();
-    const [reminders, setReminders] = useState([]);
-
-    //get remidners from database 
-    useEffect(() => {
-      retrieveReminders();
-    },[])
-       
-    const retrieveReminders = async() =>{
-      setInterval(()=> {
-        axios.get(`/api/reminders`)
-        .then((response) =>{
-          setReminders(response.data.reminder)
-        })
-      }, 500)
-
-    }
 
     const rows = reminders.map((reminder) =>{
       return {
