@@ -122,11 +122,13 @@ const DataGridDemo = ({stockExchange, handleSearch, user}) => {
     },[])
 
     const componentDidMount = async() =>{
-       axios.get("/api/stocks")
-       .then((response)=>{
-          setStock(response.data.stocks);
-
-       })
+      setInterval( () =>{
+        axios.get("/api/stocks")
+        .then((response)=>{
+           setStock(response.data.stocks);
+ 
+        })
+      }, 5000)  
     }
     const rows = stocks
     .filter((stock) => stock.StockExchange === stockExchange)

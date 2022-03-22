@@ -21,6 +21,8 @@ import {
   import ReminderDelete from './reminderpopup/ReminderDelete';
   import ReminderDetail from './reminderpopup/ReminderDetail';
   import ReminderEdit from './reminderpopup/ReminderEdit';
+  import axios from 'axios';
+  import moment from 'moment';
 
   const darkTheme = createTheme({
     palette: {
@@ -32,21 +34,6 @@ import {
     },
   });
  
-  const rows = [
-    { id: 1, title:"title 1", time:"01/01/2022 09:09 am", ticker:"ACB", content:  " 1 Cras mattis consectetur purus sit amet fermentum. Cras justo odio,dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta acconsectetur ac, vestibulum at eros"},
-    { id: 2, title:"title 2", time:"02/02/2022 09:09 am", ticker:"VNM", content: "content 2"},  
-    { id: 3, title:"title 3", time:"03/03/2022 09:09 am", ticker:"ACB", content: "content 3"},
-    { id: 4, title:"title 4", time:"03/03/2022 09:09 am", ticker:"VNM", content: "content 4"},
-    { id: 5, title:"title 5 ", time:"03/03/2022 09:09 am", ticker:"VNM", content: "content 5"},  
-    { id: 6, title:"title 6", time:"03/03/2022 09:09 am", ticker:"VNM", content: "content 6"},
-    { id: 7, title:"title 7", time:"03/03/2022 09:09 am", ticker:"VNM", content: "content 7"},
-    { id: 8, title:"title 8", time:"03/03/2022 09:09 am", ticker:"VNM", content: "content 8"},  
-    { id: 9, title:"title 9", time:"09/09/2022 09:09 am", ticker:"VNM", content: "content 9"},
-    { id: 10, title:"title 10", time:"10/03/2022 10:12 pm", ticker:"VNM", content: "content 10"},
-    { id: 11, title:"title 11", time:"11/11/2022", ticker:"VNM", content: "content 11"},  
-    { id: 12, title:"title 12", time:"12/12/2022", ticker:"VNM", content: "content 12"},
-  ]; 
-
 const ReminderInfo = () => {
   
     const classes = useStyles()
@@ -54,7 +41,29 @@ const ReminderInfo = () => {
     const [page, setPage] = useState(0)
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [selectedRow, setSelectedRow] = useState();
+    const [reminders, setReminders] = useState([]);
+
+    //get remidners from database 
+    useEffect(() => {
+      retrieveReminders();
+    },[])
        
+    const retrieveReminders = async() =>{
+      await axios.get(`/api/reminders`)
+      .then((response) =>{
+        setReminders(response.data.reminder)
+      })
+    }
+
+    const rows = reminders.map((reminder) =>{
+      return {
+        id: reminder._id,
+        title: reminder.Title,
+        ticker: reminder.Ticker,
+        content: reminder.Content,
+        time: new Date( new Date(reminder.RemindAt).toUTCString() ).toLocaleString(),
+      }
+    })
     //Open reminder content
     const [openReminder, setOpenReminder] = React.useState(false);
     

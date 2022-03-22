@@ -87,10 +87,14 @@ const SetReminderButton = () => {
           
               resetForm();
               handleClose();
+              // refreshPage();
           }
            
       }
-
+      // const refreshPage = () =>{
+      //   window.location.reload(false);
+      // }
+    // console.log(date.getTime());
     const [stocks, setStock] = useState([])
 
     useEffect(() => {
@@ -98,7 +102,7 @@ const SetReminderButton = () => {
     },[])
 
     const componentDidMount = async() => {
-      axios.get(`/api/stocks`)
+      await axios.get(`/api/stocks`)
       .then((response) =>{
         setStock(response.data.stocks)
       })
