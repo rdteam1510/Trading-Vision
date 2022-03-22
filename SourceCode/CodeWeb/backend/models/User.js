@@ -3,7 +3,7 @@ const validator = require("validator");
 
 const userSchema = new mongoose.Schema(
 	{
-		googleId: {
+		userId: {
 			type: String,
 			required: true,
 		},
@@ -12,16 +12,6 @@ const userSchema = new mongoose.Schema(
 			unique: true,
 			trim: true,
 			require: [true, "Name is required"],
-		},
-		firstName: {
-			type: String,
-			trim: true,
-			required: [true, "firstName is required"],
-		},
-		lastName: {
-			type: String,
-			trim: true,
-			required: [true, "lastName is required"],
 		},
 		image: {
 			type: String,

@@ -2,7 +2,7 @@ const Stock = require("../models/Stock.js");
 const NotFoundError = require("../errors");
 
 exports.getAllStocks = async (req, res) => {
-	const stocks = await Stock.find({}).limit(300);
+	const stocks = await Stock.find({});
 	res.status(200).json({ stocks });
 };
 
@@ -45,7 +45,9 @@ exports.getAllStocksQuery = async (req, res) => {
 };
 
 exports.getStockByTicker = async (req, res) => {
-	const stock = await Stock.find({ Ticker: req.params.ticker });
+	const stock = await Stock.find({ Ticker: req.params.ticker }).sort(
+		"-TimeStamp"
+	);
 	if (!stock) {
 		throw new NotFoundError("Stock does not exist");
 	}

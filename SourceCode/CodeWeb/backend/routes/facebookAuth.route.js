@@ -1,13 +1,13 @@
 // Import modules
 const express = require("express");
 const {
-	googleAuthCallback,
+	facebookAuthCallback,
 	successLogin,
 	failedLogin,
 	logout,
-	googleAuth,
+	facebookAuth,
 	login,
-} = require("../controllers/googleAuth.controller");
+} = require("../controllers/facebookAuth.controller");
 const { ensureGuest, ensureAuth } = require("../middleware/authentication");
 const router = express.Router();
 
@@ -31,14 +31,14 @@ router.route("/auth/failure").get(failedLogin);
 // @route /auth/logout
 router.route("/auth/logout").get(logout);
 
-// @desc Auth with google
+// @desc Auth with facebook
 // @method GET
-// @route /auth/google
-router.route("/auth/google").get(googleAuth);
+// @route /auth/facebook
+router.route("/auth/facebook").get(facebookAuth);
 
-// @desc Google auth callback
+// @desc Facebook auth callback
 // @method GET
-// @route /auth/google/callback
-router.route("/auth/google/callback").get(googleAuthCallback);
+// @route /facebook/callback
+router.route("/facebook//callback").get(facebookAuthCallback);
 
 module.exports = router;
