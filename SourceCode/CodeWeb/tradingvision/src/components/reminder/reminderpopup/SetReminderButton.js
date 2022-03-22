@@ -36,8 +36,8 @@ const SetReminderButton = () => {
     const initialFValues = {
       title: '',
       content: '',
-      ticker: '',
-      hireDate: new Date(),
+      // ticker: '',
+      // remindAt: new Date(),
     }
     
     const validate = (fieldValues = values) => {
@@ -67,25 +67,28 @@ const SetReminderButton = () => {
 
         const handleSubmit = e => {
             e.preventDefault()
+            
             if (validate()){
               // ham insert reminder vo database
-              fetch("api/reminders", {
-                method: "POST",
-                body: JSON.stringify({
-                  Content: values.content,
-                  Title: values.title,
-                  Ticker: stockTicker.ticker,
-                  RemindAt: date,
-                }),
-                headers: {
-                  "Content-type": "application/json; charset=UTF-8",
-                },
-              })
-                .then((res) => res.json())
-                .then(console.log);
-              handleClose()
-          }
+           fetch(`/api/reminders`, {
+            method: "POST",
+            body: JSON.stringify({
+              Content: values.content,
+              Title: values.title,
+              Ticker: stockTicker.ticker,
+              RemindAt: date,
+            }),
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+            },
+          })
+            .then((res) => res.json())
+            .then(console.log);
           
+              resetForm();
+              handleClose();
+          }
+           
       }
 
     const [stocks, setStock] = useState([])
@@ -244,7 +247,6 @@ const SetReminderButton = () => {
           <DialogActions className={classes.btn}>
             <Button 
               type = "submit"
-              onClick={handleSubmit}
               className={classes.btn_Save}>Save</Button>
             <Button
               onClick={handleClose}
