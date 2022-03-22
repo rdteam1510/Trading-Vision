@@ -49,7 +49,6 @@ const ComparePopup = (props) => {
 
     const rows = companies
     .map((company) => {
-      console.log(company);
         return {
           id: company._id,
           ticker: company.Ticker,
@@ -110,19 +109,22 @@ const ComparePopup = (props) => {
               <SearchTicker 
               stockExchange={'hose'} handleSearch={handleSearch}
               RowID = {selectedID} onSelectRow = {setSelectedID}
-              myRef = {myRef} executeScroll = {executeScroll}  handleSelection = {handleSelection} />
+              myRef = {myRef} executeScroll = {executeScroll} 
+               handleSelection = {handleSelection} companies={companies} />
             </TabPanel>
             <TabPanel value="2">
               <SearchTicker 
               stockExchange={'hnx'} handleSearch={handleSearch}
               RowID = {selectedID} onSelectRow = {setSelectedID}
-              myRef = {myRef} executeScroll = {executeScroll}  handleSelection = {handleSelection}/>
+              myRef = {myRef} executeScroll = {executeScroll} 
+              handleSelection = {handleSelection} companies={companies}/>
             </TabPanel>
             <TabPanel value="3">
               <SearchTicker 
               stockExchange={'upcom'} handleSearch={handleSearch}
               RowID = {selectedID} onSelectRow = {setSelectedID}
-              myRef = {myRef} executeScroll = {executeScroll} handleSelection = {handleSelection}/>
+              myRef = {myRef} executeScroll = {executeScroll} 
+              handleSelection = {handleSelection} companies={companies}/>
             </TabPanel>
         </TabContext>
         </div>

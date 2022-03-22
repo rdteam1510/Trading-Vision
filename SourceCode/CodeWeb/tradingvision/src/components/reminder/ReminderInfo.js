@@ -1,19 +1,19 @@
-import React, {useState, useEffect} from 'react'
-import {  
-    createTheme, 
-    ThemeProvider, 
-    TableContainer, 
-    LinearProgress,
-    Table,
-    TableHead,
-    TableRow,
-    TableCell,
-    TableBody,
-    Paper,
-    Container,
-    TablePagination,
-    Typography,
-  } from '@material-ui/core'
+  import React, {useState, useEffect} from 'react'
+  import {  
+      createTheme, 
+      ThemeProvider, 
+      TableContainer, 
+      LinearProgress,
+      Table,
+      TableHead,
+      TableRow,
+      TableCell,
+      TableBody,
+      Paper,
+      Container,
+      TablePagination,
+      Typography,
+    } from '@material-ui/core'
   import useStyles from './style'
   import EditIcon from '@mui/icons-material/Edit';
   import DeleteIcon from '@mui/icons-material/Delete';
@@ -163,8 +163,8 @@ const ReminderInfo = ({reminders}) => {
                                         title = {selectedRow?.title}
                                         time = {selectedRow?.time}
 
-                                         />  */}
-                                {/* <ReminderEdit 
+                                         />  
+                                <ReminderEdit 
                                   open = {openEdit} 
                                   onClose = {handleCloseEdit} 
                                   content = {selectedRow?.content}

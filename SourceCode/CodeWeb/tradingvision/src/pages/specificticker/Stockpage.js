@@ -48,7 +48,6 @@ import { useParams } from "react-router-dom";
 
 		const componentDidMount = async () => {
 			axios.get(`/api/companyinfo/${ticker}`).then((response) => {
-				console.log(response.data);
 				setCompany(response.data.companyinfo);
 			});
 		};
@@ -120,7 +119,7 @@ import { useParams } from "react-router-dom";
 				</Dialog>
 
 				<div className={classes.graph}>
-					<Chart />
+					<Chart compareTicker={selectedID}/>
 				</div>
 			</Container>
 		);

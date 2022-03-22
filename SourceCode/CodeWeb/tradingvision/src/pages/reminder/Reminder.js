@@ -29,7 +29,7 @@ const Reminder = () => {
       ):(
         <ReminderInfo reminders={reminders}/>
       )}
-      {/* <ReminderInfo/> */}
+  
     </div>
 
   )

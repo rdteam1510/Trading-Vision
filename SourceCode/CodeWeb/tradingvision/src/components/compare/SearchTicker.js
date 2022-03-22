@@ -27,12 +27,7 @@ const darkTheme = createTheme({
   });
 
 
-// const rows = [
-//   { id: 1, ticker: 'ACB', description: "Asia Commercial Joint Stock Bank", industry:"Financials"},
-//   { id: 2, ticker: 'ACB', description: "Asia Commercial Joint Stock Bank", industry:"Financials"},  
-//   { id: 3, ticker: 'BID', description: "JOINT STOCK COMMERCIAL BANK FOR INVESTMENT AND DEVELOPMENT OF VIETNAM", industry:"Financials"},
 
-// ]; 
 const SearchTicker = (props) => {
     const classes = useStyles()
     const [loading, setLoading] = React.useState(false)
@@ -40,21 +35,7 @@ const SearchTicker = (props) => {
     const handleOpen = () => setLoading(true);
     const handleClosed = () => setLoading(false);
 
-    const [companies, setCompanies] = useState([]);
-
-    // 
-    useEffect(() => {
-      componentDidMount()
-    },[])
-
-    const componentDidMount = async() =>{
-       axios.get("/api/companyinfo")
-       .then((response)=>{
-          setCompanies(response.data.companyinfo);
-       })
-    }
-
-    const rows = companies
+    const rows = props.companies
     .filter((company) => company.StockExchange === props.stockExchange)
     .map((company) => {
         return {

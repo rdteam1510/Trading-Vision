@@ -7,8 +7,8 @@ import axios from 'axios'
 // const ReactHighcharts = require('react-highcharts/ReactHighstock');
 
 
-const LineChart =() =>{
-    const compareTicker = 'VIC'
+const LineChart =(props) =>{
+    
     const {ticker} = useParams()
     const [data, setData] = useState([])
     const [predictions, setPredictions] = useState([])
@@ -18,15 +18,18 @@ const LineChart =() =>{
     const predictPrice=[]
     const compareData =[]
     const predictCompare=[]
-
+    // const [comparedTicker, setComparedTicker] = useState(props.compareTicker)
 
     useEffect(() => {
       actualPrice()
       currentStockPredictions()
-      compareStocks()
-      compareStockPredictions()
+      
     },[])
   
+    useEffect(() =>{
+      compareStocks()
+      compareStockPredictions()
+    },[props.compareTicker])
     const actualPrice = async() => {
       axios.get(`/api/forpredictions/${ticker}`)
       .then((response) =>{
@@ -42,14 +45,14 @@ const LineChart =() =>{
     }
 
     const compareStocks = async()=>{
-      axios.get(`/api/forpredictions/${compareTicker}`)
-      .then((response) =>{
-        setCompare(response.data)
-      })
+        axios.get(`/api/forpredictions/${props.compareTicker}`)
+        .then((response) =>{
+          setCompare(response.data)
+        })
     }
 
     const compareStockPredictions = async() => {
-      axios.get(`/api/predictions/${compareTicker}`)
+      axios.get(`/api/predictions/${props.compareTicker}`)
       .then((response) =>{
         setComparePredictions(response.data.prediction)
       })
@@ -72,7 +75,7 @@ const LineChart =() =>{
     })
     priceData.push(predictPrice[0])
 
-    if (compareTicker !== ''){
+    if (props.compareTicker !== null){
         // compared ticker's price list
       compare.map(point=>{
         compareData.push([
@@ -89,8 +92,8 @@ const LineChart =() =>{
       })
       compareData.push(predictCompare[0])
     }
-   
-
+ 
+    
     const options = {currency: 'VND'};
     const numberFormat = new Intl.NumberFormat('en-US', options);
     const configPrice = {
@@ -235,7 +238,7 @@ const LineChart =() =>{
   
       },
       {
-        name: `${compareTicker}`,
+        name: `${props.compareTicker}`,
         type: 'spline',
   
         data: compareData,
@@ -246,7 +249,7 @@ const LineChart =() =>{
   
       },
       {
-        name: `${compareTicker} Predicted Price`,
+        name: `${props.compareTicker} Predicted Price`,
         type: 'spline',
   
         data: predictCompare,
@@ -405,7 +408,7 @@ const LineChart =() =>{
     };
     return (
       <div>
-      {compareTicker === '' ? (
+      {props.compareTicker === null ? (
         <ReactHighcharts config = {configPriceWithoutCompare}></ReactHighcharts>
       ):(
         <ReactHighcharts config = {configPrice}></ReactHighcharts>

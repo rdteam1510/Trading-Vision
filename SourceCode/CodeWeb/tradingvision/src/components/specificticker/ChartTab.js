@@ -131,7 +131,7 @@ CustomSelect.propTypes = {
   }),
 };
 
-const ChartTab = () => {
+const ChartTab = ({compareTicker}) => {
   
   const [value, setValue] = React.useState('1');
   const classes = useStyles();
@@ -139,7 +139,6 @@ const ChartTab = () => {
   const [anchorEl, setAnchorEl] = React.useState(false);
   
   const [chart,setChart] = React.useState("Line")
-
 
   return (
     <>
@@ -155,7 +154,7 @@ const ChartTab = () => {
       </CustomSelect>
       {
         chart === "Line" ? (
-          <div><LineChart/></div>
+          <div><LineChart compareTicker={compareTicker}/></div>
         ) : (
           <div><Candlestick/></div>
         )
