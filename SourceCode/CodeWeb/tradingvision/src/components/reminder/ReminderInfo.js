@@ -49,10 +49,13 @@ const ReminderInfo = () => {
     },[])
        
     const retrieveReminders = async() =>{
-      await axios.get(`/api/reminders`)
-      .then((response) =>{
-        setReminders(response.data.reminder)
-      })
+      setInterval(()=> {
+        axios.get(`/api/reminders`)
+        .then((response) =>{
+          setReminders(response.data.reminder)
+        })
+      }, 500)
+
     }
 
     const rows = reminders.map((reminder) =>{
