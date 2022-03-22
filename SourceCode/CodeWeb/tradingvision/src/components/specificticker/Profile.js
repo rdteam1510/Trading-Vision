@@ -1,6 +1,5 @@
 import { Typography,
   Grid,
-  Link,
 } from '@material-ui/core';
 import React from 'react';
 import useStyles from './style';

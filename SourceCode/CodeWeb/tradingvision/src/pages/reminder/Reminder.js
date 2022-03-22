@@ -3,9 +3,9 @@ import ReminderInfo from '../../components/reminder/ReminderInfo'
 import ReminderEmpty from '../../components/reminder/ReminderEmpty'
 import useStyles from './style'
 import axios from 'axios'
+import Login from '../login/Login'
 
-
-const Reminder = () => {
+const Reminder = ({user}) => {
   const [reminders, setReminders] = useState([])
 
   useEffect(() => {
@@ -24,11 +24,18 @@ const Reminder = () => {
 
   return (
     <div>
-      {reminders.length ===  0 ? (
-        <ReminderEmpty/>
-      ):(
-        <ReminderInfo reminders={reminders}/>
-      )}
+    {user ? (
+      <>
+        {reminders.length ===  0 ? (
+          <ReminderEmpty/>
+        ):(
+          <ReminderInfo reminders={reminders}/>
+        )}
+      </>
+    ):(
+        <Login/>
+    )}
+      
   
     </div>
 

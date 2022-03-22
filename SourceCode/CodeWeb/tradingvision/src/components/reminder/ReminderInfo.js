@@ -12,7 +12,6 @@
       Paper,
       Container,
       TablePagination,
-      Typography,
     } from '@material-ui/core'
   import useStyles from './style'
   import EditIcon from '@mui/icons-material/Edit';
@@ -21,8 +20,7 @@
   import ReminderDelete from './reminderpopup/ReminderDelete';
   import ReminderDetail from './reminderpopup/ReminderDetail';
   import ReminderEdit from './reminderpopup/ReminderEdit';
-  import axios from 'axios';
-  import moment from 'moment';
+  
 
   const darkTheme = createTheme({
     palette: {

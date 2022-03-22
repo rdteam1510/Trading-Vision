@@ -4,14 +4,14 @@ import {
     Toolbar, 
     Typography, InputBase, 
     IconButton, createTheme, 
-    ThemeProvider, CssBaseline, Avatar} from "@material-ui/core";
+    ThemeProvider, CssBaseline,} from "@material-ui/core";
 import React, {useState} from "react";
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import LogoutIcon from '@mui/icons-material/Logout';
-import {NavLink, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import useStyles from "./style";
 import Navbar from './Navbar'
 import Modal from '@mui/material/Modal';
