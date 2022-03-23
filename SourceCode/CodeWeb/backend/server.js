@@ -69,8 +69,8 @@ const stocksRoutes = require("./routes/stock.route");
 app.use("/api/stocks", stocksRoutes);
 
 // ForPrediction
-// const forPredictionRoutes = require("./routes/forprediction.route.js");
-// app.use("/api/forpredictions", forPredictionRoutes);
+const forPredictionRoutes = require("./routes/forprediction.route.js");
+app.use("/api/forpredictions", forPredictionRoutes);
 
 // Predictions
 const predictionRoutes = require("./routes/prediction.route");

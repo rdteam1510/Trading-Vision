@@ -6,7 +6,7 @@ const reminderSchema = new mongoose.Schema({
 	Title: { type: String, trim: true },
 	Ticker: { type: String, trim: true, minlength: 3, maxlength: 3 },
 	Content: { type: String, trim: true },
-	RemindAt: { type: Date },
+	RemindAt: { type: Number },
 });
 
 module.exports = mongoose.model("Reminder", reminderSchema);

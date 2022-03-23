@@ -20,7 +20,6 @@ exports.logout = (req, res) => {
 	req.logout();
 	req.session.destroy();
 	res.redirect(CLIENT_URL + "login");
-	res.status(200).json({ msg: "Logout" });
 };
 
 exports.facebookAuth = passport.authenticate("facebook", {

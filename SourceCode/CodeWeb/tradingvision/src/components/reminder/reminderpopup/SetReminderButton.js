@@ -76,7 +76,7 @@ const SetReminderButton = () => {
               Content: values.content,
               Title: values.title,
               Ticker: stockTicker.ticker,
-              RemindAt: date,
+              RemindAt: date.getTime(),
             }),
             headers: {
               "Content-type": "application/json; charset=UTF-8",
