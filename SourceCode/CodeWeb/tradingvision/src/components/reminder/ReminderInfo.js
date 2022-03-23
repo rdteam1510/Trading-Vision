@@ -171,7 +171,9 @@ const ReminderInfo = ({reminders}) => {
                                   time = {selectedRow?.time}
                                   id = {selectedRow?.id}/>    */}
 
-                                <ReminderDelete open = {openDelete} onClose = {handleCloseDelete} />   
+                                <ReminderDelete open = {openDelete} onClose = {handleCloseDelete} rowID={row.id}
+
+                                />   
                                 </>
                                 ))}
                             </TableBody>

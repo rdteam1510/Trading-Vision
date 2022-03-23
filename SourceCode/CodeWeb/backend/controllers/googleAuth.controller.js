@@ -29,5 +29,5 @@ exports.googleAuth = passport.authenticate("google", {
 
 exports.googleAuthCallback = passport.authenticate("google", {
 	successRedirect: CLIENT_URL,
-	failureRedirect: "/auth/login",
+	failureRedirect: CLIENT_URL + 'login',
 });

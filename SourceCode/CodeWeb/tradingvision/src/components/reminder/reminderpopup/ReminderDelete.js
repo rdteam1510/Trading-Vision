@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -6,7 +6,20 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import axios from 'axios';
+
+
 const ReminderDelete = (props) => {
+  const [status, setStatus] = useState([])
+
+  // useEffect(() => {
+  //   componentDidMount()
+  // },[])
+
+  const componentDidMount = async() => {
+    axios.delete(`/api/reminders/`+ props.rowID)
+    .then((res) => setStatus(res.data))
+  }
   return (
     <Dialog
               open={props.open}
@@ -30,7 +43,7 @@ const ReminderDelete = (props) => {
               </DialogContent>
               <DialogActions>
                 <Button 
-                  onClick={props.onClose} 
+                  onClick={()=>{componentDidMount(); props.onClose()}}
                   sx = {{
                     color: 'white',
                     backgroundColor:'#f12312',
