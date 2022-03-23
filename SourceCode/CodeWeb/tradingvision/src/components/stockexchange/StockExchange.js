@@ -38,9 +38,9 @@ const StockExchange = ({user}) => {
   },[])
 
   const componentDidMount = async() =>{
-     axios.get("/api/stocks")
+     axios.get("/api/companyinfo")
      .then((response)=>{
-        setStocks(response.data.stocks);
+        setStocks(response.data.companyinfo);
      })
   }
 

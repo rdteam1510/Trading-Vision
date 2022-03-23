@@ -18,7 +18,7 @@ const Reminder = ({user}) => {
       .then((response) =>{
         setReminders(response.data.reminder)
       })
-    }, 500)
+    }, 200)
 
   }
 
