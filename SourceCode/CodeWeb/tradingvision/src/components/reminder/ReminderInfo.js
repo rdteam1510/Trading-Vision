@@ -85,7 +85,8 @@ const ReminderInfo = ({reminders}) => {
     
     //Open reminder delete
     const [openDelete, setOpenDelete] = useState(false);
-    const handleOpenDelete = () => {
+    const handleOpenDelete = (row) => {
+      setSelectedRow(row);
       setOpenDelete(true);
     }
     const handleCloseDelete = () => {
@@ -144,25 +145,24 @@ const ReminderInfo = ({reminders}) => {
                                     Read more
                                    
                                     </TableCell>
-                                   
+                                    <ReminderDetail 
+                                        open = {openReminder} 
+                                        onClose = {handleCloseReminder}
+                                        content = {selectedRow.content}
+                                        // ticker = {selectedRow?.ticker}
+                                        // title = {selectedRow?.title}
+                                        // time = {selectedRow?.time}
+
+                                         />  
                                     <TableCell align="left" className={classes.cell}>
                                       <EditIcon 
                                       onClick = {() => handleOpenEdit(row)} 
                                       
                                        /></TableCell>
-                                    <TableCell align="left" className={classes.cell}><DeleteIcon style={{marginLeft:"10%"}} onClick = {handleOpenDelete}/></TableCell>
-                                    
-                                </TableRow>
-                                {/* <ReminderDetail 
-                                        open = {openReminder} 
-                                        onClose = {handleCloseReminder}
-                                        content = {selectedRow?.content}
-                                        ticker = {selectedRow?.ticker}
-                                        title = {selectedRow?.title}
-                                        time = {selectedRow?.time}
-
-                                         />  
-                                <ReminderEdit 
+                                    <TableCell align="left" className={classes.cell}><DeleteIcon style={{marginLeft:"10%"}} 
+                                      onClick = {() => handleOpenDelete(row)}/></TableCell>
+                                  
+                                {/* <ReminderEdit 
                                   open = {openEdit} 
                                   onClose = {handleCloseEdit} 
                                   content = {selectedRow?.content}
@@ -173,7 +173,9 @@ const ReminderInfo = ({reminders}) => {
 
                                 <ReminderDelete open = {openDelete} onClose = {handleCloseDelete} rowID={row.id}
 
-                                />   
+                                />      
+                                </TableRow>
+                               
                                 </>
                                 ))}
                             </TableBody>
