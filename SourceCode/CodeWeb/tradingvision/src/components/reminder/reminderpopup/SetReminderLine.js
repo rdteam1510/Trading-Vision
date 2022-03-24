@@ -172,7 +172,7 @@ const SetReminderLine = (props) => {
                     noValidate
                     autoComplete="off"
                     renderInput={(props) => <TextField {...props} required/>}
-                    value={date}
+                    value={props.time}
                     onChange={(newValue) => {
                       setDate(newValue);
                     }}
@@ -203,7 +203,9 @@ const SetReminderLine = (props) => {
                 getOptionLabel={(option) => option.ticker}
                 getOptionSelected={(option, value) => option.ticker === value.ticker}
                 isOptionEqualToValue={(option, value) => option.ticker === value.ticker}
-                
+                defaultValue={options.filter((item) => {
+                    return item.ticker === props.ticker;
+                  })[0] || ""}
                 onChange={(event, value) => setTicker(value)}
                 sx={{ width: 300 }}
                 renderInput={(params) => <TextField 

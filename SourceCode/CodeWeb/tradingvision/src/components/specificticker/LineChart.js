@@ -9,6 +9,8 @@ import SetReminderLine from '../reminder/reminderpopup/SetReminderLine';
 
 const LineChart =(props) =>{
     const [open, setOpen] = React.useState(false);
+    const [stock, setStock] = useState();
+    const [time, setTime] = useState();
     const {ticker} = useParams()
     const [data, setData] = useState([])
     const [predictions, setPredictions] = useState([])
@@ -132,9 +134,20 @@ const LineChart =(props) =>{
             events: {
               click: function(e){
                 var seriesName = e.point.series.name;
-                if(seriesName == `${ticker} Predicted Price` || seriesName == `${props.compareTicker} Predicted Price`) {
-                  console.log("Clicked Temperature Line");
+                var val = e.point.x;
+                if(seriesName == `${ticker} Predicted Price`) {                 
                   setOpen(true);
+                  setTime(val);                  
+                  setStock(ticker);
+                  console.log(val);
+                  console.log(ticker);
+                }
+                else if(seriesName == `${props.compareTicker} Predicted Price`) {
+                  setOpen(true);
+                  setTime(val);
+                  setStock(props.compareTicker);
+                  console.log(val);
+                  console.log(props.compareTicker);
                 }
                 else  {
                   alert("Can only add reminder for predicted price");
@@ -317,11 +330,16 @@ const LineChart =(props) =>{
           point: {
             events: {
               click: function(e){
-                var seriesName = e.point.series.name;
-                if(seriesName == `${ticker} Predicted Price`) {
-                  console.log("Clicked Temperature Line");
+                let seriesName = e.point.series.name; 
+                // Val is the date value (UTC)               
+                let val = e.point.x;
+               
+                if(seriesName === `${ticker} Predicted Price`) {            
                   setOpen(true);
-                  
+                  setTime(val);
+                  setStock(ticker);
+                  console.log(seriesName);
+                  console.log(ticker);              
                 }
                 else  {
                   alert("Can only add reminder for predicted price");
@@ -444,12 +462,20 @@ const LineChart =(props) =>{
       {props.compareTicker === null ? (
         <>
         <ReactHighcharts config = {configPriceWithoutCompare}></ReactHighcharts>
-        <SetReminderLine open = {open} setOpen = {setOpen}/>
+        <SetReminderLine 
+          open = {open} 
+          setOpen = {setOpen}
+          ticker = {(stock || {})}
+          time ={(time || {})}/>
         </>
       ):(
         <>
         <ReactHighcharts config = {configPrice}></ReactHighcharts>
-        <SetReminderLine open = {open} setOpen = {setOpen}/>
+        <SetReminderLine 
+          open = {open} 
+          setOpen = {setOpen}
+          ticker = {(stock || {})}
+          time = {(time || {})}/>
         </>
       )}
         

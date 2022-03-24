@@ -13,6 +13,7 @@ exports.createReminder = async (req, res) => {
 	req.body.Email = req.user.email;
 	const reminder = await Reminder.create(req.body);
 	res.status(StatusCodes.CREATED).json({ reminder });
+
 };
 
 exports.deleteReminder = async (req, res) => {

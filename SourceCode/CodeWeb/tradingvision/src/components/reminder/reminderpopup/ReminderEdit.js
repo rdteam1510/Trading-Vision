@@ -20,6 +20,13 @@ import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios'
 
 
+const initialFValues = {
+    id: 0,
+    title: 'helloWorld',
+    content: 'remember to do sth',
+    ticker: 'ACB',
+    date: new Date(),
+  }
 
 const ReminderEdit = (props) => {
     const classes = useStyles()
@@ -31,7 +38,7 @@ const ReminderEdit = (props) => {
         title: props.title,
         content: props.content,
         ticker: props.ticker,
-        date: props.time,
+        hireDate: new Date(),
     }
     const handleClose = () => {
       resetForm()
@@ -78,9 +85,9 @@ const ReminderEdit = (props) => {
     },[])
 
     const componentDidMount = async() => {
-      axios.get(`/api/comapnmyinfo`)
+      axios.get(`/api/stocks`)
       .then((response) =>{
-        setStock(response.data.companyinfo)
+        setStock(response.data.stocks)
       })
     }
 
@@ -180,8 +187,8 @@ const ReminderEdit = (props) => {
                 groupBy={(option) => option.firstLetter}
                 getOptionLabel={(option) => option.ticker }
                 sx={{ width: 300 }}
-                getOptionSelected={(option, values) => option.ticker === values.ticker}
-                isOptionEqualToValue={(option, values) => option.ticker === values.ticker}
+                getOptionSelected={(option, props) => option.ticker === props.ticker}
+                isOptionEqualToValue={(option, props) => option.ticker === props.ticker}
                 defaultValue={options.filter((item) => {
                     return item.ticker === props.ticker;
                   })[0] || ""}
