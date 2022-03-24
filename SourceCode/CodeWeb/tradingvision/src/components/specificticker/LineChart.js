@@ -128,8 +128,15 @@ const LineChart =(props) =>{
         series: {
           showInNavigator: true,
           gapSize: 6,
-        
+          cursor: 'pointer',
+          point: {
+            events: {
+              click: (e) => { console.log(this); console.log(e.point.category); console.log(e.point.y);  }
+            }
+          }
         }
+          
+        
       },
       rangeSelector: {
         selected: 1

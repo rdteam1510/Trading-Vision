@@ -175,6 +175,7 @@ const ReminderInfo = ({reminders}) => {
                                 <ReminderDelete 
                                   open = {openDelete} 
                                   onClose = {handleCloseDelete} 
+                                  title = {(selectedRow || {}).title}
                                   rowID={(selectedRow || {}).id}
 
                                 />      

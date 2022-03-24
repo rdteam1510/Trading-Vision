@@ -16,8 +16,8 @@ const ReminderDelete = (props) => {
   //   componentDidMount()
   // },[])
 
-  const componentDidMount = async() => {
-    axios.delete(`/api/reminders/`+ props.rowID)
+  const componentDidMount = async(row) => {
+    axios.delete(`/api/reminders/`+ row)
     .then((res) => setStatus(res.data))
   }
   return (
@@ -34,16 +34,16 @@ const ReminderDelete = (props) => {
                 sx = {{
                   fontSize:80,
                   color:'#f12323',}}/> <br/>
-                {"You are about to delete a reminder"}
+               You are about to delete the reminder {props.title}
               </DialogTitle>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description" align = "center">
-                  This will delete the reminder from reminder list. <br/>Are you sure?
+                  This will delete the reminder {props.title} from reminder list. <br/>Are you sure?
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
                 <Button 
-                  onClick={()=>{componentDidMount(); props.onClose()}}
+                  onClick={()=>{componentDidMount(props.rowID); props.onClose()}}
                   sx = {{
                     color: 'white',
                     backgroundColor:'#f12312',
