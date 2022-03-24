@@ -71,7 +71,7 @@ const LineChart =(props) =>{
     // current stock's prediction price list 
     predictions.map(point => {
       predictPrice.push([
-        Date.parse(point.Date),
+        point.Date*1000,
         point.PredictedPrice
       ])
     })
@@ -88,7 +88,7 @@ const LineChart =(props) =>{
       // compared stock's prediction price list
       comparePredictions.map(point => {
         predictCompare.push([
-          Date.parse(point.Date),
+          point.Date*1000,
           point.PredictedPrice
         ])
       })

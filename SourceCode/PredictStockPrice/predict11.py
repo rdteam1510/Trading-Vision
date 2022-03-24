@@ -47,7 +47,7 @@ if __name__ == "__main__":
             dt["Ticker"] = ticker
             dt["PredictedPrice"] = forecast[i]
             dt["Date"] = datetime.datetime.timestamp(forecast_dates[i])
-            dt["TimeStamp"] = datetime.datetime.utcnow()
+            dt["TimeStamp"] =time.time()
             new_item = dict(zip(new_columns, list(dt.values())))
             l.append(new_item)
             

@@ -20,13 +20,13 @@ import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios'
 
 
-const initialFValues = {
-    id: 0,
-    title: 'helloWorld',
-    content: 'remember to do sth',
-    ticker: 'ACB',
-    date: new Date(),
-  }
+// const initialFValues = {
+//     id: 0,
+//     title: 'helloWorld',
+//     content: 'remember to do sth',
+//     ticker: 'ACB',
+//     date: new Date(),
+//   }
 
 const ReminderEdit = (props) => {
     const classes = useStyles()
@@ -38,7 +38,7 @@ const ReminderEdit = (props) => {
         title: props.title,
         content: props.content,
         ticker: props.ticker,
-        hireDate: new Date(),
+        remindAt: props.time,
     }
     const handleClose = () => {
       resetForm()
@@ -106,7 +106,7 @@ const ReminderEdit = (props) => {
     });
     const [inputValue, setInputValue] = React.useState('');
     const [input, setInput] = useState()
- 
+    console.log(values)
     return (
         <div>
         
@@ -132,14 +132,14 @@ const ReminderEdit = (props) => {
               autoComplete="off"
               InputProps={{ 
                     disableUnderline: true,
-                    defaultValue: "This is the default value",
+                    // defaultValue: "This is the default value",
                     style:{
                       fontSize:"18px",
                       fontFamily: "Montserrat",
                       color:"black",
                     }}} 
               name="title"        
-              value={props.title}
+              value={values.title}
               onChange={handleInputChange}
               error={errors.title}
               helperText = {errors.title}
@@ -159,7 +159,7 @@ const ReminderEdit = (props) => {
                     autoComplete="off"
                     renderInput={(props) => <TextField {...props} />}
                     name = "date"
-                    value={props.time}
+                    value={values.time}
                     
                     onChange={(newValue) => {
                       setDate(newValue);
@@ -189,8 +189,8 @@ const ReminderEdit = (props) => {
                 sx={{ width: 300 }}
                 getOptionSelected={(option, props) => option.ticker === props.ticker}
                 isOptionEqualToValue={(option, props) => option.ticker === props.ticker}
-                defaultValue={options.filter((item) => {
-                    return item.ticker === props.ticker;
+                value={options.filter((item) => {
+                    return item.ticker === values.ticker;
                   })[0] || ""}
                 onInputChange={(event, newValue) => {
                     setInput(newValue);
@@ -231,7 +231,7 @@ const ReminderEdit = (props) => {
                   variant = "outlined"
                   size = "large"
                   name="content"        
-                  value={props.content}
+                  value={values.content}
                   onChange={handleInputChange}
                   error={errors.content}
                   helperText={errors.content}
