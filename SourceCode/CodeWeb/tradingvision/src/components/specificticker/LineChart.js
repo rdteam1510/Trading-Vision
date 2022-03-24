@@ -128,13 +128,21 @@ const LineChart =(props) =>{
         series: {
           showInNavigator: true,
           gapSize: 6,
-          cursor: 'pointer',
           point: {
             events: {
-              click: (e) => { console.log(this); console.log(e.point.category); console.log(e.point.y);  }
-            }
+              click: function(e){
+                var seriesName = e.point.series.name;
+                if(seriesName == `${ticker} Predicted Price` || seriesName == `${props.compareTicker} Predicted Price`) {
+                  console.log("Clicked Temperature Line");
+                }
+                else  {
+                  alert("Can only add reminder for predicted price");
+                }
+                
+                }
+              }
+            } 
           }
-        }
           
         
       },
@@ -242,7 +250,9 @@ const LineChart =(props) =>{
           valueDecimals: 2
         },
         color: '#CFE9EF',
-  
+       
+      
+          
       },
       {
         name: `${props.compareTicker}`,
@@ -264,7 +274,7 @@ const LineChart =(props) =>{
           valueDecimals: 2
         },
         color: '#EAC5B0',
-  
+       
       }
       ],
       
@@ -303,7 +313,20 @@ const LineChart =(props) =>{
         series: {
           showInNavigator: true,
           gapSize: 6,
-        
+          point: {
+            events: {
+              click: function(e){
+                var seriesName = e.point.series.name;
+                if(seriesName == `${ticker} Predicted Price`) {
+                  console.log("Clicked Temperature Line");
+                }
+                else  {
+                  alert("Can only add reminder for predicted price");
+                }
+                
+                }
+              }
+            } 
         }
       },
       rangeSelector: {
@@ -387,7 +410,7 @@ const LineChart =(props) =>{
         inputStyle: {
           color: 'grey',
           fontWeight: 'bold'
-      },
+        },
       
       },
       series: [{
@@ -410,8 +433,8 @@ const LineChart =(props) =>{
           valueDecimals: 2
         },
         color: '#CFE9EF',
-  
-      },]
+      
+      }],
     };
     return (
       <div>
