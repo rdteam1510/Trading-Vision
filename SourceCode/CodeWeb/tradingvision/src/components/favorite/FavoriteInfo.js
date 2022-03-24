@@ -16,7 +16,7 @@ import {
   } from '@material-ui/core'
   import useStyles from './style'
   import DeleteIcon from '@mui/icons-material/Delete';
-  
+  import FavoriteDelete from './FavoriteDelete';
 
   const darkTheme = createTheme({
     palette: {
@@ -47,7 +47,16 @@ const FavoriteInfo = () => {
     const [loading, setLoading] = useState(false)
     const [page, setPage] = useState(0)
     const [rowsPerPage, setRowsPerPage] = useState(10);
-
+    // Delete modal
+    const [selectedRow, setSelectedRow] = useState();
+    const [openDelete, setOpenDelete] = useState(false);
+    const handleOpenDelete = (row) => {
+      setSelectedRow(row);
+      setOpenDelete(true);
+    }
+    const handleCloseDelete = () => {
+      setOpenDelete(false);
+    };
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -108,8 +117,15 @@ const FavoriteInfo = () => {
                                     <TableCell align="left" className={classes.cell}>
                                       <DeleteIcon 
                                         style={{marginLeft:"10%"}}
-                                        onClick = {() => }/>
+                                        onClick = {() => handleOpenDelete(row)}
+                                        />
                                     </TableCell>
+                                    <FavoriteDelete 
+                                  open = {openDelete} 
+                                  onClose = {handleCloseDelete} 
+                                  rowID={(selectedRow || {}).id}
+
+                                />      
                                 </TableRow>
                                 ))}
                             </TableBody>
