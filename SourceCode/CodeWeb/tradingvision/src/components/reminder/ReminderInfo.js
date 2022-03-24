@@ -140,7 +140,8 @@ const ReminderInfo = ({reminders}) => {
                                     <TableCell align="left" className={classes.cell}>{row.time}</TableCell>
                                     <TableCell align="left" className={classes.cell}>{row.ticker}</TableCell>
                                     <TableCell align="left" className={classes.cell} 
-                                    onClick = {() => handleOpenReminder(row)}                                   
+                                    onClick = {() => handleOpenReminder(row)}    
+                                                           
                                     >
                                     Read more
                                    
@@ -148,10 +149,10 @@ const ReminderInfo = ({reminders}) => {
                                     <ReminderDetail 
                                         open = {openReminder} 
                                         onClose = {handleCloseReminder}
-                                        content = {selectedRow.content}
-                                        // ticker = {selectedRow?.ticker}
-                                        // title = {selectedRow?.title}
-                                        // time = {selectedRow?.time}
+                                        //content = {selectedRow?.content}
+                                        ticker = {row.ticker}
+                                        title = {row.title}
+                                        time = {row.time}
 
                                          />  
                                     <TableCell align="left" className={classes.cell}>

@@ -10,6 +10,7 @@ exports.getReminder = async (req, res) => {
 
 exports.createReminder = async (req, res) => {
 	req.body.UserId = req.user._id;
+	req.body.Email = req.user.email;
 	const reminder = await Reminder.create(req.body);
 	res.status(StatusCodes.CREATED).json({ reminder });
 };
