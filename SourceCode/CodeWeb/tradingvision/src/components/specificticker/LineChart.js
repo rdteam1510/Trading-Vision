@@ -3,12 +3,12 @@ import ReactHighcharts from 'react-highcharts/ReactHighstock.src'
 import moment from 'moment'
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
-
+import SetReminderLine from '../reminder/reminderpopup/SetReminderLine';
 // const ReactHighcharts = require('react-highcharts/ReactHighstock');
 
 
 const LineChart =(props) =>{
-    
+    const [open, setOpen] = React.useState(false);
     const {ticker} = useParams()
     const [data, setData] = useState([])
     const [predictions, setPredictions] = useState([])
@@ -134,6 +134,7 @@ const LineChart =(props) =>{
                 var seriesName = e.point.series.name;
                 if(seriesName == `${ticker} Predicted Price` || seriesName == `${props.compareTicker} Predicted Price`) {
                   console.log("Clicked Temperature Line");
+                  setOpen(true);
                 }
                 else  {
                   alert("Can only add reminder for predicted price");
@@ -319,6 +320,8 @@ const LineChart =(props) =>{
                 var seriesName = e.point.series.name;
                 if(seriesName == `${ticker} Predicted Price`) {
                   console.log("Clicked Temperature Line");
+                  setOpen(true);
+                  
                 }
                 else  {
                   alert("Can only add reminder for predicted price");
@@ -439,9 +442,15 @@ const LineChart =(props) =>{
     return (
       <div>
       {props.compareTicker === null ? (
+        <>
         <ReactHighcharts config = {configPriceWithoutCompare}></ReactHighcharts>
+        <SetReminderLine open = {open} setOpen = {setOpen}/>
+        </>
       ):(
+        <>
         <ReactHighcharts config = {configPrice}></ReactHighcharts>
+        <SetReminderLine open = {open} setOpen = {setOpen}/>
+        </>
       )}
         
       </div>

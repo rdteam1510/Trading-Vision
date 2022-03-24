@@ -24,8 +24,8 @@ const ReminderDetail = (props) => {
               onClose={props.onClose}
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
-              minWidth = '500px'
-              minHeight = '500px'
+              width = '500px'
+              height = '500px'
             >
              
               <DialogTitle id="alert-dialog-title" color = 'black' fontWeight = "500" fontSize = "25px">
@@ -44,7 +44,7 @@ const ReminderDetail = (props) => {
                 <Typography gutterBottom  fontWeight = "400">
                    Ticker: {props.ticker}
                 </Typography>
-          <Box sx={{ border: 0.5, borderRadius: '10px'}}>
+          <Box sx={{ border: 0.5, borderRadius: '10px', minWidth: 500, minHeight: 250}}>
                 <Typography gutterBottom marginLeft = '4%'  marginTop = '4%' marginBottom = '4%'>
                   {props.content}
           </Typography>

@@ -19,7 +19,7 @@ import {
   import useStyles from './style'
   import EditIcon from '@mui/icons-material/Edit';
   import DeleteIcon from '@mui/icons-material/Delete';
-  import SetReminderButton from "./reminderpopup/SetReminderButton";
+  import SetReminderButton from "./reminderpopup/SetReminderLine";
   import { Typography } from '@mui/material';
   import { useForm, Form } from './useForm';
 
@@ -90,8 +90,7 @@ const ReminderEmpty = () => {
                 <br/><br/><br/>
                 <div>
                 
-                  <SetReminderButton 
-                   />
+                  <SetReminderButton                   />
                 </div>
                 <br/><br/><br/>
 
