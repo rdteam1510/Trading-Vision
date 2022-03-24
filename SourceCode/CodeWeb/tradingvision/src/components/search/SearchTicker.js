@@ -4,7 +4,7 @@ import {
 	createTheme,
 	ThemeProvider,
 	TableContainer,
-	LinearProgress,
+	CircularProgress,
 	Table,
 	TableHead,
 	TableRow,
@@ -14,6 +14,7 @@ import {
 } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Container } from "@mui/material";
 
 const darkTheme = createTheme({
 	palette: {
@@ -40,12 +41,14 @@ const SearchTicker = ({ stockExchange, handleSearch }) => {
 	
 	//
 	useEffect(() => {
-		componentDidMount();
-	}, [stockExchange]);
+		componentDidMount(stockExchange);
+	}, []);
 
-	const componentDidMount = async () => {
+	const componentDidMount = async (stockExchange) => {
+		setLoading(true);
 		axios.get(`/api/companyinfo?stockexchange=${stockExchange}`).then((response) => {
 			setCompanies(response.data.companyinfo);
+			setLoading(false);
 		});
 	};
 
@@ -56,6 +59,7 @@ const SearchTicker = ({ stockExchange, handleSearch }) => {
 				ticker: company.Ticker,
 				companyName: company.CompanyName,
 				industry: company.Industry,
+				stockExchange: company.StockExchange,
 			};
 		});
 
@@ -67,20 +71,23 @@ const SearchTicker = ({ stockExchange, handleSearch }) => {
 	};
 	return (
 		<ThemeProvider theme={darkTheme}>
-			<TableContainer
-				className={classes.tableContainer}
-				component={Paper}
-			>
+			
 				{loading ? (
-					<LinearProgress style={{ backgroundColor: "primary" }} />
+					<div className={classes.loading_spinner}>
+						<CircularProgress style={{ backgroundColor: "primary" }}/>
+					</div>
 				) : (
+					<TableContainer
+						className={classes.tableContainer}
+						component={Paper}
+					>
 					<Table stickyHeader aria-label="sticky table">
 						<TableHead
 							className={classes.tablehead}
 							rowCount={rows.length}
 						>
 							<TableRow>
-								{["TICKER", "DESCRIPTION", "INDUSTRY"].map(
+								{["TICKER", "DESCRIPTION", "INDUSTRY", "STOCK EXCHANGE"].map(
 									(head) => (
 										<TableCell
 											className={classes.tablecell}
@@ -130,12 +137,19 @@ const SearchTicker = ({ stockExchange, handleSearch }) => {
 									>
 										{row.industry}
 									</TableCell>
+									<TableCell
+										align="left"
+										className={classes.cell}
+									>
+										{row.stockExchange}
+									</TableCell>
 								</TableRow>
 							))}
 						</TableBody>
 					</Table>
+					</TableContainer>
 				)}
-			</TableContainer>
+			
 		</ThemeProvider>
 	);
 };

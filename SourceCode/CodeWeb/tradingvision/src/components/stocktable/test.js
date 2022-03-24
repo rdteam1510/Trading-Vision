@@ -128,7 +128,7 @@ const DataGridDemo = ({stockExchange, handleSearch, user}) => {
            setStock(response.data.stocks);
  
         })
-      }, 5000)  
+      }, 1000)  
     }
     const rows = stocks
     // .filter((stock) => stock.StockExchange === stockExchange)

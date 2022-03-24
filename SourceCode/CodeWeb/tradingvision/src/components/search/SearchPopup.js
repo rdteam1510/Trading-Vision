@@ -64,7 +64,9 @@ const SearchPopup = () => {
 				row.industry.toLowerCase().includes(search) ||
 				row.ticker.includes(search) ||
 				row.industry.includes(search) ||
-				row.companyName.includes(search)
+				row.companyName.includes(search) ||
+				row.stockExchange.includes(search) ||
+				row.stockExchange.includes(search)
 		);
 	};
 

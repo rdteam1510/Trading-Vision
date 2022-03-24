@@ -2,6 +2,11 @@ import {makeStyles} from '@material-ui/core'
 
 
 const useStyles = makeStyles((theme)=>({
+    loading_spinner:{
+      marginLeft:"50%",
+      marginTop:"20%",
+      
+   },
     search: {
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
