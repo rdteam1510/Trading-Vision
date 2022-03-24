@@ -7,7 +7,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import axios from 'axios';
-
+import { Typography } from '@material-ui/core';
 
 const ReminderDelete = (props) => {
   const [status, setStatus] = useState([])
@@ -34,11 +34,11 @@ const ReminderDelete = (props) => {
                 sx = {{
                   fontSize:80,
                   color:'#f12323',}}/> <br/>
-                {"You are about to delete a favorite stock"}
+               You are about to delete {props.ticker}
               </DialogTitle>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description" align = "center">
-                  This will delete the stock from favorite list. <br/>Are you sure?
+                  This will delete {props.ticker} from favorite list. <br/>Are you sure?
                 </DialogContentText>
               </DialogContent>
               <DialogActions>

@@ -100,7 +100,7 @@ const FavoriteInfo = () => {
                                 .map((row)=> (
                                     <TableRow
                                     className ={classes.row}
-                                    key={row.title}>
+                                    key={row.ticker}>
                                     <TableCell component='th' scope='row'
                                         style={{
                                           fontWeight: 'bold',
@@ -124,6 +124,7 @@ const FavoriteInfo = () => {
                                   open = {openDelete} 
                                   onClose = {handleCloseDelete} 
                                   rowID={(selectedRow || {}).id}
+                                  ticker = {(selectedRow || {}).ticker}
 
                                 />      
                                 </TableRow>
