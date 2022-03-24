@@ -8,7 +8,7 @@ start = time.time()
 client
 
 db = client['TradingVision']
-data = db['CompanyInfo'].find({},
+data = db['companyinfos'].find({},
                               {"Ticker":1,
                                "_id":0})
 new_columns = ["Ticker","PredictedPrice","Date","TimeStamp"]
@@ -28,7 +28,7 @@ if __name__ == "__main__":
                     
         # Retrain model
         
-        model = load_model('../Model/{}_model'.format(ticker))
+        model = load_model('/home/ubuntu/Model/{}_model'.format(ticker))
         model = only_train(close_data, model, ticker)
         # Predict price
         num_prediction = 6
@@ -37,7 +37,7 @@ if __name__ == "__main__":
         
 
         # Save new model
-        model.save('../Model/{}_model'.format(ticker))
+        model.save('/home/ubuntu/Model/{}_model'.format(ticker))
         gc.collect() 
     
     
@@ -46,12 +46,12 @@ if __name__ == "__main__":
         for i in range(len(forecast)):
             dt["Ticker"] = ticker
             dt["PredictedPrice"] = forecast[i]
-            dt["Date"] = forecast_dates[i] 
-            dt["TimeStamp"] = datetime.datetime.now()
+            dt["Date"] = datetime.datetime.timestamp(forecast_dates[i])
+            dt["TimeStamp"] = datetime.datetime.utcnow()
             new_item = dict(zip(new_columns, list(dt.values())))
             l.append(new_item)
             
-        db["Prediction"].insert_many(l)
+        db["predictions"].insert_many(l)
         
         time.sleep(5)
     

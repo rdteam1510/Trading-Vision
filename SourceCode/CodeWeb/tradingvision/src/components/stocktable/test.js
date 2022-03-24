@@ -118,10 +118,10 @@ const DataGridDemo = ({stockExchange, handleSearch, user}) => {
 
     // 
     useEffect(() => {
-      componentDidMount()
+      componentDidMount(stockExchange)
     },[stockExchange])
 
-    const componentDidMount = async() =>{
+    const componentDidMount = async(stockExchange) =>{
       setInterval( () =>{
         axios.get(`/api/stocks/query?stockexchange=${stockExchange}&limit=100`)
         .then((response)=>{

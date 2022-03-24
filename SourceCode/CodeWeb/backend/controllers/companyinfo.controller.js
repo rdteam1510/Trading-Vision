@@ -18,7 +18,6 @@ exports.getAllCompanyInfo = async (req, res) => {
 		queryObject.Industry = industry;
 	}
 
-	console.log(queryObject);
 	let result = CompanyInfo.find(queryObject);
 	const companyinfo = await result;
 	if (!companyinfo) {

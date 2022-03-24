@@ -41,16 +41,15 @@ const SearchTicker = ({ stockExchange, handleSearch }) => {
 	//
 	useEffect(() => {
 		componentDidMount();
-	}, []);
+	}, [stockExchange]);
 
 	const componentDidMount = async () => {
-		axios.get("/api/companyinfo").then((response) => {
+		axios.get(`/api/companyinfo?stockexchange=${stockExchange}`).then((response) => {
 			setCompanies(response.data.companyinfo);
 		});
 	};
 
 	const rows = companies
-		.filter((company) => company.StockExchange === stockExchange)
 		.map((company) => {
 			return {
 				id: company._id,

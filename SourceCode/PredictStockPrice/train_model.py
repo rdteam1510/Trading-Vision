@@ -6,8 +6,8 @@ from pymongo import MongoClient
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau
 import tensorflow as tf
 import gc
-#client = MongoClient("localhost", 27017)
-client = MongoClient("mongodb+srv://tradingvision:123@cluster0.xmnn8.mongodb.net/TradingVision?authSource=admin&replicaSet=atlas-kkwgbw-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true")
+client = MongoClient("localhost", 27017)
+#client = MongoClient("mongodb+srv://tradingvision:123@cluster0.xmnn8.mongodb.net/TradingVision?authSource=admin&replicaSet=atlas-kkwgbw-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true")
 
 # Specify date format
 # def parser(x):
@@ -16,7 +16,7 @@ client = MongoClient("mongodb+srv://tradingvision:123@cluster0.xmnn8.mongodb.net
 #Get ticker ' ' 
 def sort_data(ticker):
     db = client["TradingVision"]
-    data = db["ForPrediction"]
+    data = db["forpredictions"]
     df = data.find({"Ticker":ticker}).sort('Time',-1).limit(7)
     return df
 # Data Preprocessing
@@ -43,7 +43,7 @@ def only_train(close_data, model, ticker):
         verbose=0, 
         mode='min')
     mcp_save = ModelCheckpoint(
-        '././Checkpoint/model-{}.h5'.format(ticker), 
+        '/home/ubuntu/Checkpoint/model-{}.h5'.format(ticker), 
         save_best_only=True, 
         monitor='loss', 
         mode='min')
@@ -89,7 +89,7 @@ def predict_dates(num_prediction, close_date):
 
     # To list for drawing prediction
     prediction_dates = prediction_dates.tolist()
-
+    print (prediction_dates)
     return prediction_dates
 
 def make_predict(num_prediction, model, close_data, close_date):
