@@ -187,8 +187,8 @@ const ReminderEdit = (props) => {
                 groupBy={(option) => option.firstLetter}
                 getOptionLabel={(option) => option.ticker }
                 sx={{ width: 300 }}
-                getOptionSelected={(option, value) => option.ticker === props.ticker}
-                isOptionEqualToValue={(option, value) => option.ticker === props.ticker}
+                getOptionSelected={(option, props) => option.ticker === props.ticker}
+                isOptionEqualToValue={(option, props) => option.ticker === props.ticker}
                 defaultValue={options.filter((item) => {
                     return item.ticker === props.ticker;
                   })[0] || ""}

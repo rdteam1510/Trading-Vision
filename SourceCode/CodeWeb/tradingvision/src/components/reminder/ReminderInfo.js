@@ -149,10 +149,10 @@ const ReminderInfo = ({reminders}) => {
                                     <ReminderDetail 
                                         open = {openReminder} 
                                         onClose = {handleCloseReminder}
-                                        //content = {selectedRow?.content}
-                                        ticker = {row.ticker}
-                                        title = {row.title}
-                                        time = {row.time}
+                                        content = {(selectedRow || {}).content}
+                                        ticker = {(selectedRow || {}).ticker}
+                                        title = {(selectedRow || {}).title}
+                                        time = {(selectedRow || {}).time}
 
                                          />  
                                     <TableCell align="left" className={classes.cell}>
@@ -163,16 +163,16 @@ const ReminderInfo = ({reminders}) => {
                                     <TableCell align="left" className={classes.cell}><DeleteIcon style={{marginLeft:"10%"}} 
                                       onClick = {() => handleOpenDelete(row)}/></TableCell>
                                   
-                                {/* <ReminderEdit 
+                                <ReminderEdit 
                                   open = {openEdit} 
                                   onClose = {handleCloseEdit} 
-                                  content = {selectedRow?.content}
-                                  ticker = {selectedRow?.ticker}
-                                  title = {selectedRow?.title}
-                                  time = {selectedRow?.time}
-                                  id = {selectedRow?.id}/>    */}
+                                  content = {(selectedRow || {}).content}
+                                  ticker = {(selectedRow || {}).ticker}
+                                  title = {(selectedRow || {}).title}
+                                  time = {(selectedRow || {}).time}
+                                  id = {(selectedRow || {}).id}/>   
 
-                                <ReminderDelete open = {openDelete} onClose = {handleCloseDelete} rowID={row.id}
+                                <ReminderDelete open = {openDelete} onClose = {handleCloseDelete} rowID={(selectedRow || {}).id}
 
                                 />      
                                 </TableRow>

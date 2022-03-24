@@ -105,7 +105,11 @@ const FavoriteInfo = () => {
                                     <TableCell align="left" className={classes.cell}>{row.lowest}</TableCell>
                                     <TableCell align="left" className={classes.cell}>{row.volume}</TableCell>                                    
                                     
-                                    <TableCell align="left" className={classes.cell}><DeleteIcon style={{marginLeft:"10%"}}/></TableCell>
+                                    <TableCell align="left" className={classes.cell}>
+                                      <DeleteIcon 
+                                        style={{marginLeft:"10%"}}
+                                        onClick = {() => }/>
+                                    </TableCell>
                                 </TableRow>
                                 ))}
                             </TableBody>
