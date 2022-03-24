@@ -119,11 +119,11 @@ const DataGridDemo = ({stockExchange, handleSearch, user}) => {
     // 
     useEffect(() => {
       componentDidMount()
-    },[])
+    },[stockExchange])
 
     const componentDidMount = async() =>{
       setInterval( () =>{
-        axios.get("/api/stocks")
+        axios.get(`/api/stocks/query?stockexchange=${stockExchange}&limit=100`)
         .then((response)=>{
            setStock(response.data.stocks);
  
@@ -131,7 +131,7 @@ const DataGridDemo = ({stockExchange, handleSearch, user}) => {
       }, 5000)  
     }
     const rows = stocks
-    .filter((stock) => stock.StockExchange === stockExchange)
+    // .filter((stock) => stock.StockExchange === stockExchange)
     .map((stock) => {
         return {
           id: stock._id,

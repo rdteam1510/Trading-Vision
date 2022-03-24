@@ -100,37 +100,50 @@ const SearchPopup = () => {
 							}}
 						>
 							<Tab
-								label="HOSE"
+								label="ALL"
 								value="1"
 								className={classes.tab}
 							/>
 							<Tab
-								label="HNX"
+								label="HOSE"
 								value="2"
 								className={classes.tab}
 							/>
 							<Tab
-								label="UPCOM"
+								label="HNX"
 								value="3"
+								className={classes.tab}
+							/>
+							<Tab
+								label="UPCOM"
+								value="4"
 								className={classes.tab}
 							/>
 						</TabList>
 
 						<TabPanel value="1">
 							<SearchTicker
+								stockExchange={""}
+								handleSearch={handleSearch}
+							
+							/>
+						</TabPanel>
+
+						<TabPanel value="2">
+							<SearchTicker
 								stockExchange={"hose"}
 								handleSearch={handleSearch}
 							
 							/>
 						</TabPanel>
-						<TabPanel value="2">
+						<TabPanel value="3">
 							<SearchTicker
 								stockExchange={"hnx"}
 								handleSearch={handleSearch}
 							
 							/>
 						</TabPanel>
-						<TabPanel value="3">
+						<TabPanel value="4">
 							<SearchTicker
 								stockExchange={"upcom"}
 								handleSearch={handleSearch}
