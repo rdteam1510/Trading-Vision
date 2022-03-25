@@ -70,28 +70,28 @@ const ReminderEdit = (props) => {
     resetForm
     } = useForm(initialFValues, true, validate);
 
-    const handleSubmit = e => {
+    const handleSubmit = (e, {reminderId}) => {
         e.preventDefault()
         // ham insert reminder vo database
-        console.log(reminderId);
+        
         if (validate()){
           
           console.log(reminderId);
           // ham insert reminder vo database
-          // fetch(`/api/reminders/${reminderId}`, {
-          //   method: "POST",
-          //   body: JSON.stringify({
-          //     Content: values.content,
-          //     Title: values.title,
-          //     Ticker: stockTicker.ticker,
-          //     RemindAt: date,
-          //   }),
-          //   headers: {
-          //     "Content-type": "application/json; charset=UTF-8",
-          //   },
-          // })
-          //   .then((res) => res.json())
-          //   .then(console.log);
+          fetch(`/api/reminders/${reminderId}`, {
+            method: "PATCH",
+            body: JSON.stringify({
+              Content: values.content,
+              Title: values.title,
+              Ticker: stockTicker.ticker,
+              RemindAt: date,
+            }),
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+            },
+          })
+            .then((res) => res.json())
+            .then(console.log);
             resetForm()
             onClose()
         }

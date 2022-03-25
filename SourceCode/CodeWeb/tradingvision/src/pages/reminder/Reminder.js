@@ -12,7 +12,7 @@ const Reminder = ({user}) => {
     retrieveReminders()
   },[])
 
-  const retrieveReminders = () =>{
+  const retrieveReminders = async() =>{
     setInterval(()=> {
       axios.get(`/api/reminders`)
       .then((response) =>{
