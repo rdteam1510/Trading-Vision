@@ -38,7 +38,7 @@ const ReminderEdit = (props) => {
         title: props.title,
         content: props.content,
         ticker: props.ticker,
-        remindAt: props.time,
+        remindAt:props.time,
     }
     const handleClose = () => {
       resetForm()
@@ -106,6 +106,7 @@ const ReminderEdit = (props) => {
     });
     const [inputValue, setInputValue] = React.useState('');
     const [input, setInput] = useState()
+    const [stockTicker,setTicker] = React.useState([]);
     console.log(values)
     return (
         <div>
@@ -159,8 +160,7 @@ const ReminderEdit = (props) => {
                     autoComplete="off"
                     renderInput={(props) => <TextField {...props} />}
                     name = "date"
-                    value={values.time}
-                    
+                    value={values.remindAt}
                     onChange={(newValue) => {
                       setDate(newValue);
                     }}

@@ -38,7 +38,7 @@ const ReminderDetail = (props) => {
               <DialogContent>
                 <DialogContentText id="alert-dialog-description" >
                 <Typography gutterBottom  fontWeight = "400">
-                   {props.time}
+                   {new Date( new Date(props.time).toUTCString() ).toLocaleString()}
                 </Typography>
                 
                 <Typography gutterBottom  fontWeight = "400">

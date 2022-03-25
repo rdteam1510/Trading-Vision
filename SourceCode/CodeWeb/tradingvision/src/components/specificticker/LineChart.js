@@ -252,7 +252,7 @@ const LineChart =(props) =>{
         tooltip: {
           valueDecimals: 2
         },
-        color: '#04F9F2',
+        color: '#A0E7E5',
   
       },
       {
@@ -263,7 +263,7 @@ const LineChart =(props) =>{
         tooltip: {
           valueDecimals: 2
         },
-        color: '#CFE9EF',
+        color: '#F51720',
        
       
           
@@ -276,7 +276,7 @@ const LineChart =(props) =>{
         tooltip: {
           valueDecimals: 2
         },
-        color: '#F51663',
+        color: '#EAC5B0',
   
       },
       {
@@ -287,7 +287,7 @@ const LineChart =(props) =>{
         tooltip: {
           valueDecimals: 2
         },
-        color: '#EAC5B0',
+        color: '#4B7BF5',
        
       }
       ],
@@ -442,7 +442,8 @@ const LineChart =(props) =>{
         tooltip: {
           valueDecimals: 2
         },
-        color: '#04F9F2',
+        color: '#A0E7E5',
+ 
   
       },
       {
@@ -453,7 +454,7 @@ const LineChart =(props) =>{
         tooltip: {
           valueDecimals: 2
         },
-        color: '#CFE9EF',
+        color: '#F51720',
       
       }],
     };

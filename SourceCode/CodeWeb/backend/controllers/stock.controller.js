@@ -4,7 +4,7 @@ const NotFoundError = require("../errors");
 exports.getAllStocks = async (req, res) => {
 
 	try {
-		const stocks = await Stock.find({});
+		const stocks = await Stock.find({}).limit(300);
 		res.status(200).json({ stocks });
 	} catch (error) {
 		console.log(error)

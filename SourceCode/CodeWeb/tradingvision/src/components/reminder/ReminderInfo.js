@@ -47,7 +47,7 @@ const ReminderInfo = ({reminders}) => {
         title: reminder.Title,
         ticker: reminder.Ticker,
         content: reminder.Content,
-        time: new Date( new Date(reminder.RemindAt).toUTCString() ).toLocaleString(),
+        time: reminder.RemindAt,
       }
     })
     //Open reminder content
@@ -137,7 +137,9 @@ const ReminderInfo = ({reminders}) => {
                                         }}
                                         className={classes.cell}> {row.title}
                                     </TableCell>
-                                    <TableCell align="left" className={classes.cell}>{row.time}</TableCell>
+                                    <TableCell align="left" className={classes.cell}>                   
+                                      {new Date( new Date(row.time).toUTCString() ).toLocaleString()}
+                                    </TableCell>
                                     <TableCell align="left" className={classes.cell}>{row.ticker}</TableCell>
                                     <TableCell align="left" className={classes.cell} 
                                     onClick = {() => handleOpenReminder(row)}    

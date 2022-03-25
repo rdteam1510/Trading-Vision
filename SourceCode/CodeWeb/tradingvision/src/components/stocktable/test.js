@@ -130,7 +130,6 @@ const DataGridDemo = ({stockExchange, handleSearch, user}) => {
         })
       }, 1000)  
     }
-    console.log(stocks);
     const rows = stocks
     // .filter((stock) => stock.StockExchange === stockExchange)
     .map((stock) => {
