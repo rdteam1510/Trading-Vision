@@ -32,7 +32,7 @@ app.use(
 		// Forces the session that is 'uninitialized to be saved to the store
 		saveUninitialized: false,
 		cookie: {
-			expires: 60 * 15 * 1000,
+			expires: 60 * 12 * 1000,
 		},
 		store: new MongoStore({ mongooseConnection: mongoose.connection }),
 	})
@@ -82,10 +82,18 @@ app.use("/api/reminders", ensureAuth, reminderRoutes);
 
 // Favorite
 const favoriteRoutes = require("./routes/favorite.route");
-app.use("/api/favorite", favoriteRoutes);
+app.use("/api/favorite", ensureAuth, favoriteRoutes);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
+
+// Send Reminder mail
+const schedule = require("node-schedule");
+const mainReminder = require("./SendMail/reminder");
+const mJob = schedule.scheduleJob("* * * * *", () => {
+	mainReminder();
+	mJob.cancel(true);
+});
 
 /* ====================================================== */
 // Server is listening
