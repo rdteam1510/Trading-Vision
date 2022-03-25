@@ -30,19 +30,20 @@ import axios from 'axios'
 
 const ReminderEdit = (props) => {
     const classes = useStyles()
-    const [date, setDate] = React.useState(new Date());
+    const [date, setDate] = React.useState();
     const {open, onClose} = props
-    
+    const [stockTicker,setTicker] = React.useState([])
     const initialFValues = {
-        id: props.id,
+        // id: props.id,
         title: props.title,
         content: props.content,
-        ticker: props.ticker,
-        remindAt:props.time,
+        // ticker: props.ticker,
+        // remindAt:props.time,
     }
+    const reminderId = props.id
+  
     const handleClose = () => {
       resetForm()
-      
       onClose()
     };
     const validate = (fieldValues = values) => {
@@ -51,8 +52,8 @@ const ReminderEdit = (props) => {
           temp.title = fieldValues.title ? "" : "This field is required."
       if ('content' in fieldValues)
           temp.content = fieldValues.content ? "" : "This field is required."
-      if   ('ticker' in fieldValues)
-          temp.ticker = fieldValues.ticker ? "" : "This field is required."
+      // if   ('ticker' in fieldValues)
+      //     temp.ticker = fieldValues.ticker ? "" : "This field is required."
       setErrors({
           ...temp
       })
@@ -68,10 +69,29 @@ const ReminderEdit = (props) => {
     handleInputChange,
     resetForm
     } = useForm(initialFValues, true, validate);
+
     const handleSubmit = e => {
         e.preventDefault()
         // ham insert reminder vo database
+        console.log(reminderId);
         if (validate()){
+          
+          console.log(reminderId);
+          // ham insert reminder vo database
+          // fetch(`/api/reminders/${reminderId}`, {
+          //   method: "POST",
+          //   body: JSON.stringify({
+          //     Content: values.content,
+          //     Title: values.title,
+          //     Ticker: stockTicker.ticker,
+          //     RemindAt: date,
+          //   }),
+          //   headers: {
+          //     "Content-type": "application/json; charset=UTF-8",
+          //   },
+          // })
+          //   .then((res) => res.json())
+          //   .then(console.log);
             resetForm()
             onClose()
         }
@@ -106,7 +126,7 @@ const ReminderEdit = (props) => {
     });
     const [inputValue, setInputValue] = React.useState('');
     const [input, setInput] = useState()
-    const [stockTicker,setTicker] = React.useState([]);
+
     console.log(values)
     return (
         <div>
@@ -160,7 +180,7 @@ const ReminderEdit = (props) => {
                     autoComplete="off"
                     renderInput={(props) => <TextField {...props} />}
                     name = "date"
-                    value={values.remindAt}
+                    value={props.time}
                     onChange={(newValue) => {
                       setDate(newValue);
                     }}
@@ -187,17 +207,18 @@ const ReminderEdit = (props) => {
                 groupBy={(option) => option.firstLetter}
                 getOptionLabel={(option) => option.ticker }
                 sx={{ width: 300 }}
-                getOptionSelected={(option, props) => option.ticker === props.ticker}
-                isOptionEqualToValue={(option, props) => option.ticker === props.ticker}
+                getOptionSelected={(option, value) => option.ticker === value.ticker}
+                isOptionEqualToValue={(option, value) => option.ticker === value.ticker}
                 value={options.filter((item) => {
-                    return item.ticker === values.ticker;
+                    return item.ticker === props.ticker;
                   })[0] || ""}
-                onInputChange={(event, newValue) => {
-                    setInput(newValue);
-                  }}
-                onChange={(event, newInputValue) => {
-                      setInputValue(newInputValue);
-                    }}
+                // onInputChange={(event, newValue) => {
+                //     setInput(newValue);
+                //   }}
+                // onChange={(event, newInputValue) => {
+                //       setInputValue(newInputValue);
+                //     }}
+                onChange={(event, value) => setTicker(value)}
                 renderInput={(params) => 
                 <TextField 
                 {...params} 

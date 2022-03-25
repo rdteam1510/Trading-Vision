@@ -102,16 +102,15 @@ const SetReminderButton = () => {
     },[])
 
     const componentDidMount = async() => {
-      await axios.get(`/api/companyinfo`)
+      await axios.get(`/api/stocks`)
       .then((response) =>{
-        setStock(response.data.companyinfo);
+        setStock(response.data.stocks);
       })
     }
 
     const listStocks = stocks.map((stock) =>{
       return {
         ticker: stock.Ticker,
-        stockExchange: stock.StockExchange,
       }
     })
     
