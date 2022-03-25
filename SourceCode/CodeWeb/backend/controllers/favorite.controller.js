@@ -1,14 +1,20 @@
-const Favorite = require("../models/Favorite");
 const { StatusCodes } = require("http-status-codes");
-const { NotFoundError, BadRequestError } = require("../errors");
+const Favorite = require("../models/Favorite");
 
 exports.getFavorites = async (req, res) => {
-	// res.send("This is getFavorites");
-	const favorite = await Favorite.find({ UserId: req.user._id })
-		.populate("Ticker")
-		.sort("-TimeStamp")
-		.limit(1);
-	res.status(200).json({ favorite });
+	const favorite = await Favorite.find({ UserId: req.user._id }).populate({
+		path: "CompanyId",
+	});
+	// console.log("favorite: ", favorite[0].CompanyId.Ticker);
+	// res.status(200).json(favorite._id);
+	// res.json(req.company[0].Ticker);
+	// console.log("Req: ", req.company[0].Ticker[0].Ticker);
+	const reqTicker = req.company[0].Ticker[0].Ticker;
+	const favTicker = favorite[0].CompanyId.Ticker;
+	const { Ticker } = req.company[0];
+	if (reqTicker === favTicker) {
+		res.json(Ticker);
+	}
 };
 
 exports.createFavorite = async (req, res) => {
