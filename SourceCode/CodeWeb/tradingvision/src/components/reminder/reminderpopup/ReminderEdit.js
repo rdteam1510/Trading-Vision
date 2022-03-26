@@ -34,17 +34,18 @@ const ReminderEdit = (props) => {
     const {open, onClose} = props
     const [stockTicker,setTicker] = React.useState([])
     const initialFValues = {
-        // id: props.id,
+        id: props.id,
         title: props.title,
         content: props.content,
-        // ticker: props.ticker,
-        // remindAt:props.time,
+        ticker: props.ticker,
+        remindAt:props.time,
     }
     const reminderId = props.id
   
     const handleClose = () => {
+     
+      onClose() 
       resetForm()
-      onClose()
     };
     const validate = (fieldValues = values) => {
       let temp = { ...errors }
@@ -62,12 +63,12 @@ const ReminderEdit = (props) => {
           return Object.values(temp).every(x => x == "")
   }
     const {
-    values,
-    setValues,
-    errors,
-    setErrors,
-    handleInputChange,
-    resetForm
+      values,
+      setValues,
+      errors,
+      setErrors,
+      handleInputChange,
+      resetForm
     } = useForm(initialFValues, true, validate);
 
     const handleSubmit = (e, {reminderId}) => {
@@ -180,7 +181,7 @@ const ReminderEdit = (props) => {
                     autoComplete="off"
                     renderInput={(props) => <TextField {...props} />}
                     name = "date"
-                    value={props.time}
+                    value={values.time}
                     onChange={(newValue) => {
                       setDate(newValue);
                     }}
