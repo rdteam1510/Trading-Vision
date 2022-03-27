@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import Tab from '@material-ui/core/Tab';
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
@@ -11,7 +11,7 @@ import { Container,
   Typography, 
 } from '@material-ui/core'
 import useStyles from './style'
-import axios from 'axios'
+
 
 const darkTheme = createTheme({
   palette: {
@@ -27,42 +27,11 @@ const StockExchange = ({user}) => {
   const classes = useStyles()
   const [value, setValue] = React.useState('1');
   const [search,setSearch] = React.useState('');
-  const [stocks, setStocks] = useState([]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  useEffect(() => {
-    componentDidMount()
-  },[])
-
-  const componentDidMount = async() =>{
-     axios.get("/api/companyinfo")
-     .then((response)=>{
-        setStocks(response.data.companyinfo);
-     })
-  }
-
-  const rows = stocks
-  .map((stock) => {
-      return {
-        id: stock._id,
-        ticker: stock.Ticker,
-        
-      };
-    
-  })
-
-  const handleSearch = () => {
-    return rows.filter(
-      (row) =>
-      row.ticker.toLowerCase().includes(search) ||
-      row.industry.toLowerCase().includes(search) ||
-      row.ticker.includes(search) ||
-      row.industry.includes(search) 
-    );
-  };
 
 
   return (
@@ -101,9 +70,9 @@ const StockExchange = ({user}) => {
               <Tab label="UPCOM" value="3" className={classes.tab}/>
             </TabList>
   
-          <TabPanel value="1"><Test stockExchange={'hose'} handleSearch={handleSearch} user={user}/></TabPanel>
-          <TabPanel value="2"><Test stockExchange={'hnx'} handleSearch={handleSearch} user={user}/></TabPanel>
-          <TabPanel value="3"><Test stockExchange={'upcom'} handleSearch={handleSearch} user={user}/></TabPanel>
+          <TabPanel value="1"><Test stockExchange={'hose'} user={user}/></TabPanel>
+          <TabPanel value="2"><Test stockExchange={'hnx'} user={user}/></TabPanel>
+          <TabPanel value="3"><Test stockExchange={'upcom'} user={user}/></TabPanel>
         </TabContext>
         
       

@@ -86,14 +86,11 @@ const SetReminderLine = (props) => {
           
               resetForm();
               handleClose();
-              // refreshPage();
+
           }
            
       }
-      // const refreshPage = () =>{
-      //   window.location.reload(false);
-      // }
-    // console.log(date.getTime());
+
     const [stocks, setStock] = useState([])
 
     useEffect(() => {

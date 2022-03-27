@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import ReminderInfo from '../../components/reminder/ReminderInfo'
 import ReminderEmpty from '../../components/reminder/ReminderEmpty'
-import useStyles from './style'
 import axios from 'axios'
 import Login from '../login/Login'
 
@@ -24,17 +23,18 @@ const Reminder = ({user}) => {
 
   return (
     <div>
-    {user ? (
-      <>
-        {reminders.length ===  0 ? (
-          <ReminderEmpty/>
-        ):(
-          <ReminderInfo reminders={reminders}/>
-        )}
-      </>
-    ):(
-        <Login/>
-    )}
+
+      {user ? (
+        <>
+          {reminders.length ===  0 ? (
+            <ReminderEmpty/>
+          ):(
+            <ReminderInfo reminders={reminders}/>
+          )}
+        </>
+      ):(
+          <Login/>
+      )}
       
   
     </div>

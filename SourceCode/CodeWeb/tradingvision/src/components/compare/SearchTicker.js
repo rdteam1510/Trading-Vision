@@ -31,7 +31,6 @@ const darkTheme = createTheme({
 const SearchTicker = (props) => {
     const classes = useStyles()
     const [loading, setLoading] = React.useState(false)
-    const history = useNavigate()
     const handleOpen = () => setLoading(true);
     const handleClosed = () => setLoading(false);
 

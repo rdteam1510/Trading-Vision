@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import {  
     createTheme, 
     ThemeProvider, 
@@ -8,12 +8,8 @@ import {
     TableHead,
     TableRow,
     TableCell,
-    TableBody,
     Paper,
     Container,
-    TablePagination,
-    Button,
-
   } from '@material-ui/core'
   import useStyles from './style'
   import SetReminderButton from "./reminderpopup/SetReminderButton";

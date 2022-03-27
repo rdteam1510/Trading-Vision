@@ -5,7 +5,7 @@ import {
     Typography, InputBase, 
     IconButton, createTheme, 
     ThemeProvider, CssBaseline,} from "@material-ui/core";
-import React, {useState} from "react";
+import React from "react";
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -35,9 +35,6 @@ const Header = ({user}) =>{
     const [anchorEl, setAnchorEl] = React.useState(false);
     const open = Boolean(anchorEl);
 
-    const handleChange = (event) => {
-        setAuth(event.target.checked);
-    };
 
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);

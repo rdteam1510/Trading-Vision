@@ -40,6 +40,7 @@ const ReminderEdit = (props) => {
         ticker: props.ticker,
         remindAt:props.time,
     }
+
     const reminderId = props.id
   
     const handleClose = () => {
@@ -59,8 +60,8 @@ const ReminderEdit = (props) => {
           ...temp
       })
 
-      if (fieldValues == values)
-          return Object.values(temp).every(x => x == "")
+      if (fieldValues === values)
+          return Object.values(temp).every(x => x === "")
   }
     const {
       values,
@@ -93,6 +94,7 @@ const ReminderEdit = (props) => {
           })
             .then((res) => res.json())
             .then(console.log);
+          
             resetForm()
             onClose()
         }

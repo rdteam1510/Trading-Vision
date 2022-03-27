@@ -32,7 +32,7 @@ app.use(
 		// Forces the session that is 'uninitialized to be saved to the store
 		saveUninitialized: false,
 		cookie: {
-			expires: 60 * 12 * 1000,
+			expires: 60 * 60 * 1000,
 		},
 		store: new MongoStore({ mongooseConnection: mongoose.connection }),
 	})

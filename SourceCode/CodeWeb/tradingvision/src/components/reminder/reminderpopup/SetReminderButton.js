@@ -20,8 +20,8 @@ import { Typography } from '@mui/material';
 
 const SetReminderButton = () => {
     const classes = useStyles()
-    const [open, setOpen] = React.useState(false);
-    const [date, setDate] = React.useState(new Date());
+    const [open, setOpen] = useState(false);
+    const [date, setDate] = useState(new Date());
     
     
     const handleClickOpen = () => {

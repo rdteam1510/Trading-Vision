@@ -25,13 +25,13 @@ const LineChart =(props) =>{
     useEffect(() => {
       actualPrice()
       currentStockPredictions()
-      
     },[])
   
     useEffect(() =>{
       compareStocks()
       compareStockPredictions()
     },[props.compareTicker])
+    
     const actualPrice = async() => {
       axios.get(`/api/forpredictions/${ticker}`)
       .then((response) =>{
@@ -135,14 +135,14 @@ const LineChart =(props) =>{
               click: function(e){
                 var seriesName = e.point.series.name;
                 var val = e.point.x;
-                if(seriesName == `${ticker} Predicted Price`) {                 
+                if(seriesName === `${ticker} Predicted Price`) {                 
                   setOpen(true);
                   setTime(val);                  
                   setStock(ticker);
                   console.log(val);
                   console.log(ticker);
                 }
-                else if(seriesName == `${props.compareTicker} Predicted Price`) {
+                else if(seriesName === `${props.compareTicker} Predicted Price`) {
                   setOpen(true);
                   setTime(val);
                   setStock(props.compareTicker);

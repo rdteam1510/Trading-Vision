@@ -47,7 +47,7 @@ import { useParams } from "react-router-dom";
 		}, []);
 
 		const componentDidMount = async () => {
-			axios.get(`/api/companyinfo/${ticker}`).then((response) => {
+			await axios.get(`/api/companyinfo/${ticker}`).then((response) => {
 				setCompany(response.data.companyinfo);
 			});
 		};

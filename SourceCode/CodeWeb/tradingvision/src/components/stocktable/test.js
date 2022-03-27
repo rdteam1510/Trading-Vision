@@ -118,18 +118,21 @@ const DataGridDemo = ({stockExchange, handleSearch, user}) => {
 
     // 
     useEffect(() => {
-      componentDidMount(stockExchange)
+      
+      setInterval( () =>{
+        componentDidMount(stockExchange)
+      }, 60000)  //reload after 1 minute
     },[stockExchange])
 
     const componentDidMount = async(stockExchange) =>{
-      setInterval( () =>{
-        axios.get(`/api/stocks/query?stockexchange=${stockExchange}&limit=100`)
+      await axios.get(`/api/stocks/query?stockexchange=${stockExchange}&limit=100`)
         .then((response)=>{
-           setStock(response.data.stocks);
- 
+          setStock(response.data.stocks);
+          console.log(response.data.stocks);
         })
-      }, 1000)  
     }
+   
+    console.log(stockExchange);
     const rows = stocks
     // .filter((stock) => stock.StockExchange === stockExchange)
     .map((stock) => {

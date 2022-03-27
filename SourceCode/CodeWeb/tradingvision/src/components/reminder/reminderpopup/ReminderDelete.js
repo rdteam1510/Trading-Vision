@@ -12,9 +12,7 @@ import axios from 'axios';
 const ReminderDelete = (props) => {
   const [status, setStatus] = useState([])
 
-  // useEffect(() => {
-  //   componentDidMount()
-  // },[])
+
 
   const componentDidMount = async(row) => {
     axios.delete(`/api/reminders/`+ row)
