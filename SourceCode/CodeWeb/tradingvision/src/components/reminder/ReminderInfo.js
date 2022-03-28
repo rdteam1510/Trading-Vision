@@ -20,7 +20,7 @@
   import ReminderDelete from './reminderpopup/ReminderDelete';
   import ReminderDetail from './reminderpopup/ReminderDetail';
   import ReminderEdit from './reminderpopup/ReminderEdit';
-  
+  import EditReminder from './reminderpopup/EditReminder';
 
   const darkTheme = createTheme({
     palette: {
@@ -165,7 +165,7 @@ const ReminderInfo = ({reminders}) => {
                                     <TableCell align="left" className={classes.cell}><DeleteIcon style={{marginLeft:"10%"}} 
                                       onClick = {() => handleOpenDelete(row)}/></TableCell>
                                   
-                                <ReminderEdit 
+                                <EditReminder
                                   open = {openEdit} 
                                   onClose = {handleCloseEdit} 
                                   content = {(selectedRow || {}).content}

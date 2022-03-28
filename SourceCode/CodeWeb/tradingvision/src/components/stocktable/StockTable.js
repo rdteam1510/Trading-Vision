@@ -110,13 +110,13 @@ export function MenuIcon() {
   }}/>;
 }
 // Datagirid
-const DataGridDemo = ({stockExchange, handleSearch, user}) => {
+const DataGridDemo = ({stockExchange,user}) => {
     const history = useNavigate()
     const classes = useStyles();
     
     const [stocks, setStock] = useState([]);
 
-    // 
+    // Get Data 
     useEffect(() => {
       
       setInterval( () =>{
@@ -132,7 +132,7 @@ const DataGridDemo = ({stockExchange, handleSearch, user}) => {
         })
     }
    
-    console.log(stockExchange);
+    
     const rows = stocks
     // .filter((stock) => stock.StockExchange === stockExchange)
     .map((stock) => {
@@ -239,3 +239,4 @@ const DataGridDemo = ({stockExchange, handleSearch, user}) => {
     
 }
 export default DataGridDemo
+

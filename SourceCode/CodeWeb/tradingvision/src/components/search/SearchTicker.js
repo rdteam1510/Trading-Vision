@@ -26,12 +26,7 @@ const darkTheme = createTheme({
 	},
 });
 
-// const rows = [
-//   { id: 1, ticker: 'ACB', companyName: "Asia Commercial Joint Stock Bank", industry:"Financials"},
-//   { id: 2, ticker: 'ACB', companyName: "Asia Commercial Joint Stock Bank", industry:"Financials"},
-//   { id: 3, ticker: 'BID', companyName: "JOINT STOCK COMMERCIAL BANK FOR INVESTMENT AND DEVELOPMENT OF VIETNAM", industry:"Financials"},
 
-// ];
 const SearchTicker = ({ stockExchange, handleSearch }) => {
 	const classes = useStyles();
 	const [loading, setLoading] = useState(false);
@@ -42,7 +37,7 @@ const SearchTicker = ({ stockExchange, handleSearch }) => {
 	//
 	useEffect(() => {
 		componentDidMount(stockExchange);
-	}, []);
+	}, [stockExchange]);
 
 	const componentDidMount = async (stockExchange) => {
 		setLoading(true);

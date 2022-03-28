@@ -3,7 +3,7 @@ import Tab from '@material-ui/core/Tab';
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
-import Test from '../stocktable/test';
+import StockTable from '../stocktable/StockTable';
 import { Container, 
   createTheme, 
   TextField, 
@@ -70,9 +70,9 @@ const StockExchange = ({user}) => {
               <Tab label="UPCOM" value="3" className={classes.tab}/>
             </TabList>
   
-          <TabPanel value="1"><Test stockExchange={'hose'} user={user}/></TabPanel>
-          <TabPanel value="2"><Test stockExchange={'hnx'} user={user}/></TabPanel>
-          <TabPanel value="3"><Test stockExchange={'upcom'} user={user}/></TabPanel>
+          <TabPanel value="1"><StockTable stockExchange={'hose'} user={user}/></TabPanel>
+          <TabPanel value="2"><StockTable stockExchange={'hnx'} user={user}/></TabPanel>
+          <TabPanel value="3"><StockTable stockExchange={'upcom'} user={user}/></TabPanel>
         </TabContext>
         
       

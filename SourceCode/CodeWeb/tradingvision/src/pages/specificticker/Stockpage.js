@@ -16,9 +16,10 @@ import { Dialog, Box } from "@mui/material";
 import CloseIcon from "@material-ui/icons/Close";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import Login from "../login/Login" 
 
 	const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)  
-	function Stockpage() {
+	function Stockpage({user}) {
 		const classes = useStyles();
 		const myRef = useRef(null);
 		const executeScroll = () => scrollToRef(myRef);
@@ -53,7 +54,9 @@ import { useParams } from "react-router-dom";
 		};
 
 		return (
-			<Container className={classes.container}>
+			<>
+				{user ? (
+					<Container className={classes.container}>
 				<div className={classes.title}>
 					{company.map((info) => (
 						<>
@@ -122,6 +125,11 @@ import { useParams } from "react-router-dom";
 					<Chart compareTicker={selectedID}/>
 				</div>
 			</Container>
+				):(
+					<Login/>
+				)}
+			</>
+			
 		);
 }
 

@@ -6,6 +6,7 @@ import GoogleIcon from '@mui/icons-material/Google';
 
 const Login = () => {
   const classes = useStyles()
+  
   const google = () => {
     window.open("http://localhost:4040/auth/google", "_self");
   };

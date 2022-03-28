@@ -132,14 +132,10 @@ CustomSelect.propTypes = {
 };
 
 const ChartTab = ({compareTicker}) => {
-  
-  const [value, setValue] = React.useState('1');
-  const classes = useStyles();
-
-  const [anchorEl, setAnchorEl] = React.useState(false);
-  
+  const classes = useStyles();  
   const [chart,setChart] = React.useState("Line")
 
+  
   return (
     <>
     <div className={classes.menu} >

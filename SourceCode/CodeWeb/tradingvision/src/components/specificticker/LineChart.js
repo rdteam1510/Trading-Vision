@@ -4,7 +4,6 @@ import moment from 'moment'
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
 import SetReminderLine from '../reminder/reminderpopup/SetReminderLine';
-// const ReactHighcharts = require('react-highcharts/ReactHighstock');
 
 
 const LineChart =(props) =>{
@@ -20,8 +19,8 @@ const LineChart =(props) =>{
     const predictPrice=[]
     const compareData =[]
     const predictCompare=[]
-    // const [comparedTicker, setComparedTicker] = useState(props.compareTicker)
 
+    
     useEffect(() => {
       actualPrice()
       currentStockPredictions()
@@ -129,7 +128,7 @@ const LineChart =(props) =>{
       plotOptions: {
         series: {
           showInNavigator: true,
-          gapSize: 6,
+          gapSize: 20,
           point: {
             events: {
               click: function(e){
