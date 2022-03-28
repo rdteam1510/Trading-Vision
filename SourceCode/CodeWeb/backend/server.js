@@ -32,7 +32,7 @@ app.use(
 		// Forces the session that is 'uninitialized to be saved to the store
 		saveUninitialized: false,
 		cookie: {
-			expires: 60 * 60 * 1000,
+			expires: 60 * 60 * 24 * 1000,
 		},
 		store: new MongoStore({ mongooseConnection: mongoose.connection }),
 	})
@@ -76,18 +76,25 @@ app.use("/api/forpredictions", forPredictionRoutes);
 const predictionRoutes = require("./routes/prediction.route");
 app.use("/api/predictions", predictionRoutes);
 
+// ForCandlestick
+const forCandlestickRoutes = require("./routes/forCandlestick.route");
+app.use("/api/forcandlesticks", forCandlestickRoutes);
+
 // Reminders
 const reminderRoutes = require("./routes/reminder.route");
 app.use("/api/reminders", ensureAuth, reminderRoutes);
 
 // Favorite
 const favoriteRoutes = require("./routes/favorite.route");
-app.use("/api/favorite", ensureAuth, favoriteRoutes);
+app.use("/api/favorites", ensureAuth, favoriteRoutes);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
 // Send Reminder mail
+// const addDataForCandlestick = require("./controllers/forCandlestick");
+// addDataForCandlestick();
+
 const schedule = require("node-schedule");
 const mainReminder = require("./SendMail/reminder");
 const mJob = schedule.scheduleJob("* * * * *", () => {

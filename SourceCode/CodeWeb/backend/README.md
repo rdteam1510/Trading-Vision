@@ -6,8 +6,9 @@
   - [Stocks](#stocks)
   - [Predictions](#predictions)
   - [Reminders](#reminders)
+  - [Favorites](#favorites)
   - [Google oAuth2.0 and Facebook oAuth](#google-oauth20-and-facebook-oauth)
-  - [Reminder mail](#reminder-mail)
+- [Reminder mail](#reminder-mail)
 
 ---
 
@@ -68,6 +69,12 @@
     -   Delete reminder
     -   Update reminder
 
+## Favorites
+
+-   Get all favorites: http://localhost:4040/api/favorites
+-   Create a reminder is also through the route above but you must pass the UserId and CompanyId
+-   Delete a favorite: http://localhost:4040/api/favorites/[id]
+
 ## Google oAuth2.0 and Facebook oAuth
 
 -   http://localhost:4040/auth/login => request to login with google http://localhost:4040/auth/google. It has 2 outcomes:
@@ -82,7 +89,7 @@
 
 !**NOTE**: Facebook oAuth is processed the same way as Google oAuth2.0
 
-## Reminder mail
+# Reminder mail
 
 All relevant files are stored in SendMail folder:
 
