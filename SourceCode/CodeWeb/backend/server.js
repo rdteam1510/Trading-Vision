@@ -2,6 +2,7 @@
 require("express-async-errors");
 const morgan = require("morgan");
 const cors = require("cors");
+const schedule = require("node-schedule");
 const connectDB = require("./config/db");
 const passport = require("passport");
 const session = require("express-session");
@@ -91,11 +92,17 @@ app.use("/api/favorites", ensureAuth, favoriteRoutes);
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
-// Send Reminder mail
-// const addDataForCandlestick = require("./controllers/forCandlestick");
-// addDataForCandlestick();
+// Add data into ForCandlestick collection
+const ses = ["hose", "hnx", "upcom"];
+const addDataForCandlestick = require("./controllers/forCandlestick");
+const addJob = schedule.scheduleJob("10 15 * * *", () => {
+	for (se of ses) {
+		addDataForCandlestick(se);
+		addJob.cancel(true);
+	}
+});
 
-const schedule = require("node-schedule");
+// Send Reminder mail
 const mainReminder = require("./SendMail/reminder");
 const mJob = schedule.scheduleJob("* * * * *", () => {
 	mainReminder();
