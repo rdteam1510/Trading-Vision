@@ -53,8 +53,8 @@ const ReminderEditTest = (props) => {
     }
     const onSubmit = (data) => {
       console.log(data);
-      fetch(`/api/reminders`, {
-        method: "POST",
+      fetch(`/api/reminders/${props.id}`, {
+        method: "PATCH",
         body: JSON.stringify({
           Content: props.content,
           Title: props.title,
@@ -72,6 +72,7 @@ const ReminderEditTest = (props) => {
           handleClose();
           // refreshPage();
       }
+
     useEffect(() => {
       componentDidMount()
     },[])
@@ -96,8 +97,6 @@ const ReminderEditTest = (props) => {
         ...option,
       };
     });
-    const [inputValue, setInputValue] = React.useState('');
-    const [input, setInput] = useState()
 
     return (
         <div>
@@ -112,7 +111,7 @@ const ReminderEditTest = (props) => {
               width: '560px',}
           }}
         >
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <DialogTitle>
             <TextField
              component = "form"

@@ -45,8 +45,7 @@ const FavoriteInfo = () => {
                         <LinearProgress style={{backgroundColor:"primary"}}/>
                     ):(
                         <Table stickyHeader aria-label="sticky table">
-                            <TableHead  className={classes.tablehead}
-                            >
+                            <TableHead  className={classes.tablehead}>
                                 <TableRow>
                                 {["TICKER", "CEILING", "FLOOR","HIGHEST", "LOWEST", "VOLUME", "ACTION"].map((head) => (
                                     <TableCell

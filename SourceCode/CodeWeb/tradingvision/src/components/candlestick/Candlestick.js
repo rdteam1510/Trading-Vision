@@ -3,20 +3,29 @@ import Candle from './Candle';
 import './style.css';
 import axios from 'axios'
 import {useParams} from 'react-router-dom'
+import {Container, Typography} from '@material-ui/core'
 
 
 const Candlestick = () => {
   const {ticker} = useParams()
   const [data, setData] = useState([])
-  
+  const [previousData, setPreviousData] = useState([])
   useEffect(() => {
+    getData()
     componentDidMount()
   },[])
 
   const componentDidMount = async() => {
-    axios.get(`/api/stocks/${ticker}`)
+    axios.get(`/api/stocks/query?ticker=${ticker}&limit=1`)
     .then((response) =>{
-      setData(response.data.stock)
+      setData(response.data.stocks)
+    })
+  }
+
+  const getData = async() =>{
+    axios.get(`/api/forcandlesticks/${ticker}`)
+    .then((response) =>{
+      setPreviousData(response.data)
     })
   }
 
@@ -27,9 +36,25 @@ const Candlestick = () => {
         const chart = e.target;
         chart.navigationBindings.update();
       }
+
+  previousData.map(point => {
+    ohlc.push([
+      point.Time*1000, // the date
+      point.Open, // open
+      point.High, // high
+      point.Low, // low
+      point.Close // close doi thanh cot close sau
+    ]);
+
+    volume.push([
+      point.Time*1000, // the date
+      point.Volume // the volume
+    ]);
+  })
+
   data.map(point => {
     ohlc.push([
-      point.TimeStamp, // the date
+      point.TimeStamp*1000, // the date
       point.PreviousClose, // open
       point.Highest, // high
       point.Lowest, // low
@@ -37,14 +62,18 @@ const Candlestick = () => {
     ]);
 
     volume.push([
-      point.TimeStamp, // the date
+      point.TimeStamp*1000, // the date
       point.Volume // the volume
     ]);
   })
+
+  
+
   console.log(ohlc)
   return (
     <div className="candlestick">
-         <Candle ohlc={ohlc} volume={volume} onUpdate={handleUpdate} data={data}/>
+        <Typography style={{fontFamily: 'Montserrat', fontSize:"22px", marginLeft:"40%"}}>{ticker} Candlestick Chart</Typography>
+        <Candle ohlc={ohlc} volume={volume} onUpdate={handleUpdate} data={data}/>
     </div>
   )
 }

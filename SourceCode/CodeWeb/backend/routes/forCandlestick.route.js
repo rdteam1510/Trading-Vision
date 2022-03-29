@@ -7,6 +7,6 @@ const {
 // @desc Get all data for draw candlestick
 // @method GET
 // @route /api/forcandlesticks
-router.route("/").get(getDataForCandlestick);
+router.route("/:ticker").get(getDataForCandlestick);
 
 module.exports = router;

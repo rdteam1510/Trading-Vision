@@ -75,7 +75,7 @@ const LineChart =(props) =>{
       ])
     })
     priceData.push(predictPrice[0])
-
+    
     if (props.compareTicker !== null){
         // compared ticker's price list
       compare.map(point=>{

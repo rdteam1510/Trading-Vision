@@ -42,6 +42,12 @@ const useStyles = makeStyles((theme)=>({
         cursor: "pointer",
         radial: "3px",
     },
+    // -------------------loading progress -------------------
+    loading:{
+        marginTop: "20%",
+        marginLeft: "50%",
+        marginBottom: "20%",
+    }
     
 }))
 

@@ -29,20 +29,20 @@ import {
   });
 
   const rows = [
-    { id: 1, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000},
-    { id: 2, ticker:"VNM", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000},
-    { id: 3, ticker:"DNG", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000},
-    { id: 4, ticker:"B10", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000},
-    { id: 5, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000},
-    { id: 6, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000},
-    { id: 7, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000},
-    { id: 8, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000},
-    { id: 9, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000},
-    { id: 10, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000},
+    { id: 1, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
+    { id: 2, ticker:"VNM", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
+    { id: 3, ticker:"DNG", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
+    { id: 4, ticker:"B10", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
+    { id: 5, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
+    { id: 6, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
+    { id: 7, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
+    { id: 8, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
+    { id: 9, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
+    { id: 10, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
 
   ]; 
 
-const FavoriteInfo = () => {
+const FavoriteInfo = (favorites) => {
     const classes = useStyles()
     const [loading, setLoading] = useState(false)
     const [page, setPage] = useState(0)
@@ -67,6 +67,7 @@ const FavoriteInfo = () => {
     setPage(0);
     };
 
+    
   return (
       <Container>
     <ThemeProvider theme={darkTheme}>
@@ -82,7 +83,7 @@ const FavoriteInfo = () => {
                             <TableHead  className={classes.tablehead}
                             rowCount={rows.length}>
                                 <TableRow>
-                                {["TICKER", "CEILING", "FLOOR","HIGHEST", "LOWEST", "VOLUME", "ACTION"].map((head) => (
+                                {["TICKER", "CEILING", "FLOOR","HIGHEST", "LOWEST", "MATCH", "VOLUME", "ACTION"].map((head) => (
                                     <TableCell
                                     className={classes.tablecell}
                                     key={head}
@@ -113,7 +114,7 @@ const FavoriteInfo = () => {
                                     <TableCell align="left" className={classes.cell}>{row.highest}</TableCell>
                                     <TableCell align="left" className={classes.cell}>{row.lowest}</TableCell>
                                     <TableCell align="left" className={classes.cell}>{row.volume}</TableCell>                                    
-                                    
+                                    <TableCell align="left" className={classes.cell}>{row.match}</TableCell> 
                                     <TableCell align="left" className={classes.cell}>
                                       <DeleteIcon 
                                         style={{marginLeft:"10%"}}

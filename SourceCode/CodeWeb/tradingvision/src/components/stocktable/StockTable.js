@@ -128,7 +128,6 @@ const DataGridDemo = ({stockExchange,user}) => {
       await axios.get(`/api/stocks/query?stockexchange=${stockExchange}&limit=100`)
         .then((response)=>{
           setStock(response.data.stocks);
-          console.log(response.data.stocks);
         })
     }
    

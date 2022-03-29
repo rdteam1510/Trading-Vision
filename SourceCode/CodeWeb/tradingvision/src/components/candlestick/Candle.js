@@ -50,7 +50,7 @@ const MyChart = ({ ohlc, volume, onUpdate}) => {
   return (<>
     <HighchartsStockChart >
     <Chart 
-    height = "65%"
+    height = "60%"
     onUpdate={onUpdate} />
 
     <RangeSelector>

@@ -13,21 +13,29 @@ const Favorite = ({user}) => {
   },[])
 
   const getFavorite = async() =>{
-    await axios.get(`/api/favorite`)
+    await axios.get(`/api/favorites`)
     .then((response) =>{
-      setFavorite(response.data)
+      setFavorite(response.data.favorites)
     })
   }
-  console.log(favorites)
+
+  
   return (
     <div>
-      {user ? (
-      <div>
-        <FavoriteInfo />
-      </div>
-    ) : (
-      <Login/>
-    )}
+      { user ? (
+        <>
+          {favorites.length === 0 ?(
+            <FavoriteEmpty/>
+          ):(
+            <FavoriteInfo favorites ={favorites}
+            />
+          )}
+          
+        </>
+      ) : (
+        <Login/>
+      )
+    }
     </div>
     
     
