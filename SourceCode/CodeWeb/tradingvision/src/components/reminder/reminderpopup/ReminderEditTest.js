@@ -8,6 +8,7 @@ import {Button,
         DialogContent,
         DialogContentText ,
         DialogTitle,
+        RootRef,
         Typography,
        
 } from '@material-ui/core';
@@ -34,22 +35,31 @@ const ReminderEditTest = (props) => {
     const [date, setDate] = React.useState();
     const {open, onClose} = props
     const [stockTicker,setTicker] = React.useState([])
-    const [values, setValues] = useState();
+    const initialValues = {
+      title: props.title,
+      ticker: props.ticker,
+      time: props.time,
+      content: props.content,
+    }
+    const [values, setValues] = useState(initialValues);
 
     const [stocks, setStock] = useState([])
     
-    const { register, handleSubmit, formState: { errors } } = useForm();
-  
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+   
     const handleClose = () => {
       
       onClose();
+      reset();
     };
-    const handleInputChange = e => {
-      const { name, value } = e.target
+    const handleInputChange = (e) => {
+      const { name, value } = e.target;
+     
       setValues({
           ...values,
           [name]: value
       })
+      reset();
     }
     const onSubmit = (data) => {
       console.log(data);
@@ -68,22 +78,24 @@ const ReminderEditTest = (props) => {
         .then((res) => res.json())
         .then(console.log);
       
-        
+          reset();
           handleClose();
           // refreshPage();
       }
-
+      const componentDidMount = async() => {
+        reset();
+        axios.get(`/api/stocks`)
+        .then((response) =>{
+          setStock(response.data.stocks)
+        })
+        
+      }
+  
     useEffect(() => {
       componentDidMount()
     },[])
 
-    const componentDidMount = async() => {
-      axios.get(`/api/stocks`)
-      .then((response) =>{
-        setStock(response.data.stocks)
-      })
-    }
-
+    
     const listStocks = stocks.map((stock) =>{
       return {
         ticker: stock.Ticker,
@@ -127,12 +139,11 @@ const ReminderEditTest = (props) => {
                       fontFamily: "Montserrat",
                       color:"black",
                     }}} 
-              name="title"        
-              defaultValue={props.title}
+              name="title"    
+              value = {values.title}
               
               {...register("title", { required: true })}
-              onChange={handleInputChange}
-             
+              onChange={handleInputChange}            
               
             /> 
             {errors.title && <p>Title is empty</p>}
@@ -150,7 +161,7 @@ const ReminderEditTest = (props) => {
                     noValidate
                     autoComplete="off"
                     renderInput={(props) => <TextField {...props} required/>}
-                    defaultValue={props.time}
+                    value={props.time}
                     onChange={(newValue) => {
                       setDate(newValue);
                     }}
@@ -221,7 +232,7 @@ const ReminderEditTest = (props) => {
                   variant = "outlined"
                   size = "large"
                   name="content"        
-                  defaultValue={props.content}
+                  value={values.content}
                   onChange={handleInputChange}
                   {...register("content", { required: true })}
                 />
