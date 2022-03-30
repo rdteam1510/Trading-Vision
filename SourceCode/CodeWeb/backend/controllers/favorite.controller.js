@@ -27,9 +27,13 @@ exports.getFavorites = async (req, res) => {
 			},
 			{ $project: { Ticker: 1 } },
 		]);
-		favorites.push({ _id: item._id, CompanyId:item.CompanyId, Ticker: query[0].Ticker });
+		favorites.push({
+			_id: item._id,
+			CompanyId: item.CompanyId,
+			Ticker: query[0].Ticker,
+		});
 	}
-	res.status(200).json({favorites});
+	res.status(200).json({ favorites });
 };
 
 exports.createFavorite = async (req, res) => {

@@ -39,6 +39,6 @@ router.route("/auth/facebook").get(facebookAuth);
 // @desc Facebook auth callback
 // @method GET
 // @route /facebook/callback
-router.route("/facebook//callback").get(facebookAuthCallback);
+router.route("/auth/facebook/callback").get(facebookAuthCallback);
 
 module.exports = router;
