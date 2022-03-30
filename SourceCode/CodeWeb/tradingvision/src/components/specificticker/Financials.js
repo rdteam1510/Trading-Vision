@@ -1,8 +1,8 @@
 import { Grid, 
-          Typography } from '@material-ui/core';
+          Typography , List, ListItem} from '@material-ui/core';
 import React from 'react';
 import useStyles from "./style";
-
+import CircleIcon from '@mui/icons-material/Circle';
 
 const Financials = ({info}) => {
     const classes = useStyles()
@@ -113,7 +113,7 @@ const Financials = ({info}) => {
                     variant="subtitle1" 
                     className={classes.item}
                     style={{fontWeight: 'bold'}}>
-                      Total Assets (VND):
+                      Total Assets (Billions VND):
                   </Typography>
                   
                   <Typography
@@ -173,14 +173,14 @@ const Financials = ({info}) => {
         </Grid>
       </Grid>
 
-      {/* <List className={classes.note}>
+      <List className={classes.note}>
         <ListItem>
           <CircleIcon sx={{ fontSize: 8}}/>
           <Typography className={classes.note_info}>
-          VND</Typography>
+          Calculated upto latest quarter</Typography>
         </ListItem>
 
-      </List> */}
+      </List>
     </div>
       
 

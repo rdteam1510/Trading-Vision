@@ -63,7 +63,7 @@ const Candlestick = () => {
 
     volume.push([
       point.TimeStamp*1000, // the date
-      point.Volume // the volume
+      point.Volume*1000 // the volume
     ]);
   })
 
