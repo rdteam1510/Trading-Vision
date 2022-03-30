@@ -47,7 +47,9 @@ import Login from "../login/Login"
 		//
 		useEffect(() => {
 			componentDidMount();
-			getFavorite();
+			// setInterval(() =>{
+				getFavorite();
+			// },1000)
 		}, []);
 
 		const componentDidMount = async () => {
@@ -70,12 +72,22 @@ import Login from "../login/Login"
 		  })
 		  
 		}
+		//check whether fav or not
 		const favLists = []
 		favorites.map((f) =>{
 			favLists.push(f.CompanyId)
 		})
-		console.log(favLists);
 		
+
+		
+
+		const [isFavorite, setIsFavorite] = useState(false);
+		useEffect( () =>{
+			if (favLists.includes(CompanyId[0]) === true) {
+				setIsFavorite(true)
+			}
+
+		})
 
 		const addFavorite = () =>{
 			axios.post(`/api/favorites`, {
@@ -86,19 +98,22 @@ import Login from "../login/Login"
 				console.log(response);
 			  });
 		}
-		const checkFavorite = () =>{
-			if (favLists.includes(CompanyId[0]) === true) {
-				return true;
-			}
-			else {
-				return false;
-			}
+		
+		//get FavId
+		const fav = favorites
+					.filter(f => f.CompanyId === CompanyId[0])
+					.map((f) =>{
+						return f._id
+					});
+
+		const favId = fav[0]
+
+		const deleteFavorite = (id) => {
+			axios.delete(`/api/favorites/`+ id)
+			.then(alert(`Deleted stock from your favorite list`))
 		}
+
 		
-		const [isFavorite, setIsFavorite] = useState(checkFavorite());
-		
-		
-		console.log(isFavorite)
 		return (
 			<>
 				{user ? (
@@ -124,9 +139,10 @@ import Login from "../login/Login"
 												addFavorite() 
 											}
 											else {
-												alert(ticker + " is removed") 
+												deleteFavorite(favId) 
+												setIsFavorite(false)
 											}
-											setIsFavorite(e.target.checked)
+											
 										}}
 										/>
 								</Typography>
