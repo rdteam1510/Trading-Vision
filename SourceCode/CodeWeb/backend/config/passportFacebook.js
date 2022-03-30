@@ -9,7 +9,7 @@ module.exports = function (passport) {
 				// pull in our app id and secret from our auth.js file
 				clientID: process.env.FACEBOOK_CLIENT_ID,
 				clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-				callbackURL: "http://localhost:5000/facebook/callback",
+				callbackURL: "/auth/facebook/callback",
 				//All fields need taking
 				profileFields: [
 					"id",
