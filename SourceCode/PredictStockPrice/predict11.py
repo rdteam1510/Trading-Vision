@@ -4,6 +4,7 @@ import itertools, time
 import gc
 import psutil
 import tensorflow as tf
+from datetime import date
 start = time.time()
 client
 
@@ -47,7 +48,7 @@ if __name__ == "__main__":
             dt["Ticker"] = ticker
             dt["PredictedPrice"] = forecast[i]
             dt["Date"] = datetime.datetime.timestamp(forecast_dates[i])
-            dt["TimeStamp"] =time.time()
+            dt["TimeStamp"] = time.mktime(date.today().timetuple())
             new_item = dict(zip(new_columns, list(dt.values())))
             l.append(new_item)
             
