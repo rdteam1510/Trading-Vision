@@ -180,10 +180,6 @@ const ReminderInfo = ({reminders}) => {
                                 <ReminderEditTest
                                   open = {openEdit} 
                                   onClose = {handleCloseEdit} 
-                                  content = {(selectedRow || {}).content}
-                                  ticker = {(selectedRow || {}).ticker}
-                                  title = {(selectedRow || {}).title}
-                                  time = {(selectedRow || {}).time}
                                   id = {(selectedRow || {}).id}
                                   values = {values}
                                   setValues = {setValues}/>   

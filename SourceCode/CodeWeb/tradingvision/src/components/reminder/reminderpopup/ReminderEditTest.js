@@ -44,28 +44,20 @@ const ReminderEditTest = (props) => {
     const classes = useStyles()
     const classes_form = useStyles_form()
     const [date, setDate] = React.useState();
-    const {open, onClose, content, ticker, title, time, values, setValues} = props
+    const {open, onClose, values, setValues} = props
     const [stockTicker,setTicker] = React.useState([])
     const initialValues = {
-      title: props.title,
-      ticker: props.ticker,
-      time: props.time,
-      content: props.content,
+      title:'',
+      ticker: '',
+      time: '',
+      content: '',
       // title: "",
       // content: "",
       // ticker: "",
       // time: "",
     }
-    // Re render values for each update
-    // const [values, setValues] = React.useState({
-    //   title: title, 
-    //   ticker: ticker, 
-    //   time: time, 
-    //   content: content});
     
-    useEffect(() => {
-     setValues(initialValues)
-    }, [])
+    
     console.log(values)
     const [stocks, setStock] = useState([])
     
@@ -77,14 +69,11 @@ const ReminderEditTest = (props) => {
       resetForm();
       onClose();
     };
-    const handleTitleChange = (e) =>{
-      setValues({title: e.target.value})
-    }
+    
     const handleInputChange = (e) => {
-      resetForm();
       setValues({
         ...values,
-        [e.target.name]: e.target.value
+        [e.target.name] : e.target.value,
       })
       }
     
@@ -95,8 +84,8 @@ const ReminderEditTest = (props) => {
         body: JSON.stringify({
           Content: values.content,
           Title: values.title,
-          Ticker: stockTicker.ticker,
-          RemindAt: date.getTime(),
+          Ticker: values.ticker,
+          RemindAt: values.time,
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -172,7 +161,7 @@ const ReminderEditTest = (props) => {
               name="title"    
               value = {values.title}
               onChange={(e) => handleInputChange(e)}  
-              {...register("title", { required: true })}
+              //{...register("title", { required: true })}
                        
               
             /> 
@@ -193,9 +182,7 @@ const ReminderEditTest = (props) => {
                     renderInput={(props) => <TextField {...props} required/>}
                     name = "time"
                     value={values.time}
-                    onChange={(newValue) => {
-                      setDate(newValue);
-                    }}
+                    onChange={(e)=> setValues(e)}
                     className={classes.calendar}
                     inputProps={{
                         disableUnderline: true,
@@ -227,13 +214,14 @@ const ReminderEditTest = (props) => {
                 value={options.filter((item) => {
                   return item.ticker === values.ticker;
                 })[0] || ""}
-                onChange={(event, value) => setTicker(value)}
+               
+                onChange = {(event, value)=> setValues({ticker: value})}
                 sx={{ width: 300 }}
                 renderInput={(params) => <TextField 
                 {...params} 
                 required
                 label={<Typography style={{fontFamily:"Montserrat"}}>Choose a ticker...</Typography>} 
-                {...register("ticker", { required: true })}
+               // {...register("ticker", { required: true })}
                />}
                
               />
@@ -264,9 +252,12 @@ const ReminderEditTest = (props) => {
                   variant = "outlined"
                   size = "large"
                   name="content"        
-                  value={values.content = props.content}
-                  onChange={handleInputChange}
-                  {...register("content", { required: true })}
+                  
+                  value={values.content}
+                  defaultValue = {values.content}
+                  onChange={(e)=> handleInputChange(e)}
+                  
+                 // {...register("content", { required: true })}
                 />
                 {errors.content && <p>Content is empty</p>}
              
