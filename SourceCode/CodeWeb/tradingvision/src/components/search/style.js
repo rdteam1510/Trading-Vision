@@ -72,8 +72,8 @@ const useStyles = makeStyles((theme)=>({
         color:'white',
       },
       tableContainer: {
-        marginTop: 10,
-        maxHeight: 400,
+        marginTop: '5%',
+        maxHeight: 600,
       },
       tableRowRoot: {
         "&$tableRowSelected, &$tableRowSelected:hover": {

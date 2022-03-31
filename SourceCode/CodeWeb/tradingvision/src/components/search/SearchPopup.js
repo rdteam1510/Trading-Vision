@@ -4,13 +4,21 @@ import {
 	InputBase,
 	ThemeProvider,
 	createTheme,
-	Tab,
+	TableContainer,
+	CircularProgress,
+	Table,
+	TableHead,
+	TableRow,
+	TableCell,
+	TableBody,
+	Paper,
 } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import useStyles from "./style";
 import SearchIcon from "@mui/icons-material/Search";
-import { TabContext, TabList, TabPanel } from "@material-ui/lab";
-import SearchTicker from "./SearchTicker";
+
+import { useNavigate } from "react-router-dom";
+
 
 const darkTheme = createTheme({
 	palette: {
@@ -23,6 +31,7 @@ const darkTheme = createTheme({
 });
 
 const SearchPopup = () => {
+	const history = useNavigate();
 	const classes = useStyles();
 	const [test, setTest] = React.useState(false);
 	const handleOpen = () => setTest(true);
@@ -41,8 +50,10 @@ const SearchPopup = () => {
 	}, []);
 
 	const componentDidMount = async () => {
+		setLoading(true);
 		axios.get("/api/companyinfo").then((response) => {
 			setCompanies(response.data.companyinfo);
+			setLoading(false);
 		});
 	};
 
@@ -70,6 +81,14 @@ const SearchPopup = () => {
 		);
 	};
 
+	const navigatePage = (row_ticker) => {
+		history(`/stocks/${row_ticker}`);
+	};
+	const refreshPage = () => {
+		window.location.reload();
+	};
+	const [loading, setLoading] = useState(false);
+
 	return (
 		<ThemeProvider theme={darkTheme}>
 			<Container>
@@ -90,69 +109,83 @@ const SearchPopup = () => {
 					/>
 				</div>
 				<div className={classes.table}>
-					<TabContext value={value}>
-						<TabList
-							className={classes.tablist}
-							onChange={handleChange}
-							aria-label="simple tabs "
-							TabIndicatorProps={{
-								style: {
-									backgroundColor: "#D97D54",
-								},
-							}}
+				{loading ? (
+					<div className={classes.loading_spinner}>
+						<CircularProgress style={{ backgroundColor: "primary" }}/>
+					</div>
+				) : (
+					<TableContainer
+						className={classes.tableContainer}
+						component={Paper}
+					>
+					<Table stickyHeader aria-label="sticky table">
+						<TableHead
+							className={classes.tablehead}
+							rowCount={rows.length}
 						>
-							<Tab
-								label="ALL"
-								value="1"
-								className={classes.tab}
-							/>
-							<Tab
-								label="HOSE"
-								value="2"
-								className={classes.tab}
-							/>
-							<Tab
-								label="HNX"
-								value="3"
-								className={classes.tab}
-							/>
-							<Tab
-								label="UPCOM"
-								value="4"
-								className={classes.tab}
-							/>
-						</TabList>
+							<TableRow>
+								{["TICKER", "DESCRIPTION", "INDUSTRY", "STOCK EXCHANGE"].map(
+									(head) => (
+										<TableCell
+											className={classes.tablecell}
+											key={head}
+											align={
+												head === "TICKER" ? "" : "left"
+											}
+										>
+											{head}
+										</TableCell>
+									)
+								)}
+							</TableRow>
+						</TableHead>
 
-						<TabPanel value="1">
-							<SearchTicker
-								stockExchange={""}
-								handleSearch={handleSearch}
-							
-							/>
-						</TabPanel>
-
-						<TabPanel value="2">
-							<SearchTicker
-								stockExchange={"hose"}
-								handleSearch={handleSearch}
-							
-							/>
-						</TabPanel>
-						<TabPanel value="3">
-							<SearchTicker
-								stockExchange={"hnx"}
-								handleSearch={handleSearch}
-							
-							/>
-						</TabPanel>
-						<TabPanel value="4">
-							<SearchTicker
-								stockExchange={"upcom"}
-								handleSearch={handleSearch}
-								
-							/>
-						</TabPanel>
-					</TabContext>
+						<TableBody>
+							{handleSearch(rows).map((row) => (
+								<TableRow
+									onClick={() => {
+										
+										navigatePage(row.ticker);
+										refreshPage();
+									}}
+									className={classes.row}
+									key={row.ticker}
+								>
+									<TableCell
+										component="th"
+										scope="row"
+										style={{
+											fontWeight: "bold",
+										}}
+										className={classes.cell}
+									>
+										{" "}
+										{row.ticker}
+									</TableCell>
+									<TableCell
+										align="left"
+										className={classes.cell}
+									>
+										{row.companyName}
+									</TableCell>
+									<TableCell
+										align="left"
+										className={classes.cell}
+									>
+										{row.industry}
+									</TableCell>
+									<TableCell
+										align="left"
+										className={classes.cell}
+									>
+										{row.stockExchange}
+									</TableCell>
+								</TableRow>
+							))}
+						</TableBody>
+					</Table>
+					</TableContainer>
+				)}
 				</div>
 			</Container>
 		</ThemeProvider>

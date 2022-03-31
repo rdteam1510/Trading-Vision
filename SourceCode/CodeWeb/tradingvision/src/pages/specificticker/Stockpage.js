@@ -46,13 +46,13 @@ import Login from "../login/Login"
 		const [company, setCompany] = useState([]);
 		//
 		useEffect(() => {
-			componentDidMount();
+			getCompanyInfo();
 			setInterval(() =>{
 				getFavorite();
-			}, 5000)
+			}, 1000)
 		}, []);
 
-		const componentDidMount = async () => {
+		const getCompanyInfo = async () => {
 			await axios.get(`/api/companyinfo/${ticker}`).then((response) => {
 				setCompany(response.data.companyinfo);
 			})
@@ -78,22 +78,25 @@ import Login from "../login/Login"
 			favLists.push(f.CompanyId)
 		})
 		
-
-		
-
 		const [isFavorite, setIsFavorite] = useState(false);
 		useEffect( () =>{
-			if (favLists.includes(CompanyId[0]) === true) {
-				setIsFavorite(true)
+			const  check = ()=> {
+				if (favLists.includes(CompanyId[0]) === true) {
+					setIsFavorite(true)
+				}
 			}
-			else {
-				setIsFavorite(false)
-			}
+
+			check();
+
+			
+			console.log(favorites);
+			console.log(favLists);
 
 		})
+		console.log(isFavorite)
 
 		const addFavorite = async() =>{
-			await axios.post(`/api/favorites`, {
+			axios.post(`/api/favorites`, {
 				UserId: user.userId,
 				CompanyId: CompanyId[0],
 			})	
@@ -102,22 +105,17 @@ import Login from "../login/Login"
 			  });
 		}
 		
-		//get FavId
-		const fav = favorites
-					.filter(f => f.CompanyId === CompanyId[0])
-					.map((f) =>{
-						return f._id
-					});
-
-		const favId = fav[0]
 
 		const deleteFavorite = async(id) => {
-			await axios.delete(`/api/favorites/`+ id)
+			setIsFavorite(false);
+			axios.delete(`/api/favorites/`+ id)
 			.then(alert(`Deleted stock from your favorite list`))
-			.then(setIsFavorite(false))
+			.then((response) => {
+				console.log(response);
+			  })
 			
 		}
-
+		
 		
 		return (
 			<>
@@ -142,12 +140,16 @@ import Login from "../login/Login"
 										onChange={e =>{
 											if (isFavorite === false) {
 												addFavorite() 
-												setIsFavorite(true)
+												// setIsFavorite(!isFavorite)
 											}
 											else {
-												deleteFavorite(favId) 
+												deleteFavorite(CompanyId[0]) 
+												// setIsFavorite(!isFavorite)
+												
+												
 											}
 											
+											setIsFavorite(e.target.checked)
 										}}
 										/>
 								</Typography>

@@ -1,12 +1,11 @@
 import React from 'react'
 import { TabContext, TabList, TabPanel } from '@material-ui/lab';
-import {Tab, Divider, Typography, FormControlLabel, Switch} from '@material-ui/core'
+import {Tab, Divider, Typography, FormControlLabel, } from '@material-ui/core'
 import Profile from './Profile'
 import Financials from './Financials'
 import useStyles from './style'
 import Collapse from '@mui/material/Collapse';
-
-
+import CustomSwitch from '../specificticker/CustomSwitch'
 const TabInfo = ({info}) => {
   
   const [value, setValue] = React.useState('1');
@@ -15,18 +14,16 @@ const TabInfo = ({info}) => {
     };
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  
 
   return (
     <>
     <FormControlLabel
-      control={<Switch 
-              color="primary" 
-              size='normal'
+      control={<CustomSwitch 
               checked={expanded}
               className={classes.toogle}
               onChange={() => {
                   setExpanded((prev) => !prev);
-              
                 }} />}
         label={<Typography className={classes.formControlLabel}>Show/Hide details</Typography>}
         style={{

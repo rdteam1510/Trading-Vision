@@ -43,9 +43,11 @@ exports.createFavorite = async (req, res) => {
 };
 
 exports.deleteFavorite = async (req, res) => {
-	const favorites = await Favorite.findByIdAndDelete({ _id: req.params.id });
-	if (!favorites) {
-		throw new NotFoundError("No reminder with this id");
+	const favorites = await Favorite.deleteOne({ CompanyId: req.params.companyId });
+	if(favorites.deletedCount === 0) {
+			throw new NotFoundError("No reminder with this id");
 	}
+	// if (!favorites) {
+	// }
 	res.status(200).json({ favorites });
 };

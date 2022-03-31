@@ -16,6 +16,6 @@ router.route("/").get(getFavorites).post(createFavorite);
 // @desc Delete favorite
 // @method DELETE
 // @route /api/favorites/:id
-router.route("/:id").delete(deleteFavorite);
+router.route("/:companyId").delete(deleteFavorite);
 
 module.exports = router;
