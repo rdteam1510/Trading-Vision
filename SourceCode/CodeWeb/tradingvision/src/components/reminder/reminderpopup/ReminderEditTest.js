@@ -19,7 +19,10 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios'
 import { Form } from '../useForm';
-
+import { makeStyles } from "@material-ui/core";
+import { responsiveProperty } from '@mui/material/styles/cssUtils';
+import { is } from 'date-fns/locale';
+import { useCallback } from 'react';
 
 
 // const initialFValues = {
@@ -29,47 +32,69 @@ import { Form } from '../useForm';
 //     ticker: 'ACB',
 //     date: new Date(),
 //   }
-
+const useStyles_form = makeStyles(theme => ({
+  root: {
+      '& .MuiFormControl-root': { 
+          width: '80%',
+          margin: theme.spacing(1)
+      }
+  }
+}))
 const ReminderEditTest = (props) => {
     const classes = useStyles()
+    const classes_form = useStyles_form()
     const [date, setDate] = React.useState();
-    const {open, onClose} = props
+    const {open, onClose, content, ticker, title, time, values, setValues} = props
     const [stockTicker,setTicker] = React.useState([])
     const initialValues = {
       title: props.title,
       ticker: props.ticker,
       time: props.time,
       content: props.content,
+      // title: "",
+      // content: "",
+      // ticker: "",
+      // time: "",
     }
-    const [values, setValues] = useState('');
-
+    // Re render values for each update
+    // const [values, setValues] = React.useState({
+    //   title: title, 
+    //   ticker: ticker, 
+    //   time: time, 
+    //   content: content});
+    
+    useEffect(() => {
+     setValues(initialValues)
+    }, [])
+    console.log(values)
     const [stocks, setStock] = useState([])
     
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const resetForm = () => {
-      setValues(initialValues);
-      
+      setValues(initialValues);      
   }
-    const handleClose = () => {
-      
-      onClose();
+    const handleClose = () => {      
       resetForm();
+      onClose();
     };
-    const handleInputChange = (e) => {
-      //const { name, value } = e.target
-      setValues(prevState => ({
-          ...prevState,
-          [e.target.name]: e.target.value
-      }))
-      
+    const handleTitleChange = (e) =>{
+      setValues({title: e.target.value})
     }
+    const handleInputChange = (e) => {
+      resetForm();
+      setValues({
+        ...values,
+        [e.target.name]: e.target.value
+      })
+      }
+    
     const onSubmit = (data) => {
       console.log(data);
       fetch(`/api/reminders/${props.id}`, {
         method: "PATCH",
         body: JSON.stringify({
           Content: values.content,
-          Title: props.title,
+          Title: values.title,
           Ticker: stockTicker.ticker,
           RemindAt: date.getTime(),
         }),
@@ -90,15 +115,14 @@ const ReminderEditTest = (props) => {
         .then((response) =>{
           setStock(response.data.stocks)
         })
-        
+       
       }
   
     useEffect(() => {
       componentDidMount()
+     
     },[])
-    useEffect(() => {
-      setValues(initialValues);
-    }, [initialValues]);
+    
     
     const listStocks = stocks.map((stock) =>{
       return {
@@ -113,7 +137,7 @@ const ReminderEditTest = (props) => {
         ...option,
       };
     });
-    console.log(values)
+    
     return (
         <div>
         
@@ -127,7 +151,9 @@ const ReminderEditTest = (props) => {
               width: '560px',}
           }}
         >
-        <Form onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className={classes_form.root} 
+          onSubmit={handleSubmit(onSubmit)}>
           <DialogTitle>
             <TextField
              component = "form"
@@ -145,9 +171,9 @@ const ReminderEditTest = (props) => {
                     }}} 
               name="title"    
               value = {values.title}
-              
+              onChange={(e) => handleInputChange(e)}  
               {...register("title", { required: true })}
-              onChange={handleInputChange}            
+                       
               
             /> 
             {errors.title && <p>Title is empty</p>}
@@ -165,7 +191,8 @@ const ReminderEditTest = (props) => {
                     noValidate
                     autoComplete="off"
                     renderInput={(props) => <TextField {...props} required/>}
-                    value={props.time}
+                    name = "time"
+                    value={values.time}
                     onChange={(newValue) => {
                       setDate(newValue);
                     }}
@@ -190,14 +217,15 @@ const ReminderEditTest = (props) => {
             <DialogContentText>
             <Autocomplete
                 id="grouped-demo"
-                selectOnFocus          
+                selectOnFocus
+                name = "ticker"          
                 options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
                 groupBy={(option) => option.firstLetter}
                 getOptionLabel={(option) => option.ticker}
                 getOptionSelected={(option, value) => option.ticker === value.ticker}
                 isOptionEqualToValue={(option, value) => option.ticker === value.ticker}
                 value={options.filter((item) => {
-                  return item.ticker === props.ticker;
+                  return item.ticker === values.ticker;
                 })[0] || ""}
                 onChange={(event, value) => setTicker(value)}
                 sx={{ width: 300 }}
@@ -236,7 +264,7 @@ const ReminderEditTest = (props) => {
                   variant = "outlined"
                   size = "large"
                   name="content"        
-                  // value={values.content}
+                  value={values.content = props.content}
                   onChange={handleInputChange}
                   {...register("content", { required: true })}
                 />
@@ -252,7 +280,7 @@ const ReminderEditTest = (props) => {
               onClick={handleClose}
               className={classes.btn_Cancel}>Cancel</Button>
           </DialogActions>
-          </Form>
+          </form>
         </Dialog>
       </div>
   );

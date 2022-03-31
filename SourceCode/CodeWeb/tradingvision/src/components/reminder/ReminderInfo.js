@@ -63,10 +63,23 @@ const ReminderInfo = ({reminders}) => {
     };
     
     //Open reminder edit
+    const [values, setValues] = useState({
+      title: "",
+      content: "",
+      ticker: "",
+      time: "",
+    });
     const [openEdit, setOpenEdit] = React.useState(false)
     const handleOpenEdit = (row) => {
       setSelectedRow(row);
+      setValues({
+        title: row.title,
+        content: row.content,
+        ticker: row.ticker,
+        time: row.time
+      });
       setOpenEdit(true);
+    
     };
     const handleCloseEdit = () => {
       setOpenEdit(false);
@@ -91,7 +104,7 @@ const ReminderInfo = ({reminders}) => {
     const handleCloseDelete = () => {
       setOpenDelete(false);
     };
-
+    
   return (
     <Container>
     <ThemeProvider theme={darkTheme}>
@@ -171,8 +184,10 @@ const ReminderInfo = ({reminders}) => {
                                   ticker = {(selectedRow || {}).ticker}
                                   title = {(selectedRow || {}).title}
                                   time = {(selectedRow || {}).time}
-                                  id = {(selectedRow || {}).id}/>   
-
+                                  id = {(selectedRow || {}).id}
+                                  values = {values}
+                                  setValues = {setValues}/>   
+                                  
                                 <ReminderDelete 
                                   open = {openDelete} 
                                   onClose = {handleCloseDelete} 
