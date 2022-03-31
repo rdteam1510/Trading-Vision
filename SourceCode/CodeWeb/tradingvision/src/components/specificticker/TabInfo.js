@@ -14,7 +14,7 @@ const TabInfo = ({info}) => {
       setValue(newValue);
     };
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(true);
+  const [expanded, setExpanded] = React.useState(false);
 
   return (
     <>

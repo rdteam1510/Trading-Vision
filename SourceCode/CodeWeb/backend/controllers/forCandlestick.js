@@ -26,7 +26,7 @@ const addDataForCandlestick = async (se) => {
 					High: Highest,
 					Low: Lowest,
 					Close: Match,
-					Volume: Volume,
+					Volume: Volume * 1000,
 				};
 				await ForCandlestick.create(data);
 			}

@@ -41,6 +41,13 @@ const useStyles = makeStyles((theme)=>({
     button: {
         cursor: "pointer",
         radial: "3px",
+        fontFamily: "Montserrat",
+        fontWeight: "bold",
+        backgroundColor: "rgb(55,58,109)",
+        color: "white",
+        '&:hover' :{
+            backgroundColor: "rgba(55,58,109,0.8)",
+        }
     },
     // -------------------loading progress -------------------
     loading:{

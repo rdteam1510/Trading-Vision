@@ -83,7 +83,6 @@ const SetReminderButton = () => {
             },
           })
             .then((res) => res.json())
-            .then(console.log);
           
               resetForm();
               handleClose();
@@ -125,7 +124,7 @@ const SetReminderButton = () => {
     const [stockTicker,setTicker] = React.useState([]);
     return (
       <div>
-        <Button variant="outlined" onClick={handleClickOpen}>
+        <Button variant="outlined" onClick={handleClickOpen} className={classes.btn_SetReminder}>
           Set Reminder
         </Button>
         <Dialog 
