@@ -47,9 +47,9 @@ import Login from "../login/Login"
 		//
 		useEffect(() => {
 			componentDidMount();
-			// setInterval(() =>{
+			setInterval(() =>{
 				getFavorite();
-			// },1000)
+			}, 5000)
 		}, []);
 
 		const componentDidMount = async () => {
@@ -86,11 +86,14 @@ import Login from "../login/Login"
 			if (favLists.includes(CompanyId[0]) === true) {
 				setIsFavorite(true)
 			}
+			else {
+				setIsFavorite(false)
+			}
 
 		})
 
-		const addFavorite = () =>{
-			axios.post(`/api/favorites`, {
+		const addFavorite = async() =>{
+			await axios.post(`/api/favorites`, {
 				UserId: user.userId,
 				CompanyId: CompanyId[0],
 			})	
@@ -108,9 +111,11 @@ import Login from "../login/Login"
 
 		const favId = fav[0]
 
-		const deleteFavorite = (id) => {
-			axios.delete(`/api/favorites/`+ id)
+		const deleteFavorite = async(id) => {
+			await axios.delete(`/api/favorites/`+ id)
 			.then(alert(`Deleted stock from your favorite list`))
+			.then(setIsFavorite(false))
+			
 		}
 
 		
@@ -137,10 +142,10 @@ import Login from "../login/Login"
 										onChange={e =>{
 											if (isFavorite === false) {
 												addFavorite() 
+												setIsFavorite(true)
 											}
 											else {
 												deleteFavorite(favId) 
-												setIsFavorite(false)
 											}
 											
 										}}

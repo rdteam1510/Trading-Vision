@@ -54,17 +54,34 @@ const useStyles = makeStyles((theme)=>({
     btn:{
       marginBottom: "3%",
       marginRight: "2%",
+      
     },
     btn_Save: {
-      backgroundColor:"#00FF00",
-      "&:hover":{
-        backgroundColor:"#00A300",
+      fontFamily: "Montserrat",
+      fontWeight: "bold",
+      backgroundColor: "rgb(55,58,109)",
+      color: "white",
+      '&:hover' :{
+          backgroundColor: "rgba(55,58,109,0.8)",
       }
     },
     btn_Cancel: {
+      fontFamily: "Montserrat",
+      fontWeight: "bold",
       backgroundColor:"#c1c1c1",
       "&:hover":{
         backgroundColor:"#AAAAAA",
+      }
+    },
+    btn_SetReminder: {
+      cursor: "pointer",
+      radial: "3px",
+      fontFamily: "Montserrat",
+      fontWeight: "bold",
+      backgroundColor: "rgb(55,58,109)",
+      color: "white",
+      '&:hover' :{
+          backgroundColor: "rgba(55,58,109,0.8)",
       }
     },
     ticker_field: {

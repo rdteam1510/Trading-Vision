@@ -70,7 +70,7 @@ const ReminderEmpty = () => {
                 
             <br/><br/><br/>
               <div>
-                <SetReminderButton/>
+                <SetReminderButton className={classes.btn_SetReminder}/>
               </div>
             <br/><br/><br/>
         </Typography>
