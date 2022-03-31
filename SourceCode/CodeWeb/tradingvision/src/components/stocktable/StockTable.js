@@ -160,11 +160,25 @@ const DataGridDemo = ({ stockExchange, user }) => {
 							fontFamily: "Montserrat",
 							cursor: "pointer",
 							fontSize: 16,
+							"& .MuiButton-root": {
+								paddingBottom: 3,								fontFamily: "Montserrat",
+							},
 							"& .MuiTablePagination-root": {
 								color: "white",
+								fontFamily: "Montserrat",
 							},
 							"& .MuiTablePagination-selectIcon": {
 								color: "white",
+							},
+							// Pagination
+							"& .MuiTablePagination-selectLabel": {
+								fontFamily: "Montserrat",
+							},
+							"& .MuiTablePagination-displayedRows": {
+								fontFamily: "Montserrat",
+							},							
+							"& .MuiTablePagination-select": {
+								fontFamily: "Montserrat",
 							},
 						}}
 						components={{
@@ -199,9 +213,12 @@ const DataGridDemo = ({ stockExchange, user }) => {
 							fontSize: 16,
 							"& .MuiTablePagination-root": {
 								color: "white",
+								fontFamily: "Montserrat",
 							},
 							"& .MuiTablePagination-selectIcon": {
 								color: "white",
+								fontFamily: "Montserrat",
+
 							},
 						}}
 						components={{

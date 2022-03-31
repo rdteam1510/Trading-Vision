@@ -41,32 +41,34 @@ const ReminderEditTest = (props) => {
       time: props.time,
       content: props.content,
     }
-    const [values, setValues] = useState(initialValues);
+    const [values, setValues] = useState('');
 
     const [stocks, setStock] = useState([])
     
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
-   
+    const resetForm = () => {
+      setValues(initialValues);
+      
+  }
     const handleClose = () => {
       
       onClose();
-      reset();
+      resetForm();
     };
     const handleInputChange = (e) => {
-      const { name, value } = e.target;
-     
-      setValues({
-          ...values,
-          [name]: value
-      })
-      reset();
+      //const { name, value } = e.target
+      setValues(prevState => ({
+          ...prevState,
+          [e.target.name]: e.target.value
+      }))
+      
     }
     const onSubmit = (data) => {
       console.log(data);
       fetch(`/api/reminders/${props.id}`, {
         method: "PATCH",
         body: JSON.stringify({
-          Content: props.content,
+          Content: values.content,
           Title: props.title,
           Ticker: stockTicker.ticker,
           RemindAt: date.getTime(),
@@ -78,12 +80,12 @@ const ReminderEditTest = (props) => {
         .then((res) => res.json())
         .then(console.log);
       
-          reset();
+          resetForm();
           handleClose();
           // refreshPage();
       }
       const componentDidMount = async() => {
-        reset();
+       
         axios.get(`/api/stocks`)
         .then((response) =>{
           setStock(response.data.stocks)
@@ -94,7 +96,9 @@ const ReminderEditTest = (props) => {
     useEffect(() => {
       componentDidMount()
     },[])
-
+    useEffect(() => {
+      setValues(initialValues);
+    }, [initialValues]);
     
     const listStocks = stocks.map((stock) =>{
       return {
@@ -109,7 +113,7 @@ const ReminderEditTest = (props) => {
         ...option,
       };
     });
-
+    console.log(values)
     return (
         <div>
         
@@ -232,7 +236,7 @@ const ReminderEditTest = (props) => {
                   variant = "outlined"
                   size = "large"
                   name="content"        
-                  value={values.content}
+                  // value={values.content}
                   onChange={handleInputChange}
                   {...register("content", { required: true })}
                 />
