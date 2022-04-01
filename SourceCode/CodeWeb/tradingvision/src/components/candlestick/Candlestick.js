@@ -3,29 +3,35 @@ import Candle from './Candle';
 import './style.css';
 import axios from 'axios'
 import {useParams} from 'react-router-dom'
-import {Container, Typography} from '@material-ui/core'
-
+import {Container, Typography, CircularProgress} from '@material-ui/core'
+import useStyles from './style';
 
 const Candlestick = () => {
+  const classes = useStyles()
   const {ticker} = useParams()
   const [data, setData] = useState([])
   const [previousData, setPreviousData] = useState([])
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
     getData()
     componentDidMount()
   },[])
 
   const componentDidMount = async() => {
+    setLoading(true)
     axios.get(`/api/stocks/query?ticker=${ticker}&limit=1`)
     .then((response) =>{
       setData(response.data.stocks)
+      setLoading(false)
     })
   }
 
   const getData = async() =>{
+    setLoading(true)
     axios.get(`/api/forcandlesticks/${ticker}`)
     .then((response) =>{
       setPreviousData(response.data)
+      setLoading(false)
     })
   }
 
@@ -63,7 +69,7 @@ const Candlestick = () => {
 
     volume.push([
       point.TimeStamp*1000, // the date
-      point.Volume*1000 // the volume
+      point.StockExchange === "hose" ? point.Volume*1000 : point.Volume *100// the volume
     ]);
   })
 
@@ -73,7 +79,16 @@ const Candlestick = () => {
   return (
     <div className="candlestick">
         <Typography style={{fontFamily: 'Montserrat', fontSize:"22px", marginLeft:"40%"}}>{ticker} Candlestick Chart</Typography>
-        <Candle ohlc={ohlc} volume={volume} onUpdate={handleUpdate} data={data}/>
+        {
+          loading ? (
+            <div className={classes.loading_spinner}>
+              <CircularProgress style={{ backgroundColor: "primary" }}/>
+            </div>
+          ):(
+           <Candle ohlc={ohlc} volume={volume} onUpdate={handleUpdate} data={data}/>
+
+          )
+        }
     </div>
   )
 }
