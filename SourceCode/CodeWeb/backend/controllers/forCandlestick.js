@@ -26,7 +26,8 @@ const addDataForCandlestick = async (se) => {
 					High: Highest,
 					Low: Lowest,
 					Close: Match,
-					Volume: Volume * 1000,
+					Volume:
+						StockExchange === "hose" ? Volume * 1000 : Volume * 100,
 				};
 				await ForCandlestick.create(data);
 			}
