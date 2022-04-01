@@ -118,7 +118,7 @@ const SearchPopup = () => {
 						className={classes.tableContainer}
 						component={Paper}
 					>
-					<Table stickyHeader aria-label="sticky table">
+					<Table stickyHeader aria-label="sticky table" >
 						<TableHead
 							className={classes.tablehead}
 							rowCount={rows.length}
@@ -175,10 +175,10 @@ const SearchPopup = () => {
 										{row.industry}
 									</TableCell>
 									<TableCell
-										align="left"
+										align="center"
 										className={classes.cell}
 									>
-										{row.stockExchange}
+										{row.stockExchange.toUpperCase()}
 									</TableCell>
 								</TableRow>
 							))}

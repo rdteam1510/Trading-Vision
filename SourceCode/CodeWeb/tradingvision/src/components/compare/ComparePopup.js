@@ -2,9 +2,17 @@ import { Container,
         InputBase,
         ThemeProvider,
         createTheme,
+        TableContainer, 
+        CircularProgress,
+        Table,
+        TableHead,
+        TableRow,
+        TableCell,
+        TableBody,
+        Paper,
         Tab,} from '@material-ui/core'
 import React, {useState, useEffect} from 'react'
-import useStyles from '../search/style'
+import useStyles from './style'
 import SearchIcon from '@mui/icons-material/Search';
 import { TabContext, TabList, TabPanel } from '@material-ui/lab';
 import SearchTicker from './SearchTicker';
@@ -34,6 +42,7 @@ const ComparePopup = (props) => {
 
     const [search,setSearch] = React.useState('');
     const [companies, setCompanies] = useState([]);
+    const [loading, setLoading] = React.useState(false)
 
     // 
     useEffect(() => {
@@ -41,9 +50,11 @@ const ComparePopup = (props) => {
     },[])
 
     const componentDidMount = async() =>{
+      setLoading(true)
        axios.get("/api/companyinfo")
        .then((response)=>{
           setCompanies(response.data.companyinfo);
+          setLoading(false)
        })
     }
 
@@ -65,7 +76,9 @@ const ComparePopup = (props) => {
         row.ticker.toLowerCase().includes(search) ||
         row.industry.toLowerCase().includes(search) ||
         row.ticker.includes(search) ||
-        row.industry.includes(search) 
+        row.industry.includes(search) ||
+        row.stockExchange.toLowerCase().includes(search) ||
+        row.stockExchange.includes(search) 
       );
     };
   return (
@@ -88,45 +101,21 @@ const ComparePopup = (props) => {
                             
         </div>
         <div className={classes.table}>
-            <TabContext value={selectedTab}>
-            
-                <TabList
-                className={classes.tablist}
-                
-                onChange={handleChange} 
-                aria-label="simple tabs "
-                TabIndicatorProps={{
-                style: {
-                    backgroundColor: "#D97D54"
-                }
-                }}>
-                    <Tab label="HOSE" value="1" className={classes.tab}/>
-                    <Tab label="HNX" value="2" className={classes.tab}/>
-                    <Tab label="UPCOM" value="3" className={classes.tab}/>
-                </TabList>
-
-            <TabPanel value="1" >
-              <SearchTicker 
-              stockExchange={'hose'} handleSearch={handleSearch}
-              RowID = {selectedID} onSelectRow = {setSelectedID}
-              myRef = {myRef} 
-               handleSelection = {handleSelection} companies={companies} />
-            </TabPanel>
-            <TabPanel value="2">
-              <SearchTicker 
-              stockExchange={'hnx'} handleSearch={handleSearch}
-              RowID = {selectedID} onSelectRow = {setSelectedID}
-              myRef = {myRef} 
-              handleSelection = {handleSelection} companies={companies}/>
-            </TabPanel>
-            <TabPanel value="3">
-              <SearchTicker 
-              stockExchange={'upcom'} handleSearch={handleSearch}
-              RowID = {selectedID} onSelectRow = {setSelectedID}
-              myRef = {myRef}
-              handleSelection = {handleSelection} companies={companies}/>
-            </TabPanel>
-        </TabContext>
+         {           
+           loading? (
+                      <div className={classes.loading_spinner}>
+                        <CircularProgress style={{ backgroundColor: "primary" }}/>
+                      </div>
+                    ):(
+                      <SearchTicker 
+                        handleSearch={handleSearch}
+                        RowID = {selectedID} onSelectRow = {setSelectedID}
+                        myRef = {myRef}
+                        handleSelection = {handleSelection} companies={companies}
+                        executeScroll={executeScroll}
+                        />
+                    )}
+         
         </div>
     </Container>
     </ThemeProvider>

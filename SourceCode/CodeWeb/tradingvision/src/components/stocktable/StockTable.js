@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import {CircularProgress,} from '@material-ui/core/'
 import axios from "axios";
 // Styles
 const darkTheme = createTheme({
@@ -28,6 +29,11 @@ const useStyles = makeStyles({
 			color: "white",
 		},
 	},
+	loading_spinner:{
+		marginLeft:"10%",
+		marginTop:"10%",
+		
+	 },
 });
 const columns = [
 	{
@@ -109,21 +115,23 @@ export function MenuIcon() {
 const DataGridDemo = ({ stockExchange, user }) => {
 	const history = useNavigate();
 	const classes = useStyles();
-
+	const [loading, setLoading] = useState(true);
 	const [stocks, setStock] = useState([]);
-
+	
 	// Get Data
 	useEffect(() => {
-		// setInterval( () =>{
+		setInterval( () =>{
 		componentDidMount(stockExchange);
-		// }, 60000)  //reload after 1 minute
+		}, 5000)  //reload after 1 minute
 	}, [stockExchange]);
 
 	const componentDidMount = async (stockExchange) => {
+		// setLoading(true);
 		await axios
 			.get(`/api/stocks/query?stockexchange=${stockExchange}&limit=100`)
 			.then((response) => {
 				setStock(response.data.stocks);
+				setLoading(false)
 			});
 	};
 
@@ -147,6 +155,12 @@ const DataGridDemo = ({ stockExchange, user }) => {
 	return (
 		<ThemeProvider theme={darkTheme}>
 			<div style={{ height: 600, width: "100%", color: "white" }}>
+			{loading ? (
+				<div className={classes.loading_spinner}>
+						<CircularProgress style={{ backgroundColor: "primary" }}/>
+				</div>
+			): (
+				<>
 				{user ? (
 					<DataGrid
 						rows={rows}
@@ -161,7 +175,8 @@ const DataGridDemo = ({ stockExchange, user }) => {
 							cursor: "pointer",
 							fontSize: 16,
 							"& .MuiButton-root": {
-								paddingBottom: 3,								fontFamily: "Montserrat",
+								paddingBottom: 3,								
+								fontFamily: "Montserrat",
 							},
 							"& .MuiTablePagination-root": {
 								color: "white",
@@ -211,14 +226,26 @@ const DataGridDemo = ({ stockExchange, user }) => {
 							fontFamily: "Montserrat",
 							cursor: "pointer",
 							fontSize: 16,
+							"& .MuiButton-root": {
+								paddingBottom: 3,								
+								fontFamily: "Montserrat",
+							},
 							"& .MuiTablePagination-root": {
 								color: "white",
 								fontFamily: "Montserrat",
 							},
 							"& .MuiTablePagination-selectIcon": {
 								color: "white",
+							},
+							// Pagination
+							"& .MuiTablePagination-selectLabel": {
 								fontFamily: "Montserrat",
-
+							},
+							"& .MuiTablePagination-displayedRows": {
+								fontFamily: "Montserrat",
+							},							
+							"& .MuiTablePagination-select": {
+								fontFamily: "Montserrat",
 							},
 						}}
 						components={{
@@ -237,6 +264,9 @@ const DataGridDemo = ({ stockExchange, user }) => {
 						onRowClick={(params) => history(`/login`)}
 					/>
 				)}
+				</>
+			)}
+				
 			</div>
 		</ThemeProvider>
 	);

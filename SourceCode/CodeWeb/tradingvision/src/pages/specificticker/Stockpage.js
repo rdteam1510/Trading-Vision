@@ -47,9 +47,8 @@ import Login from "../login/Login"
 		//
 		useEffect(() => {
 			getCompanyInfo();
-			setInterval(() =>{
-				getFavorite();
-			}, 1000)
+			
+			
 		}, []);
 
 		const getCompanyInfo = async () => {
@@ -64,36 +63,35 @@ import Login from "../login/Login"
 		})
 
 		const [favorites, setFavorite] = useState([])
+		//check whether fav or not
+		const [isFavorite, setIsFavorite] = useState(null);
+		const checkid = obj => obj.CompanyId === CompanyId[0] ;
 	  
 		const getFavorite = async() =>{
-		  await axios.get(`/api/favorites`)
+		 	await axios.get(`/api/favorites`)
 		  .then((response) =>{
 			setFavorite(response.data.favorites)
 		  })
 		  
 		}
-		//check whether fav or not
-		const favLists = []
-		favorites.map((f) =>{
-			favLists.push(f.CompanyId)
-		})
-		
-		const [isFavorite, setIsFavorite] = useState(false);
+
+		// const [checkout,setCheckout] = useState({});
 		useEffect( () =>{
-			const  check = ()=> {
-				if (favLists.includes(CompanyId[0]) === true) {
+			getFavorite();
+			function checkout() {
+
+				if (favorites.some(checkid) === true) {
 					setIsFavorite(true)
 				}
+				else if (favorites.some(checkid) === false){
+					setIsFavorite(false)
+				}
 			}
-
-			check();
-
-			
+			checkout();
 			console.log(favorites);
-			console.log(favLists);
 
 		})
-		console.log(isFavorite)
+		
 
 		const addFavorite = async() =>{
 			axios.post(`/api/favorites`, {
@@ -107,13 +105,12 @@ import Login from "../login/Login"
 		
 
 		const deleteFavorite = async(id) => {
-			setIsFavorite(false);
 			axios.delete(`/api/favorites/`+ id)
 			.then(alert(`Deleted stock from your favorite list`))
 			.then((response) => {
 				console.log(response);
 			  })
-			
+			 
 		}
 		
 		
@@ -140,16 +137,16 @@ import Login from "../login/Login"
 										onChange={e =>{
 											if (isFavorite === false) {
 												addFavorite() 
-												// setIsFavorite(!isFavorite)
+												// setIsFavorite(true)
+												
 											}
 											else {
 												deleteFavorite(CompanyId[0]) 
-												// setIsFavorite(!isFavorite)
-												
+												// setIsFavorite(false)
 												
 											}
-											
 											setIsFavorite(e.target.checked)
+											
 										}}
 										/>
 								</Typography>
@@ -180,6 +177,8 @@ import Login from "../login/Login"
 						style: {
 							backgroundColor: "rgba(0,0,0,0.90)",
 							color: "white",
+							height: "550px",
+							width: "600px",
 						},
 					}}
 				>

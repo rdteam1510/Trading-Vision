@@ -118,7 +118,7 @@ return (
                             aria-labelledby="keep-mounted-modal-title"
                             aria-describedby="keep-mounted-modal-description"
                             style={{ alignItems: "center", justifyContent: "center", paddingTop: 100}}
-                            BackdropProps={{ style: { backgroundColor: 'rgba(0,0,0,0.93)',
+                            BackdropProps={{ style: { backgroundColor: 'rgba(1,1,1,0.9)',
                              } }}
                         >
                             <SearchPopup user={user}/>

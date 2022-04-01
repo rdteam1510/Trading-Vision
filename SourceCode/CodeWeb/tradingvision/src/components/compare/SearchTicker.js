@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from 'react'
-import useStyles from '../search/style'
+import React, {useEffect, useState, useRef} from 'react'
+import useStyles from './style'
 import {  
   createTheme, 
   ThemeProvider, 
   TableContainer, 
-  LinearProgress,
   Table,
   TableHead,
   TableRow,
@@ -12,9 +11,9 @@ import {
   TableBody,
   Paper,
 } from '@material-ui/core'
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
+
+const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop) 
 
 const darkTheme = createTheme({
     palette: {
@@ -27,22 +26,23 @@ const darkTheme = createTheme({
   });
 
 
-
 const SearchTicker = (props) => {
     const classes = useStyles()
     const [loading, setLoading] = React.useState(false)
     const handleOpen = () => setLoading(true);
     const handleClosed = () => setLoading(false);
 
+ 
+
     const rows = props.companies
-    .filter((company) => company.StockExchange === props.stockExchange)
+    // .filter((company) => company.StockExchange === props.stockExchange)
     .map((company) => {
         return {
           id: company._id,
           ticker: company.Ticker,
           companyName: company.CompanyName,
           industry: company.Industry,
-          
+          stockExchange: company.StockExchange,
         };
       
     })
@@ -51,15 +51,11 @@ const SearchTicker = (props) => {
       <TableContainer 
             className={classes.tableContainer}
             component={Paper}>
-                {
-                    loading? (
-                        <LinearProgress style={{backgroundColor:"primary"}}/>
-                    ):(
                         <Table stickyHeader aria-label="sticky table">
                             <TableHead  className={classes.tablehead}
                             rowCount={rows.length}>
                                 <TableRow>
-                                {["TICKER", "DESCRIPTION", "INDUSTRY"].map((head) => (
+                                {["TICKER", "DESCRIPTION", "INDUSTRY", "STOCK EXCHANGE"].map((head) => (
                                     <TableCell
                                     className={classes.tablecell}
                                     key={head}
@@ -100,13 +96,11 @@ const SearchTicker = (props) => {
                                     </TableCell>
                                     <TableCell align="left" className={classes.cell}>{row.companyName}</TableCell>
                                     <TableCell align="left" className={classes.cell}>{row.industry}</TableCell>
-                                    
+                                    <TableCell align="center" className={classes.cell}>{row.stockExchange.toUpperCase()}</TableCell>
                                 </TableRow>
                                 ))}
                             </TableBody>
                         </Table>
-                    )
-                }
             </TableContainer>
     </ThemeProvider>
   )

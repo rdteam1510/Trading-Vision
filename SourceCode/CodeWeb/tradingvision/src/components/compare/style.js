@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme)=>({
       },
       tablecell:{
         color: "white",
-        fontWeight: "700",
+        fontWeight: "bold",
         fontFamily: "Montserrat",
         backgroundColor:"rgba(55,58,109)",
       },
@@ -63,11 +63,28 @@ const useStyles = makeStyles((theme)=>({
       cell:{
         color:'white',
       },
+      table: {
+        width: "400"
+      },
       tableContainer: {
         marginTop: '5%',
         maxHeight: 450,
         marginBottom: '5%',
       },
+      tableRowRoot: {
+        "&$tableRowSelected, &$tableRowSelected:hover": {
+          backgroundColor: "#fa8103"
+        },
+        tableRowSelected: {
+          backgroundColor: "#fa8103"
+        }
+      },
+      loading_spinner:{
+        marginLeft:"50%",
+        marginTop:"50%",
+        
+       },
+      
 }))
 
 export default useStyles
