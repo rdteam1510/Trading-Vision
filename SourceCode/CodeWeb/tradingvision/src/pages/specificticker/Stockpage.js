@@ -7,6 +7,8 @@ import {
 	Checkbox,
 	IconButton,
 	CircularProgress,
+	Divider,
+	Grid,
 } from "@material-ui/core";
 import TabInfo from "../../components/specificticker/TabInfo";
 import Chart from "../../components/specificticker/ChartTab";
@@ -118,19 +120,42 @@ import Login from "../login/Login"
 			<>
 				{user ? (
 					<Container className={classes.container}>
+
 					<div className={classes.title}>
 						{company.map((info) => (
 							<>
-								<Typography variant="h6" className={classes.field}>
-									{" "}
-									{info.Industry}
-								</Typography>
+								
+								<Grid container>
+									<Grid item xs={1}>
+										<Typography variant="h6" className={classes.field}>
+											{info.StockExchange.toUpperCase()}
+										</Typography>
+									</Grid>
+									<Divider 
+										orientation="vertical" 
+										flexItem 
+										light={true}
+										className={classes.divider}
+										style={{
+												height:"30px",
+												width: "3px",
+												marginLeft: "-2%",
+												marginRight: "1%",
+												backgroundColor: "rgb(255, 165, 0)"
+												}}
+										/>
+									<Grid item xs={10}>
+									<Typography variant="h6" className={classes.field}>
+												{info.Industry}
+											</Typography>
+									</Grid>
+								</Grid>
 								<Typography variant="h5" className={classes.name}>
 									{info.CompanyName} ({info.Ticker})
 									<Checkbox
 										{...label}
 										icon={<FavoriteBorderIcon
-											sx={{ fontSize: 45, color: "#fff" }} />}
+											sx={{ fontSize: 45, color: "#fff"}} />}
 										className={classes.fav_border}
 										checked={isFavorite}
 										checkedIcon={<Favorite sx={{ fontSize: 45 }} />} 
@@ -150,6 +175,7 @@ import Login from "../login/Login"
 										}}
 										/>
 								</Typography>
+
 								<div className={classes.line} />
 
 								<div className={classes.info}>

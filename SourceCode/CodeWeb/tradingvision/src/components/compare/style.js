@@ -80,8 +80,8 @@ const useStyles = makeStyles((theme)=>({
         }
       },
       loading_spinner:{
-        marginLeft:"50%",
-        marginTop:"50%",
+        marginLeft:"45%",
+        marginTop:"40%",
         
        },
       

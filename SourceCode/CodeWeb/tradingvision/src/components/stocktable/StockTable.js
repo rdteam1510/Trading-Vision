@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import {CircularProgress,} from '@material-ui/core/'
+import {CircularProgress} from '@material-ui/core/'
 import axios from "axios";
 // Styles
 const darkTheme = createTheme({
@@ -31,7 +31,7 @@ const useStyles = makeStyles({
 	},
 	loading_spinner:{
 		marginLeft:"10%",
-		marginTop:"10%",
+		marginTop:"20%",
 		
 	 },
 });

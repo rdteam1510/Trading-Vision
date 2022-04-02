@@ -1,7 +1,11 @@
 import {makeStyles} from '@material-ui/core' 
 
 const useStyles = makeStyles(() =>({
-
+    loading_spinner:{
+        marginLeft:"45%",
+        marginTop: "20%",
+        marginBottom: "20%",
+    },
 
 }))
 

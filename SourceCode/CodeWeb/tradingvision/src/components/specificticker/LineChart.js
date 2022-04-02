@@ -4,7 +4,8 @@ import moment from 'moment'
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
 import SetReminderLine from '../reminder/reminderpopup/SetReminderLine';
-
+import {CircularProgress} from '@material-ui/core'
+import useStyles from './style'
 
 const LineChart =(props) =>{
     const [open, setOpen] = React.useState(false);
@@ -15,11 +16,12 @@ const LineChart =(props) =>{
     const [predictions, setPredictions] = useState([])
     const [compare, setCompare] = useState([])
     const [comparePredictions, setComparePredictions] = useState([])
+    const [loading, setLoading] = useState([])
     const priceData =[]
     const predictPrice=[]
     const compareData =[]
     const predictCompare=[]
-
+    const classes = useStyles()
     
     useEffect(() => {
       actualPrice()
@@ -32,30 +34,38 @@ const LineChart =(props) =>{
     },[props.compareTicker])
     
     const actualPrice = async() => {
+      setLoading(true)
       axios.get(`/api/forpredictions/${ticker}`)
       .then((response) =>{
         setData(response.data)
+        setLoading(false)
       })
     }
   
     const currentStockPredictions = async() => {
+      setLoading(true)
       axios.get(`/api/predictions/${ticker}`)
       .then((response) =>{
         setPredictions(response.data.prediction)
+        setLoading(false)
       })
     }
 
     const compareStocks = async()=>{
+      setLoading(true)
         axios.get(`/api/forpredictions/${props.compareTicker}`)
         .then((response) =>{
           setCompare(response.data)
+          setLoading(false)
         })
     }
 
     const compareStockPredictions = async() => {
+      setLoading(true)
       axios.get(`/api/predictions/${props.compareTicker}`)
       .then((response) =>{
         setComparePredictions(response.data.prediction)
+        setLoading(false)
       })
     }
 
@@ -461,21 +471,38 @@ const LineChart =(props) =>{
       <div>
       {props.compareTicker === null ? (
         <>
-        <ReactHighcharts config = {configPriceWithoutCompare}></ReactHighcharts>
-        <SetReminderLine 
-          open = {open} 
-          setOpen = {setOpen}
-          ticker = {(stock || {})}
-          time ={(time || {})}/>
+        {loading ? (
+          <div className={classes.loading_spinner}>
+              <CircularProgress style={{ backgroundColor: "primary" }}/>
+            </div>
+        ):(
+          <>
+            <ReactHighcharts config = {configPriceWithoutCompare}></ReactHighcharts>
+            <SetReminderLine 
+              open = {open} 
+              setOpen = {setOpen}
+              ticker = {(stock || {})}
+              time ={(time || {})}/>
+
+          </>
+        )}
         </>
       ):(
         <>
-        <ReactHighcharts config = {configPrice}></ReactHighcharts>
-        <SetReminderLine 
-          open = {open} 
-          setOpen = {setOpen}
-          ticker = {(stock || {})}
-          time = {(time || {})}/>
+        {loading ? (
+          <div className={classes.loading_spinner}>
+              <CircularProgress style={{ backgroundColor: "primary" }}/>
+            </div>
+        ):(
+          <>
+            <ReactHighcharts config = {configPrice}></ReactHighcharts>
+            <SetReminderLine 
+              open = {open} 
+              setOpen = {setOpen}
+              ticker = {(stock || {})}
+              time = {(time || {})}/>
+            </>
+        )}
         </>
       )}
         

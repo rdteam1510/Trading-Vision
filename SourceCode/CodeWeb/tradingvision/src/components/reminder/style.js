@@ -75,6 +75,7 @@ const useStyles = makeStyles((theme)=>({
     },
     btn_SetReminder: {
       cursor: "pointer",
+      marginTop: "2%",
       radial: "3px",
       fontFamily: "Montserrat",
       fontWeight: "bold",
