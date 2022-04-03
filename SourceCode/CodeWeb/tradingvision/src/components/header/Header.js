@@ -1,5 +1,5 @@
 import { 
-    AppBar, 
+    AppBar, Avatar,
     Container, 
     Toolbar, 
     Typography, InputBase, 
@@ -142,8 +142,12 @@ return (
                             aria-haspopup="true"
                             onClick={handleMenu}
                             color="inherit">
-                            <AccountCircle />
-                            {/* <Avatar src={user.image} alt='avatar'/> */}
+                            
+                            {user ? (
+                                <Avatar src={user.image} alt='avatar' style={{height: "33px", width: "33px"}}/>
+                            ):(
+                                <AccountCircle style={{height: "33px", width: "33px"}}/>
+                            )}
                         </IconButton>
                         {user ? (
                             <Menu 
@@ -165,12 +169,12 @@ return (
                                         >
                                 <AccountCircle/>  
                                 <Typography
-                                style={{ marginLeft: '10px'}}>Profile</Typography>
+                                style={{ marginLeft: '10px', fontFamily:"Montserrat"}}>Profile</Typography>
                             </MenuItem>
                             <MenuItem onClick={() => {history("/login"); handleClose(); logout();}}>
                                 <LogoutIcon/>
                                 <Typography
-                                style={{ marginLeft: '10px'}}>Sign Out</Typography>
+                                style={{ marginLeft: '10px', fontFamily:"Montserrat"}}>Sign Out</Typography>
                             </MenuItem>
                         </Menu>
                         ):(
@@ -190,7 +194,7 @@ return (
                                 <MenuItem onClick={() => {history("/login"); handleClose();}}>
                                     <LogoutIcon/>
                                     <Typography
-                                    style={{ marginLeft: '10px'}}>Sign In</Typography>
+                                    style={{ marginLeft: '10px', fontFamily:"Montserrat"}}>Sign In</Typography>
                                 </MenuItem>
                             </Menu>
                         )}

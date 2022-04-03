@@ -13,7 +13,8 @@ const useStyles = makeStyles((theme) =>({
       fontFamily: "Montserrat",
       fontWeight: "bold",
       cursor: "pointer",
-      paddingRight: "23px"
+      paddingRight: "23px",
+      marginRight: "3%"
     },
     search: {
         position: 'relative',
