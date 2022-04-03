@@ -139,8 +139,8 @@ import Login from "../login/Login"
 										style={{
 												height:"30px",
 												width: "3px",
-												marginLeft: "-2%",
-												marginRight: "1%",
+												marginLeft: "-1%",
+												marginRight: "2%",
 												backgroundColor: "rgb(255, 165, 0)"
 												}}
 										/>

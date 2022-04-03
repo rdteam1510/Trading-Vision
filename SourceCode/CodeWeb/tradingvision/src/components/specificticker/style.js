@@ -115,12 +115,14 @@ const useStyles = makeStyles((theme) => ({
     toggle:{
         color: "orange",
         backgroundColor: "orange",
+        width: "1000px"
     },
     info:{
         marginTop: "10%",
     },
     formControlLabel:{
         fontFamily: "Montserrat",
+        fontSize: "16px",
         marginTop: "5%",
     },
     // ----------TabList---------------------
@@ -144,6 +146,7 @@ const useStyles = makeStyles((theme) => ({
     loading_spinner:{
         marginLeft:"45%",
         marginTop: "20%",
+        marginBottom: "20%"
         
     },
     

@@ -28,6 +28,7 @@ const TabInfo = ({info}) => {
         label={<Typography className={classes.formControlLabel}>Show/Hide details</Typography>}
         style={{
           marginTop: "2%",
+          width: "1000px"
         }}
         />
     <TabContext value={value}>

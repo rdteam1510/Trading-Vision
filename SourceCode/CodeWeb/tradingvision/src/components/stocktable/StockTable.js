@@ -30,7 +30,7 @@ const useStyles = makeStyles({
 		},
 	},
 	loading_spinner:{
-		marginLeft:"10%",
+		marginLeft:"-5%",
 		marginTop:"20%",
 		
 	 },

@@ -3,20 +3,28 @@ import FavoriteInfo from '../../components/favorite/FavoriteInfo'
 import FavoriteEmpty from '../../components/favorite/FavoriteEmpty'
 import Login from '../login/Login'
 import axios from 'axios'
-
+import useStyles from './style'
+import {CircularProgress} from '@material-ui/core'
 
 const Favorite = ({user}) => {
   const [favorites, setFavorite] = useState([])
+  const classes = useStyles()
+  const [loading, setLoading] = useState(false)
 
   useEffect(() =>{
-    getFavorite()
+    getFavorite();
   },[])
 
-  const getFavorite = async() =>{
-    await axios.get(`/api/favorites`)
-    .then((response) =>{
-      setFavorite(response.data.favorites)
-    })
+  const getFavorite = async() => {
+    setLoading(true)
+    await setInterval(() =>{
+      axios.get(`/api/favorites`)
+        .then((response) =>{
+          setFavorite(response.data.favorites)
+          setLoading(false)
+        });
+    }, 800)
+    
   }
 
   
@@ -24,13 +32,20 @@ const Favorite = ({user}) => {
     <div>
       { user ? (
         <>
-          {favorites.length === 0 ?(
-            <FavoriteEmpty/>
+          {loading ? (
+            <div className={classes.loading_spinner}>
+						  <CircularProgress style={{ backgroundColor: "primary" }}/>
+						</div>
           ):(
-            <FavoriteInfo favorites ={favorites}
-            />
+            <>
+              {favorites.length === 0 ?(
+                <FavoriteEmpty/>
+          ) : (
+              <FavoriteInfo favorites ={favorites}/>
           )}
-          
+            </>
+          )}
+
         </>
       ) : (
         <Login/>

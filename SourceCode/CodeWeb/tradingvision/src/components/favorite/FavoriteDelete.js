@@ -7,19 +7,17 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import axios from 'axios';
-import { Typography } from '@material-ui/core';
 
 const ReminderDelete = (props) => {
   const [status, setStatus] = useState([])
 
-  // useEffect(() => {
-  //   componentDidMount()
-  // },[])
 
-  // const componentDidMount = async() => {
-  //   axios.delete(`/api/reminders/`+ props.rowID)
-  //   .then((res) => setStatus(res.data))
-  // }
+  const deleteFavoriteStock = async(row) => {
+    axios.delete(`/api/favorites/`+ row)
+    .then((res) => setStatus(res.data))
+  }
+  
+
   return (
     <Dialog
               open={props.open}
@@ -43,7 +41,7 @@ const ReminderDelete = (props) => {
               </DialogContent>
               <DialogActions>
                 <Button 
-                  onClick={()=>{ props.onClose()}}
+                  onClick={()=>{deleteFavoriteStock(props.rowID); props.onClose()}}
                   sx = {{
                     color: 'white',
                     backgroundColor:'#f12312',
@@ -52,7 +50,7 @@ const ReminderDelete = (props) => {
                     }
                   }}>Delete</Button>
                 <Button 
-                  onClick={props.onClose}
+                  onClick={()=>{props.onClose()}}
                   sx = {{
                     color: 'white',
                     backgroundColor:'#c1c1c1',

@@ -47,7 +47,7 @@ const FavoriteInfo = () => {
                         <Table stickyHeader aria-label="sticky table">
                             <TableHead  className={classes.tablehead}>
                                 <TableRow>
-                                {["TICKER", "CEILING", "FLOOR","HIGHEST", "LOWEST", "VOLUME", "ACTION"].map((head) => (
+                                {["TICKER", "CEILING", "FLOOR","HIGHEST", "LOWEST", "MATCH", "VOLUME", "ACTION"].map((head) => (
                                     <TableCell
                                     className={classes.tablecell}
                                     key={head}

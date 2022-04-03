@@ -28,23 +28,22 @@ import {
     },
   });
 
-  const rows = [
-    { id: 1, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
-    { id: 2, ticker:"VNM", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
-    { id: 3, ticker:"DNG", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
-    { id: 4, ticker:"B10", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
-    { id: 5, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
-    { id: 6, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
-    { id: 7, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
-    { id: 8, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
-    { id: 9, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
-    { id: 10, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
+  // const rows = [
+  //   { id: 1, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
+  //   { id: 2, ticker:"VNM", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
+  //   { id: 3, ticker:"DNG", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
+  //   { id: 4, ticker:"B10", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
+  //   { id: 5, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
+  //   { id: 6, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
+  //   { id: 7, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
+  //   { id: 8, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
+  //   { id: 9, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
+  //   { id: 10, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
 
-  ]; 
+  // ]; 
 
-const FavoriteInfo = (favorites) => {
+const FavoriteInfo = ({favorites}) => {
     const classes = useStyles()
-    const [loading, setLoading] = useState(false)
     const [page, setPage] = useState(0)
     const [rowsPerPage, setRowsPerPage] = useState(10);
     // Delete modal
@@ -66,8 +65,15 @@ const FavoriteInfo = (favorites) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
     };
-
     
+    const rows = favorites.map((favorite) =>{
+      return {
+        companyId: favorite.CompanyId,
+        ticker: favorite.Ticker,
+        stockTicker: favorite.Ticker[0].Ticker,
+      }
+    })
+    console.log(rows)
   return (
       <Container>
     <ThemeProvider theme={darkTheme}>
@@ -75,10 +81,6 @@ const FavoriteInfo = (favorites) => {
       <TableContainer 
             className={classes.tableContainer}
             component={Paper}>
-                {
-                    loading ? (
-                        <LinearProgress style={{backgroundColor:"primary"}}/>
-                    ):(
                         <Table stickyHeader aria-label="sticky table">
                             <TableHead  className={classes.tablehead}
                             rowCount={rows.length}>
@@ -101,20 +103,20 @@ const FavoriteInfo = (favorites) => {
                                 .map((row)=> (
                                     <TableRow
                                     className ={classes.row}
-                                    key={row.ticker}>
+                                    key={row.ticker[0].Ticker}>
                                     <TableCell component='th' scope='row'
                                         style={{
                                           fontWeight: 'bold',
                                         }}
-                                        className={classes.cell}> {row.ticker}
+                                        className={classes.cell}> {row.ticker[0].Ticker}
                                     </TableCell>
                                    
-                                    <TableCell align="left" className={classes.cell}>{row.ceiling}</TableCell>
-                                    <TableCell align="left" className={classes.cell}>{row.floor}</TableCell>
-                                    <TableCell align="left" className={classes.cell}>{row.highest}</TableCell>
-                                    <TableCell align="left" className={classes.cell}>{row.lowest}</TableCell>
-                                    <TableCell align="left" className={classes.cell}>{row.volume}</TableCell>                                    
-                                    <TableCell align="left" className={classes.cell}>{row.match}</TableCell> 
+                                    <TableCell align="left" className={classes.cell}>{row.ticker[0].Ceiling}</TableCell>
+                                    <TableCell align="left" className={classes.cell}>{row.ticker[0].Floor}</TableCell>
+                                    <TableCell align="left" className={classes.cell}>{row.ticker[0].Highest}</TableCell>
+                                    <TableCell align="left" className={classes.cell}>{row.ticker[0].Lowest}</TableCell>
+                                    <TableCell align="left" className={classes.cell}>{row.ticker[0].Volume}</TableCell>                                    
+                                    <TableCell align="left" className={classes.cell}>{row.ticker[0].Match}</TableCell> 
                                     <TableCell align="left" className={classes.cell}>
                                       <DeleteIcon 
                                         style={{marginLeft:"10%"}}
@@ -124,8 +126,8 @@ const FavoriteInfo = (favorites) => {
                                     <FavoriteDelete 
                                   open = {openDelete} 
                                   onClose = {handleCloseDelete} 
-                                  rowID={(selectedRow || {}).id}
-                                  ticker = {(selectedRow || {}).ticker}
+                                  rowID={(selectedRow || {}).companyId}
+                                  ticker = {(selectedRow || {}).stockTicker}
 
                                 />      
                                 </TableRow>
@@ -133,8 +135,7 @@ const FavoriteInfo = (favorites) => {
                             </TableBody>
                             
                         </Table>
-                    )
-                }
+                  
                 <TablePagination
                 className={classes.pagination}
                 rowsPerPageOptions={[5,10,25,100]}

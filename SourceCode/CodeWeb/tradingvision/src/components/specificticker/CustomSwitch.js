@@ -1,11 +1,12 @@
 import React from 'react'
 import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch'
-const CustomSwitch = styled(Switch)(({ theme }) => ({
-    width: 50,
-    height: 30,
+const CustomSwitch = styled(Switch)(({ }) => ({
+    width: 55,
+    height: 32,
     padding: 7,
     marginTop: 6,
+    marginRight: 6,
     '& .MuiSwitch-switchBase': {
       margin: 1,
       padding: 0,
@@ -28,8 +29,8 @@ const CustomSwitch = styled(Switch)(({ theme }) => ({
     },
     '& .MuiSwitch-thumb': {
       backgroundColor: 'orange',
-      width: 27,
-      height: 27,
+      width: 30,
+      height: 30,
       '&:before': {
         content: "''",
         position: 'absolute',

@@ -22,7 +22,7 @@ const Reminder = ({ user }) => {
 				setReminders(response.data.reminder);
 				setLoading(false)
 			});
-		}, 5000);
+		}, 800);
 	};
 
 	return (
