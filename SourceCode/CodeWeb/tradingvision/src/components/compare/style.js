@@ -79,11 +79,6 @@ const useStyles = makeStyles((theme)=>({
           backgroundColor: "#fa8103"
         }
       },
-      loading_spinner:{
-        marginLeft:"45%",
-        marginTop:"40%",
-        
-       },
       
 }))
 

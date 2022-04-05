@@ -17,7 +17,7 @@ import {
   import useStyles from './style'
   import DeleteIcon from '@mui/icons-material/Delete';
   import FavoriteDelete from './FavoriteDelete';
-
+  import { useNavigate } from 'react-router-dom';
   const darkTheme = createTheme({
     palette: {
       primary: {
@@ -44,7 +44,8 @@ import {
 
 const FavoriteInfo = ({favorites}) => {
     const classes = useStyles()
-    const [page, setPage] = useState(0)
+    const history = useNavigate();
+    const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     // Delete modal
     const [selectedRow, setSelectedRow] = useState();
@@ -73,7 +74,13 @@ const FavoriteInfo = ({favorites}) => {
         stockTicker: favorite.Ticker[0].Ticker,
       }
     })
-    console.log(rows)
+    
+    const navigatePage = (row_ticker) => {
+      history(`/stocks/${row_ticker}`);
+    };
+    const refreshPage = () => {
+      window.location.reload();
+    };
   return (
       <Container>
     <ThemeProvider theme={darkTheme}>
@@ -108,15 +115,49 @@ const FavoriteInfo = ({favorites}) => {
                                         style={{
                                           fontWeight: 'bold',
                                         }}
-                                        className={classes.cell}> {row.ticker[0].Ticker}
+                                        className={classes.cell}
+                                        onClick={() => {
+                                          navigatePage(row.stockTicker);
+                                        }}> 
+                                        {row.ticker[0].Ticker}
                                     </TableCell>
                                    
-                                    <TableCell align="left" className={classes.cell}>{row.ticker[0].Ceiling}</TableCell>
-                                    <TableCell align="left" className={classes.cell}>{row.ticker[0].Floor}</TableCell>
-                                    <TableCell align="left" className={classes.cell}>{row.ticker[0].Highest}</TableCell>
-                                    <TableCell align="left" className={classes.cell}>{row.ticker[0].Lowest}</TableCell>
-                                    <TableCell align="left" className={classes.cell}>{row.ticker[0].Volume}</TableCell>                                    
-                                    <TableCell align="left" className={classes.cell}>{row.ticker[0].Match}</TableCell> 
+                                    <TableCell align="left" className={classes.cell} 
+                                      onClick={() => {
+                                          navigatePage(row.stockTicker);
+                                        }}>
+                                        {row.ticker[0].Ceiling}
+                                    </TableCell>
+                                    <TableCell align="left" className={classes.cell}
+                                        onClick={() => {
+                                              navigatePage(row.stockTicker);
+                                            }}>
+                                        {row.ticker[0].Floor}
+                                    </TableCell>
+                                    <TableCell align="left" className={classes.cell}
+                                      onClick={() => {
+                                          navigatePage(row.stockTicker);
+                                        }}>
+                                        {row.ticker[0].Highest}
+                                    </TableCell>
+                                    <TableCell align="left" className={classes.cell}
+                                      onClick={() => {
+                                            navigatePage(row.stockTicker);
+                                          }}>
+                                          {row.ticker[0].Lowest}
+                                      </TableCell>
+                                    <TableCell align="left" className={classes.cell}
+                                      onClick={() => {
+                                            navigatePage(row.stockTicker);
+                                          }}>
+                                        {row.ticker[0].Volume}
+                                      </TableCell>                                    
+                                    <TableCell align="left" className={classes.cell}
+                                      onClick={() => {
+                                            navigatePage(row.stockTicker);
+                                          }}>
+                                          {row.ticker[0].Match}
+                                    </TableCell> 
                                     <TableCell align="left" className={classes.cell}>
                                       <DeleteIcon 
                                         style={{marginLeft:"10%"}}
