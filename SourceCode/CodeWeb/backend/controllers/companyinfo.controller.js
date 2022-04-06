@@ -18,7 +18,7 @@ exports.getAllCompanyInfo = async (req, res) => {
 		queryObject.Industry = industry;
 	}
 
-	let result = CompanyInfo.find(queryObject);
+	let result = CompanyInfo.find(queryObject).lean();
 	const companyinfo = await result;
 	if (!companyinfo) {
 		throw new NotFoundError("Cannot find company");
@@ -36,18 +36,18 @@ exports.getCompanyInfoByTicker = async (req, res) => {
 	res.status(200).json({ success: true, companyinfo });
 };
 
-exports.getRelevant = async (req, res) => {
-	CompanyInfo.aggregate([
-		{
-			$lookup: {
-				from: "stocks",
-				localField: "Ticker",
-				foreignField: "Ticker",
-				as: "Ticker",
-			},
-		},
-	]).exec((err, result) => {
-		if (err) throw err;
-		res.send(result[0].Ticker);
-	});
-};
+// exports.getRelevant = async (req, res) => {
+// 	CompanyInfo.aggregate([
+// 		{
+// 			$lookup: {
+// 				from: "stocks",
+// 				localField: "Ticker",
+// 				foreignField: "Ticker",
+// 				as: "Ticker",
+// 			},
+// 		},
+// 	]).exec((err, result) => {
+// 		if (err) throw err;
+// 		res.send(result[0].Ticker);
+// 	});
+// };
