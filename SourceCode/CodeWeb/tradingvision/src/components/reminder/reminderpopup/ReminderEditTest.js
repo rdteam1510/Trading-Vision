@@ -18,9 +18,9 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios'
 import { makeStyles } from "@material-ui/core";
-import { responsiveProperty } from '@mui/material/styles/cssUtils';
-import { is } from 'date-fns/locale';
-import { useCallback } from 'react';
+// import { responsiveProperty } from '@mui/material/styles/cssUtils';
+// import { is } from 'date-fns/locale';
+// import { useCallback } from 'react';
 
 
 
@@ -65,7 +65,8 @@ const ReminderEditTest = (props) => {
         [e.target.name] : e.target.value,
       })
       }
-    console.log(typeof(date))
+    // console.log(typeof(date))
+
     const onSubmit = (data) => {
       console.log(data);
       fetch(`/api/reminders/${props.id}`, {
@@ -169,7 +170,7 @@ const ReminderEditTest = (props) => {
                     renderInput={(props) => <TextField {...props} required/>}
                     name = "time"
                     value={date}
-                    onChange={(newValue)=> setDate(new Date(newValue))}
+                    onChange={(newValue)=> setDate(newValue)}
                     className={classes.calendar}
                     inputProps={{
                         disableUnderline: true,

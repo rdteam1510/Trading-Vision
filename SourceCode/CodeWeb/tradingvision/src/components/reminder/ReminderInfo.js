@@ -80,7 +80,7 @@ const ReminderInfo = ({reminders}) => {
         time: row.time
       });
       setOpenEdit(true);
-      setDate(row.time);
+      setDate(new Date(row.time));
       setTicker(row);
     };
     const handleCloseEdit = () => {
