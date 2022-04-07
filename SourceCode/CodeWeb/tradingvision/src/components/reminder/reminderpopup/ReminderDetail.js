@@ -8,15 +8,9 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import useStyles from '../style'
 import { Box } from '@mui/system';
-import { Autocomplete } from '@mui/material';
-import { TextField } from '@material-ui/core';
+
 const ReminderDetail = (props) => {
     const classes = useStyles();
-    // const details = {
-    //   content: rowID.content,
-    //   title: rowID.title,
-    //   ticker: rowID.ticker,
-    // }
    
   return (
     <Dialog

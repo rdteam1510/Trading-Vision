@@ -44,7 +44,7 @@ const SearchPopup = () => {
 
 	const [companies, setCompanies] = useState([]);
 	
-	//
+	// get company info
 	useEffect(() => {
 		componentDidMount();
 	}, []);

@@ -23,10 +23,10 @@ const useStyles = makeStyles((theme)=>({
         
     },
     line:{
-        border: 'solid orange',
+        border: 'solid rgb(255, 165, 0)',
         height: '100%',
         width: '150px',
-        marginTop: '3px',
+        marginTop: '1px',
     },
     fav_border: {
         marginLeft: "30px",

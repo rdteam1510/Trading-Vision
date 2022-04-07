@@ -23,13 +23,7 @@ import { is } from 'date-fns/locale';
 import { useCallback } from 'react';
 
 
-// const initialFValues = {
-//     id: 0,
-//     title: 'helloWorld',
-//     content: 'remember to do sth',
-//     ticker: 'ACB',
-//     date: new Date(),
-//   }
+
 const useStyles_form = makeStyles(theme => ({
   root: {
       '& .MuiFormControl-root': { 
@@ -49,10 +43,7 @@ const ReminderEditTest = (props) => {
       ticker: '',
       time: '',
       content: '',
-      // title: "",
-      // content: "",
-      // ticker: "",
-      // time: "",
+
     }
     
     
@@ -95,8 +86,8 @@ const ReminderEditTest = (props) => {
       
           resetForm();
           handleClose();
-          // refreshPage();
       }
+      
       const componentDidMount = async() => {
        
         axios.get(`/api/stocks`)
@@ -160,9 +151,6 @@ const ReminderEditTest = (props) => {
               name="title"    
               value = {values.title}
               onChange={(e) => handleInputChange(e)}  
-              //{...register("title", { required: true })}
-                       
-              
             /> 
             {errors.title && <p>Title is empty</p>}
           </DialogTitle>
@@ -220,7 +208,6 @@ const ReminderEditTest = (props) => {
                 {...params} 
                 required
                 label={<Typography style={{fontFamily:"Montserrat"}}>Choose a ticker...</Typography>} 
-               // {...register("ticker", { required: true })}
                />}
                
               />
@@ -255,8 +242,6 @@ const ReminderEditTest = (props) => {
                   value={values.content}
                   defaultValue = {values.content}
                   onChange={(e)=> handleInputChange(e)}
-                  
-                 // {...register("content", { required: true })}
                 />
                 {errors.content && <p>Content is empty</p>}
              

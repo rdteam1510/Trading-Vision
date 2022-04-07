@@ -143,11 +143,10 @@ const ChartTab = ({compareTicker}) => {
        </div>
 
        <div className={classes.chart}>
-       <CustomSelect value={chart} onChange={setChart}>
-        <StyledOption value={"Line"}>Line Chart</StyledOption>
-        <StyledOption value={"Candlestick"}>Candlestick Chart</StyledOption>
-       
-      </CustomSelect>
+        <CustomSelect value={chart} onChange={setChart}>
+          <StyledOption value={"Line"}>Line Chart</StyledOption>
+          <StyledOption value={"Candlestick"}>Candlestick Chart</StyledOption>
+        </CustomSelect>
       {
         chart === "Line" ? (
           <div><LineChart compareTicker={compareTicker}/></div>

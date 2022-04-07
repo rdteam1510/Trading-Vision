@@ -36,8 +36,6 @@ const SetReminderButton = () => {
     const initialFValues = {
       title: '',
       content: '',
-      // ticker: '',
-      // remindAt: new Date(),
     }
     
     const validate = (fieldValues = values) => {
@@ -86,14 +84,10 @@ const SetReminderButton = () => {
           
               resetForm();
               handleClose();
-              // refreshPage();
           }
            
       }
-      // const refreshPage = () =>{
-      //   window.location.reload(false);
-      // }
-    // console.log(date.getTime());
+
     const [stocks, setStock] = useState([])
 
     useEffect(() => {

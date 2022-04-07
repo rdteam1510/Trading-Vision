@@ -5,7 +5,7 @@ import {
     Typography, InputBase, 
     IconButton, createTheme, 
     ThemeProvider, CssBaseline,} from "@material-ui/core";
-import React from "react";
+import React, {useState} from "react";
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -31,8 +31,8 @@ const Header = ({user}) =>{
 
     const classes = useStyles();
     const history = useNavigate(); 
-    const [auth, setAuth] = React.useState(true);
-    const [anchorEl, setAnchorEl] = React.useState(false);
+    const [auth, setAuth] = useState(true);
+    const [anchorEl, setAnchorEl] = useState(false);
     const open = Boolean(anchorEl);
 
 
@@ -44,12 +44,9 @@ const Header = ({user}) =>{
         setAnchorEl(null);
     };
 
-    const [test, setTest] = React.useState(false);
+    const [test, setTest] = useState(false);
     const handleOpen = () => setTest(true);
-    const handleClosed = () => {  
-    setTest(false)
-
-    };
+    const handleClosed = () => setTest(false); 
     const logout = () => {
         window.open("http://localhost:4040/auth/logout", "_self");
     };

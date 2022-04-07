@@ -1,9 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import {  
     createTheme, 
     ThemeProvider, 
     TableContainer, 
-    LinearProgress,
     Table,
     TableHead,
     TableRow,
@@ -28,19 +27,6 @@ import {
     },
   });
 
-  // const rows = [
-  //   { id: 1, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
-  //   { id: 2, ticker:"VNM", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
-  //   { id: 3, ticker:"DNG", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
-  //   { id: 4, ticker:"B10", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
-  //   { id: 5, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
-  //   { id: 6, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
-  //   { id: 7, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
-  //   { id: 8, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
-  //   { id: 9, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
-  //   { id: 10, ticker:"ACB", ceiling: 10000, floor: 20000, highest:250000, lowest:300000, volume: 18000, match:2345},
-
-  // ]; 
 
 const FavoriteInfo = ({favorites}) => {
     const classes = useStyles()
@@ -78,9 +64,7 @@ const FavoriteInfo = ({favorites}) => {
     const navigatePage = (row_ticker) => {
       history(`/stocks/${row_ticker}`);
     };
-    const refreshPage = () => {
-      window.location.reload();
-    };
+
   return (
       <Container>
     <ThemeProvider theme={darkTheme}>

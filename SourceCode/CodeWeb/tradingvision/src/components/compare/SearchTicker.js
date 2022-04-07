@@ -35,8 +35,7 @@ const SearchTicker = (props) => {
  
 
     const rows = props.companies
-    // .filter((company) => company.StockExchange === props.stockExchange)
-    .map((company) => {
+        .map((company) => {
         return {
           id: company._id,
           ticker: company.Ticker,
@@ -80,10 +79,6 @@ const SearchTicker = (props) => {
                                     }}
                                     
                                     selected={props.RowID === row.ticker}
-                                    // classes={{
-                                    //   root: classes.tableRowRoot,
-                                    //   selected: classes. tableRowSelected,
-                                    // }}
                                     key={row.ticker}>
                                     
                                     <TableCell component='th' scope='row'

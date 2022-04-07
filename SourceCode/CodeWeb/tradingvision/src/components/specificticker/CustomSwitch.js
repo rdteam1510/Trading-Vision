@@ -1,7 +1,7 @@
-import React from 'react'
 import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch'
-const CustomSwitch = styled(Switch)(({ }) => ({
+
+const CustomSwitch = styled(Switch)( () => ({
     width: 55,
     height: 32,
     padding: 7,

@@ -25,8 +25,8 @@ const darkTheme = createTheme({
 
 const StockExchange = ({user}) => {
   const classes = useStyles()
-  const [value, setValue] = React.useState('1');
-  const [search,setSearch] = React.useState('');
+  const [value, setValue] = useState('1');
+  const [search,setSearch] = useState('');
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

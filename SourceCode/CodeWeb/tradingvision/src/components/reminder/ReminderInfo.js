@@ -19,7 +19,6 @@
   import SetReminderButton from "./reminderpopup/SetReminderButton";  
   import ReminderDelete from './reminderpopup/ReminderDelete';
   import ReminderDetail from './reminderpopup/ReminderDetail';
-  import ReminderEdit from './reminderpopup/ReminderEdit';
   import ReminderEditTest from './reminderpopup/ReminderEditTest';
   const darkTheme = createTheme({
     palette: {

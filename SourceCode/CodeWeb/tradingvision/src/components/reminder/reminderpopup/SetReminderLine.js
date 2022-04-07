@@ -35,8 +35,6 @@ const SetReminderLine = (props) => {
     const initialFValues = {
       title: '',
       content: '',
-      // ticker: '',
-      // remindAt: new Date(),
     }
     
     const validate = (fieldValues = values) => {

@@ -19,7 +19,6 @@ import { Dialog, Box } from "@mui/material";
 import CloseIcon from "@material-ui/icons/Close";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import Login from "../login/Login" 
 
 	const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)  
 	function Stockpage({user}) {
@@ -46,11 +45,13 @@ import Login from "../login/Login"
 		const [selectedTab, setSelectedTab] = React.useState('1');
 		const { ticker } = useParams();
 		const [company, setCompany] = useState([]);
-		//
+		const [favorites, setFavorite] = useState([])
+		//check whether fav or not
+		const [isFavorite, setIsFavorite] = useState(null);
+		
+		// get company info
 		useEffect(() => {
 			getCompanyInfo();
-			
-			
 		}, []);
 
 		const getCompanyInfo = async () => {
@@ -60,13 +61,11 @@ import Login from "../login/Login"
 
 		};
 
+		// Get company Id
 		const CompanyId = company.map((info) =>{
 			return info._id;
 		})
 
-		const [favorites, setFavorite] = useState([])
-		//check whether fav or not
-		const [isFavorite, setIsFavorite] = useState(null);
 		const checkid = obj => obj.CompanyId === CompanyId[0] ;
 	  
 		const getFavorite = async() =>{
@@ -77,7 +76,6 @@ import Login from "../login/Login"
 		  
 		}
 
-		// const [checkout,setCheckout] = useState({});
 		useEffect( () =>{
 			getFavorite();
 			function checkout() {
@@ -155,20 +153,16 @@ import Login from "../login/Login"
 									<Checkbox
 										{...label}
 										icon={<FavoriteBorderIcon
-											sx={{ fontSize: 45, color: "#fff"}} />}
+											sx={{ fontSize: 45, color: "#fff", marginTop:"15%"}} />}
 										className={classes.fav_border}
 										checked={isFavorite}
-										checkedIcon={<Favorite sx={{ fontSize: 45 }} />} 
+										checkedIcon={<Favorite sx={{ fontSize: 45, marginTop:"15%" }} />} 
 										onChange={e =>{
 											if (isFavorite === false) {
 												addFavorite() 
-												// setIsFavorite(true)
-												
 											}
 											else {
 												deleteFavorite(CompanyId[0]) 
-												// setIsFavorite(false)
-												
 											}
 											setIsFavorite(e.target.checked)
 											

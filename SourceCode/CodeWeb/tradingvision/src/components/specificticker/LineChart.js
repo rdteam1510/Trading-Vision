@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import ReactHighcharts from 'react-highcharts/ReactHighstock.src'
-import moment from 'moment'
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
 import SetReminderLine from '../reminder/reminderpopup/SetReminderLine';
@@ -23,11 +22,13 @@ const LineChart =(props) =>{
     const predictCompare=[]
     const classes = useStyles()
     
+    //Get data off current stock
     useEffect(() => {
       actualPrice()
       currentStockPredictions()
     },[])
   
+    //get data of compared stock
     useEffect(() =>{
       compareStocks()
       compareStockPredictions()

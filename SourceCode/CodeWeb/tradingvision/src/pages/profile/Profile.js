@@ -93,8 +93,7 @@ const Profile = ({ user }) => {
 											align="center"
 											className={classes.dialog_title}
 										>
-											Are you sure you want to delete your
-											account?
+											Are you sure you want to delete your account?
 										</Typography>
 									</DialogTitle>
 									<DialogContentText
@@ -106,8 +105,7 @@ const Profile = ({ user }) => {
 												classes.dialog_content_text
 											}
 										>
-											This will delete all the information
-											related to your account.{" "}
+											This will delete all the informationrelated to your account.
 										</Typography>
 										<Typography
 											align="center"
@@ -124,14 +122,14 @@ const Profile = ({ user }) => {
 											onClick={deleteUser}
 											type="submit"
 										>
-											{" "}
+											
 											Delete
 										</Button>
 										<Button
 											className={classes.btn_Cancel}
 											onClick={handleClose}
 										>
-											{" "}
+											
 											Cancel
 										</Button>
 									</DialogActions>

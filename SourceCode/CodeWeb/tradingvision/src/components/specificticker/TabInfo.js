@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { TabContext, TabList, TabPanel } from '@material-ui/lab';
 import {Tab, Divider, Typography, FormControlLabel, } from '@material-ui/core'
 import Profile from './Profile'
@@ -6,16 +6,15 @@ import Financials from './Financials'
 import useStyles from './style'
 import Collapse from '@mui/material/Collapse';
 import CustomSwitch from '../specificticker/CustomSwitch'
+
 const TabInfo = ({info}) => {
-  
-  const [value, setValue] = React.useState('1');
+  const classes = useStyles();
+  const [value, setValue] = useState('1');
+  const [expanded, setExpanded] = useState(false);
   const handleChange = (event, newValue) => {
       setValue(newValue);
     };
-  const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
   
-
   return (
     <>
     <FormControlLabel
@@ -65,10 +64,11 @@ const TabInfo = ({info}) => {
                       value="2" 
                       className={classes.tab}/>
                 </TabList>
-          <TabPanel value="1"><Profile info={info}/></TabPanel>
-          
-          <TabPanel value="2"><Financials info={info}/></TabPanel>
-        </Collapse> </TabContext>
+              <TabPanel value="1"><Profile info={info}/></TabPanel>
+              
+              <TabPanel value="2"><Financials info={info}/></TabPanel>
+          </Collapse> 
+        </TabContext>
       </>
   )
 }

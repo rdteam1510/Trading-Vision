@@ -30,7 +30,6 @@ const useStyles = makeStyles({
 		},
 	},
 	loading_spinner:{
-		marginLeft:"-5%",
 		marginTop:"20%",
 		
 	 },
@@ -117,12 +116,13 @@ const DataGridDemo = ({ stockExchange, user }) => {
 	const classes = useStyles();
 	const [loading, setLoading] = useState(true);
 	const [stocks, setStock] = useState([]);
+	const [pageSize, setPageSize] = useState(10);
 	
 	// Get Data
 	useEffect(() => {
 		setInterval( () =>{
 		componentDidMount(stockExchange);
-		}, 5000)  //reload after 1 minute
+		}, 5000)  //reload after 5s
 	}, [stockExchange]);
 
 	const componentDidMount = async (stockExchange) => {
@@ -136,7 +136,6 @@ const DataGridDemo = ({ stockExchange, user }) => {
 	};
 
 	const rows = stocks
-		// .filter((stock) => stock.StockExchange === stockExchange)
 		.map((stock) => {
 			return {
 				id: stock._id,
@@ -150,7 +149,6 @@ const DataGridDemo = ({ stockExchange, user }) => {
 			};
 		});
 
-	const [pageSize, setPageSize] = React.useState(10);
 
 	return (
 		<ThemeProvider theme={darkTheme}>

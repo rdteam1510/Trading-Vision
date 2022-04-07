@@ -2,19 +2,11 @@ import { Container,
         InputBase,
         ThemeProvider,
         createTheme,
-        TableContainer, 
         CircularProgress,
-        Table,
-        TableHead,
-        TableRow,
-        TableCell,
-        TableBody,
-        Paper,
-        Tab,} from '@material-ui/core'
+} from '@material-ui/core'
 import React, {useState, useEffect} from 'react'
 import useStyles from './style'
 import SearchIcon from '@mui/icons-material/Search';
-import { TabContext, TabList, TabPanel } from '@material-ui/lab';
 import SearchTicker from './SearchTicker';
 import axios from 'axios'
 
@@ -30,21 +22,19 @@ const darkTheme = createTheme({
 
 const ComparePopup = (props) => {
     const classes = useStyles()
-    const [test, setTest] = React.useState(false);
+    const [test, setTest] = useState(false);
     const handleOpen = () => setTest(true);
     const handleClosed = () => setTest(false);
-    const [value, setValue] = React.useState('1');
+    const [value, setValue] = useState('1');
     const {selectedID, setSelectedID, selectedTab, setSelectedTab, myRef, executeScroll, handleSelection} = props;
+    const [search,setSearch] = useState('');
+    const [companies, setCompanies] = useState([]);
+    const [loading, setLoading] = useState(false)
     const handleChange = (event, newValue) => {
         setSelectedTab(newValue);
       };
     
-
-    const [search,setSearch] = React.useState('');
-    const [companies, setCompanies] = useState([]);
-    const [loading, setLoading] = React.useState(false)
-
-    // 
+    // Get company info
     useEffect(() => {
       componentDidMount()
     },[])
