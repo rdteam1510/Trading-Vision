@@ -20,7 +20,7 @@ import { Typography } from '@mui/material';
 
 const SetReminderLine = (props) => {
     const classes = useStyles()    
-    const [date, setDate] = React.useState(new Date());
+    const [date, setDate] = React.useState(props.time);
     const {open, setOpen} = props
     
     const handleClickOpen = () => {
@@ -168,7 +168,7 @@ const SetReminderLine = (props) => {
                     noValidate
                     autoComplete="off"
                     renderInput={(props) => <TextField {...props} required/>}
-                    value={props.time}
+                    value={date}
                     onChange={(newValue) => {
                       setDate(newValue);
                     }}

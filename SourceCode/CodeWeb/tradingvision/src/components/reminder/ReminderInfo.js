@@ -70,6 +70,8 @@ const ReminderInfo = ({reminders}) => {
       time: "",
     });
     const [openEdit, setOpenEdit] = React.useState(false)
+    const [date, setDate] = useState();
+    const [stockTicker,setTicker] = React.useState([]);
     const handleOpenEdit = (row) => {
       setSelectedRow(row);
       setValues({
@@ -79,7 +81,8 @@ const ReminderInfo = ({reminders}) => {
         time: row.time
       });
       setOpenEdit(true);
-    
+      setDate(row.time);
+      setTicker(row);
     };
     const handleCloseEdit = () => {
       setOpenEdit(false);
@@ -182,7 +185,12 @@ const ReminderInfo = ({reminders}) => {
                                   onClose = {handleCloseEdit} 
                                   id = {(selectedRow || {}).id}
                                   values = {values}
-                                  setValues = {setValues}/>   
+                                  setValues = {setValues}
+                                  date = {date}
+                                  setDate = {setDate}
+                                  stockTicker = {stockTicker}
+                                  setTicker = {setTicker}
+                                  />   
                                   
                                 <ReminderDelete 
                                   open = {openDelete} 

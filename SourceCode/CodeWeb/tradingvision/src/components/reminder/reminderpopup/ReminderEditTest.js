@@ -8,7 +8,6 @@ import {Button,
         DialogContent,
         DialogContentText ,
         DialogTitle,
-        RootRef,
         Typography,
        
 } from '@material-ui/core';
@@ -18,7 +17,6 @@ import DateTimePicker from '@mui/lab/DateTimePicker';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios'
-import { Form } from '../useForm';
 import { makeStyles } from "@material-ui/core";
 import { responsiveProperty } from '@mui/material/styles/cssUtils';
 import { is } from 'date-fns/locale';
@@ -43,9 +41,9 @@ const useStyles_form = makeStyles(theme => ({
 const ReminderEditTest = (props) => {
     const classes = useStyles()
     const classes_form = useStyles_form()
-    const [date, setDate] = React.useState();
-    const {open, onClose, values, setValues} = props
-    const [stockTicker,setTicker] = React.useState([])
+    
+    const {open, onClose, values, setValues, date, setDate, stockTicker, setTicker} = props
+   
     const initialValues = {
       title:'',
       ticker: '',
@@ -76,7 +74,7 @@ const ReminderEditTest = (props) => {
         [e.target.name] : e.target.value,
       })
       }
-    
+    console.log(typeof(date))
     const onSubmit = (data) => {
       console.log(data);
       fetch(`/api/reminders/${props.id}`, {
@@ -84,9 +82,10 @@ const ReminderEditTest = (props) => {
         body: JSON.stringify({
           Content: values.content,
           Title: values.title,
-          Ticker: values.ticker,
-          RemindAt: values.time,
+          Ticker: stockTicker.ticker,
+          RemindAt: date.getTime(),
         }),
+        
         headers: {
           "Content-type": "application/json; charset=UTF-8",
         },
@@ -181,8 +180,8 @@ const ReminderEditTest = (props) => {
                     autoComplete="off"
                     renderInput={(props) => <TextField {...props} required/>}
                     name = "time"
-                    value={values.time}
-                    onChange={(e)=> setValues(e)}
+                    value={date}
+                    onChange={(newValue)=> setDate(new Date(newValue))}
                     className={classes.calendar}
                     inputProps={{
                         disableUnderline: true,
@@ -212,10 +211,10 @@ const ReminderEditTest = (props) => {
                 getOptionSelected={(option, value) => option.ticker === value.ticker}
                 isOptionEqualToValue={(option, value) => option.ticker === value.ticker}
                 value={options.filter((item) => {
-                  return item.ticker === values.ticker;
+                  return item.ticker === stockTicker.ticker;
                 })[0] || ""}
                
-                onChange = {(event, value)=> setValues({ticker: value})}
+                onChange = {(event, value)=> setTicker(value)}
                 sx={{ width: 300 }}
                 renderInput={(params) => <TextField 
                 {...params} 
