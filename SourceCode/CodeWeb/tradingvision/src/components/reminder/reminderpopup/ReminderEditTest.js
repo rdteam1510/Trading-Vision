@@ -68,25 +68,43 @@ const ReminderEditTest = (props) => {
     // console.log(typeof(date))
 
     const onSubmit = (data) => {
-      console.log(data);
-      fetch(`/api/reminders/${props.id}`, {
-        method: "PATCH",
-        body: JSON.stringify({
+      // fetch(`/api/reminders/${props.id}`, {
+      //   method: "PATCH",
+      //   body: JSON.stringify({
+      //     Content: values.content,
+      //     Title: values.title,
+      //     Ticker: stockTicker.ticker,
+      //     RemindAt: date.getTime(),
+      //   }),
+        
+      //   headers: {
+      //     "Content-type": "application/json; charset=UTF-8",
+      //   },
+      // })
+      //   .then((res) => {res.json(); console.log(res);})
+      //   .catch((error)=>{
+      //     console.log(error);
+      //     window.alert(error)
+      //   });
+      if (values.content === "" || values.title === ""){
+        window.alert("Please check your reminder again ❗❗❗")
+      }
+      else {
+
+        axios.patch(`/api/reminders/${props.id}`, {
           Content: values.content,
           Title: values.title,
           Ticker: stockTicker.ticker,
           RemindAt: date.getTime(),
-        }),
+        })
+        .catch((error)=>{
+         console.log(error);
+         window.alert(error)
+        })
         
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      })
-        .then((res) => res.json())
-        .then(console.log);
-      
-          resetForm();
-          handleClose();
+            resetForm();
+            handleClose();
+      }
       }
       
       const componentDidMount = async() => {
