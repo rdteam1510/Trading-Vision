@@ -61,6 +61,10 @@ app.use(googleAuthRoutes);
 const facebookAuthRoutes = require("./routes/facebookAuth.route");
 app.use(facebookAuthRoutes);
 
+// Delete User
+const deleteUserRoute = require("./routes/deleteUser.route");
+app.use("/api/deleteuser", deleteUserRoute);
+
 // Company Info
 const companyinfoRoutes = require("./routes/companyinfo.route");
 app.use("/api/companyinfo", companyinfoRoutes);
