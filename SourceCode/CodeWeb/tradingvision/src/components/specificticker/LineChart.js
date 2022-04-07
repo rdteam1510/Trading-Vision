@@ -109,6 +109,7 @@ const LineChart =(props) =>{
     const options = {currency: 'VND'};
     const numberFormat = new Intl.NumberFormat('en-US', options);
     const configPrice = {
+
       yAxis: [{
         offset: 20,
 
@@ -121,6 +122,8 @@ const LineChart =(props) =>{
           style: {
             "color": "#fff",
             "position": "absolute",
+            fontFamily: "Montserrat",
+
           },
           align: 'left',
         },
@@ -134,7 +137,7 @@ const LineChart =(props) =>{
         //   return numberFormat.format(this.y, 0) +  '</b><br/>' + moment(this.x).format('MMMM Do YYYY')
         // },
         split: true,
-        
+        fontFamily: "Montserrat",
       },
       plotOptions: {
         series: {
@@ -171,14 +174,15 @@ const LineChart =(props) =>{
         
       },
       rangeSelector: {
-        selected: 1
-        
+        selected: 1,
+        fontFamily: "Montserrat"
       },
       title: {
         text: `${ticker} stock price`,
         style: {
           color: '#F2F1F0',
-          fontSize: '18px'
+          fontSize: '18px',
+          fontFamily: 'Montserrat',
         }
       },
       chart: {
@@ -193,10 +197,12 @@ const LineChart =(props) =>{
         enabled: true,
         itemStyle:{
             color: '#F2F1F0',
-            fontSize: '13px'
+            fontSize: '13px',
+            fontFamily: "Montserrat"
         },
         itemHoverStyle:{
           color: '#E5E8E8',
+          fontFamily: "Montserrat"
         },
       },
       xAxis: {
@@ -205,6 +211,7 @@ const LineChart =(props) =>{
           style: {
             "color": "#F2F1F0",
             "position": "absolute",
+            fontFamily: "Montserrat",
           },
         }
       },
@@ -236,28 +243,31 @@ const LineChart =(props) =>{
           'stroke-width': 0,
           style: {
             color: 'grey',
+            fontFamily: "Montserrat"
         },
         states: {
             hover: {
             },
             select: {
-                fill: '#FD7F20',
+                fill: '#FF9936',
                 style: {
                     color: '#fff',
-                    fontWeight: 'bold'
+                    fontWeight: 'bold',
+                    fontFamily: "Montserrat"
                 }
             }
         }},
         inputStyle: {
           color: 'grey',
-          fontWeight: 'bold'
+          fontWeight: 'bold',
+          fontFamily: "Montserrat"
       },
       
       },
       series: [{
         name: `${ticker} `,
         type: 'spline',
-  
+        fontFamily: "Montserrat",
         data: priceData,
         tooltip: {
           valueDecimals: 2
@@ -274,14 +284,14 @@ const LineChart =(props) =>{
           valueDecimals: 2
         },
         color: '#F51720',
-       
+        fontFamily: "Montserrat",
       
           
       },
       {
         name: `${props.compareTicker}`,
         type: 'spline',
-  
+        fontFamily: "Montserrat",
         data: compareData,
         tooltip: {
           valueDecimals: 2
@@ -292,7 +302,7 @@ const LineChart =(props) =>{
       {
         name: `${props.compareTicker} Predicted Price`,
         type: 'spline',
-  
+        fontFamily: "Montserrat",
         data: predictCompare,
         tooltip: {
           valueDecimals: 2
@@ -318,6 +328,7 @@ const LineChart =(props) =>{
           style: {
             "color": "#fff",
             "position": "absolute",
+            fontFamily: "Montserrat",
           },
           align: 'left',
         },
@@ -331,6 +342,7 @@ const LineChart =(props) =>{
         //   return numberFormat.format(this.y, 0) +  '</b><br/>' + moment(this.x).format('MMMM Do YYYY')
         // },
         split: true,
+        fontFamily: "Montserrat",
         
       },
       plotOptions: {
@@ -368,7 +380,8 @@ const LineChart =(props) =>{
         text: `${ticker} stock price`,
         style: {
           color: '#F2F1F0',
-          fontSize: '18px'
+          fontSize: '18px',
+          fontFamily: "Montserrat",
         }
       },
       chart: {
@@ -383,10 +396,12 @@ const LineChart =(props) =>{
         enabled: true,
         itemStyle:{
             color: '#F2F1F0',
-            fontSize: '13px'
+            fontSize: '13px',
+            fontFamily: "Montserrat",
         },
         itemHoverStyle:{
           color: '#E5E8E8',
+          fontFamily: "Montserrat",
         },
       },
       xAxis: {
@@ -395,6 +410,7 @@ const LineChart =(props) =>{
           style: {
             "color": "#F2F1F0",
             "position": "absolute",
+            fontFamily: "Montserrat",
           },
         }
       },
@@ -429,25 +445,32 @@ const LineChart =(props) =>{
         },
         states: {
             hover: {
+              fill: '#FD7924',
+              style: {
+                color: '#fff',
+                fontFamily: "Montserrat",
+            }
             },
             select: {
-                fill: '#FD7F20',
+                fill: '#FF9936',
                 style: {
                     color: '#fff',
-                    fontWeight: 'bold'
+                    fontWeight: 'bold',
+                    fontFamily: "Montserrat",
                 }
             }
         }},
         inputStyle: {
           color: 'grey',
-          fontWeight: 'bold'
+          fontWeight: 'bold',
+          fontFamily: "Montserrat",
         },
       
       },
       series: [{
         name: `${ticker} `,
         type: 'spline',
-  
+        fontFamily: "Montserrat",
         data: priceData,
         tooltip: {
           valueDecimals: 2
@@ -465,6 +488,7 @@ const LineChart =(props) =>{
           valueDecimals: 2
         },
         color: '#F51720',
+        fontFamily: "Montserrat",
       
       }],
     };
@@ -477,7 +501,7 @@ const LineChart =(props) =>{
               <CircularProgress style={{ backgroundColor: "primary" }}/>
             </div>
         ):(
-          <>
+          <div className={classes.line_chart_div}>
             <ReactHighcharts config = {configPriceWithoutCompare}></ReactHighcharts>
             <SetReminderLine 
               open = {open} 
@@ -485,7 +509,7 @@ const LineChart =(props) =>{
               ticker = {(stock || {})}
               time ={(time || {})}/>
 
-          </>
+          </div>
         )}
         </>
       ):(
@@ -495,14 +519,14 @@ const LineChart =(props) =>{
               <CircularProgress style={{ backgroundColor: "primary" }}/>
             </div>
         ):(
-          <>
+          <div className={classes.line_chart_div}>
             <ReactHighcharts config = {configPrice}></ReactHighcharts>
             <SetReminderLine 
               open = {open} 
               setOpen = {setOpen}
               ticker = {(stock || {})}
               time = {(time || {})}/>
-            </>
+            </div>
         )}
         </>
       )}

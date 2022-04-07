@@ -23,9 +23,9 @@ const useStyles = makeStyles((theme)=>({
         
     },
     line:{
-        border: 'solid rgb(255, 165, 0)',
+        border: 'solid #FF9936',
         height: '100%',
-        width: '150px',
+        width: '100px',
         marginTop: '1px',
     },
     fav_border: {
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme)=>({
         backgroundColor: "rgb(55,58,109)",
         color: "white",
         '&:hover' :{
-            backgroundColor: "rgba(55,58,109,0.8)",
+            backgroundColor: "#777bb8",
         }
     },
     // -------------------loading progress -------------------

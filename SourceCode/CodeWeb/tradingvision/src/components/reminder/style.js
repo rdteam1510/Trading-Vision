@@ -35,12 +35,12 @@ const useStyles = makeStyles((theme)=>({
     },
     // ------ Popup Set Reminder --------------
     line:{
-      border: 'solid orange',
+      border: 'solid #FF9936',
       height: '1.4px',
       width: '50px',
       marginTop: '-2%',
       marginLeft: '4%',
-      backgroundColor: 'orange',
+      backgroundColor: '#FF9936',
     },
     dialog_content: {
       marginTop: "2%",
@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme)=>({
       backgroundColor: "rgb(55,58,109)",
       color: "white",
       '&:hover' :{
-          backgroundColor: "rgba(55,58,109,0.8)",
+          backgroundColor: "#777bb8",
       }
     },
     btn_Cancel: {
@@ -77,12 +77,14 @@ const useStyles = makeStyles((theme)=>({
       cursor: "pointer",
       marginTop: "2%",
       radial: "3px",
+      borderColor: "rgb(55,58,109)",
       fontFamily: "Montserrat",
       fontWeight: "bold",
       backgroundColor: "rgb(55,58,109)",
       color: "white",
       '&:hover' :{
-          backgroundColor: "rgba(55,58,109,0.8)",
+          backgroundColor: "#777bb8",
+          borderColor: "#777bb8"
       }
     },
     ticker_field: {

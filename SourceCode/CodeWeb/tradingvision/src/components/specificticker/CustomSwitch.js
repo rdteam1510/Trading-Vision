@@ -28,7 +28,7 @@ const CustomSwitch = styled(Switch)( () => ({
       },
     },
     '& .MuiSwitch-thumb': {
-      backgroundColor: 'orange',
+      backgroundColor: '#FF9936',
       width: 30,
       height: 30,
       '&:before': {

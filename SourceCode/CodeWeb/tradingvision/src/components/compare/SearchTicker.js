@@ -66,7 +66,7 @@ const SearchTicker = (props) => {
                                 </TableRow>
                             </TableHead>
                     
-                            <TableBody>
+                            <TableBody  >
                                 {props.handleSearch(rows)
                                 .map((row)=> (
                                     <TableRow                                   
@@ -79,14 +79,22 @@ const SearchTicker = (props) => {
                                     }}
                                     
                                     selected={props.RowID === row.ticker}
-                                    key={row.ticker}>
+                                    key={row.ticker}
+                                    sx={{
+                                      
+                                      "&.MuiTableRow-root.Mui-selected": {
+                                        backgroundColor: "white"
+                                      },
+                                  }}
+                                    >
                                     
                                     <TableCell component='th' scope='row'
                                         style={{
                                           fontWeight: 'bold',
                                         }}
                                         className={classes.cell}
-                                        onClick={handleClosed}> {row.ticker}
+                                        onClick={handleClosed}
+                                        > {row.ticker}
                                         
                                     </TableCell>
                                     <TableCell align="left" className={classes.cell}>{row.companyName}</TableCell>

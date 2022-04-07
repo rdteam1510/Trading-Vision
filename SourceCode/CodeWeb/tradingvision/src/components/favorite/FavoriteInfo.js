@@ -80,7 +80,7 @@ const FavoriteInfo = ({favorites}) => {
                                     <TableCell
                                     className={classes.tablecell}
                                     key={head}
-                                    align={head === "TICKER" ? "" : "left"}
+                                    align={head === "TICKER" ? "" : "center"}
                                     >
                                     {head}
                                     </TableCell>
@@ -106,43 +106,43 @@ const FavoriteInfo = ({favorites}) => {
                                         {row.ticker[0].Ticker}
                                     </TableCell>
                                    
-                                    <TableCell align="left" className={classes.cell} 
+                                    <TableCell align="center" className={classes.cell} 
                                       onClick={() => {
                                           navigatePage(row.stockTicker);
                                         }}>
                                         {row.ticker[0].Ceiling}
                                     </TableCell>
-                                    <TableCell align="left" className={classes.cell}
+                                    <TableCell align="center" className={classes.cell}
                                         onClick={() => {
                                               navigatePage(row.stockTicker);
                                             }}>
                                         {row.ticker[0].Floor}
                                     </TableCell>
-                                    <TableCell align="left" className={classes.cell}
+                                    <TableCell align="center" className={classes.cell}
                                       onClick={() => {
                                           navigatePage(row.stockTicker);
                                         }}>
                                         {row.ticker[0].Highest}
                                     </TableCell>
-                                    <TableCell align="left" className={classes.cell}
+                                    <TableCell align="center" className={classes.cell}
                                       onClick={() => {
                                             navigatePage(row.stockTicker);
                                           }}>
                                           {row.ticker[0].Lowest}
                                       </TableCell>
-                                    <TableCell align="left" className={classes.cell}
+                                    <TableCell align="center" className={classes.cell}
                                       onClick={() => {
                                             navigatePage(row.stockTicker);
                                           }}>
                                         {row.ticker[0].Volume}
                                       </TableCell>                                    
-                                    <TableCell align="left" className={classes.cell}
+                                    <TableCell align="center" className={classes.cell}
                                       onClick={() => {
                                             navigatePage(row.stockTicker);
                                           }}>
                                           {row.ticker[0].Match}
                                     </TableCell> 
-                                    <TableCell align="left" className={classes.cell}>
+                                    <TableCell align="center" className={classes.cell}>
                                       <DeleteIcon 
                                         style={{marginLeft:"10%"}}
                                         onClick = {() => handleOpenDelete(row)}

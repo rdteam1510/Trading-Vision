@@ -149,7 +149,10 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: "20%"
         
     },
-    
+    line_chart_div:{
+        height: "500px",
+        marginBottom: "10%",
+    }
 }))
 
 

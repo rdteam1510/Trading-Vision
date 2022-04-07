@@ -17,17 +17,18 @@ const StyledButton = styled('button')(
   box-sizing: border-box;
   min-height: calc(1.5em + 22px);
   min-width: 30px;
-  border: 1px solid ;
-  border-radius: 0.75em;
+  border: 1px solid rgba(55,58,109,0.8);
+  border-radius: 5px;
   margin-top: 0.5em;
   padding: 10px;
   text-align: left;
   line-height: 1.5;
-  color: black;
-
+  color: white;
+  font-weight: bold;
+  background-color: rgb(55,58,109);
   &:hover {
-    background: #E4E5E8;
-    border-color: 1px solid #E4E5E8;
+    background: #777bb8;
+    border-color: 1px solid #777bb8;
   }
 
   &.${selectUnstyledClasses.focusVisible} {
@@ -70,7 +71,6 @@ const StyledOption = styled(OptionUnstyled)(
   padding: 8px;
   border-radius: 0.45em;
   cursor: poi;
-
   &:last-of-type {
     border-bottom: none;
   }

@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme)=>({
         fontFamily: "Montserrat",
         backgroundColor: "rgba(55,58,109,0.8)",
         '&:hover': {
-          backgroundColor: "rgba(55,58,109,0.5)",
+          backgroundColor: "#777bb8",
       },
     },
       cell:{

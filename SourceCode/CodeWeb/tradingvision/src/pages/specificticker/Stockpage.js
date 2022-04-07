@@ -20,11 +20,11 @@ import CloseIcon from "@material-ui/icons/Close";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-	const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)  
+	// const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)  
 	function Stockpage({user}) {
 		const classes = useStyles();
-		const myRef = useRef(null);
-		const executeScroll = () => scrollToRef(myRef);
+		// const myRef = useRef(null);
+		// const executeScroll = () => scrollToRef(myRef);
 		const [open, setOpen] = useState(false);
 		const handleOpen = () => setOpen(true);
 		const handleClosed = () => setOpen(false);
@@ -139,7 +139,7 @@ import { useParams } from "react-router-dom";
 												width: "3px",
 												marginLeft: "-1%",
 												marginRight: "2%",
-												backgroundColor: "rgb(255, 165, 0)"
+												backgroundColor: "#FF9936"
 												}}
 										/>
 									<Grid item xs={10}>
@@ -197,8 +197,8 @@ import { useParams } from "react-router-dom";
 						style: {
 							backgroundColor: "rgba(0,0,0,0.90)",
 							color: "white",
-							height: "550px",
-							width: "600px",
+							height: "600px",
+							width: "650px",
 						},
 					}}
 				>
@@ -214,8 +214,8 @@ import { useParams } from "react-router-dom";
 							setSelectedID={setSelectedID}
 							selectedTab={selectedTab}
 							setSelectedTab={setSelectedTab}
-							myRef={myRef}
-							executeScroll={executeScroll}
+							// myRef={myRef}
+							// executeScroll={executeScroll}
 							handleSelection = {handleSelection} />
 					</Box>
 				</Dialog>

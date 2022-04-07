@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme)=>({
         fontFamily: "Montserrat",
         backgroundColor: "rgba(55,58,109,0.8)",
         '&:hover': {
-          backgroundColor: "rgba(55,58,109,0.5)",
+          backgroundColor: "#777bb8",
       },
     },
       cell:{
@@ -71,14 +71,17 @@ const useStyles = makeStyles((theme)=>({
         maxHeight: 450,
         marginBottom: '5%',
       },
-      tableRowRoot: {
-        "&$tableRowSelected, &$tableRowSelected:hover": {
-          backgroundColor: "#fa8103"
-        },
-        tableRowSelected: {
-          backgroundColor: "#fa8103"
-        }
-      },
+      // tableRowRoot: {
+      //   "&$tableRowSelected, &$tableRowSelected:hover": {
+      //     backgroundColor: "#fa8103"
+      //   },
+      //   tableRowSelected: {
+      //     backgroundColor: "#fa8103"
+      //   },
+      //   "&.Mui-selected": {
+      //     backgroundColor: "#fa8103"
+      //   }
+      // },
       
 }))
 

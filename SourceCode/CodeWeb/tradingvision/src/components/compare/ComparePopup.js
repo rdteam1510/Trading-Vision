@@ -86,7 +86,7 @@ const ComparePopup = (props) => {
                     }}
                     inputProps={{ 'aria-label': 'search' }}
                     onClick={handleOpen}
-                    style={{fontFamily: "Montserrat"}}
+                    style={{fontFamily: "Montserrat", width:"100%"}}
                     onChange={(e) => setSearch(e.target.value)}/>
                             
         </div>
