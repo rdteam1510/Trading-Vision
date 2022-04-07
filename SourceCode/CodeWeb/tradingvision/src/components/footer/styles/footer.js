@@ -1,13 +1,21 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    padding: 30px 50px;
+   
+    padding: 80px 60px;
     background: radial-gradient(circle, rgba(55, 58, 109, 1) 0%, rgba(55, 58, 109, 1) 100%);
     font-family: 'Montserrat';
+    @media (max-width: 1000px) {
+        padding: 70px 30px;
+        display: absolute;
+      }
+    margin-top: auto;
    
 `
 
 export const Wrapper = styled.div`
+   
+    
     display: flex;
     flex-direction: column;
     justify-content: center;

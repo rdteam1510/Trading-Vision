@@ -15,8 +15,10 @@ const useStyles = makeStyles(()=>({
   App:{
     backgroundColor: "black",
     color: "white",
-    minHeight: "100vh",
-  
+    minHeight: "calc(100vh-170px)",
+  },
+  Footer: {
+    height: "170px",
   }
 }));
 
@@ -43,8 +45,9 @@ function App() {
   }, []);
 
   return (
-    <div className={classes.App} >
+    <div className={classes.App} id = "root">
       <Router >
+        <div id = "content-wrapper">
           <Header user={user}/>
           <Routes>
             <Route exact path="/" element={<Homepage user={user}/>} />
@@ -54,7 +57,10 @@ function App() {
             <Route path="/login" element={user ? <Navigate to="/"/> : <Login/>} />
             <Route path="/profile" element={<Profile user={user}/>}/>
           </Routes>
-          <FooterContainer />
+          </div>
+          <div id="footer-wrapper">
+          <FooterContainer className = {classes.Footer}/>
+          </div>
       </Router>
     </div>
   );
