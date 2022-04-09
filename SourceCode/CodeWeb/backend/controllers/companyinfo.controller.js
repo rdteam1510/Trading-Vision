@@ -19,6 +19,7 @@ exports.getAllCompanyInfo = async (req, res) => {
 	}
 
 	let result = CompanyInfo.find(queryObject).lean();
+	result = result.sort("Ticker")
 	const companyinfo = await result;
 	if (!companyinfo) {
 		throw new NotFoundError("Cannot find company");

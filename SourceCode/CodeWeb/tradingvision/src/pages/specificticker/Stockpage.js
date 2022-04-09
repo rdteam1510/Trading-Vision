@@ -69,7 +69,7 @@ import { useParams } from "react-router-dom";
 		const checkid = obj => obj.CompanyId === CompanyId[0] ;
 	  
 		const getFavorite = async() =>{
-		 	await axios.get(`/api/favorites`)
+		await axios.get(`/api/favorites`)
 		  .then((response) =>{
 			setFavorite(response.data.favorites)
 		  })

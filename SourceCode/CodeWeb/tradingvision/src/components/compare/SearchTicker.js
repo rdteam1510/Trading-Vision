@@ -34,17 +34,17 @@ const SearchTicker = (props) => {
 
  
 
-    const rows = props.companies
-        .map((company) => {
-        return {
-          id: company._id,
-          ticker: company.Ticker,
-          companyName: company.CompanyName,
-          industry: company.Industry,
-          stockExchange: company.StockExchange,
-        };
+    // const rows = props.companies
+    //     .map((company) => {
+    //     return {
+    //       id: company._id,
+    //       ticker: company.Ticker,
+    //       companyName: company.CompanyName,
+    //       industry: company.Industry,
+    //       stockExchange: company.StockExchange,
+    //     };
       
-    })
+    // })
   return (
     <ThemeProvider theme={darkTheme}>
       <TableContainer 
@@ -52,7 +52,7 @@ const SearchTicker = (props) => {
             component={Paper}>
                         <Table stickyHeader aria-label="sticky table">
                             <TableHead  className={classes.tablehead}
-                            rowCount={rows.length}>
+                            rowCount={props.rows.length}>
                                 <TableRow>
                                 {["TICKER", "DESCRIPTION", "INDUSTRY", "STOCK EXCHANGE"].map((head) => (
                                     <TableCell
@@ -67,7 +67,7 @@ const SearchTicker = (props) => {
                             </TableHead>
                     
                             <TableBody  >
-                                {props.handleSearch(rows)
+                                {props.handleSearch(props.rows)
                                 .map((row)=> (
                                     <TableRow                                   
                                     ref = {props.myRef}
