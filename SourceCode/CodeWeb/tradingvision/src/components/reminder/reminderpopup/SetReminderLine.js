@@ -21,7 +21,8 @@ import { Typography } from '@mui/material';
 const SetReminderLine = (props) => {
     const classes = useStyles()    
     const [date, setDate] = React.useState(props.time);
-    const {open, setOpen} = props
+    const {open, setOpen, time, setTime, stockTicker, setTicker} = props
+    console.log(props)
     
     const handleClickOpen = () => {
       setOpen(true);
@@ -52,7 +53,7 @@ const SetReminderLine = (props) => {
       if (fieldValues === values)
           return Object.values(temp).every(x => x === "")
       }
-      
+      //const [stockTicker, setTicker] = useState([])
       const {
           values,
           setValues,
@@ -72,8 +73,8 @@ const SetReminderLine = (props) => {
             body: JSON.stringify({
               Content: values.content,
               Title: values.title,
-              Ticker: stockTicker.ticker,
-              RemindAt: date.getTime(),
+              Ticker: stockTicker,
+              RemindAt: time.getTime(),
             }),
             headers: {
               "Content-type": "application/json; charset=UTF-8",
@@ -116,7 +117,7 @@ const SetReminderLine = (props) => {
       };
     });
 
-    const [stockTicker,setTicker] = React.useState([]);
+    
     return (
       <div>
         
@@ -166,9 +167,9 @@ const SetReminderLine = (props) => {
                     noValidate
                     autoComplete="off"
                     renderInput={(props) => <TextField {...props} required/>}
-                    value={date}
+                    value={time}
                     onChange={(newValue) => {
-                      setDate(newValue);
+                      setTime(newValue);
                     }}
                     className={classes.calendar}
                     inputProps={{
@@ -197,10 +198,14 @@ const SetReminderLine = (props) => {
                 getOptionLabel={(option) => option.ticker}
                 getOptionSelected={(option, value) => option.ticker === value.ticker}
                 isOptionEqualToValue={(option, value) => option.ticker === value.ticker}
-                defaultValue={options.filter((item) => {
-                    return item.ticker === props.ticker;
-                  })[0] || ""}
-                onChange={(event, value) => setTicker(value)}
+                value={options.filter((item) => {
+                    return item.ticker === stockTicker;
+                  })[0] || null}
+                onChange={(event, value) =>  {
+                  if(value === null || value === undefined || value.ticker === null || value.ticker === undefined)
+                    setTicker("")
+                  else
+                    setTicker(value.ticker)}}
                 sx={{ width: 300 }}
                 renderInput={(params) => <TextField 
                 {...params} 

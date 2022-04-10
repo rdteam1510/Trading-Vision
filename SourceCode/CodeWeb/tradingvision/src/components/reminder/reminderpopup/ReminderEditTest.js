@@ -37,7 +37,6 @@ const ReminderEditTest = (props) => {
     const classes_form = useStyles_form()
     
     const {open, onClose, values, setValues, date, setDate, stockTicker, setTicker} = props
-   
     const initialValues = {
       title:'',
       ticker: '',
@@ -94,7 +93,7 @@ const ReminderEditTest = (props) => {
         axios.patch(`/api/reminders/${props.id}`, {
           Content: values.content,
           Title: values.title,
-          Ticker: stockTicker.ticker,
+          Ticker: stockTicker,
           RemindAt: date.getTime(),
         })
         .catch((error)=>{
@@ -214,14 +213,18 @@ const ReminderEditTest = (props) => {
                 name = "ticker"          
                 options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
                 groupBy={(option) => option.firstLetter}
-                getOptionLabel={(option) => option.ticker}
+                getOptionLabel={(option) => option.ticker || null}
                 getOptionSelected={(option, value) => option.ticker === value.ticker}
                 isOptionEqualToValue={(option, value) => option.ticker === value.ticker}
                 value={options.filter((item) => {
-                  return item.ticker === stockTicker.ticker;
-                })[0] || ""}
+                  return item.ticker === stockTicker
+                })[0] || null}
                
-                onChange = {(event, value)=> setTicker(value)}
+                onChange = {(event, value)=> {
+                  if(value === null || value === undefined || value.ticker === null || value.ticker === undefined)
+                    setTicker("")
+                  else
+                    setTicker(value.ticker)}}
                 sx={{ width: 300 }}
                 renderInput={(params) => <TextField 
                 {...params} 

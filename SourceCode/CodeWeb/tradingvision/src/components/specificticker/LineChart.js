@@ -8,7 +8,7 @@ import useStyles from './style'
 
 const LineChart =(props) =>{
     const [open, setOpen] = React.useState(false);
-    const [stock, setStock] = useState();
+    const [stock, setStock] = useState([]);
     const [time, setTime] = useState();
     const {ticker} = useParams()
     const [data, setData] = useState([])
@@ -150,14 +150,14 @@ const LineChart =(props) =>{
                 var val = e.point.x;
                 if(seriesName === `${ticker} Predicted Price`) {                 
                   setOpen(true);
-                  setTime(val);                  
+                  setTime(new Date(val));                  
                   setStock(ticker);
                   console.log(val);
                   console.log(ticker);
                 }
                 else if(seriesName === `${props.compareTicker} Predicted Price`) {
                   setOpen(true);
-                  setTime(val);
+                  setTime(new Date(val));
                   setStock(props.compareTicker);
                   console.log(val);
                   console.log(props.compareTicker);
@@ -358,7 +358,7 @@ const LineChart =(props) =>{
                
                 if(seriesName === `${ticker} Predicted Price`) {            
                   setOpen(true);
-                  setTime(val);
+                  setTime(new Date(val));
                   setStock(ticker);
                   console.log(seriesName);
                   console.log(ticker);              
@@ -506,8 +506,11 @@ const LineChart =(props) =>{
             <SetReminderLine 
               open = {open} 
               setOpen = {setOpen}
-              ticker = {(stock || {})}
-              time ={(time || {})}/>
+              time = {time}
+              setTime = {setTime}
+              stockTicker = {stock}
+              setTicker = {setStock}
+              />
 
           </div>
         )}
@@ -522,10 +525,12 @@ const LineChart =(props) =>{
           <div className={classes.line_chart_div}>
             <ReactHighcharts config = {configPrice}></ReactHighcharts>
             <SetReminderLine 
-              open = {open} 
-              setOpen = {setOpen}
-              ticker = {(stock || {})}
-              time = {(time || {})}/>
+               open = {open} 
+               setOpen = {setOpen}
+               time = {time}
+               setTime = {setTime}
+               stockTicker = {stock}
+               setTicker = {setStock}/>
             </div>
         )}
         </>

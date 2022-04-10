@@ -22,7 +22,8 @@ const SetReminderButton = () => {
     const classes = useStyles()
     const [open, setOpen] = useState(false);
     const [date, setDate] = useState(new Date());
-    
+    const [stockTicker,setTicker] = React.useState([]);
+
     
     const handleClickOpen = () => {
       setOpen(true);
@@ -115,7 +116,6 @@ const SetReminderButton = () => {
       };
     });
 
-    const [stockTicker,setTicker] = React.useState([]);
     return (
       <div>
         <Button variant="outlined" onClick={handleClickOpen} className={classes.btn_SetReminder}>
