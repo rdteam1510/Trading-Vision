@@ -2,12 +2,11 @@ const Stock = require("../models/Stock.js");
 const NotFoundError = require("../errors");
 
 exports.getAllStocks = async (req, res) => {
-
 	try {
 		const stocks = await Stock.find({}).limit(300);
 		res.status(200).json({ stocks });
 	} catch (error) {
-		console.log(error)
+		console.log(error);
 	}
 };
 
@@ -26,7 +25,7 @@ exports.getAllStocksQuery = async (req, res) => {
 		};
 	}
 
-	let result = Stock.find(queryObject);
+	let result = Stock.find(queryObject).lean();
 	//* Sort
 	if (sort) {
 		const sortList = sort.split(",").join(" ");
