@@ -101,7 +101,7 @@ const ComparePopup = (props) => {
                         handleSearch={handleSearch}
                         RowID = {selectedID} onSelectRow = {setSelectedID}
                         myRef = {myRef}
-                        handleSelection = {handleSelection} companies={companies}
+                        handleSelection = {handleSelection} rows={rows}
                         executeScroll={executeScroll}
                         />
                     )}

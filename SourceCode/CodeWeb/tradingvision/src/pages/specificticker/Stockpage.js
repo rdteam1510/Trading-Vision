@@ -49,6 +49,7 @@ import { useParams } from "react-router-dom";
 		//check whether fav or not
 		const [isFavorite, setIsFavorite] = useState(null);
 		
+		
 		// get company info
 		useEffect(() => {
 			getCompanyInfo();
@@ -69,7 +70,7 @@ import { useParams } from "react-router-dom";
 		const checkid = obj => obj.CompanyId === CompanyId[0] ;
 	  
 		const getFavorite = async() =>{
-		 	await axios.get(`/api/favorites`)
+		await axios.get(`/api/favorites`)
 		  .then((response) =>{
 			setFavorite(response.data.favorites)
 		  })
@@ -78,21 +79,15 @@ import { useParams } from "react-router-dom";
 
 		useEffect( () =>{
 			getFavorite();
-			function checkout() {
-
 				if (favorites.some(checkid) === true) {
 					setIsFavorite(true)
 				}
-				else if (favorites.some(checkid) === false){
+				if (favorites.some(checkid) === false){
 					setIsFavorite(false)
 				}
-			}
-			checkout();
-			console.log(favorites);
 
-		})
+		},[favorites.some(checkid)])
 		
-
 		const addFavorite = async() =>{
 			axios.post(`/api/favorites`, {
 				UserId: user.userId,
@@ -101,8 +96,8 @@ import { useParams } from "react-router-dom";
 			.then((response) => {
 				console.log(response);
 			  });
+
 		}
-		
 
 		const deleteFavorite = async(id) => {
 			axios.delete(`/api/favorites/`+ id)
@@ -110,10 +105,21 @@ import { useParams } from "react-router-dom";
 			.then((response) => {
 				console.log(response);
 			  })
-			 
+
 		}
 		
-		
+		// const toggleFavorites = (CompanyId) => {
+		// 	setIsFavorite ((isFavorite)=>{
+		// 		if (isFavorite === true) {
+		// 			deleteFavorite(CompanyId);
+		// 		}
+		// 		if (isFavorite === false) {
+		// 			addFavorite();
+		// 		}
+		// 		return !isFavorite;
+		// 	})
+		// }
+
 		return (
 			<>
 				{user ? (
@@ -168,7 +174,22 @@ import { useParams } from "react-router-dom";
 											
 										}}
 										/>
+										{/* <IconButton 
+											fontSize="medium"
+											onClick = {()=> {
+												toggleFavorites(CompanyId)
+											}}
+											key = {CompanyId}
+										>
+										 { isFavorite === true ? 
+										 	<Favorite sx={{ fontSize: 45, marginTop:"15%", color: "red" }}/>
+											  :  
+											<FavoriteBorderIcon sx={{ fontSize: 45, marginTop:"15%", color:"#fff" }}/> }
+											
+										</IconButton> */}
 								</Typography>
+								
+									
 
 								<div className={classes.line} />
 
