@@ -33,6 +33,11 @@ exports.getFavorites = async (req, res) => {
 			Ticker: query[0].Ticker,
 		});
 	}
+	favorites.sort(function (a, b) {
+		if (a.Ticker[0].Ticker < b.Ticker[0].Ticker) return -1;
+		if (a.Ticker[0].Ticker > b.Ticker[0].Ticker) return 1;
+		return 0;
+	});
 	res.status(200).json({ favorites });
 };
 
@@ -43,9 +48,11 @@ exports.createFavorite = async (req, res) => {
 };
 
 exports.deleteFavorite = async (req, res) => {
-	const favorites = await Favorite.deleteOne({ CompanyId: req.params.companyId });
-	if(favorites.deletedCount === 0) {
-			throw new NotFoundError("No reminder with this id");
+	const favorites = await Favorite.deleteOne({
+		CompanyId: req.params.companyId,
+	});
+	if (favorites.deletedCount === 0) {
+		throw new NotFoundError("No reminder with this id");
 	}
 	// if (!favorites) {
 	// }
