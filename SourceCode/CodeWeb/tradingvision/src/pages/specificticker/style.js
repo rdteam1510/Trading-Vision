@@ -54,7 +54,12 @@ const useStyles = makeStyles((theme)=>({
         marginTop: "20%",
         marginLeft: "50%",
         marginBottom: "20%",
-    }
+    },
+    //-------------------------- toast ----------------------
+    toast:{
+        fontFamily: "Montserrat",
+        fontSize: "14px",
+    },
     
 }))
 

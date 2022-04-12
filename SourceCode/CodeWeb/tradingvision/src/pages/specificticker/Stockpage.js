@@ -19,6 +19,9 @@ import { Dialog, Box } from "@mui/material";
 import CloseIcon from "@material-ui/icons/Close";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 	// const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)  
 	function Stockpage({user}) {
@@ -96,6 +99,7 @@ import { useParams } from "react-router-dom";
 			.then((response) => {
 				console.log(response);
 			  });
+			toast.success("Successfully add to favorites!", {autoClose: 5000, transition: Slide});
 
 		}
 
@@ -104,7 +108,8 @@ import { useParams } from "react-router-dom";
 			.then(alert(`Deleted stock from your favorite list`))
 			.then((response) => {
 				console.log(response);
-			  })
+			  });
+			toast.success("Successfully deleted from favorites!", {autoClose: 5000, transition: Slide});
 
 		}
 		
@@ -174,6 +179,7 @@ import { useParams } from "react-router-dom";
 											
 										}}
 										/>
+										<ToastContainer className={classes.toast}/>
 										{/* <IconButton 
 											fontSize="medium"
 											onClick = {()=> {
