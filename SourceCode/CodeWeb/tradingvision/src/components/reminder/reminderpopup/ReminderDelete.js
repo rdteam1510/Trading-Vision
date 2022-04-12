@@ -7,17 +7,26 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import axios from 'axios';
-
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import useStyles from '../style';
 
 const ReminderDelete = (props) => {
   const [status, setStatus] = useState([])
-
+  const classes = useStyles()
 
 
   const componentDidMount = async(row) => {
     axios.delete(`/api/reminders/`+ row)
     .then((res) => setStatus(res.data))
+    .then(console.log("Done"))
+    toast.success("Successfully deleted your reminder!", 
+        {autoClose: 5000, 
+        transition: Slide,
+        position:"bottom-left",
+        }) 
   }
+  
   return (
     <Dialog
               open={props.open}
@@ -49,6 +58,8 @@ const ReminderDelete = (props) => {
                       backgroundColor:"#D11A2A",
                     }
                   }}>Delete</Button>
+                  <ToastContainer className={classes.toast} 
+											toastStyle={{ color:"#000" }}/>
                 <Button 
                   onClick={props.onClose}
                   sx = {{

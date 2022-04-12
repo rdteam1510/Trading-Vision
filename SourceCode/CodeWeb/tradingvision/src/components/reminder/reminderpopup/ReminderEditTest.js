@@ -21,7 +21,8 @@ import { makeStyles } from "@material-ui/core";
 // import { responsiveProperty } from '@mui/material/styles/cssUtils';
 // import { is } from 'date-fns/locale';
 // import { useCallback } from 'react';
-
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const useStyles_form = makeStyles(theme => ({
@@ -66,7 +67,7 @@ const ReminderEditTest = (props) => {
       }
     // console.log(typeof(date))
 
-    const onSubmit = (data) => {
+    const onSubmit = async(data) => {
       // fetch(`/api/reminders/${props.id}`, {
       //   method: "PATCH",
       //   body: JSON.stringify({
@@ -86,9 +87,13 @@ const ReminderEditTest = (props) => {
       //     window.alert(error)
       //   });
       if (values.content === "" || values.title === ""){
-        window.alert("Please check your reminder again ❗❗❗")
+        toast.error("All fields are required!", 
+							{autoClose: 2000, 
+							transition: Slide,
+							position:"bottom-left",
+							});
       }
-      else {
+      if (values.content !== "" && values.title !== ""){
 
         axios.patch(`/api/reminders/${props.id}`, {
           Content: values.content,
@@ -98,11 +103,15 @@ const ReminderEditTest = (props) => {
         })
         .catch((error)=>{
          console.log(error);
-         window.alert(error)
         })
+        await toast.success("Successfully updated your reminder!", 
+          {autoClose: 2000, 
+          transition: Slide,
+          position:"bottom-left",
+          })
         
-            resetForm();
-            handleClose();
+        resetForm();
+        handleClose();
       }
       }
       
@@ -273,6 +282,9 @@ const ReminderEditTest = (props) => {
             <Button 
               type = "submit"
               className={classes.btn_Save}>Save</Button>
+              
+              <ToastContainer className={classes.toast} 
+											toastStyle={{ color:"#000" }}/>
             <Button
               onClick={handleClose}
               className={classes.btn_Cancel}>Cancel</Button>

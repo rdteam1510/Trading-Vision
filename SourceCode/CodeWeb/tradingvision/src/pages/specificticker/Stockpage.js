@@ -99,17 +99,24 @@ import 'react-toastify/dist/ReactToastify.css';
 			.then((response) => {
 				console.log(response);
 			  });
-			toast.success("Successfully add to favorites!", {autoClose: 5000, transition: Slide});
+			toast.success("Successfully added to your favorites!", 
+							{autoClose: 2000, 
+							transition: Slide,
+							position:"bottom-left",
+							});
 
 		}
 
 		const deleteFavorite = async(id) => {
 			axios.delete(`/api/favorites/`+ id)
-			.then(alert(`Deleted stock from your favorite list`))
 			.then((response) => {
 				console.log(response);
 			  });
-			toast.success("Successfully deleted from favorites!", {autoClose: 5000, transition: Slide});
+			toast.success("Successfully deleted from your favorites!", 
+							{autoClose: 2000, 
+								transition: Slide,
+								position:"bottom-left",
+								});
 
 		}
 		
@@ -179,7 +186,8 @@ import 'react-toastify/dist/ReactToastify.css';
 											
 										}}
 										/>
-										<ToastContainer className={classes.toast}/>
+										<ToastContainer className={classes.toast} 
+											toastStyle={{ color:"#000" }}/>
 										{/* <IconButton 
 											fontSize="medium"
 											onClick = {()=> {

@@ -92,9 +92,13 @@ const useStyles = makeStyles((theme)=>({
       fontSize: "Montserrat",
       borderColor: "grey",
       marginBottom: "3%",
-    }
+    },
     
-
+    toast:{
+      fontFamily: "Montserrat",
+      fontSize: "14px",
+      color: "white",
+      },
 }))
 
 export default useStyles

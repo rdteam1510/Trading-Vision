@@ -59,7 +59,8 @@ const useStyles = makeStyles((theme)=>({
     toast:{
         fontFamily: "Montserrat",
         fontSize: "14px",
-    },
+        color: "white",
+        },
     
 }))
 

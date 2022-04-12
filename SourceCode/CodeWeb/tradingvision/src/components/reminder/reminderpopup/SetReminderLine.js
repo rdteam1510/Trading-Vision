@@ -15,7 +15,8 @@ import { useForm, Form } from '../useForm';
 import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios'
 import { Typography } from '@mui/material';
-
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const SetReminderLine = (props) => {
@@ -82,7 +83,11 @@ const SetReminderLine = (props) => {
           })
             .then((res) => res.json())
             .then(console.log);
-          
+            toast.success("Successfully added your reminder!", 
+                {autoClose: 2000, 
+                transition: Slide,
+                position:"bottom-left",
+                }) 
               resetForm();
               handleClose();
 
@@ -250,6 +255,8 @@ const SetReminderLine = (props) => {
             <Button 
               type = "submit"
               className={classes.btn_Save}>Save</Button>
+             <ToastContainer className={classes.toast} 
+											toastStyle={{ color:"#000" }}/>
             <Button
               onClick={handleClose}
               className={classes.btn_Cancel}>Cancel</Button>
