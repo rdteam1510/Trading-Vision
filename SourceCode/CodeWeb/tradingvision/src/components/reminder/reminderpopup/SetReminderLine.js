@@ -23,7 +23,6 @@ const SetReminderLine = (props) => {
     const classes = useStyles()    
     const [date, setDate] = React.useState(props.time);
     const {open, setOpen, time, setTime, stockTicker, setTicker} = props
-    console.log(props)
     
     const handleClickOpen = () => {
       setOpen(true);
@@ -81,8 +80,8 @@ const SetReminderLine = (props) => {
               "Content-type": "application/json; charset=UTF-8",
             },
           })
-            .then((res) => res.json())
-            .then(console.log);
+            .then((res) => res.json());
+
             toast.success("Successfully added your reminder!", 
                 {autoClose: 2000, 
                 transition: Slide,

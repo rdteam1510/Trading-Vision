@@ -56,10 +56,11 @@ import 'react-toastify/dist/ReactToastify.css';
 		// get company info
 		useEffect(() => {
 			getCompanyInfo();
+			getFavorite();
 		}, []);
 
 		const getCompanyInfo = async () => {
-			await axios.get(`/api/companyinfo/${ticker}`).then((response) => {
+			axios.get(`/api/companyinfo/${ticker}`).then((response) => {
 				setCompany(response.data.companyinfo);
 			})
 
@@ -69,11 +70,11 @@ import 'react-toastify/dist/ReactToastify.css';
 		const CompanyId = company.map((info) =>{
 			return info._id;
 		})
-
+		
 		const checkid = obj => obj.CompanyId === CompanyId[0] ;
 	  
 		const getFavorite = async() =>{
-		await axios.get(`/api/favorites`)
+		axios.get(`/api/favorites`)
 		  .then((response) =>{
 			setFavorite(response.data.favorites)
 		  })
@@ -81,7 +82,7 @@ import 'react-toastify/dist/ReactToastify.css';
 		}
 
 		useEffect( () =>{
-			getFavorite();
+			
 				if (favorites.some(checkid) === true) {
 					setIsFavorite(true)
 				}

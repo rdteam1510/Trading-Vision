@@ -27,7 +27,6 @@ const darkTheme = createTheme({
 });
 
 const FavoriteInfo = ({ favorites }) => {
-	console.log(favorites);
 	const classes = useStyles();
 	const history = useNavigate();
 	const [page, setPage] = useState(0);

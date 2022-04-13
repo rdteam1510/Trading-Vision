@@ -9,7 +9,7 @@ export const Container = styled.div`
         padding: 70px 30px;
         display: absolute;
       }
-    margin-top: auto;
+    margin-top: 10%;
    
 `
 

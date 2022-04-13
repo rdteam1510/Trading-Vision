@@ -47,7 +47,7 @@ const ReminderEditTest = (props) => {
     }
     
     
-    console.log(values)
+
     const [stocks, setStock] = useState([])
     
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -104,17 +104,20 @@ const ReminderEditTest = (props) => {
         .catch((error)=>{
          console.log(error);
         })
-        await toast.success("Successfully updated your reminder!", 
-          {autoClose: 2000, 
-          transition: Slide,
-          position:"bottom-left",
-          })
         
+        showToast();
+        console.log("DONE");
         resetForm();
         handleClose();
       }
       }
-      
+      const showToast = () =>{
+        toast.success("Successfully updated your reminder!", 
+          {autoClose: 2000, 
+          transition: Slide,
+          position:"bottom-left",
+          })
+      }
       const componentDidMount = async() => {
        
         axios.get(`/api/stocks`)
@@ -282,9 +285,9 @@ const ReminderEditTest = (props) => {
             <Button 
               type = "submit"
               className={classes.btn_Save}>Save</Button>
-              
-              <ToastContainer className={classes.toast} 
+            <ToastContainer className={classes.toast} 
 											toastStyle={{ color:"#000" }}/>
+
             <Button
               onClick={handleClose}
               className={classes.btn_Cancel}>Cancel</Button>
