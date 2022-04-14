@@ -54,10 +54,12 @@ const ReminderDetail = (props) => {
                   onClick={props.onClose}
                   sx = {{
                     color: 'white',
-                    backgroundColor:'#c1c1c1',
-                    "&:hover":{
-                      backgroundColor:"#AAAAAA",
-                    }
+                    backgroundColor: "rgb(55,58,109)",
+                    '&:hover' :{
+                      backgroundColor: "#777bb8",
+                      borderColor: "#777bb8",   },
+                    marginRight: '3%',
+                    marginBottom: '3%'
                   }}
                   >
                   Close

@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { DataGrid, GridToolbar,
+	GridToolbarContainer,
+	GridToolbarColumnsButton,
+	GridToolbarFilterButton,
+	GridToolbarExport,
+	 } from "@mui/x-data-grid";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
@@ -110,6 +115,7 @@ export function MenuIcon() {
 		/>
 	);
 }
+
 // Datagirid
 const DataGridDemo = ({ stockExchange, user }) => {
 	const history = useNavigate();
@@ -117,7 +123,20 @@ const DataGridDemo = ({ stockExchange, user }) => {
 	const [loading, setLoading] = useState(true);
 	const [stocks, setStock] = useState([]);
 	const [pageSize, setPageSize] = useState(10);
+	function CustomToolbar() {
+		return (
+		  <GridToolbarContainer>
+			<GridToolbarColumnsButton />
+			<GridToolbarFilterButton />
+			
+			<GridToolbarExport 
+			csvOptions={{
+				fileName: `Trading Vision-${stockExchange.toUpperCase()}`
 	
+			}}/>
+		  </GridToolbarContainer>
+		);
+	  }
 	// Get Data
 	useEffect(() => {
 		setInterval( () =>{
@@ -194,9 +213,16 @@ const DataGridDemo = ({ stockExchange, user }) => {
 							"& .MuiTablePagination-select": {
 								fontFamily: "Montserrat",
 							},
+							"& .MuiInputLabel-root": {
+								fontFamily: "Montserrat",
+							},
+							"& .MuiDataGrid-filterForm": {
+								fontFamily: "Montserrat",
+							},
+							
 						}}
 						components={{
-							Toolbar: GridToolbar,
+							Toolbar: CustomToolbar,
 							//Pagination: CustomPagination,
 							ColumnSortedDescendingIcon: SortedDescendingIcon,
 							ColumnSortedAscendingIcon: SortedAscendingIcon,
@@ -246,6 +272,13 @@ const DataGridDemo = ({ stockExchange, user }) => {
 							"& .MuiTablePagination-select": {
 								fontFamily: "Montserrat",
 							},
+							"& 	.MuiDataGrid-filterForm": {
+								fontFamily: "Montserrat",
+							},
+							"& .MuiInputLabel-root": {
+								fontFamily: "Montserrat",
+							},
+							
 						}}
 						components={{
 							Toolbar: GridToolbar,
@@ -253,6 +286,7 @@ const DataGridDemo = ({ stockExchange, user }) => {
 							ColumnSortedDescendingIcon: SortedDescendingIcon,
 							ColumnSortedAscendingIcon: SortedAscendingIcon,
 							ColumnMenuIcon: MenuIcon,
+							
 						}}
 						classeName={classes.root}
 						initialState={{
