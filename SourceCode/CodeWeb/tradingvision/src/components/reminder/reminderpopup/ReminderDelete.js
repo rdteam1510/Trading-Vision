@@ -34,7 +34,7 @@ const ReminderDelete = (props) => {
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
               BackdropProps={{
-                style: { backgroundColor: "rgba(0,0,0,0.50)" },
+                style: { backgroundColor: "rgba(0,0,0,0.20)" },
               }}
             >
              

@@ -80,7 +80,11 @@ const Profile = ({ user }) => {
 								>
 									Delete All
 								</Button>
-								<Dialog open={open} onClose={handleClose}>
+								<Dialog open={open}
+								 		onClose={handleClose}
+										 BackdropProps={{
+											style: { backgroundColor: "rgba(0,0,0,0.8)" },
+										}}>
 									<DialogTitle alignItems="center">
 										<DeleteOutlineIcon
 											sx={{

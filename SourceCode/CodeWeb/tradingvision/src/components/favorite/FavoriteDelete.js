@@ -7,6 +7,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import axios from 'axios';
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const ReminderDelete = (props) => {
   const [status, setStatus] = useState([])
@@ -15,6 +18,11 @@ const ReminderDelete = (props) => {
   const deleteFavoriteStock = async(row) => {
     axios.delete(`/api/favorites/`+ row)
     .then((res) => setStatus(res.data))
+    toast.success("Successfully deleted from your favorites!", 
+    {autoClose: 2000, 
+      transition: Slide,
+      position:"bottom-left",
+      });
   }
   
 
@@ -24,6 +32,9 @@ const ReminderDelete = (props) => {
               onClose={props.onClose}
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
+              BackdropProps={{
+                style: { backgroundColor: "rgba(0,0,0,0.10)" },
+              }}
             >
              
               <DialogTitle id="alert-dialog-title" color = '#f12323' align = "center">

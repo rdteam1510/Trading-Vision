@@ -154,7 +154,7 @@ const ReminderEditTest = (props) => {
           open={open} 
           onClose={handleClose}
           BackdropProps={{
-						style: { backgroundColor: "rgba(0,0,0,0.50)" },
+						style: { backgroundColor: "rgba(0,0,0,0.20)" },
 					}}
           PaperProps={{
             style: {
