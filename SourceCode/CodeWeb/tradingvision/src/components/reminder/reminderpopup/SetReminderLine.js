@@ -128,6 +128,9 @@ const SetReminderLine = (props) => {
         <Dialog 
           open={open} 
           onClose={handleClose}
+          BackdropProps={{
+						style: { backgroundColor: "rgba(0,0,0,0.50)" },
+					}}
           PaperProps={{
             style: {
               backgroundColor: 'white',
