@@ -39,11 +39,11 @@ const StockExchange = ({user}) => {
       <Container style={{textAlign: 'center'}}>
         <Typography
             variant="h4"
-            style={{margin: 18, fontFamily: 'Montserrat'}}
+            style={{margin: 100, fontFamily: 'Montserrat'}}
             >
                 Stock Prices by Market Cap
             </Typography>
-            <ThemeProvider theme={darkTheme}>
+            {/* <ThemeProvider theme={darkTheme}>
               <TextField 
                   label={<Typography className={classes.label}>Search for a Stock Ticker...</Typography>}
                   variant="outlined"
@@ -52,9 +52,11 @@ const StockExchange = ({user}) => {
                   onChange={(e) => setSearch(e.target.value)}
                   >
               </TextField>
-            </ThemeProvider>
+            </ThemeProvider> */}
 
-        <TabContext value={value}>
+        <TabContext 
+          value={value}
+          >
           
             <TabList
             className={classes.tablist}

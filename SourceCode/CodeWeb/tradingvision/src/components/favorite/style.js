@@ -32,6 +32,18 @@ const useStyles = makeStyles((theme)=>({
       },
     pagination: {
         backgroundColor: "black",
+        "& .MuiTablePagination-root": {
+          fontFamily: "Montserrat",
+        },       
+        "& .MuiTypography-root": {
+          fontFamily: "Montserrat",
+        },
+        "& .MuiTypography-body2": {
+          fontFamily: "Montserrat",
+        },
+        "& .MuiSelect-root": {          
+          fontFamily: "Montserrat",
+        },
     },
     // ------ Popup Set Reminder --------------
     line:{

@@ -29,9 +29,23 @@ const useStyles = makeStyles((theme)=>({
         maxHeight: 500,
         marginBottom: "10%",
         border: "2px solid #AEAEAE",
+        maxWidth: '100%',
       },
     pagination: {
         backgroundColor: "black",
+       
+        "& .MuiTablePagination-root": {
+          fontFamily: "Montserrat",
+        },       
+        "& .MuiTypography-root": {
+          fontFamily: "Montserrat",
+        },
+        "& .MuiTypography-body2": {
+          fontFamily: "Montserrat",
+        },
+        "& .MuiSelect-root": {          
+          fontFamily: "Montserrat",
+        },
     },
     // ------ Popup Set Reminder --------------
     line:{

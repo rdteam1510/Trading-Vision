@@ -115,7 +115,8 @@ const ReminderInfo = ({reminders}) => {
     </div>
     <TableContainer 
             className={classes.tableContainer}
-            component={Paper}>
+            component={Paper}
+           >
                 {
                     loading ? (
                         <LinearProgress style={{backgroundColor:"primary"}}/>
@@ -124,11 +125,13 @@ const ReminderInfo = ({reminders}) => {
                             <TableHead  className={classes.tablehead}
                             rowCount={rows.length}>
                                 <TableRow>
-                                {["TITLE", "TIME", "TICKER", "CONTENT", "EDIT","ACTIONS"].map((head) => (
+                                {["TITLE",  "TICKER","TIME", "ACTIONS"].map((head) => (
                                     <TableCell
                                     className={classes.tablecell}
                                     key={head}
-                                    align={head === "TITLE" ? "" : "left"}
+                                    align={head === "ACTIONS" ? "center" : "left"}
+                                    colSpan = {head === "ACTIONS" ? "2": "1"}
+                                   
                                     >
                                     {head}
                                     </TableCell>
@@ -143,24 +146,21 @@ const ReminderInfo = ({reminders}) => {
                                  <>
                                     <TableRow
                                     className ={classes.row}
-                                    key={row.title}>
+                                    key={row.title}
+                                    >
                                       
                                     <TableCell component='th' scope='row'
                                         style={{
                                           fontWeight: 'bold',
                                         }}
-                                        className={classes.cell}> {row.title}
+                                        className={classes.cell}
+                                        onClick = {() => handleOpenReminder(row)} 
+                                        width = '24%'> {row.title}
                                     </TableCell>
-                                    <TableCell align="left" className={classes.cell}>                   
-                                      {new Date( new Date(row.time).toUTCString() ).toLocaleString()}
-                                    </TableCell>
-                                    <TableCell align="left" className={classes.cell}>{row.ticker}</TableCell>
-                                    <TableCell align="left" className={classes.cell} 
-                                    onClick = {() => handleOpenReminder(row)}    
-                                                           
-                                    >
-                                    Read more
                                    
+                                    <TableCell align="left" className={classes.cell} width = '20%'>{row.ticker}</TableCell>
+                                    <TableCell align="left" className={classes.cell} width = '23%'>                   
+                                      {new Date( new Date(row.time).toUTCString() ).toLocaleString()}
                                     </TableCell>
                                     <ReminderDetail 
                                         open = {openReminder} 
@@ -171,12 +171,20 @@ const ReminderInfo = ({reminders}) => {
                                         time = {(selectedRow || {}).time}
 
                                          />  
-                                    <TableCell align="left" className={classes.cell}>
+                                    {/* <TableCell align="left" className={classes.cell}>
                                       <EditIcon 
                                       onClick = {() => handleOpenEdit(row)} 
                                       
-                                       /></TableCell>
-                                    <TableCell align="left" className={classes.cell}><DeleteIcon style={{marginLeft:"10%"}} 
+                                       /></TableCell> */}
+                                    <TableCell align="center" className={classes.cell}>
+                                    <EditIcon 
+                                      
+                                      onClick = {() => handleOpenEdit(row)} 
+                                      />
+                                      </TableCell>
+                                      <TableCell  align="center" className={classes.cell}>
+                                      <DeleteIcon 
+                                      
                                       onClick = {() => handleOpenDelete(row)}/></TableCell>
                                   
                                 <ReminderEditTest
@@ -216,6 +224,7 @@ const ReminderInfo = ({reminders}) => {
                 onPageChange={handleChangePage}
                 rowsPerPage={rowsPerPage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
+                
                 />
                 
             </TableContainer>

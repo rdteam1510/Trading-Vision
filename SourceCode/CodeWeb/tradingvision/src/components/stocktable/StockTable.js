@@ -152,7 +152,7 @@ const DataGridDemo = ({ stockExchange, user }) => {
 
 	return (
 		<ThemeProvider theme={darkTheme}>
-			<div style={{ height: 600, width: "100%", color: "white" }}>
+			<div style={{ height: 686, width: '100%', color: "white" }}>
 			{loading ? (
 				<div className={classes.loading_spinner}>
 						<CircularProgress style={{ backgroundColor: "primary" }}/>

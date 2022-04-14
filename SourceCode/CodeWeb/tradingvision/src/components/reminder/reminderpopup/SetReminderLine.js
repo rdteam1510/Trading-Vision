@@ -175,6 +175,7 @@ const SetReminderLine = (props) => {
                     onChange={(newValue) => {
                       setTime(newValue);
                     }}
+                    shouldDisableDate={(date) => date.getTime() < new Date().getTime() }
                     className={classes.calendar}
                     inputProps={{
                         disableUnderline: true,
@@ -205,11 +206,11 @@ const SetReminderLine = (props) => {
                 value={options.filter((item) => {
                     return item.ticker === stockTicker;
                   })[0] || null}
-                onChange={(event, value) =>  {
-                  if(value === null || value === undefined || value.ticker === null || value.ticker === undefined)
-                    setTicker("")
-                  else
-                    setTicker(value.ticker)}}
+                // onChange={(event, value) =>  {
+                //   if(value === null || value === undefined || value.ticker === null || value.ticker === undefined)
+                //     setTicker("")
+                //   else
+                //     setTicker(value.ticker)}}
                 sx={{ width: 300 }}
                 renderInput={(params) => <TextField 
                 {...params} 
