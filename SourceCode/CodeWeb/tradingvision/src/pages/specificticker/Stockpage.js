@@ -234,7 +234,7 @@ import 'react-toastify/dist/ReactToastify.css';
 							backgroundColor: "rgba(0,0,0,0.90)",
 							color: "white",
 							height: "600px",
-							width: "650px",
+							width: "1200px",
 						},
 					}}
 				>
