@@ -152,7 +152,7 @@ const DataGridDemo = ({ stockExchange, user }) => {
 
 	return (
 		<ThemeProvider theme={darkTheme}>
-			<div style={{ height: 686, width: '100%', color: "white" }}>
+			<div style={{ height: 686, color: "white" }}>
 			{loading ? (
 				<div className={classes.loading_spinner}>
 						<CircularProgress style={{ backgroundColor: "primary" }}/>
@@ -167,6 +167,7 @@ const DataGridDemo = ({ stockExchange, user }) => {
 						onPageSizeChange={(newPage) => setPageSize(newPage)}
 						rowsPerPageOptions={[10, 20, 50]}
 						pagination
+						width = '100%'
 						sx={{
 							color: "white",
 							fontFamily: "Montserrat",

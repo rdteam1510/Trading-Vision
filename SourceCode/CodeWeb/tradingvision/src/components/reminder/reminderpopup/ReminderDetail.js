@@ -16,13 +16,20 @@ const ReminderDetail = (props) => {
     <Dialog
               open={props.open}
               onClose={props.onClose}
+              BackdropProps={{
+                style: { backgroundColor: "rgba(0,0,0,0.50)" },
+              }}
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
               width = '500px'
               height = '500px'
+<<<<<<< HEAD
               BackdropProps={{
 						style: { backgroundColor: "rgba(0,0,0,0.50)" },
 					}}
+=======
+            
+>>>>>>> e3778130dd3f7209964371d9654cf4733870ca0c
             >
              
               <DialogTitle id="alert-dialog-title" color = 'black' fontWeight = "500" fontSize = "25px">
