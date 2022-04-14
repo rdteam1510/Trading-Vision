@@ -20,6 +20,10 @@
   import ReminderDelete from './reminderpopup/ReminderDelete';
   import ReminderDetail from './reminderpopup/ReminderDetail';
   import ReminderEditTest from './reminderpopup/ReminderEditTest';
+  import { ToastContainer, toast, Slide } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+  import axios from 'axios';
+
   const darkTheme = createTheme({
     palette: {
       primary: {
@@ -106,6 +110,25 @@ const ReminderInfo = ({reminders}) => {
     const handleCloseDelete = () => {
       setOpenDelete(false);
     };
+
+    //toast + del reminder
+    const deleteReminder = async(row) => {
+      axios.delete(`/api/reminders/`+ row)
+      // .then((res) => setStatus(res.data))
+      toast.success("Successfully deleted your reminder!", 
+          {autoClose: 5000, 
+          transition: Slide,
+          position:"bottom-left",
+          }) 
+    }
+    // showw toast
+    const showToast = () =>{
+      toast.success("Successfully updated your reminder!", 
+        {autoClose: 2000, 
+        transition: Slide,
+        position:"bottom-left",
+        })
+    }
     
   return (
     <Container>
@@ -202,9 +225,7 @@ const ReminderInfo = ({reminders}) => {
                                   setDate = {setDate}
                                   stockTicker = {stockTicker}
                                   setTicker = {setTicker}
-                                  BackdropProps={{
-                                    style: { backgroundColor: "rgba(0,0,0,0.50)" },
-                                  }}
+                                  showToast = {showToast}
 
                                   />   
                                   
@@ -213,11 +234,11 @@ const ReminderInfo = ({reminders}) => {
                                   onClose = {handleCloseDelete} 
                                   title = {(selectedRow || {}).title}
                                   rowID={(selectedRow || {}).id}
-                                  BackdropProps={{
-                                    style: { backgroundColor: "rgba(0,0,0,0.50)" },
-                                  }}
+                                  deleteReminder = {deleteReminder}
 
                                 />      
+                              <ToastContainer className={classes.toast} 
+											toastStyle={{ color:"#000" }}/>
                                 </TableRow>
                                
                                 </>

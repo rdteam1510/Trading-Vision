@@ -16,16 +16,7 @@ const ReminderDelete = (props) => {
   const classes = useStyles()
 
 
-  const componentDidMount = async(row) => {
-    axios.delete(`/api/reminders/`+ row)
-    .then((res) => setStatus(res.data))
-    .then(console.log("Done"))
-    toast.success("Successfully deleted your reminder!", 
-        {autoClose: 5000, 
-        transition: Slide,
-        position:"bottom-left",
-        }) 
-  }
+
   
   return (
     <Dialog
@@ -53,7 +44,7 @@ const ReminderDelete = (props) => {
               </DialogContent>
               <DialogActions>
                 <Button 
-                  onClick={()=>{componentDidMount(props.rowID); props.onClose()}}
+                  onClick={()=>{props.deleteReminder(props.rowID); props.onClose()}}
                   sx = {{
                     color: 'white',
                     backgroundColor:'#f12312',
@@ -61,8 +52,7 @@ const ReminderDelete = (props) => {
                       backgroundColor:"#D11A2A",
                     }
                   }}>Delete</Button>
-                  <ToastContainer className={classes.toast} 
-											toastStyle={{ color:"#000" }}/>
+
                 <Button 
                   onClick={props.onClose}
                   sx = {{

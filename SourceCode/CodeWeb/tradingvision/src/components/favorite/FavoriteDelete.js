@@ -9,21 +9,22 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import axios from 'axios';
 import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import useStyles from './style'
 
 const ReminderDelete = (props) => {
-  const [status, setStatus] = useState([])
+  // const [status, setStatus] = useState([])
+  const classes = useStyles()
 
+  // const deleteFavoriteStock = async(row) => {
+  //   axios.delete(`/api/favorites/`+ row)
+  //   .then((res) => setStatus(res.data))
 
-  const deleteFavoriteStock = async(row) => {
-    axios.delete(`/api/favorites/`+ row)
-    .then((res) => setStatus(res.data))
-    toast.success("Successfully deleted from your favorites!", 
-    {autoClose: 2000, 
-      transition: Slide,
-      position:"bottom-left",
-      });
-  }
+  //   await toast.success("Successfully deleted from your favorites!", 
+  //   {autoClose: 5000, 
+  //     transition: Slide,
+  //     position:"bottom-left",
+  //     });
+  // }
   
 
   return (
@@ -52,7 +53,7 @@ const ReminderDelete = (props) => {
               </DialogContent>
               <DialogActions>
                 <Button 
-                  onClick={()=>{deleteFavoriteStock(props.rowID); props.onClose()}}
+                  onClick={()=>{props.deleteFavoriteStock(props.rowID); props.onClose()}}
                   sx = {{
                     color: 'white',
                     backgroundColor:'#f12312',
@@ -60,6 +61,7 @@ const ReminderDelete = (props) => {
                       backgroundColor:"#D11A2A",
                     }
                   }}>Delete</Button>
+                  
                 <Button 
                   onClick={()=>{props.onClose()}}
                   sx = {{

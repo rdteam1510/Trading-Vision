@@ -16,6 +16,12 @@ import useStyles from "./style";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FavoriteDelete from "./FavoriteDelete";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
+
+
+
 const darkTheme = createTheme({
 	palette: {
 		primary: {
@@ -63,6 +69,20 @@ const FavoriteInfo = ({ favorites }) => {
 		history(`/stocks/${row_ticker}`);
 	};
 
+	//toast + del fav 
+	const [status, setStatus] = useState([])
+	const deleteFavoriteStock = async(row) => {
+		axios.delete(`/api/favorites/`+ row)
+		.then((res) => setStatus(res.data))
+	
+		await toast.success("Successfully deleted from your favorites!", 
+		{autoClose: 5000, 
+		  transition: Slide,
+		  position:"bottom-left",
+		  });
+	  }
+	 
+	  
 	return (
 		<Container>
 			<ThemeProvider theme={darkTheme}>
@@ -198,7 +218,10 @@ const FavoriteInfo = ({ favorites }) => {
 											ticker={
 												(selectedRow || {}).stockTicker
 											}
+											deleteFavoriteStock = {deleteFavoriteStock}
 										/>
+										<ToastContainer className={classes.toast} 
+											toastStyle={{ color:"#000" }}/>
 									</TableRow>
 								))}
 						</TableBody>

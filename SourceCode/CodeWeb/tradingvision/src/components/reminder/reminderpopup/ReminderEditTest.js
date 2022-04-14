@@ -105,19 +105,18 @@ const ReminderEditTest = (props) => {
          console.log(error);
         })
         
-        showToast();
-        console.log("DONE");
+        props.showToast();
         resetForm();
         handleClose();
       }
       }
-      const showToast = () =>{
-        toast.success("Successfully updated your reminder!", 
-          {autoClose: 2000, 
-          transition: Slide,
-          position:"bottom-left",
-          })
-      }
+      // const showToast = () =>{
+      //   toast.success("Successfully updated your reminder!", 
+      //     {autoClose: 2000, 
+      //     transition: Slide,
+      //     position:"bottom-left",
+      //     })
+      // }
       const componentDidMount = async() => {
        
         axios.get(`/api/stocks`)
@@ -154,7 +153,7 @@ const ReminderEditTest = (props) => {
           open={open} 
           onClose={handleClose}
           BackdropProps={{
-						style: { backgroundColor: "rgba(0,0,0,0.20)" },
+						style: { backgroundColor: "rgba(0,0,0,0.0)" },
 					}}
           PaperProps={{
             style: {
