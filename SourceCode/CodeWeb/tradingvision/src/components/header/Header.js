@@ -48,7 +48,7 @@ const Header = ({user}) =>{
     const handleOpen = () => setTest(true);
     const handleClosed = () => setTest(false); 
     const logout = () => {
-        window.open("http://ec2-3-14-136-159.us-east-2.compute.amazonaws.com/auth/logout", "_self");
+        window.open("http://localhost:4040/auth/logout", "_self");
     };
     
 return ( 
