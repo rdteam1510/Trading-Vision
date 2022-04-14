@@ -22,7 +22,7 @@ const Profile = ({ user }) => {
 	};
 
 	const deleteUser = () => {
-		window.open("http://localhost:4040/api/deleteuser", "_self");
+		window.open("http://ec2-3-14-136-159.us-east-2.compute.amazonaws.com/api/deleteuser", "_self");
 	};
 
 	return (
