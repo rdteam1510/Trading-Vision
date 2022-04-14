@@ -155,7 +155,9 @@ const ReminderInfo = ({reminders}) => {
                                         }}
                                         className={classes.cell}
                                         onClick = {() => handleOpenReminder(row)} 
-                                        width = '24%'> {row.title}
+                                        width = '24%'
+                                       > {row.title}
+                                       
                                     </TableCell>
                                    
                                     <TableCell align="left" className={classes.cell} width = '20%'>{row.ticker}</TableCell>
@@ -169,7 +171,10 @@ const ReminderInfo = ({reminders}) => {
                                         ticker = {(selectedRow || {}).ticker}
                                         title = {(selectedRow || {}).title}
                                         time = {(selectedRow || {}).time}
-
+                                        BackdropProps={{
+                                          style: { backgroundColor: "rgba(0,0,0,0.50)" },
+                                        }}
+                                       
                                          />  
                                     {/* <TableCell align="left" className={classes.cell}>
                                       <EditIcon 
@@ -197,6 +202,10 @@ const ReminderInfo = ({reminders}) => {
                                   setDate = {setDate}
                                   stockTicker = {stockTicker}
                                   setTicker = {setTicker}
+                                  BackdropProps={{
+                                    style: { backgroundColor: "rgba(0,0,0,0.50)" },
+                                  }}
+
                                   />   
                                   
                                 <ReminderDelete 
@@ -204,6 +213,9 @@ const ReminderInfo = ({reminders}) => {
                                   onClose = {handleCloseDelete} 
                                   title = {(selectedRow || {}).title}
                                   rowID={(selectedRow || {}).id}
+                                  BackdropProps={{
+                                    style: { backgroundColor: "rgba(0,0,0,0.50)" },
+                                  }}
 
                                 />      
                                 </TableRow>

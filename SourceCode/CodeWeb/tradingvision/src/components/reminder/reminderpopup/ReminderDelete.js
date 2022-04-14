@@ -33,6 +33,9 @@ const ReminderDelete = (props) => {
               onClose={props.onClose}
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
+              BackdropProps={{
+                style: { backgroundColor: "rgba(0,0,0,0.50)" },
+              }}
             >
              
               <DialogTitle id="alert-dialog-title" color = '#f12323' align = "center">

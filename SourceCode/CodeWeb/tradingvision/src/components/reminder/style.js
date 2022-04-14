@@ -56,6 +56,9 @@ const useStyles = makeStyles((theme)=>({
       marginLeft: '4%',
       backgroundColor: '#FF9936',
     },
+    backDrop: {
+      background: 'rgba(255,255,255,0.2)',
+    },
     dialog_content: {
       marginTop: "2%",
     },
