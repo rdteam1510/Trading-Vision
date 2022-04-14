@@ -153,6 +153,7 @@ const ReminderEditTest = (props) => {
         <Dialog 
           open={open} 
           onClose={handleClose}
+          
           PaperProps={{
             style: {
               backgroundColor: 'white',
