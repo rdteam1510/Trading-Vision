@@ -48,7 +48,7 @@ const PageNotFound = () => {
                     onClick={() => {history("/")}}
                     component="button"
                     variant="h5"
-                    style={{color: '#fff'}}>
+                    style={{color: '#fff', fontFamily: "Montserrat"}}>
                 <NavigateNextIcon style={{height: "25px", width: "25px",}} /> BACK TO HOMEPAGE
                 </Link>
             </div>
