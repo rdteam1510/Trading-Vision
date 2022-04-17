@@ -34,7 +34,6 @@ const useStyles = makeStyles(() =>({
 
     },
     gif:{
-        backgroundColor: "#fff",
         height: "450px",
         width: "750px",
     }

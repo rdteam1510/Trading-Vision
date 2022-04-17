@@ -1,11 +1,13 @@
 import { Button, 
          Container, 
          Typography, 
-         Box
+         Box,
+         Link,
         } from '@material-ui/core'
 import React from 'react'
 import useStyles from './style'
 import {useNavigate} from "react-router-dom";
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
 var GifPlayer = require("react-gif-player");
 const PageNotFound = () => {
@@ -36,12 +38,19 @@ const PageNotFound = () => {
                             }}>
                    404 - PAGE NOT FOUND
                 </Typography> */}
-                <Button 
+                {/* <Button 
                     onClick={() => {history("/");} }
                     variant="outlined"
                     className={classes.btn}>
-                    GO TO HOMEPAGE
-                </Button>
+                    BACK TO HOMEPAGE
+                </Button> */}
+                <Link 
+                    onClick={() => {history("/")}}
+                    component="button"
+                    variant="h5"
+                    style={{color: '#fff'}}>
+                <NavigateNextIcon style={{height: "25px", width: "25px",}} /> BACK TO HOMEPAGE
+                </Link>
             </div>
         </Container>
 
