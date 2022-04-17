@@ -7,6 +7,7 @@ import React from 'react'
 import useStyles from './style'
 import {useNavigate} from "react-router-dom";
 
+var GifPlayer = require("react-gif-player");
 const PageNotFound = () => {
     const classes = useStyles()
     const history = useNavigate();
@@ -15,9 +16,6 @@ const PageNotFound = () => {
         <Container  className={classes.bannerContent}>
             <div className={classes.tagline}>
 
-                <Box className={classes.gif}>
-                   
-                </Box>
                 <Typography
                             variant="h1"
                             style={{
@@ -28,7 +26,8 @@ const PageNotFound = () => {
                         >
                             Oops! 
                         </Typography>
-                <Typography
+                <GifPlayer gif="./404.gif" autoplay={true} className={classes.gif}/>
+                {/* <Typography
                             variant="h4"
                             style={{
                             fontWeight: "bold",
@@ -36,7 +35,7 @@ const PageNotFound = () => {
                             fontFamily: "Montserrat",
                             }}>
                    404 - PAGE NOT FOUND
-                </Typography>
+                </Typography> */}
                 <Button 
                     onClick={() => {history("/");} }
                     variant="outlined"

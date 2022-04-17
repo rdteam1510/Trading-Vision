@@ -27,16 +27,16 @@ const useStyles = makeStyles(() =>({
         height: "50px",
         borderRadius: "2%",
         marginLeft: "42%",
-        marginTop: "20px",
+        marginBottom: "5%",
         '&:hover' :{
             backgroundColor: "#777bb8",
         }
 
     },
     gif:{
-        backgroundImage: "url(./banner2.jpg)",
-        height: "200px",
-        width: "200px",
+        backgroundColor: "#fff",
+        height: "450px",
+        width: "750px",
     }
 }))
 
