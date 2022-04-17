@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:4040",
+  "allowedHosts": "all",
   "dependencies": {
     "@date-io/date-fns": "^2.13.1",
     "@emotion/react": "^11.8.1",
@@ -22,7 +23,7 @@
     "@types/highcharts": "^7.0.0",
     "axios": "^0.26.0",
     "date-fns": "^2.28.0",
-    "highcharts": "^9.3.3",
+    "highcharts": "^10.0.0",
     "http-proxy-middleware": "^2.0.3",
     "moment": "^2.29.1",
     "prop-types": "^15.8.1",

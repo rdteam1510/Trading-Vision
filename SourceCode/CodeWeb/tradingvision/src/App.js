@@ -11,6 +11,7 @@ import Login from "./pages/login/Login";
 import Profile from "./pages/profile/Profile";
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
+import PageNotFound from "./pages/error/PageNotFound";
 const useStyles = makeStyles(()=>({
   App:{
     backgroundColor: "black",
@@ -56,6 +57,7 @@ function App() {
             <Route path="/reminder" element={<Reminder user={user}/>}/>
             <Route path="/login" element={user ? <Navigate to="/"/> : <Login/>} />
             <Route path="/profile" element={<Profile user={user}/>}/>
+            <Route path="*" element={<PageNotFound/>}/>
           </Routes>
           </div>
           <div id="footer-wrapper">
