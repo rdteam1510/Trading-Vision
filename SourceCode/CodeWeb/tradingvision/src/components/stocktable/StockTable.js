@@ -139,9 +139,12 @@ const DataGridDemo = ({ stockExchange, user }) => {
 	  }
 	// Get Data
 	useEffect(() => {
-		setInterval( () =>{
-		componentDidMount(stockExchange);
-		}, 5000)  //reload after 5s
+		const interval = setInterval( () =>{
+												componentDidMount(stockExchange);
+										   }, 5000)  //reload after 5s;
+		return () => {
+		  clearInterval(interval);
+		};
 	}, [stockExchange]);
 
 	const componentDidMount = async (stockExchange) => {

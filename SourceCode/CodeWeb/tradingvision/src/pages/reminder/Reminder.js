@@ -11,21 +11,30 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Reminder = ({ user }) => {
 	const [reminders, setReminders] = useState([]);
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(true);
 	const classes = useStyles();
 
 	useEffect(() => {
-		retrieveReminders();
-	}, []);
+		// retrieveReminders();
+
+		axios.get(`/api/reminders`).then((response) => {
+			setReminders(response.data.reminder);
+			setLoading(false)
+		});
+	}, [reminders]);
 
 	const retrieveReminders = async () => {
 		setLoading(true);
-		await setInterval(() => {
+	
+		const interval = await setInterval(() => {
 			axios.get(`/api/reminders`).then((response) => {
 				setReminders(response.data.reminder);
 				setLoading(false)
 			});
-		}, 800);
+		}, 1000);
+		return () => {
+		clearInterval(interval);
+		};
 	};
 
 	return (

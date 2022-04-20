@@ -9,23 +9,33 @@ import {CircularProgress} from '@material-ui/core'
 const Favorite = ({user}) => {
   const [favorites, setFavorite] = useState([])
   const classes = useStyles()
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() =>{
-    getFavorite();
-  },[])
-
-  const getFavorite = async() => {
-    setLoading(true)
-    await setInterval(() =>{
-      axios.get(`/api/favorites`)
+    // getFavorite();
+    // setLoading(true)
+    axios.get(`/api/favorites`)
         .then((response) =>{
           setFavorite(response.data.favorites)
           setLoading(false)
         });
-    }, 500)
+  },[favorites])
+
+  // const getFavorite = async() => {
+  //   setLoading(true)
     
-  }
+  //   const interval = await setInterval(() =>{
+  //     axios.get(`/api/favorites`)
+  //       .then((response) =>{
+  //         setFavorite(response.data.favorites)
+  //         setLoading(false)
+  //       });
+  //   }, 1000)
+	// 	return () => {
+	// 	clearInterval(interval);
+	// 	};
+    
+  // }
 
   
   return (
