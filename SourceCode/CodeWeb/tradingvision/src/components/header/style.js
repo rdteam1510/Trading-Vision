@@ -31,6 +31,21 @@ const useStyles = makeStyles((theme) =>({
           width: 'auto',
         },
       },
+      searchNotLogin: {
+        position: 'relative',
+        borderRadius: theme.shape.borderRadius,
+        backgroundColor: alpha(theme.palette.common.white, 0.15),
+        '&:hover': {
+          backgroundColor: alpha(theme.palette.common.white, 0.25),
+        },
+        marginRight: "40%",
+        marginLeft: theme.spacing(5),
+        width: '100%',
+        [theme.breakpoints.up('sm')]: {
+          marginLeft: theme.spacing(3),
+          width: 'auto',
+        },
+      },
       searchIcon: {
         padding: theme.spacing(0, 2),
         height: '100%',
@@ -40,6 +55,7 @@ const useStyles = makeStyles((theme) =>({
         alignItems: 'center',
         justifyContent: 'center',
       },
+    
       inputRoot: {
         color: 'inherit',
       },
