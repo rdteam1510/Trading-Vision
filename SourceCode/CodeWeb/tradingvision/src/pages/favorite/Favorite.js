@@ -13,7 +13,7 @@ const Favorite = ({user}) => {
 
   useEffect(() =>{
     // getFavorite();
-    // setLoading(true)
+ 
     axios.get(`/api/favorites`)
         .then((response) =>{
           setFavorite(response.data.favorites)

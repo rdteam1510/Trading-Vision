@@ -101,9 +101,9 @@ const SetReminderLine = (props) => {
     },[])
 
     const componentDidMount = async() => {
-      await axios.get(`/api/stocks`)
+      await axios.get(`/api/companyinfo`)
       .then((response) =>{
-        setStock(response.data.stocks);
+        setStock(response.data.companyinfo);
       })
     }
 

@@ -23,19 +23,19 @@ const Reminder = ({ user }) => {
 		});
 	}, [reminders]);
 
-	const retrieveReminders = async () => {
-		setLoading(true);
+	// const retrieveReminders = async () => {
+	// 	setLoading(true);
 	
-		const interval = await setInterval(() => {
-			axios.get(`/api/reminders`).then((response) => {
-				setReminders(response.data.reminder);
-				setLoading(false)
-			});
-		}, 1000);
-		return () => {
-		clearInterval(interval);
-		};
-	};
+	// 	const interval = await setInterval(() => {
+	// 		axios.get(`/api/reminders`).then((response) => {
+	// 			setReminders(response.data.reminder);
+	// 			setLoading(false)
+	// 		});
+	// 	}, 1000);
+	// 	return () => {
+	// 	clearInterval(interval);
+	// 	};
+	// };
 
 	return (
 		<div>

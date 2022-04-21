@@ -96,6 +96,9 @@ import 'react-toastify/dist/ReactToastify.css';
 			axios.post(`/api/favorites`, {
 				UserId: user.userId,
 				CompanyId: CompanyId[0],
+			}, 
+			{
+				headers: {'Content-Type': 'application/json'}
 			})	
 			.then((response) => {
 				console.log(response);
