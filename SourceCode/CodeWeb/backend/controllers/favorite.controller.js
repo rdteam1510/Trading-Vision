@@ -42,9 +42,14 @@ exports.getFavorites = async (req, res) => {
 };
 
 exports.createFavorite = async (req, res) => {
-	req.body.UserId = req.user._id;
-	const favorites = await Favorite.create(req.body);
-	res.status(StatusCodes.CREATED).json({ favorites });
+	try {
+		req.body.UserId = req.user._id;
+		const favorites = await Favorite.create(req.body);
+		res.status(StatusCodes.CREATED).json({ favorites });
+	} catch (error) {
+		res.status(500).json({ error: error.message });
+	}
+	
 };
 
 exports.deleteFavorite = async (req, res) => {

@@ -21,7 +21,7 @@ const Reminder = ({ user }) => {
 			setReminders(response.data.reminder);
 			setLoading(false)
 		});
-	}, [reminders]);
+	}, []);
 
 	// const retrieveReminders = async () => {
 	// 	setLoading(true);

@@ -19,10 +19,7 @@ exports.getAllStocksQuery = async (req, res) => {
 	}
 
 	if (stockexchange) {
-		queryObject.StockExchange = {
-			$regex: stockexchange,
-			$options: "i",
-		};
+		queryObject.StockExchange = stockexchange;
 	}
 
 	let result = Stock.find(queryObject).lean();
