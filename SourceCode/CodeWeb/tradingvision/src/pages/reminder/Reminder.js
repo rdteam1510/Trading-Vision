@@ -17,25 +17,16 @@ const Reminder = ({ user }) => {
 	useEffect(() => {
 		// retrieveReminders();
 
+		getReminders()
+
+	}, []);
+
+	const getReminders = () => {
 		axios.get(`/api/reminders`).then((response) => {
 			setReminders(response.data.reminder);
 			setLoading(false)
 		});
-	}, []);
-
-	// const retrieveReminders = async () => {
-	// 	setLoading(true);
-	
-	// 	const interval = await setInterval(() => {
-	// 		axios.get(`/api/reminders`).then((response) => {
-	// 			setReminders(response.data.reminder);
-	// 			setLoading(false)
-	// 		});
-	// 	}, 1000);
-	// 	return () => {
-	// 	clearInterval(interval);
-	// 	};
-	// };
+	}
 
 	return (
 		<div>
@@ -48,9 +39,14 @@ const Reminder = ({ user }) => {
 				):(
 					<>
 						{reminders.length === 0 ? (
-							<ReminderEmpty />
+							<ReminderEmpty reminders={reminders} 
+										setReminders ={setReminders}
+										getReminders ={getReminders}/>
 						) : (
-							<ReminderInfo reminders={reminders} />
+							<ReminderInfo reminders={reminders} 
+										setReminders ={setReminders}
+										getReminders ={getReminders}
+							/>
 						)}
 
 					</>

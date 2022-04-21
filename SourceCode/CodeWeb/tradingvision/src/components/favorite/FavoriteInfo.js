@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
 	createTheme,
 	ThemeProvider,
@@ -32,7 +32,7 @@ const darkTheme = createTheme({
 	},
 });
 
-const FavoriteInfo = ({ favorites }) => {
+const FavoriteInfo = (props) => {
 	const classes = useStyles();
 	const history = useNavigate();
 	const [page, setPage] = useState(0);
@@ -40,6 +40,7 @@ const FavoriteInfo = ({ favorites }) => {
 	// Delete modal
 	const [selectedRow, setSelectedRow] = useState();
 	const [openDelete, setOpenDelete] = useState(false);
+	const [loading, setLoading] = useState(true)
 	const handleOpenDelete = (row) => {
 		setSelectedRow(row);
 		setOpenDelete(true);
@@ -57,20 +58,27 @@ const FavoriteInfo = ({ favorites }) => {
 		setPage(0);
 	};
 
-	const rows = favorites.map((favorite) => {
-		return {
-			companyId: favorite.CompanyId,
-			ticker: favorite.Ticker,
-			stockTicker: favorite.Ticker[0].Ticker,
-		};
-	});
+
 
 	const navigatePage = (row_ticker) => {
 		history(`/stocks/${row_ticker}`);
 	};
+	// const [favorites, setFavorite] = useState([])
+
+	// useEffect(() =>{
+	// 	// getFavorite();
+	 
+	// 	axios.get(`/api/favorites`)
+	// 		.then((response) =>{
+	// 		  setFavorite(response.data.favorites)
+	// 		  setLoading(false)
+	// 		});
+	//   },[])
+
 
 	//toast + del fav 
 	const [status, setStatus] = useState([])
+
 	const deleteFavoriteStock = async(row) => {
 		axios.delete(`/api/favorites/`+ row)
 		.then((res) => setStatus(res.data))
@@ -80,10 +88,22 @@ const FavoriteInfo = ({ favorites }) => {
 		  transition: Slide,
 		  position:"bottom-left",
 		  });
+
+		  axios.get(`/api/favorites/`)
+		  .then((res) => props.setFavorite(res.data.favorites))
 	  }
-	 
+
+
+	  const rows = props.favorites.map((favorite) => {
+		return {
+			companyId: favorite.CompanyId,
+			ticker: favorite.Ticker,
+			stockTicker: favorite.Ticker[0].Ticker,
+		};
+	});
 	  
 	return (
+		
 		<Container>
 			<ThemeProvider theme={darkTheme}>
 				<TableContainer

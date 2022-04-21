@@ -26,7 +26,7 @@ import {
     },
   });
 
-const ReminderEmpty = () => {
+const ReminderEmpty = (props) => {
     const classes = useStyles()
     const [loading, setLoading] = useState(false)
  
@@ -62,17 +62,17 @@ const ReminderEmpty = () => {
                 
         </TableContainer>
         <Typography 
-        variant="h6" 
-        component="h6"
-        align="center" >
-        There is nothing here.<br/> 
-        Please add your reminder
-                
-            <br/><br/><br/>
-              <div>
-                <SetReminderButton className={classes.btn_SetReminder}/>
-              </div>
-            <br/><br/><br/>
+          variant="h6" 
+          component="h6"
+          align="center" >
+          There is nothing here.<br/> 
+          Please add your reminder
+                  
+              <br/><br/><br/>
+                <div>
+                  <SetReminderButton className={classes.btn_SetReminder} getReminders={props.getReminders}/>
+                </div>
+              <br/><br/><br/>
         </Typography>
         
             

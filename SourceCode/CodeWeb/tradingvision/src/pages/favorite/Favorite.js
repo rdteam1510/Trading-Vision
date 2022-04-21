@@ -19,7 +19,7 @@ const Favorite = ({user}) => {
           setFavorite(response.data.favorites)
           setLoading(false)
         });
-  },[favorites])
+  },[])
 
   // const getFavorite = async() => {
   //   setLoading(true)
@@ -51,7 +51,10 @@ const Favorite = ({user}) => {
               {favorites.length === 0 ?(
                 <FavoriteEmpty/>
           ) : (
-              <FavoriteInfo favorites = {favorites}/>
+              <FavoriteInfo favorites = {favorites}
+                setFavorite = {setFavorite}
+
+              />
           )}
             </>
           )}

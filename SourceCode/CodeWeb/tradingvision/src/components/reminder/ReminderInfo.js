@@ -35,7 +35,7 @@
   });
 
  
-const ReminderInfo = ({reminders}) => {
+const ReminderInfo = (props) => {
   
     const classes = useStyles()
     const [loading, setLoading] = useState(false)
@@ -43,7 +43,7 @@ const ReminderInfo = ({reminders}) => {
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [selectedRow, setSelectedRow] = useState();
 
-    const rows = reminders.map((reminder) =>{
+    const rows = props.reminders.map((reminder) =>{
       return {
         id: reminder._id,
         title: reminder.Title,
@@ -132,7 +132,8 @@ const ReminderInfo = ({reminders}) => {
           {autoClose: 5000, 
           transition: Slide,
           position:"bottom-left",
-          }) 
+          })
+      props.getReminders();
     }
     // showw toast
     const showToast = () =>{
@@ -147,7 +148,7 @@ const ReminderInfo = ({reminders}) => {
     <Container>
     <ThemeProvider theme={darkTheme}>
     <div>
-       <SetReminderButton listTicker = {stocks}/>
+       <SetReminderButton getReminders={props.getReminders}/>
     </div>
     <TableContainer 
             className={classes.tableContainer}
@@ -210,7 +211,7 @@ const ReminderInfo = ({reminders}) => {
                                         BackdropProps={{
                                           style: { backgroundColor: "rgba(0,0,0,0.50)" },
                                         }}
-                                       listTicker = {stocks}
+                                       
                                          />  
                                     {/* <TableCell align="left" className={classes.cell}>
                                       <EditIcon 
@@ -239,7 +240,10 @@ const ReminderInfo = ({reminders}) => {
                                   stockTicker = {stockTicker}
                                   setTicker = {setTicker}
                                   showToast = {showToast}
-                                  listTicker = {stocks}
+                                  stocks = {stocks}
+                                  getReminders = {props.getReminders}
+                                  reminders = {props.reminders}
+                                  setReminders={props.setReminders}
                                   />   
                                   
                                 <ReminderDelete 

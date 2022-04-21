@@ -46,11 +46,16 @@ exports.getAllStocksQuery = async (req, res) => {
 };
 
 exports.getStockByTicker = async (req, res) => {
-	const stock = await Stock.find({ Ticker: req.params.ticker }).sort(
-		"-TimeStamp"
-	);
-	if (!stock) {
-		throw new NotFoundError("Stock does not exist");
+	try {
+		
+		const stock = await Stock.find({ StockExchange: req.params.ticker }).sort(
+			"-TimeStamp"
+			).limit(100).lean();
+			if (!stock) {
+				throw new NotFoundError("Stock does not exist");
 	}
 	res.status(200).json({ stock });
+} catch (error) {
+	res.status(500).json({ error });		
+}
 };

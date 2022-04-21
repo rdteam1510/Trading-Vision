@@ -23,7 +23,7 @@ const SetReminderButton = (props) => {
     const classes = useStyles()
     const [open, setOpen] = useState(false);
     const [date, setDate] = useState(new Date());
-    const [stockTicker,setTicker] = useState([]);
+    const [stockTicker,setTicker] = React.useState([]);
 
     
     const handleClickOpen = () => {
@@ -90,11 +90,24 @@ const SetReminderButton = (props) => {
             }) 
               resetForm();
               handleClose();
+              props.getReminders();
           }
            
       }
 
-    const stocks = props.listTicker
+    const [stocks, setStock] = useState([])
+
+    useEffect(() => {
+      getListofTickers()
+    },[])
+
+    const getListofTickers = async() => {
+      axios.get(`/api/companyinfo?field=Ticker`)
+      .then((response) =>{
+        setStock(response.data.companyinfo);
+      })
+    }
+    
     const listStocks = stocks.map((stock) =>{
       return {
         ticker: stock.Ticker,
