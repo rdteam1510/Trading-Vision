@@ -19,11 +19,11 @@ import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-const SetReminderButton = () => {
+const SetReminderButton = (props) => {
     const classes = useStyles()
     const [open, setOpen] = useState(false);
     const [date, setDate] = useState(new Date());
-    const [stockTicker,setTicker] = React.useState([]);
+    const [stockTicker,setTicker] = useState([]);
 
     
     const handleClickOpen = () => {
@@ -94,19 +94,7 @@ const SetReminderButton = () => {
            
       }
 
-    const [stocks, setStock] = useState([])
-
-    useEffect(() => {
-      componentDidMount()
-    },[])
-
-    const componentDidMount = async() => {
-      await axios.get(`/api/companyinfo`)
-      .then((response) =>{
-        setStock(response.data.companyinfo);
-      })
-    }
-
+    const stocks = props.listTicker
     const listStocks = stocks.map((stock) =>{
       return {
         ticker: stock.Ticker,

@@ -46,9 +46,7 @@ const ReminderEditTest = (props) => {
 
     }
     
-    
-
-    const [stocks, setStock] = useState([])
+    const stocks = props.listTicker
     
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const resetForm = () => {
@@ -65,7 +63,7 @@ const ReminderEditTest = (props) => {
         [e.target.name] : e.target.value,
       })
       }
-    // console.log(typeof(date))
+
 
     const onSubmit = async(data) => {
       // fetch(`/api/reminders/${props.id}`, {
@@ -110,26 +108,7 @@ const ReminderEditTest = (props) => {
         handleClose();
       }
       }
-      // const showToast = () =>{
-      //   toast.success("Successfully updated your reminder!", 
-      //     {autoClose: 2000, 
-      //     transition: Slide,
-      //     position:"bottom-left",
-      //     })
-      // }
-      const componentDidMount = async() => {
-       
-        await axios.get(`/api/companyinfo`)
-        .then((response) =>{
-          setStock(response.data.companyinfo);
-        })
-       
-      }
-  
-    useEffect(() => {
-      componentDidMount()
-     
-    },[])
+
     
     
     const listStocks = stocks.map((stock) =>{

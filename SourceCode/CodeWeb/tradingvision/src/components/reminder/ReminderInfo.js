@@ -111,6 +111,19 @@ const ReminderInfo = ({reminders}) => {
       setOpenDelete(false);
     };
 
+    // get ticker list
+    const [stocks, setStock] = useState([])
+    useEffect(() => {
+      getTickers()
+    },[])
+
+    const getTickers = async() => {
+      axios.get(`/api/companyinfo?field=Ticker`)
+      .then((response) =>{
+        setStock(response.data.companyinfo);
+      })
+    }
+
     //toast + del reminder
     const deleteReminder = async(row) => {
       axios.delete(`/api/reminders/`+ row)
@@ -134,7 +147,7 @@ const ReminderInfo = ({reminders}) => {
     <Container>
     <ThemeProvider theme={darkTheme}>
     <div>
-       <SetReminderButton/>
+       <SetReminderButton listTicker = {stocks}/>
     </div>
     <TableContainer 
             className={classes.tableContainer}
@@ -197,7 +210,7 @@ const ReminderInfo = ({reminders}) => {
                                         BackdropProps={{
                                           style: { backgroundColor: "rgba(0,0,0,0.50)" },
                                         }}
-                                       
+                                       listTicker = {stocks}
                                          />  
                                     {/* <TableCell align="left" className={classes.cell}>
                                       <EditIcon 
@@ -226,7 +239,7 @@ const ReminderInfo = ({reminders}) => {
                                   stockTicker = {stockTicker}
                                   setTicker = {setTicker}
                                   showToast = {showToast}
-
+                                  listTicker = {stocks}
                                   />   
                                   
                                 <ReminderDelete 

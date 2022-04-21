@@ -3,7 +3,7 @@ const CompanyInfo = require("../models/CompanyInfo");
 const { NotFoundError } = require("../errors");
 
 exports.getAllCompanyInfo = async (req, res) => {
-	const { companyname, stockexchange, industry, sort } = req.query;
+	const { companyname, stockexchange, industry, sort, field } = req.query;
 	const queryObject = {};
 
 	if (companyname) {
@@ -20,6 +20,10 @@ exports.getAllCompanyInfo = async (req, res) => {
 
 	let result = CompanyInfo.find(queryObject).lean();
 	result = result.sort("Ticker");
+	if(field) {
+		const fields = field.split(',').join(' ');
+		result = result.select(fields)
+	}
 	const companyinfo = await result;
 	if (!companyinfo) {
 		throw new NotFoundError("Cannot find company");
