@@ -16,7 +16,8 @@ import useStyles from "./style";
 import Navbar from './Navbar'
 import Modal from '@mui/material/Modal';
 import SearchPopup from "../search/SearchPopup";
-
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const darkTheme = createTheme({
 palette: {
@@ -78,7 +79,7 @@ return (
                     onClick={() => history("/")} 
                     className={classes.title}
                     variant="h5"> Trading Vision </Typography>
-                    <div className={classes.search}>
+                    <div className={ user ? classes.search : classes.searchNotLogin}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
                         </div>
@@ -89,20 +90,32 @@ return (
                                             root: classes.inputRoot,
                                             input: classes.inputInput,
                                         }}
-                                        inputProps={{ 'aria-label': 'search' }}
                                         onClick={handleOpen}
                                         style={{fontFamily: "Montserrat"}}
+                                        readOnly={true}
                                         />
                         ):(
+                            <>
+
                             <InputBase
                                         placeholder="Search…"
                                         classes={{
                                             root: classes.inputRoot,
                                             input: classes.inputInput,
                                         }}
-                                        inputProps={{ 'aria-label': 'search' }}
+                                        readOnly={true}
                                         style={{fontFamily: "Montserrat"}}
+                                        onClick={() => {
+                                            toast.warning("Please sigin to your account !!!", 
+                                                {autoClose: 5000, 
+                                                transition: Slide,
+                                                position:"bottom-left",
+                                                });
+                                        }}
                                         />
+                                        <ToastContainer className={classes.toast} 
+											toastStyle={{ color:"#000" }}/>
+                            </>
                         )}
                         
                         

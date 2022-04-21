@@ -150,9 +150,10 @@ const DataGridDemo = ({ stockExchange, user }) => {
 	const componentDidMount = async (stockExchange) => {
 		// setLoading(true);
 		await axios
-			.get(`/api/stocks/query?stockexchange=${stockExchange}&limit=100`)
+			// .get(`/api/stocks/query?stockexchange=${stockExchange}&limit=100`)
+			.get(`/api/stocks/${stockExchange}`)
 			.then((response) => {
-				setStock(response.data.stocks);
+				setStock(response.data.stock);
 				setLoading(false)
 			});
 	};

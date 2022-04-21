@@ -37,7 +37,7 @@ const ReminderEditTest = (props) => {
     const classes = useStyles()
     const classes_form = useStyles_form()
     
-    const {open, onClose, values, setValues, date, setDate, stockTicker, setTicker} = props
+    const {open, onClose, values, setValues, date, setDate, stockTicker, setTicker, } = props
     const initialValues = {
       title:'',
       ticker: '',
@@ -46,8 +46,7 @@ const ReminderEditTest = (props) => {
 
     }
     
-    const stocks = props.listTicker
-    
+  
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const resetForm = () => {
       setValues(initialValues);      
@@ -104,6 +103,7 @@ const ReminderEditTest = (props) => {
         })
         
         props.showToast();
+        props.getReminders();
         resetForm();
         handleClose();
       }
@@ -111,7 +111,7 @@ const ReminderEditTest = (props) => {
 
     
     
-    const listStocks = stocks.map((stock) =>{
+    const listStocks = props.stocks.map((stock) =>{
       return {
         ticker: stock.Ticker,
       }

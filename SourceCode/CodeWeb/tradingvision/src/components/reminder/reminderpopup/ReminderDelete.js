@@ -44,7 +44,7 @@ const ReminderDelete = (props) => {
               </DialogContent>
               <DialogActions>
                 <Button 
-                  onClick={()=>{props.deleteReminder(props.rowID); props.onClose()}}
+                  onClick={()=>{props.deleteReminder(props.rowID); props.onClose();}}
                   sx = {{
                     color: 'white',
                     backgroundColor:'#f12312',

@@ -22,10 +22,15 @@ import 'react-toastify/dist/ReactToastify.css';
 const SetReminderButton = (props) => {
     const classes = useStyles()
     const [open, setOpen] = useState(false);
+<<<<<<< HEAD
     var current = new Date();
     current.setMinutes(current.getMinutes() + 10)
     const [date, setDate] = useState(current);
     const [stockTicker,setTicker] = useState([]);
+=======
+    const [date, setDate] = useState(new Date());
+    const [stockTicker,setTicker] = React.useState([]);
+>>>>>>> 9e6f52d3978920cef4e6312dd7a43e93f76eb7cf
 
     
     const handleClickOpen = () => {
@@ -92,11 +97,24 @@ const SetReminderButton = (props) => {
             }) 
               resetForm();
               handleClose();
+              props.getReminders();
           }
            
       }
 
-    const stocks = props.listTicker
+    const [stocks, setStock] = useState([])
+
+    useEffect(() => {
+      getListofTickers()
+    },[])
+
+    const getListofTickers = async() => {
+      axios.get(`/api/companyinfo?field=Ticker`)
+      .then((response) =>{
+        setStock(response.data.companyinfo);
+      })
+    }
+    
     const listStocks = stocks.map((stock) =>{
       return {
         ticker: stock.Ticker,
