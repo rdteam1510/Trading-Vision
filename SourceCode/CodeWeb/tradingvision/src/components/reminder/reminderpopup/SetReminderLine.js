@@ -21,76 +21,110 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const SetReminderLine = (props) => {
     const classes = useStyles()    
-    const [date, setDate] = React.useState(props.time);
-    const {open, setOpen, time, setTime, stockTicker, setTicker} = props
+    const {open, setOpen, time, setTime, stockTicker, setTicker, values, setValues} = props
     
+    const initialValues = {
+      title: '',
+      content: '',
+      time: '',
+      ticker: '',
+    }
+  //   const {
+  //     values,
+  //     setValues,
+  //     errors,
+  //     setErrors,
+  //     handleInputChange,
+  //     resetForm
+  // } = useForm(initialValues, true, validate);
+  
     const handleClickOpen = () => {
       setOpen(true);
     };
-  
+    const resetForm = () => {
+      setValues(initialValues)
+      setTime('')    
+  }
     const handleClose = () => {
       resetForm();
       setOpen(false);
     };
 
-    const initialFValues = {
-      title: '',
-      content: '',
-    }
-    
-    const validate = (fieldValues = values) => {
-      let temp = { ...errors }
-      if ('title' in fieldValues)
-          temp.title = fieldValues.title ? "" : "This field is required."
-      if ('content' in fieldValues)
-          temp.content = fieldValues.content ? "" : "This field is required."
-      if ('ticker' in fieldValues)
-          temp.ticker = fieldValues.ticker ? "" : "This field is required."
-      setErrors({
-          ...temp
+    const handleInputChange = (e) => {
+      setValues({
+        ...values,
+        [e.target.name] : e.target.value,
       })
-
-      if (fieldValues === values)
-          return Object.values(temp).every(x => x === "")
       }
+
+
+    
+    // const validate = (fieldValues = values) => {
+    //   let temp = { ...errors }
+    //   if ('title' in fieldValues)
+    //       temp.title = fieldValues.title ? "" : "This field is required."
+    //   if ('content' in fieldValues)
+    //       temp.content = fieldValues.content ? "" : "This field is required."
+    //   if ('ticker' in fieldValues)
+    //       temp.ticker = fieldValues.ticker ? "" : "This field is required."
+    //   setErrors({
+    //       ...temp
+    //   })
+
+    //   if (fieldValues === values)
+    //       return Object.values(temp).every(x => x === "")
+    //   }
       //const [stockTicker, setTicker] = useState([])
-      const {
-          values,
-          setValues,
-          errors,
-          setErrors,
-          handleInputChange,
-          resetForm
-      } = useForm(initialFValues, true, validate);
-
+      
         const handleSubmit = e => {
-            e.preventDefault()
-            
-            if (validate()){
-              // ham insert reminder vo database
-           fetch(`/api/reminders`, {
-            method: "POST",
-            body: JSON.stringify({
-              Content: values.content,
-              Title: values.title,
-              Ticker: stockTicker,
-              RemindAt: time.getTime(),
-            }),
-            headers: {
-              "Content-type": "application/json; charset=UTF-8",
-            },
-          })
-            .then((res) => res.json());
-
-            toast.success("Successfully added your reminder!", 
-                {autoClose: 2000, 
-                transition: Slide,
-                position:"bottom-left",
-                }) 
-              resetForm();
-              handleClose();
-
+          if (values.content === "" || values.title === ""){
+            toast.error("All fields are required!", 
+                  {autoClose: 2000, 
+                  transition: Slide,
+                  position:"bottom-left",
+                  });
           }
+          if (values.content !== "" && values.title !== ""){
+    
+            // axios.patch(`/api/reminders/${props.id}`, {
+            //   Content: values.content,
+            //   Title: values.title,
+            //   Ticker: stockTicker,
+            //   RemindAt: date.getTime(),
+            // })
+            // .catch((error)=>{
+            //  console.log(error);
+            // })
+            
+            // props.showToast();
+            // resetForm();
+            // handleClose();
+            fetch(`/api/reminders`, {
+              method: "POST",
+              body: JSON.stringify({
+                Content: values.content,
+                Title: values.title,
+                Ticker: stockTicker,
+                RemindAt: time.getTime(),
+              }),
+              headers: {
+                "Content-type": "application/json; charset=UTF-8",
+              },
+            })
+              .then((res) => res.json());
+  
+              toast.success("Successfully added your reminder!", 
+                  {autoClose: 2000, 
+                  transition: Slide,
+                  position:"bottom-left",
+                  }) 
+                resetForm();
+                handleClose();
+          }
+              // ham insert reminder vo database
+           
+
+          
            
       }
 
@@ -157,8 +191,8 @@ const SetReminderLine = (props) => {
               name="title"        
               value={values.title}
               onChange={handleInputChange}
-              error={errors.title}
-              helperText = {errors.title}
+              // error={errors.title}
+              // helperText = {errors.title}
             /> 
           </DialogTitle>
           <div className={classes.line}></div>
@@ -175,10 +209,12 @@ const SetReminderLine = (props) => {
                     autoComplete="off"
                     renderInput={(props) => <TextField {...props} required/>}
                     value={time}
+                    minDateTime={new Date().setMinutes(new Date().getMinutes() + 9.5)}
+
                     onChange={(newValue) => {
                       setTime(newValue);
                     }}
-                    shouldDisableDate={(date) => date.getTime() < new Date().getTime() }
+
                     className={classes.calendar}
                     inputProps={{
                         disableUnderline: true,
@@ -248,8 +284,8 @@ const SetReminderLine = (props) => {
                   name="content"        
                   value={values.content}
                   onChange={handleInputChange}
-                  error={errors.content}
-                  helperText={errors.content}
+                  // error={errors.content}
+                  // helperText={errors.content}
                 />
              
           </DialogContentText>

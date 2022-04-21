@@ -159,7 +159,8 @@ const ReminderEditTest = (props) => {
                       fontFamily: "Montserrat",
                       color:"black",
                     }}} 
-              name="title"    
+              name="title
+              "    
               value = {values.title}
               onChange={(e) => handleInputChange(e)}  
             /> 
@@ -180,6 +181,8 @@ const ReminderEditTest = (props) => {
                     renderInput={(props) => <TextField {...props} required/>}
                     name = "time"
                     value={date}
+                    minDateTime={new Date().setMinutes(new Date().getMinutes() + 9.5)}
+
                     onChange={(newValue)=> setDate(newValue)}
                     className={classes.calendar}
                     inputProps={{

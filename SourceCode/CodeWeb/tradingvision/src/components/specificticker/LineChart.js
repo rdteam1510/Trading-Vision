@@ -9,7 +9,7 @@ import useStyles from './style'
 const LineChart =(props) =>{
     const [open, setOpen] = React.useState(false);
     const [stock, setStock] = useState([]);
-    const [time, setTime] = useState();
+    const [time, setTime] = useState(new Date());
     const {ticker} = useParams()
     const [data, setData] = useState([])
     const [predictions, setPredictions] = useState([])
@@ -27,7 +27,13 @@ const LineChart =(props) =>{
       actualPrice()
       currentStockPredictions()
     },[])
-  
+    // Add values for popup
+    const [values, setValues] = useState({
+      title: "",
+      content: "",
+      ticker: "",
+      time: "",
+    });
     //get data of compared stock
     useEffect(() =>{
       compareStocks()
@@ -73,6 +79,7 @@ const LineChart =(props) =>{
     // actual price list
     data.map(point => {
         priceData.push([
+          
           point.Time*1000,
           point.Close,])
         
@@ -139,6 +146,9 @@ const LineChart =(props) =>{
         split: true,
         fontFamily: "Montserrat",
       },
+      time: {
+        useUTC: false,
+      },
       plotOptions: {
         series: {
           showInNavigator: true,
@@ -152,15 +162,13 @@ const LineChart =(props) =>{
                   setOpen(true);
                   setTime(new Date(val));                  
                   setStock(ticker);
-                  console.log(val);
-                  console.log(ticker);
+                  
                 }
                 else if(seriesName === `${props.compareTicker} Predicted Price`) {
                   setOpen(true);
-                  setTime(new Date(val));
+                  setTime(val);
                   setStock(props.compareTicker);
-                  console.log(val);
-                  console.log(props.compareTicker);
+                  
                 }
                 else  {
                   alert("Can only add reminder for predicted price");
@@ -206,7 +214,7 @@ const LineChart =(props) =>{
         },
       },
       xAxis: {
-        type: 'date',
+        type: 'datetime',
         labels: {
           style: {
             "color": "#F2F1F0",
@@ -313,9 +321,16 @@ const LineChart =(props) =>{
       ],
       
     };
-
+    // const timezone = new Date().getTimezoneOffset()
+    
     const configPriceWithoutCompare = {
-      
+      // global : {
+      //   timezoneOffset: timezone
+      // },
+      time : {
+        timezone: 'Asia/Ho_Chi_Minh',
+        useUTC: true,
+      },
       yAxis: [{
         offset: 20,
 
@@ -345,6 +360,7 @@ const LineChart =(props) =>{
         fontFamily: "Montserrat",
         
       },
+      
       plotOptions: {
         series: {
           showInNavigator: true,
@@ -353,15 +369,19 @@ const LineChart =(props) =>{
             events: {
               click: function(e){
                 let seriesName = e.point.series.name; 
-                // Val is the date value (UTC)               
-                let val = e.point.x;
-               
+                // Val is the date value (UTC)   
+                console.log(e.point.x)            
+                var val = new Date(e.point.x)
+                
+                val.setHours(val.getHours+ 2)
+                
+                // new Date(val).setMinutes(new Date(val).getMinutes() + 10)
+                console.log(val)
                 if(seriesName === `${ticker} Predicted Price`) {            
                   setOpen(true);
-                  setTime(new Date(val));
+                  setTime(val);
                   setStock(ticker);
-                  console.log(seriesName);
-                  console.log(ticker);              
+                           
                 }
                 else  {
                   alert("Can only add reminder for predicted price");
@@ -405,7 +425,7 @@ const LineChart =(props) =>{
         },
       },
       xAxis: {
-        type: 'date',
+        type: 'datetime',
         labels: {
           style: {
             "color": "#F2F1F0",
@@ -510,6 +530,8 @@ const LineChart =(props) =>{
               setTime = {setTime}
               stockTicker = {stock}
               setTicker = {setStock}
+              values = {values}
+              setValues = {setValues}
               />
 
           </div>
@@ -530,7 +552,9 @@ const LineChart =(props) =>{
                time = {time}
                setTime = {setTime}
                stockTicker = {stock}
-               setTicker = {setStock}/>
+               setTicker = {setStock}
+               values = {values}
+               setValues = {setValues}/>
             </div>
         )}
         </>

@@ -22,7 +22,9 @@ import 'react-toastify/dist/ReactToastify.css';
 const SetReminderButton = (props) => {
     const classes = useStyles()
     const [open, setOpen] = useState(false);
-    const [date, setDate] = useState(new Date());
+    var current = new Date();
+    current.setMinutes(current.getMinutes() + 10)
+    const [date, setDate] = useState(current);
     const [stockTicker,setTicker] = useState([]);
 
     
@@ -164,9 +166,12 @@ const SetReminderButton = (props) => {
                     autoComplete="off"
                     renderInput={(props) => <TextField {...props} required/>}
                     value={date}
+                    minDateTime={new Date().setMinutes(new Date().getMinutes() + 10)}
                     onChange={(newValue) => {
-                      setDate(newValue);
+                       
+                          setDate(newValue);
                     }}
+                    
                     className={classes.calendar}
                     inputProps={{
                         disableUnderline: true,
