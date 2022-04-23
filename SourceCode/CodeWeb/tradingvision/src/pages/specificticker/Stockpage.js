@@ -53,7 +53,8 @@ import PageNotFound from "../error/PageNotFound";
 		//check whether fav or not
 		const [isFavorite, setIsFavorite] = useState(null);
 		
-		
+		const [chart,setChart] = useState("Line")
+
 		// get company info
 		useEffect(() => {
 			getCompanyInfo();
@@ -74,7 +75,7 @@ import PageNotFound from "../error/PageNotFound";
 		
 		const checkid = obj => obj.CompanyId === CompanyId[0] ;
 		const checkTicker = obj => obj.Ticker === company.Ticker;
-		console.log(company.some(checkTicker))
+		// console.log(company.some(checkTicker))
 		const getFavorite = async() =>{
 		axios.get(`/api/favorites`)
 		  .then((response) =>{
@@ -220,13 +221,21 @@ import PageNotFound from "../error/PageNotFound";
 							</>
 						))}
 					</div>
-				<Button
-					variant="contained"
-					className={classes.button}
-					onClick={handleOpen}
-				>
-					Compare
-				</Button>
+
+				{
+					chart === 'Line' ? (
+						<Button
+							variant="contained"
+							className={classes.button}
+							onClick={handleOpen}
+						>
+							Compare
+						</Button>
+					) :(
+						<></>
+					)
+				}	
+				
 				<Dialog
 					open={open}
 					onClose={handleClosed}
@@ -263,7 +272,7 @@ import PageNotFound from "../error/PageNotFound";
 				</Dialog>
 
 				<div className={classes.graph}>
-					<Chart compareTicker={selectedID}/>
+					<Chart compareTicker={selectedID} chart={chart} setChart={setChart}/>
 				</div>
 			</Container>
 				):(
@@ -275,11 +284,6 @@ import PageNotFound from "../error/PageNotFound";
 					</>
 				)}
 
-				{/* {
-					company.some(checkTicker) === false && (
-						<PageNotFound/>
-					)
-				} */}
 			</>
 			
 		);

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate, useParams } from "react-router-dom";
 import './App.css';
 import Header from '././components/header/Header';
 import Homepage from './pages/homepage/Homepage';
@@ -27,9 +27,15 @@ function App() {
   
   const classes = useStyles() 
   const [user,setUser] = useState(null);
-
+  const [stocksList, setStockList] = useState([]);
+  const ticker = useParams();
   useEffect(() => {
-    const getUser = () => {
+    getUser();
+    getTickers();
+  }, []);
+
+
+  const getUser = () => {
       axios.get('/auth/success')
         .then((response) => {
           if (response.status === 200) return response;
@@ -42,8 +48,22 @@ function App() {
           console.log(err);
         });
     };
-    getUser();
-  }, []);
+
+
+    const getTickers = () => {
+      axios.get(`/api/companyinfo?field=Ticker`)
+      .then((response) => {
+        if (response.status === 200) return response;
+        throw new Error("authentication has been failed!");
+      })
+      .then((resObject) =>{
+        setStockList(resObject.data.companyinfo);
+      })
+
+      .catch((err) => {
+        console.log(err);
+      })
+    }
 
   return (
     <div className={classes.App} id = "root">
@@ -53,7 +73,11 @@ function App() {
           <Routes>
             <Route path="*" element={<PageNotFound/>}/>
             <Route exact path="/" element={<Homepage user={user}/>} />
-            <Route exact path="/stocks/:ticker" element={<Stockpage user={user}/>} />
+            <Route exact path="/stocks/:ticker"  element={<Stockpage user={user}/>} 
+            // element={lists.some(obj => obj.Ticker === 'ACB') === true ? (<Stockpage user={user}/>) : (<PageNotFound/>)} 
+
+            />
+            
             <Route path="/favorite" element={<Favorite user={user}/>}/>
             <Route path="/reminder" element={<Reminder user={user}/>}/>
             <Route path="/login" element={user ? <Navigate to="/"/> : <Login/>} />
