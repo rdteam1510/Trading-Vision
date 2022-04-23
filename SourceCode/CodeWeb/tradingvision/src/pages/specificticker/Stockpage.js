@@ -21,6 +21,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PageNotFound from "../error/PageNotFound";
 
 
 	// const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)  
@@ -72,7 +73,8 @@ import 'react-toastify/dist/ReactToastify.css';
 		})
 		
 		const checkid = obj => obj.CompanyId === CompanyId[0] ;
-	  
+		const checkTicker = obj => obj.Ticker === company.Ticker;
+		console.log(company.some(checkTicker))
 		const getFavorite = async() =>{
 		axios.get(`/api/favorites`)
 		  .then((response) =>{
@@ -137,6 +139,7 @@ import 'react-toastify/dist/ReactToastify.css';
 		// }
 
 		return (
+			
 			<>
 				{user ? (
 					<Container className={classes.container}>
@@ -271,6 +274,12 @@ import 'react-toastify/dist/ReactToastify.css';
 						
 					</>
 				)}
+
+				{/* {
+					company.some(checkTicker) === false && (
+						<PageNotFound/>
+					)
+				} */}
 			</>
 			
 		);

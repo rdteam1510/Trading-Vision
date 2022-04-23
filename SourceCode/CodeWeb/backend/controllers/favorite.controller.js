@@ -44,8 +44,13 @@ exports.getFavorites = async (req, res) => {
 exports.createFavorite = async (req, res) => {
 	try {
 		req.body.UserId = req.user._id;
-		const favorites = await Favorite.create(req.body);
-		res.status(StatusCodes.CREATED).json({ favorites });
+		const favorite = await Favorite.findOne({ UserId: req.body.UserId, CompanyId: req.body.CompanyId });
+		if (favorite) {
+			return res.status(409).json({message: 'Already in favorites'})
+		} else {
+			const favorites = await Favorite.create(req.body);
+			res.status(StatusCodes.CREATED).json({ favorites });
+		}
 	} catch (error) {
 		res.status(500).json({ error: error.message });
 	}

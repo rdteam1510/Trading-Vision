@@ -22,15 +22,13 @@ import 'react-toastify/dist/ReactToastify.css';
 const SetReminderButton = (props) => {
     const classes = useStyles()
     const [open, setOpen] = useState(false);
-<<<<<<< HEAD
+
     var current = new Date();
     current.setMinutes(current.getMinutes() + 10)
-    const [date, setDate] = useState(current);
-    const [stockTicker,setTicker] = useState([]);
-=======
+
     const [date, setDate] = useState(new Date());
-    const [stockTicker,setTicker] = React.useState([]);
->>>>>>> 9e6f52d3978920cef4e6312dd7a43e93f76eb7cf
+    const [stockTicker,setTicker] = useState([]);
+
 
     
     const handleClickOpen = () => {

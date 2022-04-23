@@ -28,7 +28,7 @@ const PageNotFound = () => {
                         >
                             Oops! 
                         </Typography>
-                <GifPlayer gif="./404.gif" autoplay={true} className={classes.gif}/>
+                <GifPlayer gif=".././404.gif" autoplay={true} className={classes.gif}/>
                 {/* <Typography
                             variant="h4"
                             style={{
