@@ -157,7 +157,8 @@ const LineChart =(props) =>{
             events: {
               click: function(e){
                 var seriesName = e.point.series.name;
-                var val = e.point.x;
+                var val = new Date(e.point.x)                
+                val.setMinutes(val.getMinutes()+ 60*2)
                 if(seriesName === `${ticker} Predicted Price`) {                 
                   setOpen(true);
                   setTime(new Date(val));                  
@@ -370,13 +371,13 @@ const LineChart =(props) =>{
               click: function(e){
                 let seriesName = e.point.series.name; 
                 // Val is the date value (UTC)   
-                console.log(e.point.x)            
+                          
                 var val = new Date(e.point.x)
                 
-                val.setHours(val.getHours+ 2)
+                val.setMinutes(val.getMinutes()+ 60*2)
                 
                 // new Date(val).setMinutes(new Date(val).getMinutes() + 10)
-                console.log(val)
+               
                 if(seriesName === `${ticker} Predicted Price`) {            
                   setOpen(true);
                   setTime(val);

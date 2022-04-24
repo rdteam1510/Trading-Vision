@@ -65,6 +65,8 @@ const ReminderEditTest = (props) => {
 
 
     const onSubmit = async(data) => {
+      var current = new Date();
+      current.setMinutes(current.getMinutes() + 9)
       // fetch(`/api/reminders/${props.id}`, {
       //   method: "PATCH",
       //   body: JSON.stringify({
@@ -90,7 +92,14 @@ const ReminderEditTest = (props) => {
 							position:"bottom-left",
 							});
       }
-      if (values.content !== "" && values.title !== ""){
+      else if(date.getTime() < current.getTime()) {
+        toast.error("Reminder time must be 10 minutes after current time!", 
+        {autoClose: 2000, 
+        transition: Slide,
+        position:"bottom-left",
+        });
+      }
+      else {
 
         axios.patch(`/api/reminders/${props.id}`, {
           Content: values.content,

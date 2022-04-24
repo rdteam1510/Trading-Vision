@@ -47,12 +47,16 @@ const SetReminderButton = (props) => {
     
     const validate = (fieldValues = values) => {
       let temp = { ...errors }
+      var current = new Date();
+      current.setMinutes(current.getMinutes() + 9)
       if ('title' in fieldValues)
           temp.title = fieldValues.title ? "" : "This field is required."
       if ('content' in fieldValues)
           temp.content = fieldValues.content ? "" : "This field is required."
       if ('ticker' in fieldValues)
           temp.ticker = fieldValues.ticker ? "" : "This field is required."
+      
+     
       setErrors({
           ...temp
       })
@@ -72,8 +76,15 @@ const SetReminderButton = (props) => {
 
         const handleSubmit = e => {
             e.preventDefault()
-            
-            if (validate()){
+            if(date.getTime() < current.getTime()) {
+              toast.error("Reminder time must be 10 minutes after current time!", 
+              {autoClose: 2000, 
+              transition: Slide,
+              position:"bottom-left",
+              });
+            }
+            if (validate() &&  (date.getTime() >= current.getTime())) {
+              
               // ham insert reminder vo database
            fetch(`/api/reminders`, {
             method: "POST",
@@ -97,6 +108,8 @@ const SetReminderButton = (props) => {
               handleClose();
               props.getReminders();
           }
+         
+          
            
       }
 

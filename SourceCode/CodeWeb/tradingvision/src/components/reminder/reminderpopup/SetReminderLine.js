@@ -56,8 +56,7 @@ const SetReminderLine = (props) => {
         [e.target.name] : e.target.value,
       })
       }
-
-
+    
     
     // const validate = (fieldValues = values) => {
     //   let temp = { ...errors }
@@ -77,6 +76,10 @@ const SetReminderLine = (props) => {
       //const [stockTicker, setTicker] = useState([])
       
         const handleSubmit = e => {
+          e.preventDefault()
+          var current = new Date();
+          current.setMinutes(current.getMinutes() + 9)
+
           if (values.content === "" || values.title === ""){
             toast.error("All fields are required!", 
                   {autoClose: 2000, 
@@ -84,7 +87,17 @@ const SetReminderLine = (props) => {
                   position:"bottom-left",
                   });
           }
-          if (values.content !== "" && values.title !== ""){
+          else if(time.getTime() < current.getTime()) {
+            toast.error("Reminder time must be 10 minutes after current time!", 
+            {autoClose: 2000, 
+            transition: Slide,
+            position:"bottom-left",
+            });
+          }
+
+        
+          
+          else {
     
             // axios.patch(`/api/reminders/${props.id}`, {
             //   Content: values.content,
@@ -118,8 +131,7 @@ const SetReminderLine = (props) => {
                   transition: Slide,
                   position:"bottom-left",
                   }) 
-                resetForm();
-                handleClose();
+               handleClose()
           }
               // ham insert reminder vo database
            
