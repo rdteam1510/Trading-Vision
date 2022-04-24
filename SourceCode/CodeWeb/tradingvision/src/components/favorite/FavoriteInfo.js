@@ -84,7 +84,7 @@ const FavoriteInfo = (props) => {
 		.then((res) => setStatus(res.data))
 	
 		await toast.success("Successfully deleted from your favorites!", 
-		{autoClose: 5000, 
+		{autoClose: 2000, 
 		  transition: Slide,
 		  position:"bottom-left",
 		  });
@@ -241,7 +241,9 @@ const FavoriteInfo = (props) => {
 											deleteFavoriteStock = {deleteFavoriteStock}
 										/>
 										<ToastContainer className={classes.toast} 
-											toastStyle={{ color:"#000" }}/>
+											toastStyle={{ color:"#000" }}
+											pauseOnVisibilityChange={false}
+											/>
 									</TableRow>
 								))}
 						</TableBody>

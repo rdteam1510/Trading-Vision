@@ -50,6 +50,7 @@ const ReminderInfo = (props) => {
         ticker: reminder.Ticker,
         content: reminder.Content,
         time: reminder.RemindAt,
+        isSend: reminder.IsSend,
       }
     })
     //Open reminder content
@@ -129,7 +130,7 @@ const ReminderInfo = (props) => {
       axios.delete(`/api/reminders/`+ row)
       // .then((res) => setStatus(res.data))
       toast.success("Successfully deleted your reminder!", 
-          {autoClose: 5000, 
+          {autoClose: 2000, 
           transition: Slide,
           position:"bottom-left",
           })
@@ -212,21 +213,35 @@ const ReminderInfo = (props) => {
                                           style: { backgroundColor: "rgba(0,0,0,0.50)" },
                                         }}
                                        
-                                         />  
+                                   />  
                                     {/* <TableCell align="left" className={classes.cell}>
                                       <EditIcon 
                                       onClick = {() => handleOpenEdit(row)} 
                                       
                                        /></TableCell> */}
-                                    <TableCell align="center" className={classes.cell}>
-                                    <EditIcon 
-                                      
-                                      onClick = {() => handleOpenEdit(row)} 
-                                      />
-                                      </TableCell>
-                                      <TableCell  align="center" className={classes.cell}>
+                                    
+                                     {
+                                      row.isSend === false ? (
+                                        <TableCell align="center" className={classes.cell}>
+                                          <EditIcon 
+                                            onClick = {() => handleOpenEdit(row)} 
+                                            />
+                                        </TableCell>
+                                       ):(
+                                        <TableCell align="center" className={classes.cell}>
+                                            <EditIcon 
+                                              onClick = {() => toast.error("This reminder is already send !!!", 
+                                                    {autoClose: 2000, 
+                                                    transition: Slide,
+                                                    position:"bottom-left",
+                                                    }
+                                              )} 
+                                              />
+                                          </TableCell>
+                                       )
+                                     }
+                                       <TableCell  align="center" className={classes.cell}>
                                       <DeleteIcon 
-                                      
                                       onClick = {() => handleOpenDelete(row)}/></TableCell>
                                   
                                 <ReminderEditTest
@@ -255,7 +270,9 @@ const ReminderInfo = (props) => {
 
                                 />      
                               <ToastContainer className={classes.toast} 
-											toastStyle={{ color:"#000" }}/>
+                                  toastStyle={{ color:"#000" }}
+                                   pauseOnVisibilityChange={false}
+                                  />
                                 </TableRow>
                                
                                 </>

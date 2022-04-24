@@ -157,7 +157,7 @@ const DataGridDemo = ({ stockExchange, user }) => {
 				setLoading(false)
 			});
 	};
-	console.log(stocks)
+
 	const rows = stocks
 		.map((stock) => {
 			return {

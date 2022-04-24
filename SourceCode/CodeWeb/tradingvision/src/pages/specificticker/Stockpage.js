@@ -62,11 +62,13 @@ import PageNotFound from "../error/PageNotFound";
 		}, []);
 
 		const getCompanyInfo = async () => {
-			axios.get(`/api/companyinfo/${ticker}`).then((response) => {
+			axios.get(`/api/companyinfo/${ticker}`)
+			.then((response) => {
 				setCompany(response.data.companyinfo);
 			})
 
 		};
+
 
 		// Get company Id
 		const CompanyId = company.map((info) =>{
@@ -103,26 +105,29 @@ import PageNotFound from "../error/PageNotFound";
 			{
 				headers: {'Content-Type': 'application/json'}
 			})	
-			.then((response) => {
-				console.log(response);
-			  });
+			// 
+			
 			toast.success("Successfully added to your favorites!", 
 							{autoClose: 2000, 
 							transition: Slide,
 							position:"bottom-left",
+							pauseOnHover:false,
+							pauseOnVisibilityChange	: false,
 							});
 
 		}
 
 		const deleteFavorite = async(id) => {
 			axios.delete(`/api/favorites/`+ id)
-			.then((response) => {
-				console.log(response);
-			  });
+			// .then((response) => {
+			// 	console.log(response);
+			//   });
 			toast.success("Successfully deleted from your favorites!", 
 							{autoClose: 2000, 
 								transition: Slide,
 								position:"bottom-left",
+								pauseOnHover:false,
+								pauseOnVisibilityChange	: false,
 								});
 
 		}
@@ -142,7 +147,10 @@ import PageNotFound from "../error/PageNotFound";
 		return (
 			
 			<>
-				{user ? (
+			{
+				company.length !== 0 ? (
+					<>
+					{user ? (
 					<Container className={classes.container}>
 
 					<div className={classes.title}>
@@ -195,7 +203,9 @@ import PageNotFound from "../error/PageNotFound";
 										}}
 										/>
 										<ToastContainer className={classes.toast} 
-											toastStyle={{ color:"#000" }}/>
+											toastStyle={{ color:"#000" }}
+											pauseOnVisibilityChange={false}
+											/>
 										{/* <IconButton 
 											fontSize="medium"
 											onClick = {()=> {
@@ -283,6 +293,12 @@ import PageNotFound from "../error/PageNotFound";
 						
 					</>
 				)}
+					</>
+				) :(
+					<PageNotFound/>					
+				)
+			}
+				
 
 			</>
 			
