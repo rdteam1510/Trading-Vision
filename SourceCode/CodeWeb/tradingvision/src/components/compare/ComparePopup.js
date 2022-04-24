@@ -26,7 +26,7 @@ const ComparePopup = (props) => {
     const handleOpen = () => setTest(true);
     const handleClosed = () => setTest(false);
     const [value, setValue] = useState('1');
-    const {selectedID, setSelectedID, selectedTab, setSelectedTab, myRef, executeScroll, handleSelection} = props;
+    const {selectedID, setSelectedID, selectedTab, setSelectedTab, myRef, executeScroll, handleSelection, ticker} = props;
     const [search,setSearch] = useState('');
     const [companies, setCompanies] = useState([]);
     const [loading, setLoading] = useState(false)
@@ -103,6 +103,7 @@ const ComparePopup = (props) => {
                         myRef = {myRef}
                         handleSelection = {handleSelection} rows={rows}
                         executeScroll={executeScroll}
+                        ticker = {ticker}
                         />
                     )}
          

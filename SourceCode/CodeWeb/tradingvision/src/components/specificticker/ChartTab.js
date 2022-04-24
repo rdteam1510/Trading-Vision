@@ -143,9 +143,9 @@ const ChartTab = (props) => {
        </div>
 
        <div className={classes.chart}>
-        <CustomSelect value={props.chart} onChange={props.setChart}>
-          <StyledOption value={"Line"}>Line Chart</StyledOption>
-          <StyledOption value={"Candlestick"}>Candlestick Chart</StyledOption>
+        <CustomSelect value={props.chart} onChange={props.setChart} style = {{cursor: 'pointer'}}>
+          <StyledOption value={"Line"} style = {{cursor: 'pointer'}}>Line Chart</StyledOption>
+          <StyledOption value={"Candlestick"} style = {{cursor: 'pointer'}}>Candlestick Chart</StyledOption>
         </CustomSelect>
       {
         props.chart === "Line" ? (

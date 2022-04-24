@@ -11,7 +11,8 @@ import {
   TableBody,
   Paper,
 } from '@material-ui/core'
-
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop) 
 
@@ -73,7 +74,15 @@ const SearchTicker = (props) => {
                                     ref = {props.myRef}
                                     className ={classes.row}
                                     onClick={() => {
-                                     
+                                    if (row.ticker === props.ticker){
+                                      toast.error("Compared ticker should be different from default ticker", 
+                                        {autoClose: 2000, 
+                                        transition: Slide,
+                                        position:"bottom-left",
+                                        pauseOnHover:false,
+                                        });
+                                    }
+                                    else
                                       props.handleSelection(row.ticker);
                                      
                                     }}

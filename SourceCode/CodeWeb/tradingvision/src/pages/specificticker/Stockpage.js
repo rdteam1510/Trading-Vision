@@ -275,6 +275,7 @@ import PageNotFound from "../error/PageNotFound";
 							setSelectedID={setSelectedID}
 							selectedTab={selectedTab}
 							setSelectedTab={setSelectedTab}
+							ticker = {ticker}
 							// myRef={myRef}
 							// executeScroll={executeScroll}
 							handleSelection = {handleSelection} />

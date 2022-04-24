@@ -5,6 +5,8 @@ import axios from 'axios'
 import SetReminderLine from '../reminder/reminderpopup/SetReminderLine';
 import {CircularProgress} from '@material-ui/core'
 import useStyles from './style'
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LineChart =(props) =>{
     const [open, setOpen] = React.useState(false);
@@ -153,6 +155,7 @@ const LineChart =(props) =>{
         series: {
           showInNavigator: true,
           gapSize: 20,
+          cursor: 'pointer',
           point: {
             events: {
               click: function(e){
@@ -171,8 +174,14 @@ const LineChart =(props) =>{
                   setStock(props.compareTicker);
                   
                 }
-                else  {
-                  alert("Can only add reminder for predicted price");
+                else  {                  
+                    toast.error("Can only add reminder for predicted price", 
+                    {autoClose: 2000, 
+                    transition: Slide,
+                    position:"bottom-left",
+                    pauseOnHover:false,
+                    });
+                  
                 }
                 
                 }
@@ -366,6 +375,7 @@ const LineChart =(props) =>{
         series: {
           showInNavigator: true,
           gapSize: 6,
+          cursor: 'pointer',
           point: {
             events: {
               click: function(e){
@@ -385,7 +395,12 @@ const LineChart =(props) =>{
                            
                 }
                 else  {
-                  alert("Can only add reminder for predicted price");
+                  toast.error("Can only add reminder for predicted price", 
+                  {autoClose: 2000, 
+                  transition: Slide,
+                  position:"bottom-left",
+                  pauseOnHover:false,
+                  });
                 }
                 
                 }
