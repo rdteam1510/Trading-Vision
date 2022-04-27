@@ -3,7 +3,7 @@ const sendMail = require("./sendMail");
 const { queryInfo, isCron, isSend } = require("./queryInfo");
 
 async function mainReminder() {
-        console.log("--Run main--");
+        //console.log("--Run main--");
         queryInfo()
                 .then(async (res) => {
                         res.map(({ RemindAt, Title, Content, Email, _id, IsSend }) => {
@@ -12,9 +12,7 @@ async function mainReminder() {
                                         schedule.scheduleJob(RemindAt, function () {
                                                 isSend(_id).then();
                                                 sendMail(Email, Title, Content)
-                                                        .then((res) => {
-                                                                console.log(res);
-                                                        })
+                                                        .then()
                                                         .catch((err) => console.log(err));
                                         });
                                 }
