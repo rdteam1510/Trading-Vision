@@ -50,7 +50,8 @@ const Header = ({user}) =>{
     const logout = () => {
         window.open("http://localhost:4040/auth/logout", "_self");
     };
-    
+    const [click, setClick] = useState(false); 
+
 return ( 
     <ThemeProvider theme={darkTheme}>
         <AppBar position="static" className={classes.appbar}>
@@ -106,7 +107,7 @@ return (
 
                     <div className={classes.navlinks}>
                        {user ?(
-                        <Navbar className={classes.link}/>
+                        <Navbar className={classes.link} click={click} setClick={setClick}/>
                        ):(
                         <></>
                        )}

@@ -61,7 +61,7 @@ import PageNotFound from "../error/PageNotFound";
 			getFavorite();
 			setTimeout(() => {
 				setLoading(false)
-			  }, 3000);
+			  }, 3200);
 			 
 		}, []);
 

@@ -99,8 +99,11 @@
     margin-top: 15px;
     width: 151px;
     display: table;
-    background-color: rgba(82, 82, 82, 1);
+    background-color: rgba(64, 64, 64, 1);
     border-radius: 5px;
+  }
+  .nav-links:hover {
+    background-color: rgba(82, 82, 82, 1);
   }
 
 
