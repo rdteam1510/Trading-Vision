@@ -117,19 +117,7 @@ const SetReminderLine = (props) => {
           
           else {
     
-            // axios.patch(`/api/reminders/${props.id}`, {
-            //   Content: values.content,
-            //   Title: values.title,
-            //   Ticker: stockTicker,
-            //   RemindAt: date.getTime(),
-            // })
-            // .catch((error)=>{
-            //  console.log(error);
-            // })
-            
-            // props.showToast();
-            // resetForm();
-            // handleClose();
+           
             fetch(`/api/reminders`, {
               method: "POST",
               body: JSON.stringify({

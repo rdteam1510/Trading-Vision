@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme)=>({
     },
     field:{
         fontFamily: "Montserrat",
+       
     },
     name:{
         fontFamily: "Montserrat",
@@ -32,6 +33,17 @@ const useStyles = makeStyles((theme)=>({
         marginLeft: "30px",
         marginTop: "-20px", 
         padding: "-3px",
+    },
+    divider: {
+        height:"30px",
+        width: "3px",
+        marginLeft: "2%",
+        marginRight: "2%",
+        display: "block",
+        backgroundColor: "#FF9936",		
+        [theme.breakpoints.down('sm')]: {
+            marginLeft: "9%",           
+          },
     },
     // -------------------- graph ---------------------
     graph:{
