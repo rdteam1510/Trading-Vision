@@ -80,10 +80,12 @@ return (
                     className={classes.title}
                     variant="h5"> Trading Vision </Typography>
                     <div className={ user ? classes.search : classes.searchNotLogin}>
-                        <div className={classes.searchIcon}>
-                            <SearchIcon />
-                        </div>
+                        
                         {user ? (
+                            <>
+                            <div className={classes.searchIcon}>
+                                <SearchIcon />
+                            </div>
                             <InputBase
                                         placeholder="Search…"
                                         classes={{
@@ -94,27 +96,11 @@ return (
                                         style={{fontFamily: "Montserrat"}}
                                         readOnly={true}
                                         />
+                            </>
                         ):(
                             <>
 
-                            <InputBase
-                                        placeholder="Search…"
-                                        classes={{
-                                            root: classes.inputRoot,
-                                            input: classes.inputInput,
-                                        }}
-                                        readOnly={true}
-                                        style={{fontFamily: "Montserrat"}}
-                                        onClick={() => {
-                                            toast.warning("Please sigin to your account !!!", 
-                                                {autoClose: 5000, 
-                                                transition: Slide,
-                                                position:"bottom-left",
-                                                });
-                                        }}
-                                        />
-                                        <ToastContainer className={classes.toast} 
-											toastStyle={{ color:"#000" }}/>
+                            
                             </>
                         )}
                         
