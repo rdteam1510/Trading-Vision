@@ -14,7 +14,11 @@ const useStyles = makeStyles((theme) =>({
       fontWeight: "bold",
       cursor: "pointer",
       paddingRight: "23px",
-      marginRight: "3%"
+      fontSize: "25px",
+      marginRight: "3%",
+      [theme.breakpoints.up('sx')]: { 
+        fontSize: "13px",
+      },
     },
     search: {
         position: 'relative',

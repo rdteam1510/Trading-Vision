@@ -55,6 +55,11 @@ const useStyles = makeStyles((theme)=>({
         marginLeft: "50%",
         marginBottom: "20%",
     },
+    loading_spinner:{
+        marginTop: "40%",
+        marginLeft: "50%",
+        marginBottom: "20%",
+    },
     //-------------------------- toast ----------------------
     toast:{
         fontFamily: "Montserrat",
