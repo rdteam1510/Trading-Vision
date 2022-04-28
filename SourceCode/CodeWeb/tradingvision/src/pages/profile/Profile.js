@@ -109,7 +109,7 @@ const Profile = ({ user }) => {
 												classes.dialog_content_text
 											}
 										>
-											This will delete all the informationrelated to your account.
+											This will delete all the information related to your account.
 										</Typography>
 										<Typography
 											align="center"

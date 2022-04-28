@@ -94,19 +94,38 @@ const ReminderEditTest = (props) => {
 		//     console.log(error);
 		//     window.alert(error)
 		//   });
-		if (values.content === "" || values.title === "") {
-			toast.error("All fields are required!", {
-				autoClose: 2000,
-				transition: Slide,
-				position: "bottom-left",
-				pauseOnHover: false,
-			});
-		} else if (date.getTime() < current.getTime()) {
+		if (values.content === "" && values.title === ""){
+            toast.error("Title and content field is required!", 
+                  {autoClose: 2000, 
+                  transition: Slide,
+                  position:"bottom-left",
+				  pauseOnHover: false,
+                  });
+          }
+          else if ( values.title === ""){
+            toast.error("Title field is required!", 
+                  {autoClose: 2000, 
+                  transition: Slide,
+                  position:"bottom-left",
+				  pauseOnHover: false,
+                  });
+          }
+          else if ( values.content === ""){
+            toast.error("Content field is required!", 
+                  {autoClose: 2000, 
+                  transition: Slide,
+                  position:"bottom-left",
+				  pauseOnHover: false,
+                  });
+          
+		} 
+		else if (date.getTime() < current.getTime()) {
 			toast.error(
 				"Reminder time must be 10 minutes after current time!",
 				{ autoClose: 2500, transition: Slide, position: "bottom-left" }
 			);
-		} else {
+		} 
+		else {
 			axios
 				.patch(`/api/reminders/${props.id}`, {
 					Content: values.content,
@@ -176,8 +195,7 @@ const ReminderEditTest = (props) => {
 									color: "black",
 								},
 							}}
-							name="title
-              "
+							name="title"
 							value={values.title}
 							onChange={(e) => handleInputChange(e)}
 						/>
