@@ -16,7 +16,6 @@ import useStyles from "./style";
 import Navbar from './Navbar'
 import Modal from '@mui/material/Modal';
 import SearchPopup from "../search/SearchPopup";
-import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const darkTheme = createTheme({
@@ -58,27 +57,11 @@ return (
             <CssBaseline/>
             <Container>
                 <Toolbar>
-                    {/* <img src="logo.png" alt="logo" className={classes.logo} /> */}
-                    {/* <Box
-                        component="img"
-                        sx={{
-                        height: 40,
-                        width: 150,
-                        maxHeight: { xs: 233, md: 167 },
-                        maxWidth: { xs: 350, md: 250 },
-                        }}
-                        alt="logo"
-                        src="logo.png" 
-                        onClick={() => history("/")}
-                        className={classes.logo}
-                    /> */}
-
-
 
                     <Typography 
                     onClick={() => history("/")} 
                     className={classes.title}
-                    variant="h5"> Trading Vision </Typography>
+                    > Trading Vision </Typography>
                     <div className={ user ? classes.search : classes.searchNotLogin}>
                         
                         {user ? (

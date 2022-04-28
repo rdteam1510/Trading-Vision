@@ -54,11 +54,15 @@ import PageNotFound from "../error/PageNotFound";
 		const [isFavorite, setIsFavorite] = useState(null);
 		
 		const [chart,setChart] = useState("Line")
-
+		const [loading, setLoading] = useState(true)
 		// get company info
 		useEffect(() => {
 			getCompanyInfo();
 			getFavorite();
+			setTimeout(() => {
+				setLoading(false)
+			  }, 3000);
+			 
 		}, []);
 
 		const getCompanyInfo = async () => {
@@ -77,7 +81,7 @@ import PageNotFound from "../error/PageNotFound";
 		
 		const checkid = obj => obj.CompanyId === CompanyId[0] ;
 		const checkTicker = obj => obj.Ticker === company.Ticker;
-		// console.log(company.some(checkTicker))
+
 		const getFavorite = async() =>{
 		axios.get(`/api/favorites`)
 		  .then((response) =>{
@@ -145,8 +149,13 @@ import PageNotFound from "../error/PageNotFound";
 		// }
 
 		return (
-			
 			<>
+				{loading === true ? (
+					<Container>
+						<CircularProgress style={{ backgroundColor: "primary" }} className={classes.loading_spinner}/>
+					</Container>
+				):(
+					<>
 			{
 				company.length !== 0 ? (
 					<>
@@ -296,9 +305,10 @@ import PageNotFound from "../error/PageNotFound";
 					<PageNotFound/>					
 				)
 			}
-				
-
 			</>
+				)}
+			</>
+			
 			
 		);
 }
