@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme)=>({
         marginBottom: "20%",
     },
     loading_spinner:{
-        marginTop: "40%",
+        marginTop: "30%",
         marginLeft: "50%",
         marginBottom: "20%",
     },

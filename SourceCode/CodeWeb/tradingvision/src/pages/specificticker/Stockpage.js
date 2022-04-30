@@ -80,7 +80,6 @@ import PageNotFound from "../error/PageNotFound";
 		})
 		
 		const checkid = obj => obj.CompanyId === CompanyId[0] ;
-		const checkTicker = obj => obj.Ticker === company.Ticker;
 
 		const getFavorite = async() =>{
 		axios.get(`/api/favorites`)
@@ -110,14 +109,14 @@ import PageNotFound from "../error/PageNotFound";
 				headers: {'Content-Type': 'application/json'}
 			})	
 			// 
-			
-			toast.success("Successfully added to your favorites!", 
-							{autoClose: 2000, 
-							transition: Slide,
-							position:"bottom-left",
-							pauseOnHover:false,
-							pauseOnVisibilityChange	: false,
-							});
+
+				toast.success("Successfully added to your favorites!", 
+								{autoClose: 2000, 
+								transition: Slide,
+								position:"bottom-left",
+								pauseOnHover:false,
+								pauseOnVisibilityChange	: false,
+								});
 
 		}
 
@@ -126,13 +125,13 @@ import PageNotFound from "../error/PageNotFound";
 			// .then((response) => {
 			// 	console.log(response);
 			//   });
-			toast.success("Successfully deleted from your favorites!", 
-							{autoClose: 2000, 
-								transition: Slide,
-								position:"bottom-left",
-								pauseOnHover:false,
-								pauseOnVisibilityChange	: false,
-								});
+				toast.success("Successfully deleted from your favorites!", 
+								{autoClose: 2000, 
+									transition: Slide,
+									position:"bottom-left",
+									pauseOnHover:false,
+									pauseOnVisibilityChange	: false,
+									});
 
 		}
 		
@@ -211,6 +210,7 @@ import PageNotFound from "../error/PageNotFound";
 										<ToastContainer className={classes.toast} 
 											toastStyle={{ color:"#000" }}
 											pauseOnVisibilityChange={false}
+											pauseOnHover={false}
 											/>
 										{/* <IconButton 
 											fontSize="medium"

@@ -29,15 +29,7 @@ const SetReminderLine = (props) => {
       time: '',
       ticker: '',
     }
-  //   const {
-  //     values,
-  //     setValues,
-  //     errors,
-  //     setErrors,
-  //     handleInputChange,
-  //     resetForm
-  // } = useForm(initialValues, true, validate);
-  
+
     const handleClickOpen = () => {
       setOpen(true);
     };
@@ -58,23 +50,7 @@ const SetReminderLine = (props) => {
       }
     
     
-    // const validate = (fieldValues = values) => {
-    //   let temp = { ...errors }
-    //   if ('title' in fieldValues)
-    //       temp.title = fieldValues.title ? "" : "This field is required."
-    //   if ('content' in fieldValues)
-    //       temp.content = fieldValues.content ? "" : "This field is required."
-    //   if ('ticker' in fieldValues)
-    //       temp.ticker = fieldValues.ticker ? "" : "This field is required."
-    //   setErrors({
-    //       ...temp
-    //   })
 
-    //   if (fieldValues === values)
-    //       return Object.values(temp).every(x => x === "")
-    //   }
-      //const [stockTicker, setTicker] = useState([])
-      
         const handleSubmit = e => {
           e.preventDefault()
           var current = new Date();
@@ -253,6 +229,7 @@ const SetReminderLine = (props) => {
             
             <DialogContentText>
             <Autocomplete
+                disabled 
                 id="grouped-demo"
                 selectOnFocus          
                 options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
