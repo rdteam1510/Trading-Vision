@@ -6,8 +6,6 @@ import TabPanel from '@material-ui/lab/TabPanel';
 import StockTable from '../stocktable/StockTable';
 import { Container, 
   createTheme, 
-  TextField, 
-  ThemeProvider,
   Typography, 
 } from '@material-ui/core'
 import useStyles from './style'
@@ -26,12 +24,10 @@ const darkTheme = createTheme({
 const StockExchange = ({user}) => {
   const classes = useStyles()
   const [value, setValue] = useState('1');
-  const [search,setSearch] = useState('');
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
 
 
   return (
@@ -43,16 +39,7 @@ const StockExchange = ({user}) => {
             >
                 Stock Prices by Market Cap
             </Typography>
-            {/* <ThemeProvider theme={darkTheme}>
-              <TextField 
-                  label={<Typography className={classes.label}>Search for a Stock Ticker...</Typography>}
-                  variant="outlined"
-                  className={classes.text}
-                  style={{fontFamily: "Montserrat"}}
-                  onChange={(e) => setSearch(e.target.value)}
-                  >
-              </TextField>
-            </ThemeProvider> */}
+          
 
         <TabContext 
           value={value}

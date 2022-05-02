@@ -17,9 +17,6 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core";
-// import { responsiveProperty } from '@mui/material/styles/cssUtils';
-// import { is } from 'date-fns/locale';
-// import { useCallback } from 'react';
 import { ToastContainer, toast, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -76,24 +73,7 @@ const ReminderEditTest = (props) => {
 	const onSubmit = async (data) => {
 		var current = new Date();
 		current.setMinutes(current.getMinutes() + 9);
-		// fetch(`/api/reminders/${props.id}`, {
-		//   method: "PATCH",
-		//   body: JSON.stringify({
-		//     Content: values.content,
-		//     Title: values.title,
-		//     Ticker: stockTicker.ticker,
-		//     RemindAt: date.getTime(),
-		//   }),
 
-		//   headers: {
-		//     "Content-type": "application/json; charset=UTF-8",
-		//   },
-		// })
-		//   .then((res) => {res.json(); console.log(res);})
-		//   .catch((error)=>{
-		//     console.log(error);
-		//     window.alert(error)
-		//   });
 		if (values.content === "" && values.title === ""){
             toast.error("Title and content field is required!", 
                   {autoClose: 2000, 

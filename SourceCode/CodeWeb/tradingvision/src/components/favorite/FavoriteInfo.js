@@ -63,23 +63,13 @@ const FavoriteInfo = (props) => {
 	const navigatePage = (row_ticker) => {
 		history(`/stocks/${row_ticker}`);
 	};
-	// const [favorites, setFavorite] = useState([])
-
-	// useEffect(() =>{
-	// 	// getFavorite();
-	 
-	// 	axios.get(`/api/favorites`)
-	// 		.then((response) =>{
-	// 		  setFavorite(response.data.favorites)
-	// 		  setLoading(false)
-	// 		});
-	//   },[])
 
 
 	//toast + del fav 
 	const [status, setStatus] = useState([])
 
 	const deleteFavoriteStock = async(row) => {
+
 		axios.delete(`/api/favorites/`+ row)
 		.then((res) => setStatus(res.data))
 	
@@ -89,8 +79,8 @@ const FavoriteInfo = (props) => {
 		  position:"bottom-left",
 		  });
 
-		  axios.get(`/api/favorites/`)
-		  .then((res) => props.setFavorite(res.data.favorites))
+		axios.get(`/api/favorites`)
+		.then((res) => props.setFavorite(res.data.favorites))
 	  }
 
 

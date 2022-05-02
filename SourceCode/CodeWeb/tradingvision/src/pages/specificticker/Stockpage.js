@@ -22,13 +22,12 @@ import { useParams } from "react-router-dom";
 import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PageNotFound from "../error/PageNotFound";
+import Login from "../login/Login"
 
 
-	// const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)  
 	function Stockpage({user}) {
 		const classes = useStyles();
-		// const myRef = useRef(null);
-		// const executeScroll = () => scrollToRef(myRef);
+		
 		const [open, setOpen] = useState(false);
 		const handleOpen = () => setOpen(true);
 		const handleClosed = () => setOpen(false);
@@ -122,30 +121,17 @@ import PageNotFound from "../error/PageNotFound";
 
 		const deleteFavorite = async(id) => {
 			axios.delete(`/api/favorites/`+ id)
-			// .then((response) => {
-			// 	console.log(response);
-			//   });
-				toast.success("Successfully deleted from your favorites!", 
-								{autoClose: 2000, 
-									transition: Slide,
-									position:"bottom-left",
-									pauseOnHover:false,
-									pauseOnVisibilityChange	: false,
-									});
+		
+			toast.success("Successfully deleted from your favorites!", 
+							{autoClose: 2000, 
+								transition: Slide,
+								position:"bottom-left",
+								pauseOnHover:false,
+								pauseOnVisibilityChange	: false,
+								});
 
 		}
 		
-		// const toggleFavorites = (CompanyId) => {
-		// 	setIsFavorite ((isFavorite)=>{
-		// 		if (isFavorite === true) {
-		// 			deleteFavorite(CompanyId);
-		// 		}
-		// 		if (isFavorite === false) {
-		// 			addFavorite();
-		// 		}
-		// 		return !isFavorite;
-		// 	})
-		// }
 
 		return (
 			<>
@@ -212,19 +198,7 @@ import PageNotFound from "../error/PageNotFound";
 											pauseOnVisibilityChange={false}
 											pauseOnHover={false}
 											/>
-										{/* <IconButton 
-											fontSize="medium"
-											onClick = {()=> {
-												toggleFavorites(CompanyId)
-											}}
-											key = {CompanyId}
-										>
-										 { isFavorite === true ? 
-										 	<Favorite sx={{ fontSize: 45, marginTop:"15%", color: "red" }}/>
-											  :  
-											<FavoriteBorderIcon sx={{ fontSize: 45, marginTop:"15%", color:"#fff" }}/> }
-											
-										</IconButton> */}
+										
 								</Typography>
 								
 									
@@ -248,7 +222,9 @@ import PageNotFound from "../error/PageNotFound";
 							Compare
 						</Button>
 					) :(
-						<></>
+						<>
+							
+						</>
 					)
 				}	
 				
@@ -294,10 +270,10 @@ import PageNotFound from "../error/PageNotFound";
 			</Container>
 				):(
 					<>
-						<Container>
+						{/* <Container>
 						<CircularProgress style={{ backgroundColor: "primary" }} className={classes.loading}/>
-						</Container>
-						
+						</Container> */}
+						<Login/>
 					</>
 				)}
 					</>

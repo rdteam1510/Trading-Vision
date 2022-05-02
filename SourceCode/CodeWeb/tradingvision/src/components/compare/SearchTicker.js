@@ -33,17 +33,6 @@ const SearchTicker = (props) => {
     const handleOpen = () => setLoading(true);
     const handleClosed = () => setLoading(false);
 
- 
-
-    // const rows = props.companies
-    //     .map((company) => {
-    //     return {
-    //       id: company._id,
-    //       ticker: company.Ticker,
-    //       companyName: company.CompanyName,
-    //       industry: company.Industry,
-    //       stockExchange: company.StockExchange,
-    //     };
       
     // })
   return (

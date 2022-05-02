@@ -3,7 +3,7 @@ import Candle from './Candle';
 import './style.css';
 import axios from 'axios'
 import {useParams} from 'react-router-dom'
-import {Container, Typography, CircularProgress} from '@material-ui/core'
+import {Typography, CircularProgress} from '@material-ui/core'
 import useStyles from './style';
 
 const Candlestick = () => {

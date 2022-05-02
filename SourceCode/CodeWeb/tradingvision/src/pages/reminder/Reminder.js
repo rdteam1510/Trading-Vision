@@ -5,7 +5,6 @@ import axios from "axios";
 import Login from "../login/Login";
 import useStyles from "./style";
 import {CircularProgress} from '@material-ui/core'
-import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -15,7 +14,6 @@ const Reminder = ({ user }) => {
 	const classes = useStyles();
 
 	useEffect(() => {
-		// retrieveReminders();
 
 		getReminders()
 

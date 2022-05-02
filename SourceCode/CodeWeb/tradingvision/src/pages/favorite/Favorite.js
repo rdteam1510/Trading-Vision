@@ -21,22 +21,6 @@ const Favorite = ({user}) => {
         });
   },[])
 
-  // const getFavorite = async() => {
-  //   setLoading(true)
-    
-  //   const interval = await setInterval(() =>{
-  //     axios.get(`/api/favorites`)
-  //       .then((response) =>{
-  //         setFavorite(response.data.favorites)
-  //         setLoading(false)
-  //       });
-  //   }, 1000)
-	// 	return () => {
-	// 	clearInterval(interval);
-	// 	};
-    
-  // }
-
   
   return (
     <div>

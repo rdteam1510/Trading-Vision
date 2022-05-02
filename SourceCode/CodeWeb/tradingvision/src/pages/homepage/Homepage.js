@@ -6,7 +6,6 @@ import StockExchange from '../../components/stockexchange/StockExchange';
 
 const Homepage = ({user}) => {
 
-
   return <>
     <Banner/>
     <StockExchange user={user}/>

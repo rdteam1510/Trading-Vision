@@ -115,11 +115,7 @@ const SetReminderLine = (props) => {
                   }) 
                handleClose()
           }
-              // ham insert reminder vo database
-           
 
-          
-           
       }
 
     const [stocks, setStock] = useState([])
@@ -185,8 +181,7 @@ const SetReminderLine = (props) => {
               name="title"        
               value={values.title}
               onChange={handleInputChange}
-              // error={errors.title}
-              // helperText = {errors.title}
+              
             /> 
           </DialogTitle>
           <div className={classes.line}></div>

@@ -148,10 +148,8 @@ const DataGridDemo = ({ stockExchange, user }) => {
 	}, [stockExchange]);
 
 	const componentDidMount = async (stockExchange) => {
-		// setLoading(true);
-		await axios
-			// .get(`/api/stocks/query?stockexchange=${stockExchange}&limit=100`)
-			.get(`/api/stocks/${stockExchange}`)
+		
+		axios.get(`/api/stocks/${stockExchange}`)
 			.then((response) => {
 				setStock(response.data.stock);
 				setLoading(false)

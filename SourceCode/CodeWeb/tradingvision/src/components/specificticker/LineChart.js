@@ -5,7 +5,6 @@ import axios from 'axios'
 import SetReminderLine from '../reminder/reminderpopup/SetReminderLine';
 import {CircularProgress} from '@material-ui/core'
 import useStyles from './style'
-import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const LineChart =(props) =>{
@@ -81,7 +80,6 @@ const LineChart =(props) =>{
     // actual price list
     data.map(point => {
         priceData.push([
-          
           point.Time*1000,
           point.Close,])
         

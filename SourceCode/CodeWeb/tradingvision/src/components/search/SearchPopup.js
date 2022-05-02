@@ -30,7 +30,7 @@ const darkTheme = createTheme({
 	},
 });
 
-const SearchPopup = () => {
+const SearchPopup = ({user}) => {
 	const history = useNavigate();
 	const classes = useStyles();
 	const [test, setTest] = React.useState(false);
@@ -82,13 +82,13 @@ const SearchPopup = () => {
 	};
 
 	const navigatePage = (row_ticker) => {
+		
 		history(`/stocks/${row_ticker}`);
 	};
 	const refreshPage = () => {
 		window.location.reload();
 	};
 	const [loading, setLoading] = useState(false);
-
 	return (
 		<ThemeProvider theme={darkTheme}>
 			<Container>

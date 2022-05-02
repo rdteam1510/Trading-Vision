@@ -12,19 +12,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import useStyles from './style'
 
 const ReminderDelete = (props) => {
-  // const [status, setStatus] = useState([])
   const classes = useStyles()
 
-  // const deleteFavoriteStock = async(row) => {
-  //   axios.delete(`/api/favorites/`+ row)
-  //   .then((res) => setStatus(res.data))
 
-  //   await toast.success("Successfully deleted from your favorites!", 
-  //   {autoClose: 5000, 
-  //     transition: Slide,
-  //     position:"bottom-left",
-  //     });
-  // }
   
 
   return (
