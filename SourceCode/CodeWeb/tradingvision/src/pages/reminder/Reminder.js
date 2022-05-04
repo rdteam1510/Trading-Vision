@@ -12,11 +12,13 @@ const Reminder = ({ user }) => {
 	const [reminders, setReminders] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const classes = useStyles();
+	const [loadingSpinner, setLoadingSpinner] = useState(true)
 
 	useEffect(() => {
-
 		getReminders()
-
+		setTimeout(() => {
+			setLoadingSpinner(false)
+			}, 1000);
 	}, []);
 
 	const getReminders = () => {
@@ -27,7 +29,16 @@ const Reminder = ({ user }) => {
 	}
 
 	return (
-		<div>
+		<>
+
+		
+		{
+			loadingSpinner ? (
+				<div className={classes.loading_spinner}>
+						<CircularProgress style={{ backgroundColor: "primary" }}/>
+						</div>
+			) : (
+				<div>
 			{user ? (
 				<>
 				{loading ? (
@@ -54,6 +65,9 @@ const Reminder = ({ user }) => {
 				<Login />
 			)}
 		</div>
+			)
+		}
+		</>
 	);
 };
 

@@ -10,7 +10,7 @@ const Favorite = ({user}) => {
   const [favorites, setFavorite] = useState([])
   const classes = useStyles()
   const [loading, setLoading] = useState(true)
-
+  const [loadingSpinner, setLoadingSpinner] = useState(true)
   useEffect(() =>{
     // getFavorite();
  
@@ -19,39 +19,52 @@ const Favorite = ({user}) => {
           setFavorite(response.data.favorites)
           setLoading(false)
         });
+
+    setTimeout(() => {
+      setLoadingSpinner(false)
+      }, 1200);
   },[])
 
   
   return (
-    <div>
-      { user ? (
-        <>
-          {loading ? (
-            <div className={classes.loading_spinner}>
-						  <CircularProgress style={{ backgroundColor: "primary" }}/>
-						</div>
-          ):(
-            <>
-              {favorites.length === 0 ?(
-                <FavoriteEmpty/>
-          ) : (
-              <FavoriteInfo favorites = {favorites}
-                setFavorite = {setFavorite}
+    <>
+    {
+      loadingSpinner ? (
 
-              />
-          )}
-            </>
-          )}
-
-        </>
+        <div className={classes.loading_spinner}>
+          <CircularProgress style={{ backgroundColor: "primary" }}/>
+        </div>
       ) : (
-        <Login/>
+        <div>
+          { user ? (
+            <>
+              {loading ? 
+                (
+                    <div className={classes.loading_spinner}>
+                      <CircularProgress style={{ backgroundColor: "primary" }}/>
+                    </div>
+                ):(
+                    <>
+                      {favorites.length === 0 ?(
+                        <FavoriteEmpty/>
+                      ) : (
+                          <FavoriteInfo favorites = {favorites}
+                            setFavorite = {setFavorite}/>
+                      )}
+                    </>
+              )}
+            </>
+          
+          ) : (
+            <Login/>
+          )
+          
+        }
+        </div>
       )
     }
-    </div>
-    
-    
-  )
+    </>
+    )
 }
 
 export default Favorite

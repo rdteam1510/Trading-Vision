@@ -6,6 +6,8 @@ import SetReminderLine from '../reminder/reminderpopup/SetReminderLine';
 import {CircularProgress} from '@material-ui/core'
 import useStyles from './style'
 import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast, Slide } from 'react-toastify';
+
 
 const LineChart =(props) =>{
     const [open, setOpen] = React.useState(false);

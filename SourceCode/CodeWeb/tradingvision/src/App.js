@@ -75,15 +75,15 @@ function App() {
             <Route exact path="/" element={<Homepage user={user}/>} />
             <Route exact path="/stocks/:ticker"  element={<Stockpage user={user}/>}/>
             
-            <Route path="/favorite" element={user ? <Favorite user={user}/> : <Navigate to="/login"/>} />
-            <Route path="/reminder" element={user ? <Reminder user={user}/> : <Navigate to="/login"/>}/>
-            <Route path="/login" element={user ? <Navigate to="/"/> : <Login/>} />
-            <Route path="/profile" element={user ? <Profile user={user}/> : <Navigate to="/login"/>}/>
+            <Route path="/favorite" element={ <Favorite user={user}/>} />
+            <Route path="/reminder" element={<Reminder user={user}/>}/>
+            <Route path="/login" element={ <Login/>} />
+            <Route path="/profile" element={<Profile user={user}/> }/>
             
           </Routes>
           </div>
           <div id="footer-wrapper">
-          <FooterContainer className = {classes.Footer}/>
+          <FooterContainer className = {classes.Footer} user={user}/>
           </div>
       </Router>
     </div>

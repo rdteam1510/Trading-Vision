@@ -9,6 +9,9 @@ import {
 	DialogActions,
 } from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import Login from '../login/Login'
+
+
 
 const Profile = ({ user }) => {
 	const classes = useStyles();
@@ -143,7 +146,9 @@ const Profile = ({ user }) => {
 					</div>
 				</>
 			) : (
-				<></>
+				<>
+					<Login/>
+				</>
 			)}
 		</div>
 	);
