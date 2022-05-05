@@ -197,7 +197,7 @@ const FavoriteInfo = (props) => {
 												navigatePage(row.stockTicker);
 											}}
 										>
-											{row.ticker[0].Volume}
+											{row.ticker[0].Match}
 										</TableCell>
 										<TableCell
 											align="center"
@@ -206,7 +206,7 @@ const FavoriteInfo = (props) => {
 												navigatePage(row.stockTicker);
 											}}
 										>
-											{row.ticker[0].Match}
+											{row.ticker[0].Volume}
 										</TableCell>
 										<TableCell
 											align="center"
