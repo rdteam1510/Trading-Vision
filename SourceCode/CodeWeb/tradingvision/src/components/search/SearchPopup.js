@@ -98,12 +98,13 @@ const SearchPopup = ({user}) => {
 					</div>
 					<InputBase
 						placeholder="Search…"
+						
 						classes={{
 							root: classes.inputRoot,
 							input: classes.inputInput,
 						}}
 						inputProps={{ "aria-label": "search" }}
-						onClick={handleOpen}
+						inputRef={input => input && input.focus()}
 						style={{ fontFamily: "Montserrat", width: "100%",}}
 						onChange={(e) => setSearch(e.target.value)}
 					/>
