@@ -61,7 +61,7 @@ import Login from "../login/Login"
 			setTimeout(() => {
 				setLoading(false)
 			  }, 3200);
-			 
+			window.scrollTo(0, 0)
 		}, []);
 
 		const getCompanyInfo = async () => {
@@ -223,7 +223,7 @@ import Login from "../login/Login"
 						</Button>
 					) :(
 						<>
-							<Login/>
+							
 						</>
 					)
 				}	

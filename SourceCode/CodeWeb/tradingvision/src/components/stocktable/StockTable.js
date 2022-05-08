@@ -239,7 +239,7 @@ const DataGridDemo = ({ stockExchange, user }) => {
 						onRowClick={(params) =>
 							{
 								history(`/stocks/${params.row.ticker}`);
-								window.location.reload(); 
+								
 							}
 						}
 					/>

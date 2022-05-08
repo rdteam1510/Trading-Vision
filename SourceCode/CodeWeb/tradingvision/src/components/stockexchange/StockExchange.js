@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import Tab from '@material-ui/core/Tab';
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
@@ -29,13 +29,15 @@ const StockExchange = ({user}) => {
     setValue(newValue);
   };
 
-
+  useEffect(() =>{
+    window.scrollTo(250, 450)
+  }, [])
   return (
     
       <Container style={{textAlign: 'center'}}>
         <Typography
             variant="h4"
-            style={{margin: 100, fontFamily: 'Montserrat'}}
+            style={{margin: 80, fontFamily: 'Montserrat'}}
             >
                 Stock Prices by Market Cap
             </Typography>
