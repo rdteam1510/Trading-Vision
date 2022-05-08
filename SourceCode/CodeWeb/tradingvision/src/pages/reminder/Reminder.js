@@ -18,7 +18,7 @@ const Reminder = ({ user }) => {
 		getReminders()
 		setTimeout(() => {
 			setLoadingSpinner(false)
-			}, 1000);
+			}, 1200);
 	}, []);
 
 	const getReminders = () => {

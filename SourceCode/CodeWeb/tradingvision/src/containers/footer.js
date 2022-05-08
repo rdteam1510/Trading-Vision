@@ -14,7 +14,7 @@ export function FooterContainer() {
                 </Footer.Column>
                 <Footer.Column>
                     <Footer.Title>Contact</Footer.Title>
-                    <Footer.Link href="#"><Icon className="fa-solid fa-envelope" />tradingvision@gmail.com</Footer.Link>
+                    <Footer.Link href="mailto:rdteam1510@gmail.com"><Icon className="fa-solid fa-envelope" />rdteam1510@gmail.com</Footer.Link>
                     <Footer.Link href="#"><Icon className="fa-solid fa-phone" />+01 123 456 789</Footer.Link>
                     
                 </Footer.Column>

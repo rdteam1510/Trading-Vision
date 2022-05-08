@@ -76,7 +76,7 @@ const Candlestick = () => {
   
   return (
     <div className="candlestick">
-        <Typography style={{fontFamily: 'Montserrat', fontSize:"22px", marginLeft:"40%"}}>{ticker} Candlestick Chart</Typography>
+        <Typography style={{fontFamily: 'Montserrat', fontSize:"20px", marginLeft:"40%"}}>{ticker} Candlestick Chart</Typography>
         {
           loading ? (
             <div className={classes.loading_spinner}>
