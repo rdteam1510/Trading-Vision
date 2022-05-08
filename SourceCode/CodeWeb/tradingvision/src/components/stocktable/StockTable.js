@@ -166,7 +166,7 @@ const DataGridDemo = ({ stockExchange, user }) => {
 				lowest: stock.Lowest,
 				match: stock.Match,
 				ticker: stock.Ticker,
-				volume: stock.Volume,
+				volume: stockExchange === "hose" ? stock.Volume * 1000 : stock.Volume * 100,
 			};
 		});
 

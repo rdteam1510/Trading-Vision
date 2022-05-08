@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import {
-	createTheme,
-	ThemeProvider,
 	TableContainer,
 	Table,
 	TableHead,
@@ -12,14 +10,120 @@ import {
 	Container,
 	TablePagination,
 } from "@material-ui/core";
-import useStyles from "./style";
+// import useStyles from "./style";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FavoriteDelete from "./FavoriteDelete";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import { DataGrid, GridToolbar,
+	GridToolbarContainer,
+	GridToolbarColumnsButton,
+	GridToolbarFilterButton,
+	GridToolbarExport,
+	 } from "@mui/x-data-grid";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { makeStyles } from "@material-ui/core/styles";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import {CircularProgress} from '@material-ui/core/'
 
+// Styles
+const useStyles = makeStyles({
+	root: {
+		"&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus, &.MuiDataGrid-root .MuiDataGrid-cell:focus": {
+			outline: "none",
+		},
+		"&.MuiDataGrid-menuIcon &.MuiDataGrid-menuIconButton 	&.MuiDataGrid-menuOpen": {
+			color: "white",
+		},
+		"MuiTablePagination-root .css-rtrcn9-MuiTablePagination-root": {
+			color: "white",
+		},
+	},
+	loading_spinner:{
+		marginTop:"20%",
+		
+	 },
+});
+const columns = [
+	{
+		field: "ticker",
+		headerName: "Ticker",
+		width: 150,
+	},
+	{
+		field: "ceiling",
+		headerName: "Ceiling",
+		type: "number",
+		width: 150,
+	},
+	{
+		field: "floor",
+		headerName: "Floor",
+		type: "number",
+		width: 150,
+	},
+	{
+		field: "highest",
+		headerName: "Highest",
+		type: "number",
+		width: 150,
+	},
+	{
+		field: "lowest",
+		headerName: "Lowest",
+		type: "number",
+		width: 150,
+	},
+	{
+		field: "match",
+		headerName: "Match",
+		type: "number",
+		width: 150,
+	},
+	{
+		field: "volume",
+		headerName: "Volume",
+		type: "number",
+		width: 150,
+	},
+];
+
+// Define icons
+export function SortedDescendingIcon() {
+	return (
+		<ArrowDownwardIcon
+			className="icon"
+			sx={{
+				color: "white",
+			}}
+		/>
+	);
+}
+
+export function SortedAscendingIcon() {
+	return (
+		<ArrowUpwardIcon
+			className="icon"
+			sx={{
+				color: "white",
+			}}
+		/>
+	);
+}
+export function MenuIcon() {
+	return (
+		<MoreVertIcon
+			className="icon"
+			sx={{
+				color: "white",
+			}}
+		/>
+	);
+}
 
 
 const darkTheme = createTheme({
@@ -82,174 +186,111 @@ const FavoriteInfo = (props) => {
 		axios.get(`/api/favorites`)
 		.then((res) => props.setFavorite(res.data.favorites))
 	  }
+	const [pageSize, setPageSize] = useState(10);
+	function CustomToolbar() {
+		return (
+		<GridToolbarContainer>
+			<GridToolbarColumnsButton />
+			<GridToolbarFilterButton />
+			
+			<GridToolbarExport 
+			csvOptions={{
+				fileName: `Trading Vision-Favorite Stocks`
+	
+			}}/>
+		</GridToolbarContainer>
+		);
+	}
 
-
-	  const rows = props.favorites.map((favorite) => {
+	  const rowsStocks = props.favorites.map((favorite) => {
 		return {
 			companyId: favorite.CompanyId,
 			ticker: favorite.Ticker,
 			stockTicker: favorite.Ticker[0].Ticker,
 		};
 	});
-	  
+	const rows = props.favorites
+	.map((favorite) => {
+		return {
+			id: favorite._id,
+			ceiling: favorite.Ticker[0].Ceiling,
+			floor: favorite.Ticker[0].Floor,
+			highest: favorite.Ticker[0].Highest,
+			lowest: favorite.Ticker[0].Lowest,
+			match: favorite.Ticker[0].Match,
+			ticker: favorite.Ticker[0].Ticker,
+			volume: favorite.Ticker[0].StockExchange === "hose" ? favorite.Ticker[0].Volume * 1000 : favorite.Ticker[0].Volume * 100,
+		};
+	});
+	
+	console.log(rowsStocks)
+
 	return (
 		
 		<Container>
 			<ThemeProvider theme={darkTheme}>
-				<TableContainer
-					className={classes.tableContainer}
-					component={Paper}
-				>
-					<Table stickyHeader aria-label="sticky table">
-						<TableHead
-							className={classes.tablehead}
-							rowCount={rows.length}
-						>
-							<TableRow>
-								{[
-									"TICKER",
-									"CEILING",
-									"FLOOR",
-									"HIGHEST",
-									"LOWEST",
-									"MATCH",
-									"VOLUME",
-									"ACTION",
-								].map((head) => (
-									<TableCell
-										className={classes.tablecell}
-										key={head}
-										align={
-											head === "TICKER" ? "" : "center"
-										}
-									>
-										{head}
-									</TableCell>
-								))}
-							</TableRow>
-						</TableHead>
-
-						<TableBody>
-							{rows
-								.slice(
-									page * rowsPerPage,
-									page * rowsPerPage + rowsPerPage
-								)
-								.map((row) => (
-									<TableRow
-										className={classes.row}
-										key={row.ticker[0].Ticker}
-									>
-										<TableCell
-											component="th"
-											scope="row"
-											style={{
-												fontWeight: "bold",
-											}}
-											className={classes.cell}
-											onClick={() => {
-												navigatePage(row.stockTicker);
-											}}
-										>
-											{row.ticker[0].Ticker}
-										</TableCell>
-
-										<TableCell
-											align="center"
-											className={classes.cell}
-											onClick={() => {
-												navigatePage(row.stockTicker);
-											}}
-										>
-											{row.ticker[0].Ceiling}
-										</TableCell>
-										<TableCell
-											align="center"
-											className={classes.cell}
-											onClick={() => {
-												navigatePage(row.stockTicker);
-											}}
-										>
-											{row.ticker[0].Floor}
-										</TableCell>
-										<TableCell
-											align="center"
-											className={classes.cell}
-											onClick={() => {
-												navigatePage(row.stockTicker);
-											}}
-										>
-											{row.ticker[0].Highest}
-										</TableCell>
-										<TableCell
-											align="center"
-											className={classes.cell}
-											onClick={() => {
-												navigatePage(row.stockTicker);
-											}}
-										>
-											{row.ticker[0].Lowest}
-										</TableCell>
-										<TableCell
-											align="center"
-											className={classes.cell}
-											onClick={() => {
-												navigatePage(row.stockTicker);
-											}}
-										>
-											{row.ticker[0].Match}
-										</TableCell>
-										<TableCell
-											align="center"
-											className={classes.cell}
-											onClick={() => {
-												navigatePage(row.stockTicker);
-											}}
-										>
-											{row.ticker[0].Volume}
-										</TableCell>
-										<TableCell
-											align="center"
-											className={classes.cell}
-										>
-											<DeleteIcon
-												style={{ marginLeft: "10%" }}
-												onClick={() =>
-													handleOpenDelete(row)
-												}
-											/>
-										</TableCell>
-										<FavoriteDelete
-											open={openDelete}
-											onClose={handleCloseDelete}
-											rowID={
-												(selectedRow || {}).companyId
-											}
-											ticker={
-												(selectedRow || {}).stockTicker
-											}
-											deleteFavoriteStock = {deleteFavoriteStock}
-										/>
-										<ToastContainer className={classes.toast} 
-											toastStyle={{ color:"#000" }}
-											pauseOnVisibilityChange={false}
-											/>
-									</TableRow>
-								))}
-						</TableBody>
-					</Table>
-
-					<TablePagination
-						className={classes.pagination}
-						rowsPerPageOptions={[5, 10, 25, 100]}
-						component="div"
-						count={rows.length}
-						page={page}
-						onPageChange={handleChangePage}
-						rowsPerPage={rowsPerPage}
-						onRowsPerPageChange={handleChangeRowsPerPage}
+			<DataGrid
+						rows={rows}
+						columns={columns}
+						pageSize={pageSize}
+						onPageSizeChange={(newPage) => setPageSize(newPage)}
+						rowsPerPageOptions={[10, 20, 50]}
+						pagination
+						width = '100%'
+						sx={{
+							color: "white",
+							fontFamily: "Montserrat",
+							cursor: "pointer",
+							fontSize: 16,
+							"& .MuiButton-root": {
+								paddingBottom: 3,								
+								fontFamily: "Montserrat",
+							},
+							"& .MuiTablePagination-root": {
+								color: "white",
+								fontFamily: "Montserrat",
+							},
+							"& .MuiTablePagination-selectIcon": {
+								color: "white",
+							},
+							// Pagination
+							"& .MuiTablePagination-selectLabel": {
+								fontFamily: "Montserrat",
+							},
+							"& .MuiTablePagination-displayedRows": {
+								fontFamily: "Montserrat",
+							},							
+							"& .MuiTablePagination-select": {
+								fontFamily: "Montserrat",
+							},
+							"& .MuiInputLabel-root": {
+								fontFamily: "Montserrat",
+							},
+							"& .MuiDataGrid-filterForm": {
+								fontFamily: "Montserrat",
+							},
+							
+						}}
+						components={{
+							Toolbar: CustomToolbar,
+							//Pagination: CustomPagination,
+							ColumnSortedDescendingIcon: SortedDescendingIcon,
+							ColumnSortedAscendingIcon: SortedAscendingIcon,
+							ColumnMenuIcon: MenuIcon,
+						}}
+						classeName={classes.root}
+						initialState={{
+							sorting: {
+								sortModel: [{ field: "ticker", sort: "asc" }],
+							},
+						}}
+						onRowClick={(params) =>
+							{
+								history(`/stocks/${params.row.ticker}`);
+								
+							}
+						}
 					/>
-				</TableContainer>
 			</ThemeProvider>
 		</Container>
 	);
