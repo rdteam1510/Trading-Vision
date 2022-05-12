@@ -4,18 +4,14 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Button from '@mui/material/Button';
+import { Button } from '@material-ui/core';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import 'react-toastify/dist/ReactToastify.css';
 import useStyles from '../style';
 
 const ReminderDelete = (props) => {
   const [status, setStatus] = useState([])
-  const classes = useStyles()
-
-
-
-  
+  const classes = useStyles()  
   return (
     <Dialog
               open={props.open}
@@ -35,7 +31,8 @@ const ReminderDelete = (props) => {
                   color:'#f12323',}}/> <br/>
                You are about to delete the reminder {props.title}
               </DialogTitle>
-              <DialogContent>
+              <DialogContent 
+              >
                 <DialogContentText id="alert-dialog-description" align = "center">
                   This will delete the reminder {props.title} from reminder list. <br/>Are you sure?
                 </DialogContentText>
@@ -43,23 +40,13 @@ const ReminderDelete = (props) => {
               <DialogActions>
                 <Button 
                   onClick={()=>{props.deleteReminder(props.rowID); props.onClose();}}
-                  sx = {{
-                    color: 'white',
-                    backgroundColor:'#f12312',
-                    "&:hover":{
-                      backgroundColor:"#D11A2A",
-                    }
-                  }}>Delete</Button>
+                  className={classes.btn_Delete}
+                 >Delete</Button>
 
                 <Button 
                   onClick={props.onClose}
-                  sx = {{
-                    color: 'white',
-                    backgroundColor:'#c1c1c1',
-                    "&:hover":{
-                      backgroundColor:"#AAAAAA",
-                    }
-                  }}
+                  className={classes.btn_Cancel}
+                  
                   >
                   Cancel
                 </Button>

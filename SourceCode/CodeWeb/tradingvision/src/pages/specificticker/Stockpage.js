@@ -258,8 +258,7 @@ import Login from "../login/Login"
 							selectedTab={selectedTab}
 							setSelectedTab={setSelectedTab}
 							ticker = {ticker}
-							// myRef={myRef}
-							// executeScroll={executeScroll}
+							handleClosed = {handleClosed}
 							handleSelection = {handleSelection} />
 					</Box>
 				</Dialog>

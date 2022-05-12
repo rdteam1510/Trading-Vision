@@ -213,10 +213,17 @@ const FavoriteInfo = (props) => {
 											className={classes.cell}
 										>
 											<DeleteIcon
-												style={{ marginLeft: "10%" }}
+												
 												onClick={() =>
 													handleOpenDelete(row)
 												}
+												style = {{
+													fill: 'white',
+													backgroundColor: 'red',
+													borderRadius: 2,
+													padding: '5px',
+													fontSize: '30px',
+												  }}
 											/>
 										</TableCell>
 										<FavoriteDelete

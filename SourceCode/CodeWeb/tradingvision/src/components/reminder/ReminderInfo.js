@@ -23,6 +23,7 @@
   import { ToastContainer, toast, Slide } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
   import axios from 'axios';
+import { fontSize } from '@mui/system';
 
   const darkTheme = createTheme({
     palette: {
@@ -193,13 +194,13 @@ const ReminderInfo = (props) => {
                                         }}
                                         className={classes.cell}
                                         onClick = {() => handleOpenReminder(row)} 
-                                        width = '24%'
+                                        width = '25%'
                                        > {row.title}
                                        
                                     </TableCell>
                                    
-                                    <TableCell align="left" className={classes.cell} width = '20%'>{row.ticker}</TableCell>
-                                    <TableCell align="left" className={classes.cell} width = '23%'>                   
+                                    <TableCell align="left" className={classes.cell} width = '25%'>{row.ticker}</TableCell>
+                                    <TableCell align="left" className={classes.cell} width = '25%'>                   
                                       {new Date( new Date(row.time).toUTCString() ).toLocaleString()}
                                     </TableCell>
                                     <ReminderDetail 
@@ -225,25 +226,63 @@ const ReminderInfo = (props) => {
                                         <TableCell align="center" className={classes.cell}>
                                           <EditIcon 
                                             onClick = {() => handleOpenEdit(row)} 
+                                            style = {{
+                                              fill: 'white',
+                                              backgroundColor: '#0AA1DD',
+                                              borderRadius: 2,
+                                              padding: '5px',
+                                              marginRight: "10px",
+                                              fontSize: '30px',
+                                              marginTop: '2%'
+                                            }}
+                                           
                                             />
+                                             <DeleteIcon 
+                                              onClick = {() => handleOpenDelete(row)}
+                                              style = {{
+                                                fill: 'white',
+                                                backgroundColor: 'red',
+                                                borderRadius: 2,
+                                                padding: '5px',
+                                                fontSize: '30px',
+                                              }}/>
                                         </TableCell>
                                        ):(
                                         <TableCell align="center" className={classes.cell}>
                                             <EditIcon 
-                                              onClick = {() => toast.error("This reminder is already send !!!", 
+                                              onClick = {() => toast.error("This reminder is already sent!", 
                                                     {autoClose: 2000, 
                                                     transition: Slide,
                                                     position:"bottom-left",
                                                     }
                                               )} 
+                                              style = {{
+                                                fill: 'white',
+                                                backgroundColor: '#0AA1DD',
+                                                borderRadius: 2,
+                                                padding: '5px',
+                                                marginRight: "10px",
+                                                fontSize: '30px',
+                                                marginTop: '2%'
+                                              }}
+                                             
                                               />
+                                               <DeleteIcon 
+                                                onClick = {() => handleOpenDelete(row)}
+                                                style = {{
+                                                  fill: 'white',
+                                                  backgroundColor: 'red',
+                                                  borderRadius: 2,
+                                                  padding: '5px',
+                                                  fontSize: '30px',
+                                                }}/>
                                           </TableCell>
                                        )
                                      }
-                                       <TableCell  align="center" className={classes.cell}>
+                                       {/* <TableCell  align="center" className={classes.cell}>
                                       <DeleteIcon 
                                       onClick = {() => handleOpenDelete(row)}/></TableCell>
-                                  
+                                   */}
                                 <ReminderEditTest
                                   open = {openEdit} 
                                   onClose = {handleCloseEdit} 

@@ -24,9 +24,9 @@ const ComparePopup = (props) => {
     const classes = useStyles()
     const [test, setTest] = useState(false);
     const handleOpen = () => setTest(true);
-    const handleClosed = () => setTest(false);
+    
     const [value, setValue] = useState('1');
-    const {selectedID, setSelectedID, selectedTab, setSelectedTab, myRef, executeScroll, handleSelection, ticker} = props;
+    const {selectedID, setSelectedID, selectedTab, setSelectedTab, myRef, executeScroll, handleSelection, ticker, handleClosed} = props;
     const [search,setSearch] = useState('');
     const [companies, setCompanies] = useState([]);
     const [loading, setLoading] = useState(false)
@@ -85,7 +85,8 @@ const ComparePopup = (props) => {
                         input: classes.inputInput,
                     }}
                     inputProps={{ 'aria-label': 'search' }}
-                    onClick={handleOpen}
+                    inputRef={input => input && input.focus()}
+                    
                     style={{fontFamily: "Montserrat", width:"100%"}}
                     onChange={(e) => setSearch(e.target.value)}/>
                             
@@ -104,6 +105,7 @@ const ComparePopup = (props) => {
                         handleSelection = {handleSelection} rows={rows}
                         executeScroll={executeScroll}
                         ticker = {ticker}
+                        handleClosed = {handleClosed}
                         />
                     )}
          

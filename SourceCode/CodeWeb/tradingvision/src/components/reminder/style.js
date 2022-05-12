@@ -78,6 +78,7 @@ const useStyles = makeStyles((theme)=>({
       fontWeight: "bold",
       backgroundColor: "rgb(55,58,109)",
       color: "white",
+      marginBottom: '3%',
       '&:hover' :{
           backgroundColor: "#777bb8",
       }
@@ -85,10 +86,24 @@ const useStyles = makeStyles((theme)=>({
     btn_Cancel: {
       fontFamily: "Montserrat",
       fontWeight: "bold",
-      backgroundColor:"#c1c1c1",
+      backgroundColor:"white",
+      color: '#7F8487',
       "&:hover":{
-        backgroundColor:"#AAAAAA",
-      }
+        backgroundColor:"#E4E5E8",
+      },
+      marginRight: '1%',
+      marginBottom: '3%',
+    },
+    btn_Delete: {
+      fontFamily: "Montserrat",
+      fontWeight: "bold",
+      color: 'white',
+      backgroundColor:'#f12312',
+      "&:hover":{
+        backgroundColor:"#D11A2A",
+      },
+      marginBottom: '3%',
+      
     },
     btn_SetReminder: {
       cursor: "pointer",

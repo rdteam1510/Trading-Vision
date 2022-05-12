@@ -158,8 +158,8 @@ const SetReminderButton = (props) => {
           PaperProps={{
             style: {
               backgroundColor: 'white',
-              height: '500px',
-              width: '560px',}
+              minHeight: '500px',
+              minWidth: '560px',}
           }}
         >
         <Form onSubmit={handleSubmit}>

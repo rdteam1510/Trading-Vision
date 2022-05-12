@@ -56,6 +56,7 @@ const useStyles = makeStyles((theme)=>({
     },
     dialog_content: {
       marginTop: "2%",
+     
     },
     calendar:{
       color:"black"
@@ -74,11 +75,27 @@ const useStyles = makeStyles((theme)=>({
       }
     },
     btn_Cancel: {
-      backgroundColor:"#868B8E",
+      fontFamily: "Montserrat",
+      fontWeight: "bold",
+      backgroundColor:"white",
+      color: '#7F8487',
       "&:hover":{
-        backgroundColor:"#4E4F50",
+        backgroundColor:"#E4E5E8",
+      },
+      marginRight: '1%',
+      marginBottom: '3%'
+    },
+    btn_Delete: {
+      fontFamily: "Montserrat",
+      fontWeight: "bold",
+      color: 'white',
+      backgroundColor:'#f12312',
+      marginBottom: '3%',
+      "&:hover":{
+        backgroundColor:"#D11A2A",
       }
-    }
+      
+    },
 
 }))
 

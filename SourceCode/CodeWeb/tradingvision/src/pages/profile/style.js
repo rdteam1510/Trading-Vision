@@ -97,7 +97,7 @@ const useStyles = makeStyles((theme) =>({
     },
     btn_Delete:{
         backgroundColor: "rgb(241, 35, 35)",
-        borderRadius: "10px",
+       
         color: "#FFFFFF",
         marginBottom:"3%", 
         marginRight:"2%",
@@ -109,17 +109,14 @@ const useStyles = makeStyles((theme) =>({
         }
     },
     btn_Cancel: {
-        backgroundColor: "#c1c1c1",
-        borderRadius: "10px",
-        color: "#FFFFFF",
-        marginRight:"2%", 
-        marginBottom:"3%",
-        marginTop: "14px",
         fontFamily: "Montserrat",
-        fontWeight: "600",
-        "&:hover":{
-            backgroundColor: "#AAAAAA"
-        }
+      fontWeight: "bold",
+      backgroundColor:"white",
+      color: '#7F8487',
+      "&:hover":{
+        backgroundColor:"#E4E5E8",
+      },
+      marginRight: '2%',
     }
 
 

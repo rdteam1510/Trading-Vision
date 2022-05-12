@@ -14,7 +14,7 @@ import {
 import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop) 
+
 
 const darkTheme = createTheme({
     palette: {
@@ -64,7 +64,7 @@ const SearchTicker = (props) => {
                                     className ={classes.row}
                                     onClick={() => {
                                     if (row.ticker === props.ticker){
-                                      toast.error("Compared ticker should be different from default ticker", 
+                                        toast.error("Compared ticker should be different from default ticker", 
                                         {autoClose: 2000, 
                                         transition: Slide,
                                         position:"bottom-left",
@@ -72,9 +72,10 @@ const SearchTicker = (props) => {
                                         });
                                     }
                                     else
+                                    {
                                       props.handleSelection(row.ticker);
-                                     
-                                    }}
+                                      props.handleClosed();                                     
+                                    }}}
                                     
                                     selected={props.RowID === row.ticker}
                                     key={row.ticker}

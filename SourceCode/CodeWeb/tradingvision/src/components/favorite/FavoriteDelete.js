@@ -4,7 +4,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Button from '@mui/material/Button';
+import {Button} from '@material-ui/core';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import axios from 'axios';
 import { ToastContainer, toast, Slide } from 'react-toastify';
@@ -43,24 +43,13 @@ const ReminderDelete = (props) => {
               </DialogContent>
               <DialogActions>
                 <Button 
-                  onClick={()=>{props.deleteFavoriteStock(props.rowID); props.onClose()}}
-                  sx = {{
-                    color: 'white',
-                    backgroundColor:'#f12312',
-                    "&:hover":{
-                      backgroundColor:"#D11A2A",
-                    }
-                  }}>Delete</Button>
+                 onClick={()=>{props.deleteFavoriteStock(props.rowID); props.onClose()}}
+                 className = {classes.btn_Delete}
+                 >Delete</Button>
                   
                 <Button 
                   onClick={()=>{props.onClose()}}
-                  sx = {{
-                    color: 'white',
-                    backgroundColor:'#c1c1c1',
-                    "&:hover":{
-                      backgroundColor:"#AAAAAA",
-                    }
-                  }}
+                  className = {classes.btn_Cancel}
                   >
                   Cancel
                 </Button>
