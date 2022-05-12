@@ -9,6 +9,7 @@ const useStyles = makeStyles(() => ({
     tablist:{
       indicatorColor: "primary",
       color: "#FF9936",
+      marginTop: "2.5%",
       
     },
     tab:{

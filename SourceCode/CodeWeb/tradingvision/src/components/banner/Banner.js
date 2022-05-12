@@ -9,14 +9,14 @@ const Banner = () => {
             <Container className={classes.bannerContent}>
                 <div className={classes.tagline}>
                 <Typography
-                    variant="h2"
+                    variant="h4"
                     style={{
                     fontWeight: "bold",
                     marginBottom: 15,
                     fontFamily: "Montserrat",
                     }}
                 >
-                    Trading Vision
+                    Stock Prices by Market Cap
                 </Typography>
                 </div>
             </Container>
