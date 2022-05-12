@@ -5,7 +5,7 @@ const useStyles = makeStyles(() =>({
         backgroundImage: "url(./banner2.jpg)",
     },
     bannerContent:{
-        height: 300,
+        height: 150,
         display: "flex",
         flexDirection: "column",
         paddingTop: 25,

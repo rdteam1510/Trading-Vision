@@ -30,14 +30,14 @@ const StockExchange = ({user}) => {
   };
 
   useEffect(() =>{
-    window.scrollTo(250, 450)
+    window.scrollTo(250,250)
   }, [])
   return (
     
       <Container style={{textAlign: 'center'}}>
         <Typography
             variant="h4"
-            style={{margin: 80, fontFamily: 'Montserrat'}}
+            style={{margin: 50, fontFamily: 'Montserrat'}}
             >
                 Stock Prices by Market Cap
             </Typography>

@@ -45,7 +45,7 @@ const ReminderEmpty = (props) => {
                             <TableHead  className={classes.tablehead}
                             >
                                 <TableRow>
-                                {["TITLE", "TIME", "TICKER", "CONTENT", "EDIT","ACTIONS"].map((head) => (
+                                {["TITLE", "TIME", "TICKER", "CONTENT", "ACTIONS"].map((head) => (
                                     <TableCell
                                     className={classes.tablecell}
                                     key={head}
