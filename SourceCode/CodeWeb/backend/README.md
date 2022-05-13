@@ -1,14 +1,14 @@
-- [How to run](#how-to-run)
-  - [You can check data with POSTMAN](#you-can-check-data-with-postman)
-- [Routes](#routes)
-  - [CompanyInfo](#companyinfo)
-      - [CompanyInfo query](#companyinfo-query)
-  - [Stocks](#stocks)
-  - [Predictions](#predictions)
-  - [Reminders](#reminders)
-  - [Favorites](#favorites)
-  - [Google oAuth2.0 and Facebook oAuth](#google-oauth20-and-facebook-oauth)
-- [Reminder mail](#reminder-mail)
+-   [How to run](#how-to-run)
+    -   [You can check data with POSTMAN](#you-can-check-data-with-postman)
+-   [Routes](#routes)
+    -   [CompanyInfo](#companyinfo)
+        -   [CompanyInfo query](#companyinfo-query)
+    -   [Stocks](#stocks)
+    -   [Predictions](#predictions)
+    -   [Reminders](#reminders)
+    -   [Favorites](#favorites)
+    -   [Google oAuth2.0 and Facebook oAuth](#google-oauth20-and-facebook-oauth)
+-   [Reminder mail](#reminder-mail)
 
 ---
 
@@ -58,7 +58,8 @@
 
 ## Predictions
 
--   Get predictions by ticker: http://localhost:4040/api/predictions/[ticker]
+-   Get latest 5 predictions by ticker: http://localhost:4040/api/predictions/[ticker]
+-   Get all predictions by ticker: http://localhost:4040/api/predictions/all/[ticker]
 
 ## Reminders
 
@@ -88,6 +89,10 @@
 -   http://localhost:4040/auth/logout => logout account on the application. The session will be destroyed and removed from the DB.
 
 !**NOTE**: Facebook oAuth is processed the same way as Google oAuth2.0
+
+## Delete user
+
+-   http://localhost:4040/api/deleteuser: delete all user's information on web app.
 
 # Reminder mail
 
