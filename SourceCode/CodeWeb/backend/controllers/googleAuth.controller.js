@@ -19,7 +19,7 @@ exports.failedLogin = (req, res) => {
 exports.logout = (req, res) => {
 	req.logout();
 	req.session.destroy();
-	res.redirect(CLIENT_URL + 'login')
+	res.redirect(CLIENT_URL)
 
 };
 
@@ -29,5 +29,5 @@ exports.googleAuth = passport.authenticate("google", {
 
 exports.googleAuthCallback = passport.authenticate("google", {
 	successRedirect: CLIENT_URL,
-	failureRedirect: CLIENT_URL + 'login',
+	failureRedirect: CLIENT_URL,
 });

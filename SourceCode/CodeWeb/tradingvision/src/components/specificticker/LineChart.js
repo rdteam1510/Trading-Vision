@@ -19,16 +19,19 @@ const LineChart =(props) =>{
     const [compare, setCompare] = useState([])
     const [comparePredictions, setComparePredictions] = useState([])
     const [loading, setLoading] = useState([])
+    const [allPredictions, setAllPredictions] = useState([])
     const priceData =[]
     const predictPrice=[]
     const compareData =[]
     const predictCompare=[]
+    const allPredictPrice =[]
     const classes = useStyles()
     
     //Get data off current stock
     useEffect(() => {
       actualPrice()
       currentStockPredictions()
+      getAllPredictions()
     },[])
     // Add values for popup
     const [values, setValues] = useState({
@@ -61,6 +64,15 @@ const LineChart =(props) =>{
       })
     }
 
+    const getAllPredictions = async () => {
+      setLoading(true)
+      axios.get(`/api/predictions/all/${ticker}`)
+      .then((response) =>{
+        setAllPredictions(response.data.prediction)
+        setLoading(false)
+      })
+    }
+
     const compareStocks = async()=>{
       setLoading(true)
         axios.get(`/api/forpredictions/${props.compareTicker}`)
@@ -85,6 +97,12 @@ const LineChart =(props) =>{
           point.Time*1000,
           point.Close,])
         
+    })
+    //allPredictions
+    allPredictions.map(point => {
+        allPredictPrice.push([
+          point.Date*1000,
+          point.PredictedPrice])
     })
     
     // current stock's prediction price list 
@@ -142,9 +160,7 @@ const LineChart =(props) =>{
       ],
       tooltip: {
         shared: false,
-        // formatter: function () {
-        //   return numberFormat.format(this.y, 0) +  '</b><br/>' + moment(this.x).format('MMMM Do YYYY')
-        // },
+        
         split: true,
         fontFamily: "Montserrat",
       },
@@ -333,12 +349,11 @@ const LineChart =(props) =>{
       ],
       
     };
-    // const timezone = new Date().getTimezoneOffset()
+    
     
     const configPriceWithoutCompare = {
-      // global : {
-      //   timezoneOffset: timezone
-      // },
+  
+      
       time : {
         timezone: 'Asia/Ho_Chi_Minh',
         useUTC: true,
@@ -365,9 +380,6 @@ const LineChart =(props) =>{
       ],
       tooltip: {
         shared: false,
-        // formatter: function () {
-        //   return numberFormat.format(this.y, 0) +  '</b><br/>' + moment(this.x).format('MMMM Do YYYY')
-        // },
         split: true,
         fontFamily: "Montserrat",
         
@@ -387,8 +399,7 @@ const LineChart =(props) =>{
                 var val = new Date(e.point.x)
                 
                 val.setMinutes(val.getMinutes()+ 60*2)
-                
-                // new Date(val).setMinutes(new Date(val).getMinutes() + 10)
+              
                
                 if(seriesName === `${ticker} Predicted Price`) {            
                   setOpen(true);
@@ -505,6 +516,7 @@ const LineChart =(props) =>{
         },
       
       },
+
       series: [{
         name: `${ticker} `,
         type: 'spline',
@@ -514,7 +526,7 @@ const LineChart =(props) =>{
           valueDecimals: 2
         },
         color: '#A0E7E5',
- 
+        
   
       },
       {
@@ -528,7 +540,21 @@ const LineChart =(props) =>{
         color: '#F51720',
         fontFamily: "Montserrat",
       
-      }],
+      },
+      // {
+      //   name: `${ticker} All Predicted Price`,
+      //   type: 'spline',
+  
+      //   data: allPredictPrice,
+      //   tooltip: {
+      //     valueDecimals: 2
+      //   },
+      //   color: '#F51720',
+      //   fontFamily: "Montserrat",
+      
+      // }
+    ],
+      
     };
     return (
       <div>

@@ -1,15 +1,15 @@
 from pymongo import MongoClient
 from bs4 import BeautifulSoup
 import numpy as np
-import requests, time, cchardet
+import requests, cchardet
+import time
 
 my_request = requests.Session()
 client = MongoClient(
-    "mongodb+srv://tradingvision:123@cluster0.xmnn8.mongodb.net/TradingVision?authSource=admin&replicaSet=atlas-kkwgbw-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true"
+    "mongodb+srv://tradingvision:123@cluster0.4fh3n.mongodb.net/test?authSource=admin&replicaSet=atlas-fyx376-shard-0&readPreference=primary&ssl=true"
 )
-db = client["CompanyInfo"]
+db = client["TradingVision"]
 se_list = ["hose", "hnx", "upcom"]
-# se_list = ['test']
 headers = [
     "StockExchange",
     "Ticker",
@@ -30,7 +30,6 @@ headers = [
     "ROE",
 ]
 
-
 def read_stocks_text_file(namefile):
     """
     Read stocks from text file, remove end-line breaks, convert them into a list
@@ -38,7 +37,7 @@ def read_stocks_text_file(namefile):
     :return: a list of stocks
     """
     file = open(
-        f"stockstickers/{namefile}.txt",
+        f"./stockstickers/{namefile}.txt",
         "r",
     )
     content = file.read()
@@ -50,7 +49,6 @@ def read_stocks_text_file(namefile):
 def set_bs4(ticker):
     """
     Set link for beautifulSoup
-
     :param ticker: str
     :return: doc1, doc2: bs4.BeautifulSoup
     """
@@ -70,7 +68,6 @@ def set_bs4(ticker):
 def fetch_company_info(tickers):
     """
     Get company info and put it into the MongoDB
-
     :param ticker: str
     :param se: str
     :return: None
@@ -82,54 +79,82 @@ def fetch_company_info(tickers):
         doc1, doc2 = set_bs4(ticker)
 
         # PROFILE
-        se = (
-            doc2.find("h3", {"class": "typo_title myriad_pro_condensed"})
-            .text.split(" ")[-1]
-            .strip("()")
-            .lower()
-        )
-        name = doc2.find_all("td")[1].text.strip()
-        addr = doc2.find_all("td")[7].text.strip()
-        website = doc2.find_all("td")[13].text.strip()
-        industry = doc2.find_all("td")[15].text.strip()
+        try:
+            se = (
+                doc2.find("h3", {"class": "typo_title myriad_pro_condensed"})
+                .text.split(" ")[-1]
+                .strip("()")
+                .lower()
+            )
+        except:
+            se = ""
+        try:
+            name = doc2.find_all("td")[1].text.strip()
+        except:
+            name = ""
+        try:
+            addr = doc2.find_all("td")[7].text.strip()
+        except:
+            addr = ""
+        try:
+            website = doc2.find_all("td")[13].text.strip()
+        except:
+            website = ""
+        try:
+            industry = doc2.find_all("td")[15].text.strip()
+        except:
+            industry = ""
         try:
             info = doc2.find_all(
                 "div", {"class": "profile_content_detail_wrap"}
             )[3].p.text.strip()
         except:
-            info = doc2.find_all(
-                "div", {"class": "profile_content_detail_wrap"}
-            )[3].text.strip()
+            info =""
         # FINANCIALS
         try:
             basic_eps = doc1.find_all("td")[7].text.strip()
+        except:
+            basic_eps = ""
+        try:
             diluted_eps = doc1.find_all("td")[9].text.strip()
+        except:
+            diluted_eps = ""
+        try:
             pe = doc1.find_all("td")[11].text.strip()
+        except:
+            pe = ""
+        try:
             book_value = doc1.find_all("td")[13].text.strip()
+        except:
+            book_value = ""
+        try:
             listed_shares = doc1.find_all("td")[15].text.strip()
+        except:
+            listed_shares = ""
+        try:
             shares_outstanding = doc1.find_all("td")[17].text.strip()
+        except:
+            shares_outstanding = ""
+        try:
             market_capital = doc1.find_all("td")[19].text.strip()
+        except:
+            market_capital = ""
+        try:
             total_assets = (
                 doc1.find("td", text="Total Assets")
                 .find_next("td")
                 .text.strip()
             )
+        except:
+            total_assets = ""
+        try:
             roa = doc1.find("td", text="ROA").find_next("td").text.strip()
+        except:
+            roa = ""
+        try:
             roe = doc1.find("td", text="ROE").find_next("td").text.strip()
         except:
-            basic_eps = (
-                diluted_eps
-            ) = (
-                pe
-            ) = (
-                book_value
-            ) = (
-                listed_shares
-            ) = (
-                shares_outstanding
-            ) = (
-                market_capital
-            ) = total_assets = roa = roe = ""
+            roe = ""
         transform_dict = dict(
             zip(
                 headers,
@@ -160,21 +185,15 @@ def fetch_company_info(tickers):
     return my_data
 
 
-start = time.perf_counter()
 
 total_stocks = np.array([])
 for se in se_list:
     total_stocks = np.concatenate(
         (total_stocks, read_stocks_text_file(se)), axis=0
     )
-    # print(total_stocks)
 
-print(total_stocks)
 
 result = fetch_company_info(total_stocks)
-db['CompanyInfo'].delete_many({})
-db["CompanyInfo"].insert_many(result)
+db['companyinfos'].delete_many({})
+db["companyinfos"].insert_many(result)
 
-stop = time.perf_counter()
-
-print(f"Finish in {round(stop-start, 4)} seconds")
