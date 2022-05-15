@@ -63,7 +63,7 @@ const SearchPopup = ({user}) => {
 			ticker: company.Ticker,
 			companyName: company.CompanyName,
 			industry: company.Industry,
-			stockExchange: company.StockExchange,
+			stockExchange: company.StockExchange.toUpperCase(),
 		};
 	});
 
@@ -71,11 +71,11 @@ const SearchPopup = ({user}) => {
 		return rows.filter(
 			(row) =>
 				row.ticker.toLowerCase().includes(search) ||
-				// row.companyName.toLowerCase().includes(search) ||
+				row.companyName.toLowerCase().includes(search) ||
 				row.industry.toLowerCase().includes(search) ||
 				row.ticker.includes(search) ||
 				row.industry.includes(search) ||
-				// row.companyName.includes(search) ||
+				row.companyName.includes(search) ||
 				row.stockExchange.toLowerCase().includes(search) ||
 				row.stockExchange.includes(search)
 		);
@@ -179,7 +179,7 @@ const SearchPopup = ({user}) => {
 										align="center"
 										className={classes.cell}
 									>
-										{row.stockExchange.toUpperCase()}
+										{row.stockExchange}
 									</TableCell>
 								</TableRow>
 							))}

@@ -386,6 +386,7 @@ const LineChart =(props) =>{
       },
       
       plotOptions: {
+        
         series: {
           showInNavigator: true,
           gapSize: 6,
@@ -517,17 +518,7 @@ const LineChart =(props) =>{
         },
       
       },
-      plotOptions: {
-        area: {
-            stacking: 'normal',
-            lineColor: '#666666',
-            lineWidth: 1,
-            marker: {
-                lineWidth: 1,
-                lineColor: '#666666'
-            }
-        }
-    },
+ 
       series: [{
         name: `${ticker} `,
         type: 'spline',
@@ -554,8 +545,11 @@ const LineChart =(props) =>{
       },
       // {
       //   name: `${ticker} All Predicted Price`,
+        
       //   type: 'areaspline',
-  
+      //   lineWidth: 0.7,
+      //   // linkedTo: ':previous',
+      //   fillOpacity: 0.3,
       //   data: allPredictPrice,
       //   tooltip: {
       //     valueDecimals: 2
