@@ -41,31 +41,30 @@ const useStyles = makeStyles((theme) =>({
         marginBottom: "15%",
         fontSize: "22px",
     },
-    Grid_delete:{
-        marginTop: "10%"
-    },
     delete_title:{
         fontFamily: "Montserrat",
         fontSize: "13px"
     },
     delete_warning:{
         backgroundColor: "#373A6D",
-        marginLeft:"3%",
-        marginTop:"-1%",
-        width: "80%",
-        height: "150px",
+        marginLeft:"1%",
+        marginTop:"5%",
+        width: "90%",
+        paddingTop: "20px",
+        paddingLeft:"20px",
+        height: "190px",
         borderRadius: "5px",
     },
     delete_permanent:{
         fontWeight: 'bold', 
         fontFamily: "Montserrat",
-        fontSize: "16px",
+        fontSize: "20px",
         marginLeft:"2%", 
         marginTop:"1%"
     },
     warning:{
         fontFamily: "Montserrat",
-        fontSize: "14px",
+        fontSize: "16px",
         marginLeft:"2%", 
         marginTop:"15px"
     },
@@ -74,9 +73,9 @@ const useStyles = makeStyles((theme) =>({
         borderRadius: "7px",
         color: "#FFFFFF",
         marginLeft:"2%", 
-        marginTop: "14px",
+        marginTop: "2%",
         fontFamily: "Montserrat",
-        fontWeight: "600",
+        fontWeight: "1000",
         "&:hover":{
             backgroundColor: "rgba(241, 35, 35, 0.7)"
         }

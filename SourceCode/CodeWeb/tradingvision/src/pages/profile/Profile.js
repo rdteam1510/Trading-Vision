@@ -55,19 +55,7 @@ const Profile = ({ user }) => {
 							</Typography>
 						</Grid>
 					</Grid>
-					<div className={classes.delete_account}>
-						<Grid
-							container
-							spacing={2}
-							className={classes.Grid_delete}
-						>
-							<Grid item align="center">
-								<HighlightOffIcon sx={{ fontSize: 90 }} />
-								<Typography className={classes.delete_title}>
-									Delete Account
-								</Typography>
-							</Grid>
-							<Grid item className={classes.delete_warning}>
+					<div className={classes.delete_warning}>
 								<Typography
 									className={classes.delete_permanent}
 								>
@@ -141,8 +129,6 @@ const Profile = ({ user }) => {
 										</Button>
 									</DialogActions>
 								</Dialog>
-							</Grid>
-						</Grid>
 					</div>
 				</>
 			) : (

@@ -548,7 +548,7 @@ const LineChart =(props) =>{
         
       //   type: 'areaspline',
       //   lineWidth: 0.7,
-      //   // linkedTo: ':previous',
+      //   linkedTo: ':previous',
       //   fillOpacity: 0.3,
       //   data: allPredictPrice,
       //   tooltip: {
