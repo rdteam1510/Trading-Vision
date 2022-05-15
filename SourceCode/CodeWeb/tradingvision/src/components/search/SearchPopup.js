@@ -76,7 +76,7 @@ const SearchPopup = ({user}) => {
 				row.ticker.includes(search) ||
 				row.industry.includes(search) ||
 				// row.companyName.includes(search) ||
-				row.stockExchange.includes(search) ||
+				row.stockExchange.toLowerCase().includes(search) ||
 				row.stockExchange.includes(search)
 		);
 	};

@@ -6,7 +6,7 @@ import time
 
 my_request = requests.Session()
 client = MongoClient(
-    "mongodb+srv://tradingvision:123@cluster0.4fh3n.mongodb.net/test?authSource=admin&replicaSet=atlas-fyx376-shard-0&readPreference=primary&ssl=true"
+    "localhost", 27017
 )
 db = client["TradingVision"]
 se_list = ["hose", "hnx", "upcom"]

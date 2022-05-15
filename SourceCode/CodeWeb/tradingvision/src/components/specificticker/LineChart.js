@@ -419,7 +419,8 @@ const LineChart =(props) =>{
                 }
               }
             } 
-        }
+        },
+
       },
       rangeSelector: {
         selected: 1
@@ -516,7 +517,17 @@ const LineChart =(props) =>{
         },
       
       },
-
+      plotOptions: {
+        area: {
+            stacking: 'normal',
+            lineColor: '#666666',
+            lineWidth: 1,
+            marker: {
+                lineWidth: 1,
+                lineColor: '#666666'
+            }
+        }
+    },
       series: [{
         name: `${ticker} `,
         type: 'spline',
@@ -543,7 +554,7 @@ const LineChart =(props) =>{
       },
       // {
       //   name: `${ticker} All Predicted Price`,
-      //   type: 'spline',
+      //   type: 'areaspline',
   
       //   data: allPredictPrice,
       //   tooltip: {
