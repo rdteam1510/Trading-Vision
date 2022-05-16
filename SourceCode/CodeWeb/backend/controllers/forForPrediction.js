@@ -1,7 +1,7 @@
 const ForPrediction = require('../models/ForPrediction');
 const Stock = require('../models/Stock');
 
-exports.addDataForPrediction = async (se) => {
+const addDataForPrediction = async (se) => {
 	try {
 		const stocks = await Stock.find({ StockExchange: se })
 			.sort('-TimeStamp')
