@@ -14,7 +14,7 @@ const addDataForPrediction = async (se) => {
 				Time: Time,
 				Close: Match,
 			};
-			res.json(data);
+			await ForPrediction.create(data);
 		});
 	} catch (error) {
 		console.log(error);
