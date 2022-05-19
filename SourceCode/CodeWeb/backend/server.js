@@ -106,12 +106,30 @@ const addJob = schedule.scheduleJob('10 15 * * *', () => {
 	}
 });
 
+// Add data into ForPrediction collection
 const addDataForPrediction = require('./controllers/forForPrediction');
-const addJob2 = schedule.scheduleJob('20 15 * * *', () => {
+const addJob2 = schedule.scheduleJob('23 22 * * *', () => {
+	let date = new Date(Date.now());
+	const mYear = date.getFullYear();
+	const mMonth = date.getMonth() + 1;
+	const mDay = date.getDate();
+
+	const MyDate =
+		mYear + '-' + ('0' + mMonth).slice(-2) + '-' + ('0' + mDay).slice(-2);
+
+	let convertDate = new Date(MyDate).getTime() / 1000;
 	for (se of ses) {
-		addDataForPrediction(se);
+		addDataForPrediction(se, convertDate);
 		addJob2.cancel(true);
 	}
+});
+
+// Update data in CompanyInfo
+const updateCompanyInfo = require('./controllers/updateCompanyInfo');
+const addJob3 = schedule.scheduleJob('44 20 * * 1-5', () => {
+	console.log('START');
+	updateCompanyInfo();
+	addJob3.cancel(true);
 });
 
 // Send Reminder mail
