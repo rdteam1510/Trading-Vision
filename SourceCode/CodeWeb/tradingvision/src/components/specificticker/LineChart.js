@@ -112,7 +112,12 @@ const LineChart =(props) =>{
         point.PredictedPrice
       ])
     })
-    priceData.push(predictPrice[0])
+
+    // if (priceData.slice(-1)[0] !== predictPrice[0]){
+    //   priceData.push(predictPrice[0])
+    // }
+    // priceData.push(predictPrice[0])
+
     
     if (props.compareTicker !== null){
         // compared ticker's price list
@@ -534,7 +539,7 @@ const LineChart =(props) =>{
       {
         name: `${ticker} Predicted Price`,
         type: 'spline',
-  
+       
         data: predictPrice,
         tooltip: {
           valueDecimals: 2
