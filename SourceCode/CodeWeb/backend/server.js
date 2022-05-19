@@ -99,7 +99,8 @@ app.use(errorHandlerMiddleware);
 // Add data into ForCandlestick collection
 const ses = ['hose', 'hnx', 'upcom'];
 const addDataForCandlestick = require('./controllers/forCandlestick');
-const addJob = schedule.scheduleJob('10 15 * * *', () => {
+const addJob = schedule.scheduleJob('10 15 * * 1-5', () => {
+	console.log('--Start ForCandlestick--');
 	for (se of ses) {
 		addDataForCandlestick(se);
 		addJob.cancel(true);
@@ -108,7 +109,8 @@ const addJob = schedule.scheduleJob('10 15 * * *', () => {
 
 // Add data into ForPrediction collection
 const addDataForPrediction = require('./controllers/forForPrediction');
-const addJob2 = schedule.scheduleJob('23 22 * * *', () => {
+const addJob2 = schedule.scheduleJob('45 15 * * 1-5', () => {
+	console.log('--Start ForPrediction--');
 	let date = new Date(Date.now());
 	const mYear = date.getFullYear();
 	const mMonth = date.getMonth() + 1;
@@ -126,8 +128,8 @@ const addJob2 = schedule.scheduleJob('23 22 * * *', () => {
 
 // Update data in CompanyInfo
 const updateCompanyInfo = require('./controllers/updateCompanyInfo');
-const addJob3 = schedule.scheduleJob('44 20 * * 1-5', () => {
-	console.log('START');
+const addJob3 = schedule.scheduleJob('45 20 * * 1-5', () => {
+	console.log('--Start CompanyInfo--');
 	updateCompanyInfo();
 	addJob3.cancel(true);
 });
