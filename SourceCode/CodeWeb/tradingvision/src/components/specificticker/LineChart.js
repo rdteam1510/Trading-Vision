@@ -113,13 +113,10 @@ const LineChart =(props) =>{
       ])
     })
 
-    // if (priceData.slice(-1)[0] !== predictPrice[0]){
-    //   priceData.push(predictPrice[0])
-    // }
+  
 
     // priceData.push(predictPrice[0])
-    // console.log(priceData[priceData.length - 1])
-    // predictPrice.unshift(priceData[priceData.length - 1])
+ 
     predictPrice.splice(0,0, priceData[priceData.length - 1] )
     
     if (props.compareTicker !== null){

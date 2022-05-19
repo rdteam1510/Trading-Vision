@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import useStyles from '../style';
 
 const ReminderDelete = (props) => {
-  const [status, setStatus] = useState([])
+ 
   const classes = useStyles()  
   return (
     <Dialog

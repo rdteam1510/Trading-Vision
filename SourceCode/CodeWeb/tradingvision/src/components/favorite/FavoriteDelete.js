@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -6,8 +6,6 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import {Button} from '@material-ui/core';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import axios from 'axios';
-import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useStyles from './style'
 
@@ -16,7 +14,6 @@ const ReminderDelete = (props) => {
 
 
   
-
   return (
     <Dialog
               open={props.open}

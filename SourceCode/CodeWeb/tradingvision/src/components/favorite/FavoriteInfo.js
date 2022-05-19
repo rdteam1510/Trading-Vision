@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
 	createTheme,
 	ThemeProvider,
@@ -40,7 +40,7 @@ const FavoriteInfo = (props) => {
 	// Delete modal
 	const [selectedRow, setSelectedRow] = useState();
 	const [openDelete, setOpenDelete] = useState(false);
-	const [loading, setLoading] = useState(true)
+
 	const handleOpenDelete = (row) => {
 		setSelectedRow(row);
 		setOpenDelete(true);

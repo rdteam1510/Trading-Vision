@@ -8,7 +8,7 @@ import addFullScreenModule from 'highcharts/modules/full-screen'
 import addStockToolsModule from 'highcharts/modules/stock-tools'
 import {
   HighchartsStockChart, Chart, withHighcharts, XAxis, YAxis,
-  OHLCSeries, ColumnSeries, Navigator, RangeSelector, Tooltip, CandlestickSeries
+  ColumnSeries, Navigator, RangeSelector, Tooltip, CandlestickSeries
 } from 'react-jsx-highstock';
 import {useParams} from 'react-router-dom'
 addIndicatorsAllModule(Highcharts)

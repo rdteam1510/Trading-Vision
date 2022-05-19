@@ -67,7 +67,7 @@ return (
                        
                         }}
                         alt="logo"
-                        src="Capture.png" 
+                        src=".././Capture.png" 
                         onClick={() => history("/")}
                         className={classes.logo}
                     />

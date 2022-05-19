@@ -11,7 +11,7 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
 import TextField from '@mui/material/TextField';
-import { useForm, Form } from '../useForm';
+import { Form } from '../useForm';
 import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios'
 import { Typography } from '@mui/material';
@@ -21,7 +21,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const SetReminderLine = (props) => {
     const classes = useStyles()    
-    const {open, setOpen, time, setTime, stockTicker, setTicker, values, setValues} = props
+    const {open, setOpen, time, setTime, stockTicker, values, setValues} = props
     
     const initialValues = {
       title: '',
@@ -29,10 +29,7 @@ const SetReminderLine = (props) => {
       time: '',
       ticker: '',
     }
-
-    const handleClickOpen = () => {
-      setOpen(true);
-    };
+   
     const resetForm = () => {
       setValues(initialValues)
       setTime('')    

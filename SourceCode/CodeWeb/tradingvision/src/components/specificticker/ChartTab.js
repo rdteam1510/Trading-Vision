@@ -10,7 +10,7 @@ import { styled } from '@mui/system';
 
 
 const StyledButton = styled('button')(
-  ({}) => `
+  () => `
   font-family: Montserrat;
   
   font-size: 0.875rem;
@@ -49,7 +49,7 @@ const StyledButton = styled('button')(
 );
 
 const StyledListbox = styled('ul')(
-  ({}) => `
+  () => `
   font-family: Montserrat;
   font-size: 0.875rem;
   box-sizing: border-box;
@@ -66,7 +66,7 @@ const StyledListbox = styled('ul')(
 );
 
 const StyledOption = styled(OptionUnstyled)(
-  ({}) => `
+  () => `
   list-style: none;
   padding: 8px;
   border-radius: 0.45em;

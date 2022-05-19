@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, Navigate, useParams } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useParams } from "react-router-dom";
 import './App.css';
 import Header from '././components/header/Header';
 import Homepage from './pages/homepage/Homepage';
@@ -28,7 +28,7 @@ function App() {
   const classes = useStyles() 
   const [user,setUser] = useState(null);
   const [stocksList, setStockList] = useState([]);
-  const ticker = useParams();
+
   useEffect(() => {
     getUser();
     getTickers();

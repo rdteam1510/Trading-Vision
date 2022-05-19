@@ -22,17 +22,13 @@ const darkTheme = createTheme({
 
 const ComparePopup = (props) => {
     const classes = useStyles()
-    const [test, setTest] = useState(false);
-    const handleOpen = () => setTest(true);
-    
-    const [value, setValue] = useState('1');
-    const {selectedID, setSelectedID, selectedTab, setSelectedTab, myRef, executeScroll, handleSelection, ticker, handleClosed} = props;
+
+
+    const {selectedID, setSelectedID,  myRef, executeScroll, handleSelection, ticker, handleClosed} = props;
     const [search,setSearch] = useState('');
     const [companies, setCompanies] = useState([]);
     const [loading, setLoading] = useState(false)
-    const handleChange = (event, newValue) => {
-        setSelectedTab(newValue);
-      };
+  
     
     // Get company info
     useEffect(() => {

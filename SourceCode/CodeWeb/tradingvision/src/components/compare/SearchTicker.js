@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react'
+import React from 'react'
 import useStyles from './style'
 import {  
   createTheme, 
@@ -11,7 +11,7 @@ import {
   TableBody,
   Paper,
 } from '@material-ui/core'
-import { ToastContainer, toast, Slide } from 'react-toastify';
+import {  toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -30,7 +30,7 @@ const darkTheme = createTheme({
 const SearchTicker = (props) => {
     const classes = useStyles()
     const [loading, setLoading] = React.useState(false)
-    const handleOpen = () => setLoading(true);
+   
     const handleClosed = () => setLoading(false);
 
       

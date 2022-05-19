@@ -1,7 +1,6 @@
-import { Button, 
+import { 
          Container, 
          Typography, 
-         Box,
          Link,
         } from '@material-ui/core'
 import React from 'react'
@@ -29,21 +28,7 @@ const PageNotFound = () => {
                             Oops! 
                         </Typography>
                 <GifPlayer gif=".././404.gif" autoplay={true} className={classes.gif}/>
-                {/* <Typography
-                            variant="h4"
-                            style={{
-                            fontWeight: "bold",
-                            marginBottom: 15,
-                            fontFamily: "Montserrat",
-                            }}>
-                   404 - PAGE NOT FOUND
-                </Typography> */}
-                {/* <Button 
-                    onClick={() => {history("/");} }
-                    variant="outlined"
-                    className={classes.btn}>
-                    BACK TO HOMEPAGE
-                </Button> */}
+                
                 <Link 
                     onClick={() => {history("/")}}
                     component="button"
