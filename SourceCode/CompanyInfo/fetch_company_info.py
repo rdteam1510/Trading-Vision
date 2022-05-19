@@ -75,6 +75,7 @@ def fetch_company_info(tickers):
 
     my_data = []
     for ticker in tickers:
+        print(f'--{ticker}')
         start = time.perf_counter()
         doc1, doc2 = set_bs4(ticker)
 
@@ -105,11 +106,16 @@ def fetch_company_info(tickers):
         except:
             industry = ""
         try:
-            info = doc2.find_all(
-                "div", {"class": "profile_content_detail_wrap"}
-            )[3].p.text.strip()
+            try:
+                info = doc2.find_all(
+                    "div", {"class": "profile_content_detail_wrap"}
+                )[3].p.text.strip()
+            except:
+                info = doc2.find_all(
+                    "div", {"class": "profile_content_detail_wrap"}
+                )[3].text.strip()
         except:
-            info =""
+            info = ""
         # FINANCIALS
         try:
             basic_eps = doc1.find_all("td")[7].text.strip()
@@ -194,6 +200,6 @@ for se in se_list:
 
 
 result = fetch_company_info(total_stocks)
-db['companyinfos'].delete_many({})
-db["companyinfos"].insert_many(result)
+db['companyinfoscripts'].delete_many({})
+db["companyinfoscripts"].insert_many(result)
 
