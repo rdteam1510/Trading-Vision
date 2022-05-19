@@ -28,9 +28,9 @@ const LineChart =(props) =>{
     const classes = useStyles()
     
     //Get data off current stock
-    useEffect(() => {
-      actualPrice()
-      currentStockPredictions()
+    useEffect( async () => {
+    await actualPrice()
+    await currentStockPredictions()
       getAllPredictions()
     },[])
     // Add values for popup
@@ -116,8 +116,8 @@ const LineChart =(props) =>{
   
 
     // priceData.push(predictPrice[0])
- 
-    predictPrice.splice(0,0, priceData[priceData.length - 1] )
+    var temp = priceData[priceData.length - 1]
+    predictPrice.unshift(temp)
     
     if (props.compareTicker !== null){
         // compared ticker's price list
