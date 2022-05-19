@@ -6,20 +6,22 @@ const useStyles = makeStyles((theme) =>({
       width: '100%',
     },
     logo: {
-      flexGrow: "1",
+      flexGrow: "2",
       cursor: "pointer",
+      marginRight: "2%",
     },
-    title:{
-      fontFamily: "Montserrat",
-      fontWeight: "bold",
-      cursor: "pointer",
-      paddingRight: "23px",
-      fontSize: "25px",
-      marginRight: "3%",
-      [theme.breakpoints.up('sx')]: { 
-        fontSize: "13px",
-      },
-    },
+    // title:{
+    //   fontFamily: "Montserrat",
+    //   fontWeight: "bold",
+    //   cursor: "pointer",
+    //   paddingRight: "23px",
+    //   fontSize: "25px",
+    //   flexGrow: "1",
+    //   marginRight: "3%",
+    //   [theme.breakpoints.down('sx')]: { 
+    //     fontSize: "10px",
+    //   },
+    // },
     search: {
         position: 'relative',
         borderRadius: theme.shape.borderRadius,

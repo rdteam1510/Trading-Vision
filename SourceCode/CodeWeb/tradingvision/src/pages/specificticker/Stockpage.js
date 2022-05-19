@@ -62,6 +62,7 @@ import Login from "../login/Login"
 				setLoading(false)
 			  }, 3200);
 			window.scrollTo(0, 0)
+			
 		}, []);
 
 		const getCompanyInfo = async () => {

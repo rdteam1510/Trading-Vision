@@ -71,11 +71,11 @@ const SearchPopup = ({user}) => {
 		return rows.filter(
 			(row) =>
 				row.ticker.toLowerCase().includes(search) ||
-				row.companyName.toLowerCase().includes(search) ||
+				// row.companyName.toLowerCase().includes(search) ||
 				// row.industry.toLowerCase().includes(search) ||
 				row.ticker.includes(search) ||
 				// row.industry.includes(search) ||
-				row.companyName.includes(search) ||
+				// row.companyName.includes(search) ||
 				row.stockExchange.toLowerCase().includes(search) ||
 				row.stockExchange.includes(search)
 		);

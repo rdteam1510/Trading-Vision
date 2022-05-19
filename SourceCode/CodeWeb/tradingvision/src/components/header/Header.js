@@ -4,7 +4,7 @@ import {
     Toolbar, 
     Typography, InputBase, 
     IconButton, createTheme, 
-    ThemeProvider, CssBaseline,} from "@material-ui/core";
+    ThemeProvider, CssBaseline, Box} from "@material-ui/core";
 import React, {useState} from "react";
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
@@ -58,11 +58,20 @@ return (
             <CssBaseline/>
             <Container>
                 <Toolbar>
-
-                    <Typography 
-                    onClick={() => history("/")} 
-                    className={classes.title}
-                    > Trading Vision </Typography>
+                     {/* <img src="logo.png" alt="logo" className={classes.logo} />  */}
+                    <Box
+                        component="img"
+                        sx={{
+                        height: { xs: 70, sm: 60, md: 20 },
+                        width: { xs: 70, sm: 30, md: 35},
+                       
+                        }}
+                        alt="logo"
+                        src="Capture.png" 
+                        onClick={() => history("/")}
+                        className={classes.logo}
+                    />
+                   
                     <div className={ user ? classes.search : classes.searchNotLogin}>
                         
                         {user ? (
@@ -152,7 +161,7 @@ return (
                                 <Typography
                                 style={{ marginLeft: '10px', fontFamily:"Montserrat"}}>Profile</Typography>
                             </MenuItem>
-                            <MenuItem onClick={() => {history("/login"); handleClose(); logout();}}>
+                            <MenuItem onClick={() => {handleClose(); logout();}}>
                                 <LogoutIcon/>
                                 <Typography
                                 style={{ marginLeft: '10px', fontFamily:"Montserrat"}}>Sign Out</Typography>

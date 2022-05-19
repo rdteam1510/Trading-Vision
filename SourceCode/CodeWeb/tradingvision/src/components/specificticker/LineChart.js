@@ -21,7 +21,7 @@ const LineChart =(props) =>{
     const [loading, setLoading] = useState([])
     const [allPredictions, setAllPredictions] = useState([])
     const priceData =[]
-    const predictPrice=[]
+    var predictPrice=[]
     const compareData =[]
     const predictCompare=[]
     const allPredictPrice =[]
@@ -116,8 +116,11 @@ const LineChart =(props) =>{
     // if (priceData.slice(-1)[0] !== predictPrice[0]){
     //   priceData.push(predictPrice[0])
     // }
-    // priceData.push(predictPrice[0])
 
+    // priceData.push(predictPrice[0])
+    // console.log(priceData[priceData.length - 1])
+    // predictPrice.unshift(priceData[priceData.length - 1])
+    predictPrice.splice(0,0, priceData[priceData.length - 1] )
     
     if (props.compareTicker !== null){
         // compared ticker's price list
@@ -357,12 +360,7 @@ const LineChart =(props) =>{
     
     
     const configPriceWithoutCompare = {
-  
-      
-      time : {
-        timezone: 'Asia/Ho_Chi_Minh',
-        useUTC: true,
-      },
+
       yAxis: [{
         offset: 20,
 
@@ -539,7 +537,7 @@ const LineChart =(props) =>{
       {
         name: `${ticker} Predicted Price`,
         type: 'spline',
-       
+        linkedTo: ':previous',
         data: predictPrice,
         tooltip: {
           valueDecimals: 2

@@ -75,8 +75,8 @@ def predict(num_prediction, model, close_data):
     return prediction_list
     
 def predict_dates(num_prediction, close_date):
-    close_date = [datetime.datetime.fromtimestamp(i) for i in close_date]
-    last_date = close_date[-1] + pd.DateOffset(days = 1)
+    close_date = [datetime.datetime.utcfromtimestamp(i) for i in close_date]
+    last_date = close_date[-1] + pd.DateOffset(days = 2)
     prediction_dates = pd.date_range(last_date, periods=num_prediction + 1)
     # Create a list of Saturday and Sunday 
     leap = []
