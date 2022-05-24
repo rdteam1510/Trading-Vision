@@ -1,17 +1,17 @@
 const ForPrediction = require('../models/ForPrediction');
 const Stock = require('../models/Stock');
 
-const addDataForPrediction = async (se) => {
+const addDataForPrediction = async (se, convertDate) => {
 	try {
 		const stocks = await Stock.find({ StockExchange: se })
 			.sort('-TimeStamp')
 			.limit(100)
-			.select('-_id Ticker Match StockExchange Time');
-		stocks.map(async ({ Ticker, Match, StockExchange, Time }) => {
+			.select('-_id Ticker Match StockExchange');
+		stocks.map(async ({ Ticker, Match, StockExchange }) => {
 			const data = {
 				Ticker: Ticker,
 				StockExchange: StockExchange,
-				Time: Time,
+				Time: convertDate,
 				Close: Match,
 			};
 			await ForPrediction.create(data);

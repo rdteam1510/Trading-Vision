@@ -99,17 +99,17 @@ app.use(errorHandlerMiddleware);
 // Add data into ForCandlestick collection
 const ses = ['hose', 'hnx', 'upcom'];
 const addDataForCandlestick = require('./controllers/forCandlestick');
-const addJob = schedule.scheduleJob('10 15 * * 1-5', () => {
+// const addJob = schedule.scheduleJob('10 15 * * 1-5', () => {
+const addJob = schedule.scheduleJob('28 21 * * 1-5', () => {
 	console.log('--Start ForCandlestick--');
 	for (se of ses) {
 		addDataForCandlestick(se);
-		addJob.cancel(true);
 	}
 });
 
 // Add data into ForPrediction collection
 const addDataForPrediction = require('./controllers/forForPrediction');
-const addJob2 = schedule.scheduleJob('45 15 * * 1-5', () => {
+const addJob2 = schedule.scheduleJob('30 21 * * 1-5', () => {
 	console.log('--Start ForPrediction--');
 	let date = new Date(Date.now());
 	const mYear = date.getFullYear();
@@ -122,7 +122,6 @@ const addJob2 = schedule.scheduleJob('45 15 * * 1-5', () => {
 	let convertDate = new Date(MyDate).getTime() / 1000;
 	for (se of ses) {
 		addDataForPrediction(se, convertDate);
-		addJob2.cancel(true);
 	}
 });
 
@@ -131,7 +130,6 @@ const updateCompanyInfo = require('./controllers/updateCompanyInfo');
 const addJob3 = schedule.scheduleJob('45 20 * * 1-5', () => {
 	console.log('--Start CompanyInfo--');
 	updateCompanyInfo();
-	addJob3.cancel(true);
 });
 
 // Send Reminder mail
