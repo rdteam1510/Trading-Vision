@@ -13,5 +13,5 @@ exports.deleteUser = async (req, res) => {
 	}).lean();
 	req.logout();
 	req.session.destroy();
-	res.redirect(CLIENT_URL + "login");
+	res.redirect(CLIENT_URL);
 };

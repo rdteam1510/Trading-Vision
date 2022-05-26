@@ -534,7 +534,6 @@ const LineChart =(props) =>{
       {
         name: `${ticker} Predicted Price`,
         type: 'spline',
-        linkedTo: ':previous',
         data: predictPrice,
         tooltip: {
           valueDecimals: 2
@@ -542,22 +541,7 @@ const LineChart =(props) =>{
         color: '#F51720',
         fontFamily: "Montserrat",
       
-      },
-      // {
-      //   name: `${ticker} All Predicted Price`,
-        
-      //   type: 'areaspline',
-      //   lineWidth: 0.7,
-      //   linkedTo: ':previous',
-      //   fillOpacity: 0.3,
-      //   data: allPredictPrice,
-      //   tooltip: {
-      //     valueDecimals: 2
-      //   },
-      //   color: '#F51720',
-      //   fontFamily: "Montserrat",
-      
-      // }
+      }
     ],
       
     };

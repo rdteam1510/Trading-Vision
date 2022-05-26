@@ -1,6 +1,7 @@
 import React from 'react'
 import LineChart from './LineChart'
 import Candlestick from '../candlestick/Candlestick'
+import LineChartwithAllPredictedPrice from './LineChartwithAllPredictedPrice'
 import useStyles from './style'
 import PropTypes from 'prop-types';
 import SelectUnstyled, { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
@@ -146,12 +147,17 @@ const ChartTab = (props) => {
         <CustomSelect value={props.chart} onChange={props.setChart} style = {{cursor: 'pointer'}}>
           <StyledOption value={"Line"} style = {{cursor: 'pointer'}}>Line Chart</StyledOption>
           <StyledOption value={"Candlestick"} style = {{cursor: 'pointer'}}>Candlestick Chart</StyledOption>
+          <StyledOption value={"LineAllPredictedPrice"} style = {{cursor: 'pointer'}}>Line Chart with All Predicted Price</StyledOption>
         </CustomSelect>
       {
         props.chart === "Line" ? (
           <div><LineChart compareTicker={props.compareTicker}/></div>
-        ) : (
+        ) : props.chart === "Candlestick" ? (
           <div><Candlestick/></div>
+        ) : (
+          <div>
+            <LineChartwithAllPredictedPrice/>
+          </div>
         )
        
       }
