@@ -16,7 +16,7 @@ const Banner = () => {
                     fontFamily: "Montserrat",
                     }}
                 >
-                    Stock Prices by CafeF
+                    Stock Prices
                 </Typography>
                 </div>
             </Container>
