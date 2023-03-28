@@ -1,5 +1,5 @@
 # Trading Vision
-This is a graduated project in Auckland University of Technology collaborated with Netcompany. In this project, a website is created for the users to see the stock prices in real time and their predicting close price for the next 5 days.
+This is a graduated project in Auckland University of Technology collaborated with Netcompany. In this project, a website is created for the users to see the stock prices in real time and their predicting close price for the next 5 days. Visualization of line chart and candlestick chart are available for the users to be able to see the trend of the stock prices. Other functions are also developed including adding, deleting favorite stock prices and adding remind for a specific time in the future with comments. creating and deleting accounts with privacy issues are also considered in this project.
 ## Table of contents
 * [Source code](#source-code)
 * [Documents](#documents)
